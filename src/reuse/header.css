@@ -9,18 +9,18 @@ header {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #1D2527;
+    background-color: #17392E;
 }
 
 .headSpace {
     margin: 0px 1vw;
     display: flex;
-    min-width: 20vw;
+    min-width: 30vw;
 }
 
 .hElem {
     font-family: serif;
-    color: #1D2527;
+    color: #17392E;
     background-color: white;
     display: flex;
     align-items: center;
@@ -30,6 +30,11 @@ header {
     font-size: x-large;
     min-width: max-content;
     margin: 0% 5px;
+}
+
+.hElem>img {
+    width: 1cm;
+    height: 1cm;
 }
 
 .hElem:hover{
@@ -48,4 +53,15 @@ header {
 
 .headButtons {
     justify-content: right;
+}
+
+footer {
+    height: 0.5cm;
+    margin: 0;
+    min-width: 100%;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #4D391A;
 }

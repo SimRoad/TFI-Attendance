@@ -14,7 +14,7 @@ function Header(){
 
     useEffect(() => {
         const handleResize = () => {
-        setIsSmallScreen(window.innerWidth < 600); // Adjust the threshold as needed
+        setIsSmallScreen(window.innerWidth < 800); // Adjust the threshold as needed
         };
         handleResize();
         window.addEventListener('resize', handleResize);
@@ -30,7 +30,8 @@ function Header(){
             <header>
                 <div className='headSpace headName'>
                     <div className='hElem'>
-                        <p>{isSmallScreen ? 'TFI' : 'Tennessee Feedmill Incorporated'}</p>
+                        <img src="src/assets/TFIicon.png" alt="logo" />
+                        <p>{isSmallScreen ? '' : 'Tennessee Feedmill Inc.'}</p>
                     </div>
                 </div>
                 
@@ -49,9 +50,6 @@ function Header(){
                 </div>
 
                 <div className='headSpace headButtons'>
-                    <div className='hElem'>
-                        <input type="image" src="src/assets/ic_baseline-plus.svg" alt="calendar" />
-                    </div>
                     <div className='hElem'>
                         <input type="image" src="src/assets/mdi_calendar.svg" alt="calendar" />
                     </div>
