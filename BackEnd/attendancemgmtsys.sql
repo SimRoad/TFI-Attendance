@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Database: `attendancemgmtsys`
 --
 
+CREATE DATABASE `attendancemgmtsys`;
+USE `attendancemgmtsys`;
+
 -- --------------------------------------------------------
 
 --

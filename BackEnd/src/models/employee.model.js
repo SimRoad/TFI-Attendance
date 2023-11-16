@@ -1,12 +1,14 @@
 import dbConn from './db.config.js'
 
 var Employee = function(employee){
-    this.firstname = employee.first_name;
-    this.lastname = employee.last_name;
-    this.email = employee.email;
-    this.contact = employee.contactno;
-    this.position = employee.position;
+    this.employeeID = employee.employeeID;
+    this.firstName = employee.firstName;
+    this.middleName = employee.middleName;
+    this.lastName = employee.lastName;
+    this.birthdate = employee.birthDate;
     this.address = employee.address;
-    this.birthdate = employee.birthdate;
-    this.status = ['Employed','Fired']
+    this.position = employee.jobPosition;
+    this.status = employee.currentStatus
+    this.contactNumber = employee.contactNumber
+    this.email = employee.email;
 }
