@@ -22,14 +22,14 @@
     width: 80%;
 }
 
-.logPNG {
+.loginPNG {
     width: 4cm;
     border-radius: 100%;
     padding: 1px;
     background-color: white;
 }
 
-.logInput {
+.loginInput {
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -38,7 +38,7 @@
     
 }
 
-.logInput>h1{
+.loginInput>h1{
     color: #000;
     text-align: center;
     font-family: Inter;
@@ -49,7 +49,7 @@
     display: flex;
 }
 
-.logInput>input {
+.loginInput>input {
     width: 40vw;
     height: 1cm;
 
@@ -61,7 +61,7 @@
     color: #414141;
 }
 
-.logInput>a {
+.loginInput>a {
     font-size: small;
     color: #1c7185;
     text-decoration: none;

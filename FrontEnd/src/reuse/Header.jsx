@@ -29,28 +29,28 @@ function Header(){
         <>
             <header>
                 <div className='headSpace headName'>
-                    <div className='hElem'>
+                    <div className='headElem'>
                         <img src="src/assets/TFIicon.png" alt="logo" />
                         <p>{isSmallScreen ? '' : 'Tennessee Feedmill Inc.'}</p>
                     </div>
                 </div>
                 
                 <div className='headSpace headDate'>
-                    <div className='hElem divDate'>
+                    <div className='headElem divDate'>
                         {date.getMonth() + 1}
                     </div>
 
-                    <div className='hElem divDate'>
+                    <div className='headElem divDate'>
                         {date.getDate()}
                     </div>
                     
-                    <div className='hElem divDate'>
+                    <div className='headElem divDate'>
                         {date.getFullYear()}
                     </div>
                 </div>
 
                 <div className='headSpace headButtons'>
-                    <div className='hElem'>
+                    <div className='headElem'>
                         <input type="image" src="src/assets/mdi_calendar.svg" alt="calendar" />
                     </div>
                 </div>

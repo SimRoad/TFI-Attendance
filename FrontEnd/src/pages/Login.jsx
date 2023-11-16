@@ -15,12 +15,12 @@ function Login() {
             </div>
 
             <div className='divLogin'>
-              <div className='logInput'>
+              <div className='loginInput'>
                 <h1>Username:</h1>
                 <input type="text" placeholder='Username'/>
               </div>
 
-              <div className='logInput'>
+              <div className='loginInput'>
                 <h1>Password:</h1>
                 <input type="text" placeholder='Password'/>
                 <a href="http://">Forgot password?</a>
@@ -28,7 +28,7 @@ function Login() {
             </div>
 
             <div className='divLogin'>
-              <div className='logSubmit'>
+              <div className='loginSubmit'>
                 <input type="submit" value="Login" />
               </div>
             </div>

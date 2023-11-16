@@ -18,7 +18,7 @@ header {
     min-width: 30vw;
 }
 
-.hElem {
+.headElem {
     font-family: serif;
     color: #17392E;
     background-color: white;
@@ -32,12 +32,12 @@ header {
     margin: 0% 5px;
 }
 
-.hElem>img {
+.headElem>img {
     width: 1cm;
     height: 1cm;
 }
 
-.hElem:hover{
+.headElem:hover{
     box-shadow: 0px 0px 5px white;
 }
 
