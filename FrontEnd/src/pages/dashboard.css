@@ -1,0 +1,22 @@
+.dashDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    
+    flex: 80%;
+    height: fit-content;
+    border-radius: 15px;
+    padding: 1cm 0;
+    overflow-y: hidden;
+    border: 5px solid black;
+}
+
+.dashImg {
+    border: 5px solid red;
+    height: 5cm;
+    width: 5cm;
+    border-radius: 272px;
+    border: 1px solid #000;
+    background: #FFF;
+}
