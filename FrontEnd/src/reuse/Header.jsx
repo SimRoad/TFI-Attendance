@@ -37,7 +37,7 @@ function Header(){
                 
                 <div className='headSpace headDate'>
                     <div className='hElem divDate'>
-                        {date.getMonth()}
+                        {date.getMonth() + 1}
                     </div>
 
                     <div className='hElem divDate'>

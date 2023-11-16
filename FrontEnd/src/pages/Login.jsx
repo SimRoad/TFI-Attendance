@@ -22,7 +22,7 @@ function Login() {
 
               <div className='logInput'>
                 <h1>Password:</h1>
-                <input type="text" placeholder='Username'/>
+                <input type="text" placeholder='Password'/>
                 <a href="http://">Forgot password?</a>
               </div>
             </div>
