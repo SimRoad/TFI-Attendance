@@ -1,7 +1,13 @@
 import dbConn from './db.config.js'
 
-const Holidays = (holidays)=>{
-    
+class Holidays{
+    constructor(holiday){
+        this.holidayID = holiday.holidayID
+        this.holidayName = holiday.holidayName
+        this.holidayDesc = holiday.holidayDesc
+        this.holidayDate = new Date(holiday.holidayDate)
+        this.holidayType = holiday.holidayType
+    }
 }
 
-module.exports = User
+module.exports = Holidays

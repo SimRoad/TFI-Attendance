@@ -4,8 +4,8 @@ class Shift{
     constructor(shift){
         this.shiftID = shift.shiftID
         this.employeeID = shift.employeeID
-        this.timeIn = shift.timeIn
-        this.timeOut = shift.timeOut
+        this.timeIn = new Date(shift.timeIn)
+        this.timeOut = new Date(shift.timeOut)
         this.weekDay = shift.weekDay
     }
 }
