@@ -1,7 +1,13 @@
 import dbConn from './db.config.js'
 
-const Shift = function(shift){
-    this.shiftID = shift.shiftID
+class Shift{
+    constructor(shift){
+        this.shiftID = shift.shiftID
+        this.employeeID = shift.employeeID
+        this.timeIn = shift.timeIn
+        this.timeOut = shift.timeOut
+        this.weekDay = shift.weekDay
+    }
 }
 
 module.exports = Shift
