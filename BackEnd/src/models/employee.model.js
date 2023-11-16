@@ -1,6 +1,6 @@
 import dbConn from './db.config.js'
 
-var Employee = function(employee){
+const Employee = function(employee){
     this.employeeID = employee.employeeID;
     this.firstName = employee.firstName;
     this.middleName = employee.middleName;
@@ -12,3 +12,5 @@ var Employee = function(employee){
     this.contactNumber = employee.contactNumber
     this.email = employee.email;
 }
+
+module.exports = Employee
