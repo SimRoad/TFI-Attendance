@@ -1,6 +1,7 @@
 import databaseConn from '../../database.config.js'
+import GenericModel from './generic.model.js'
 
-class Employee{
+class Employee extends GenericModel{
     constructor(employee){
         this.employeeID = employee.employeeID
         this.firstName = employee.firstName
@@ -12,22 +13,15 @@ class Employee{
         this.status = employee.currentStatus
         this.contactNumber = employee.contactNumber
         this.email = employee.email
+        this.tableName = 'employee'
         this.fields = ()=>{
-            databaseConn.query(`SELECT * FROM employee`,(error,results,field)=>{
+            databaseConn.query(`SELECT * FROM employee`,(error,results,fields)=>{
                 if(error) return error
-                else return field.map(a=>a.name)
+                else return fields.map(a=>a.name).filter(a=>{return a != 'employeeID'})
             })
         }
     }
-    getAll(){
-        databaseConn.query(`SELECT * FROM employee`,(error,results)=>{
-            if(error) return error
-            else return results
-        })
-    }
-    create(){
-        databaseConn.query(`INSERT`)
-    }
+    
 }
 
 export default Employee

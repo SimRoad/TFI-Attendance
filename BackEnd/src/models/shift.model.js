@@ -1,6 +1,7 @@
 import databaseConn from '../../database.config.js'
+import GenericModel from './generic.model.js'
 
-class Shift{
+class Shift extends GenericModel{
     constructor(shift){
         this.shiftID = shift.shiftID
         this.employeeID = shift.employeeID

@@ -1,6 +1,7 @@
 import databaseConn from '../../database.config.js'
+import GenericModel from './generic.model.js'
 
-class Holidays{
+class Holidays extends GenericModel{
     constructor(holiday){
         this.holidayID = holiday.holidayID
         this.holidayName = holiday.holidayName

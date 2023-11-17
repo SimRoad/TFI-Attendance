@@ -1,6 +1,7 @@
 import databaseConn from '../../database.config.js'
+import GenericModel from './generic.model.js'
 
-class Logs{
+class Logs extends GenericModel{
     constructor(Logs){
         this.logID = Logs.logID
         this.generatedBy = Logs.generatedBy

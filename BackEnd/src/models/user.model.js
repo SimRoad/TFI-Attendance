@@ -1,6 +1,7 @@
 import databaseConn from '../../database.config.js'
+import GenericModel from './generic.model.js';
 
-class User{
+class User extends GenericModel{
     constructor(user){
         this.userID = user.userID;
         this.employeeID = user.employeeID;
