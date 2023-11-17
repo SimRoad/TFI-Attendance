@@ -1,6 +1,5 @@
 import dbConn from './db.config.js'
-
-const Employee = require('../models/employee.model.js');
+import * as Employee from "employee.model.js";
 
 exports.findAll = function(req,res){
     Employee.findAll(function(err,employee){

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2023 at 12:27 PM
+-- Generation Time: Nov 17, 2023 at 02:03 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,9 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `attendancemgmtsys`
 --
-
-CREATE DATABASE `attendancemgmtsys`;
-USE `attendancemgmtsys`;
 
 -- --------------------------------------------------------
 
@@ -119,9 +116,10 @@ CREATE TABLE `logs` (
 CREATE TABLE `shift` (
   `shiftID` int(11) NOT NULL,
   `employeeID` int(11) NOT NULL,
-  `timeIn` time NOT NULL,
-  `timeOut` time NOT NULL,
-  `weekDay` bit(3) NOT NULL
+  `timeIn` time DEFAULT NULL,
+  `timeOut` time DEFAULT NULL,
+  `shiftDate` date NOT NULL,
+  `isWork` enum('True','False') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
