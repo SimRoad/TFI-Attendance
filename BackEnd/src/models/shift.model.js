@@ -1,4 +1,4 @@
-import dbConn from './db.config.js'
+import databaseConn from '../../database.config.js'
 
 class Shift{
     constructor(shift){
@@ -10,4 +10,4 @@ class Shift{
     }
 }
 
-export default = Shift
+export default Shift

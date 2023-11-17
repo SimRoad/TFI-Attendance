@@ -1,4 +1,4 @@
-import dbConn from './db.config.js'
+import databaseConn from '../../database.config.js'
 
 class User{
     constructor(user){
@@ -14,4 +14,4 @@ class User{
     findAll(){}
 }
 
-export default = User
+export default User
