@@ -14,12 +14,7 @@ class Employee extends GenericModel{
         this.contactNumber = employee.contactNumber
         this.email = employee.email
         this.tableName = 'employee'
-        this.fields = ()=>{
-            databaseConn.query(`SELECT * FROM employee`,(error,results,fields)=>{
-                if(error) return error
-                else return fields.map(a=>a.name).filter(a=>{return a != 'employeeID'})
-            })
-        }
+        this.fields = this.getFields()
     }
     
 }
