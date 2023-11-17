@@ -10,4 +10,4 @@ class Holidays{
     }
 }
 
-module.exports = Holidays
+export default Holidays

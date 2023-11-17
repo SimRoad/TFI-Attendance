@@ -14,4 +14,4 @@ class User{
     findAll(){}
 }
 
-module.exports = User
+export default = User

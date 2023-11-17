@@ -10,4 +10,4 @@ class Shift{
     }
 }
 
-module.exports = Shift
+export default = Shift

@@ -10,4 +10,4 @@ class DaySession{
     }
 }
 
-module.exports = DaySession
+export default = DaySession
