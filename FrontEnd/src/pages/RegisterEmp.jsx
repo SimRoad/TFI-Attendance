@@ -10,47 +10,60 @@ function RegisterEmployee() {
       <Header />
         <div className='body'>
           <div className='boxRegistry'>
-            <div className='divRegistry'>
+            <div className='divRegistryHead'>
               <h1>Register Employee Information</h1>
             </div>
 
             <div className='divRegistry'>
               <div className='logInput'>
-                <h1>First Name:</h1>
-                <input type="text" placeholder='First Name'/>
-                <h1>Middle Name:</h1>
-                <input type="text" placeholder='Middle Name'/>
-                <h1>Last Name:</h1>
-                <input type="text" placeholder='Last Name'/>
+                <div className="boxInput">
+                  <h1>First Name:</h1> 
+                  <input type="text" placeholder='First Name'/>
+                </div>
+                <div className="boxInput">
+                  <h1>Middle Name:</h1>
+                  <input type="text" placeholder='Middle Name'/>
+                </div>
+                <div className="boxInput">
+                  <h1>Last Name:</h1>
+                  <input type="text" placeholder='Last Name'/>
+                </div>
               </div>
             </div>
             
             <div className="divRegistry">
               <div className="logInput">
-                <h1>Birthdate:</h1>
-                <input type="date"/>
-                <h1>Address:</h1>
-                <input type="text" placeholder='Address'/>
+                <div className="boxInput">
+                  <h1>Birthdate:</h1>
+                  <input type="date" id='bday'/>
+                </div>
+                <div className="boxInput">
+                  <h1>Address:</h1>
+                  <input type="text" id='address' placeholder='Address'/>
+                </div>
               </div>
             </div>
               
             <div className="divRegistry">
               <div className="logInput">
-                <h1>Contact No:</h1>
-                <input type="text" placeholder='Contact Number'/>
-                <h1>Email:</h1>
-                <input type="email" placeholder='Email Address'/>
+                <div className="boxInput">
+                  <h1>Contact No:</h1>
+                  <input type="text" id='number' placeholder='Contact Number'/>
+                </div>
+                <div className="boxInput">
+                  <h1>Email:</h1>
+                  <input type="email" id='mail' placeholder='Email Address'/>
+                </div>
               </div>
             </div>
 
             <div className="divRegistry">
               <div className="logInput">
-                <h1>Picture File</h1>
-                <input type="file" />
+                <div className="boxInput">
+                  <h1>Picture File</h1>
+                  <input type="file"/>
+                </div>
               </div>
-            </div>
-
-            <div className='divRegistry'>
               <div className='logSubmit'>
                 <input type="submit" value="Register" />
               </div>

@@ -16,10 +16,20 @@
 .divRegistry {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    width: 80%;
+}
+
+.divRegistryHead {
+    display: flex;
+    flex-direction: column;
     align-items: center; 
     justify-content: center;
     margin-bottom: 1.2cm;
-    width: 80%;
+    width: 50%;
+    color: #000;
+    background: #af7c42;
+    border-radius: 25px;
 }
 
 .logPNG {
@@ -31,7 +41,7 @@
 
 .logInput {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: left;
     margin-bottom: 1cm;
     padding: 0%;
@@ -41,7 +51,7 @@
     color: #000;
     text-align: center;
     font-family: Inter;
-    font-size: 30px;
+    font-size: 1.5vw;
     line-height: 0%;
     font-weight: 400;
     justify-content: left;
@@ -49,7 +59,7 @@
 }
 
 .logInput>input {
-    width: 40vw;
+    width: 22vw;
     height: 1cm;
 
     border-radius: 15px;
@@ -60,11 +70,13 @@
     color: #414141;
 }
 
-.logInput>a {
-    font-size: small;
-    color: #1c7185;
-    text-decoration: none;
-    font-style: italic;
+.logSubmit {
+    display: flex;
+    flex-direction: row;
+    align-items: right; 
+    justify-content: right;
+    margin-bottom: 1.2cm;
+    width: 80%;
 }
 
 .logSubmit>input {
@@ -85,4 +97,46 @@
 .logSubmit>input:hover {
     color: white;
     background-color: #000;
+}
+
+.boxInput {
+    margin-right: 25px;
+}
+
+.boxInput>h1 {
+    color: #000;
+    text-align: left;
+    font-family: Inter;
+    font-size: 1.5vw;
+    line-height: 0%;
+    font-weight: 400;
+    justify-content: left;
+    display: block;
+}
+.boxInput>input {
+    width: 22vw;
+    height: 1cm;
+
+    border-radius: 15px;
+    border: 1px solid #000;
+    background: #EEF0F1;
+    padding: 5px 10px;
+    font-size: 28px;
+    color: #414141;
+}
+
+#bday {
+    width: 12vw;
+}
+
+#address {
+    width: 57vw;
+}
+
+#number {
+    width: 20vw;
+}
+
+#mail {
+    width: 49vw;
 }
