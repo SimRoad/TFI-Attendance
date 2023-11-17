@@ -4,13 +4,13 @@ class GenericModel{
     constructor(){}
     getAll(){
         databaseConn.query(`SELECT * FROM ${table.tableName}`,(error,results)=>{
-            if(error) console.error(error);
+            if(error) return `ERROR: ${error}`
             else return results
         })
     }
     getFields(){
         databaseConn.query(`SELECT * FROM ${table.tableName}`,(error,results,fields)=>{
-            if(error) console.error(error);
+            if(error) return `ERROR: ${error}`
             else return fields.map(a=>a.name)
         })
     }
@@ -28,7 +28,7 @@ class GenericModel{
     //Its a bit hacky, will break if boilerplate changes
     update(id,fields,values){
         databaseConn.execute(`UPDATE ${this.tableName} SET ${fields.forEach((field,index)=>{return `${field} = ? WHERE ${this.fields[0]} = ${id}`})}`,values,(error,results)=>{
-            if(error) console.error(error);
+            if(error) return `ERROR: ${error}`
             else return results
         })
     }
