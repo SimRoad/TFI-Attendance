@@ -1,1 +1,1 @@
-import dbConn from './db.config.js'
+import databaseConn from '../../database.config.js'
