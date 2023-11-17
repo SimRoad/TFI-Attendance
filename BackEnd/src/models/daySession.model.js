@@ -1,4 +1,4 @@
-import dbConn from './db.config.js'
+import databaseConn from '../../database.config.js'
 
 class DaySession{
     constructor(daySession){
@@ -10,4 +10,4 @@ class DaySession{
     }
 }
 
-export default = DaySession
+export default DaySession

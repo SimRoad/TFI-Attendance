@@ -10,4 +10,4 @@ class Shift{
     }
 }
 
-export default = Shift
+export default Shift
