@@ -1,7 +1,10 @@
 import express from "express"
-import {router as employeeRouter} from "./src/routes/employee.router"
+import cors from 'cors'
+import router from "./src/routes/employee.router.js"
 
-express.use('/test/env/employees',employeeRouter)
-express.listen(8080,()=>{
+express().use(cors())
+
+express().use('/',router)
+express().listen(8080,()=>{
     console.log(`Server is listening on port 8080`)
 })

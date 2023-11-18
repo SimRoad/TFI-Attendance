@@ -1,7 +1,7 @@
 import databaseConn from '../../database.config.js'
 import GenericModel from './generic.model.js'
 
-class Employee extends GenericModel{
+export default class Employee extends GenericModel{
     constructor(employee){
         this.employeeID = employee.employeeID
         this.firstName = employee.firstName
@@ -18,5 +18,3 @@ class Employee extends GenericModel{
     }
     
 }
-
-export default Employee

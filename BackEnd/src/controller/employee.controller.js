@@ -1,11 +1,11 @@
 import databaseConn from '../../database.config.js'
-import Employee from "../models/employee.model";
+import Employee from "../models/employee.model.js";
 
-class EmployeeController{
-    constructor(){}
-    findAll(req,res){
-        console.log(Employee.getAll())
+export default class EmployeeController{
+    constructor(){
+        this.findAll = (req, res)=>{
+            console.log("Employee Controller")
+            res.send({status:200})
+        }
     }
 }
-
-export default EmployeeController
