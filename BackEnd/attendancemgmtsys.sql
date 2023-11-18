@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2023 at 02:03 PM
+-- Generation Time: Nov 18, 2023 at 02:08 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,7 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Database: `attendancemgmtsys`
 --
-USE attendancemgmtsys;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `addressID` int(11) NOT NULL,
+  `street` varchar(32) NOT NULL,
+  `district` varchar(32) NOT NULL,
+  `barangay` varchar(32) NOT NULL,
+  `postalCode` varchar(32) DEFAULT NULL,
+  `city/municipality` varchar(32) NOT NULL,
+  `province` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -47,8 +62,8 @@ CREATE TABLE `employee` (
   `firstName` varchar(32) NOT NULL,
   `middleName` varchar(32) DEFAULT NULL,
   `lastName` varchar(32) NOT NULL,
+  `addressID` int(11) NOT NULL,
   `birthDate` date NOT NULL,
-  `address` varchar(128) NOT NULL,
   `jobPosition` varchar(32) NOT NULL,
   `currentStatus` enum('Fired','Working Employee') NOT NULL,
   `contactNumber` varchar(16) NOT NULL,
@@ -74,7 +89,7 @@ CREATE TABLE `excusereason` (
 --
 
 CREATE TABLE `holidays` (
-  `holidayID` int(11) NOT NULL,
+  `holidaysID` int(11) NOT NULL,
   `holidayName` varchar(32) NOT NULL,
   `holidayDesc` varchar(100) DEFAULT NULL,
   `holidayDate` date NOT NULL,
@@ -88,7 +103,7 @@ CREATE TABLE `holidays` (
 --
 
 CREATE TABLE `leaves` (
-  `leaveID` int(11) NOT NULL,
+  `leavesID` int(11) NOT NULL,
   `leaveName` varchar(32) NOT NULL,
   `leaveDesc` varchar(100) DEFAULT NULL,
   `daysLeft` tinyint(4) NOT NULL,
@@ -119,6 +134,7 @@ CREATE TABLE `shift` (
   `employeeID` int(11) NOT NULL,
   `timeIn` time DEFAULT NULL,
   `timeOut` time DEFAULT NULL,
+  `leaveID` int(11) DEFAULT NULL,
   `shiftDate` date NOT NULL,
   `isWork` enum('True','False') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -132,7 +148,6 @@ CREATE TABLE `shift` (
 CREATE TABLE `user` (
   `userID` int(11) NOT NULL,
   `employeeID` int(11) NOT NULL,
-  `userName` varchar(32) NOT NULL,
   `userPassword` varchar(32) NOT NULL,
   `position` enum('Management','Admin','Suspended') NOT NULL,
   `lastLogin` datetime DEFAULT NULL,
@@ -142,6 +157,12 @@ CREATE TABLE `user` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`addressID`);
 
 --
 -- Indexes for table `daysession`
@@ -154,7 +175,8 @@ ALTER TABLE `daysession`
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
-  ADD PRIMARY KEY (`employeeID`);
+  ADD PRIMARY KEY (`employeeID`),
+  ADD KEY `fk_employee_address` (`addressID`);
 
 --
 -- Indexes for table `excusereason`
@@ -167,13 +189,13 @@ ALTER TABLE `excusereason`
 -- Indexes for table `holidays`
 --
 ALTER TABLE `holidays`
-  ADD PRIMARY KEY (`holidayID`);
+  ADD PRIMARY KEY (`holidaysID`);
 
 --
 -- Indexes for table `leaves`
 --
 ALTER TABLE `leaves`
-  ADD PRIMARY KEY (`leaveID`),
+  ADD PRIMARY KEY (`leavesID`),
   ADD KEY `fk_leaves_employeeID` (`employeeID`);
 
 --
@@ -188,7 +210,8 @@ ALTER TABLE `logs`
 --
 ALTER TABLE `shift`
   ADD PRIMARY KEY (`shiftID`),
-  ADD KEY `fk_shift_employeeID` (`employeeID`) USING BTREE;
+  ADD KEY `fk_shift_employeeID` (`employeeID`) USING BTREE,
+  ADD KEY `fk_shift_leaveID` (`leaveID`);
 
 --
 -- Indexes for table `user`
@@ -200,6 +223,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `address`
+--
+ALTER TABLE `address`
+  MODIFY `addressID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `daysession`
@@ -223,13 +252,13 @@ ALTER TABLE `excusereason`
 -- AUTO_INCREMENT for table `holidays`
 --
 ALTER TABLE `holidays`
-  MODIFY `holidayID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `holidaysID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `leaveID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `leavesID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `logs`
@@ -260,6 +289,12 @@ ALTER TABLE `daysession`
   ADD CONSTRAINT `fk_session_employeeID` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`);
 
 --
+-- Constraints for table `employee`
+--
+ALTER TABLE `employee`
+  ADD CONSTRAINT `fk_employee_address` FOREIGN KEY (`addressID`) REFERENCES `address` (`addressID`);
+
+--
 -- Constraints for table `excusereason`
 --
 ALTER TABLE `excusereason`
@@ -281,7 +316,8 @@ ALTER TABLE `logs`
 -- Constraints for table `shift`
 --
 ALTER TABLE `shift`
-  ADD CONSTRAINT `fk_shift_employeeID` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`);
+  ADD CONSTRAINT `fk_shift_employeeID` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`),
+  ADD CONSTRAINT `fk_shift_leaveID` FOREIGN KEY (`leaveID`) REFERENCES `leaves` (`leavesID`);
 
 --
 -- Constraints for table `user`
