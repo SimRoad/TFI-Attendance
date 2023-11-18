@@ -5,6 +5,9 @@ import userRouter from "./src/routes/user.router.js"
 import daySessionRouter from "./src/routes/daysession.router.js"
 import holidaysRouter from "./src/routes/holiday.router.js"
 import leavesRouter from "./src/routes/leaves.router.js"
+import logsRouter from "./src/routes/logs.router.js"
+import reasonRouter from "./src/routes/reason.router.js"
+import shiftRouter from "./src/routes/shift.router.js"
 
 const app = express()
 
@@ -15,6 +18,9 @@ app.use('/user',userRouter)
 app.use('/Daysession',daySessionRouter)
 app.use('/holidays',holidaysRouter)
 app.use('/leaves',leavesRouter)
+app.use('/logs',logsRouter)
+app.use('/reasons',reasonRouter)
+app.use('/shifts',shiftRouter)
 
 
 app.get('*',(res,req)=>{
