@@ -8,6 +8,7 @@ import leavesRouter from "./src/routes/leaves.router.js"
 import logsRouter from "./src/routes/logs.router.js"
 import reasonRouter from "./src/routes/reason.router.js"
 import shiftRouter from "./src/routes/shift.router.js"
+import addressRouter from "./src/routes/address.router.js"
 
 const app = express()
 
@@ -21,6 +22,7 @@ app.use('/leaves',leavesRouter)
 app.use('/logs',logsRouter)
 app.use('/reasons',reasonRouter)
 app.use('/shifts',shiftRouter)
+app.use('/address',addressRouter)
 
 
 app.get('*',(res,req)=>{

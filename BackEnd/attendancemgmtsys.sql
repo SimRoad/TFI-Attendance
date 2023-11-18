@@ -33,7 +33,7 @@ CREATE TABLE `address` (
   `district` varchar(32) NOT NULL,
   `barangay` varchar(32) NOT NULL,
   `postalCode` varchar(32) DEFAULT NULL,
-  `city/municipality` varchar(32) NOT NULL,
+  `city_municipality` varchar(32) NOT NULL,
   `province` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
