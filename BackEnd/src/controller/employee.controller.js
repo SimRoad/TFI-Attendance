@@ -13,15 +13,17 @@ export default class EmployeeController{
                 console.error(err)
                 return
             }
+            console.log('CONNECTION ESTABLISHED 😱');
             conn.query('SELECT * FROM employee',(error,results,fields)=>{
                 conn.release()
-
+                
                 if(err){
                     console.error(err)
                     return
                 }
+                console.log('QUERY WORKED???!?! 😱');
 
-                return fields.map(a=>a.name)
+                res.send(fields.map(a=>a.name))
             })
         })
     }

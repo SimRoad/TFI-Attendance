@@ -6,7 +6,7 @@ import mysql from 'mysql2'
 const databaseConn = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    port: 8080,
+    port: 3306,
     database: 'attendancemgmtsys',
     waitForConnections: true,
     connectionLimit: 10,
