@@ -8,6 +8,21 @@ export default class EmployeeController{
         res.send({status:200})
     }
     static getColumnNames = (req,res)=>{
-        res.send(Employee.fields)
+        databaseConn.getConnection((err,conn)=>{
+            if(err){
+                console.error(err)
+                return
+            }
+            conn.query('SELECT * FROM employee',(error,results,fields)=>{
+                conn.release()
+
+                if(err){
+                    console.error(err)
+                    return
+                }
+
+                return fields.map(a=>a.name)
+            })
+        })
     }
 }

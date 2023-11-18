@@ -17,12 +17,11 @@ import databaseConn from '../../database.config.js'
  * @author LaurenceTest
  */
 export default class GenericModel{
-    constructor(){}
     /**
      * @method Queries all of the columns of all of the members of the table. It can be dangerous to query everything so as much as possible don't use this.
      * @returns {string} Returns a success or error message
      */
-    getAll(){
+    static getAll(){
         databaseConn.query(`SELECT * FROM ${table.tableName}`,(error,results)=>{
             if(error) return `ERROR: ${error}`
             else return results
@@ -32,7 +31,7 @@ export default class GenericModel{
      * @method Queries all of the column names of the table.
      * @returns {string[]} Returns an array of the table's column names.
      */
-    getFields(){
+    static getFields(){
         databaseConn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
             if(error) return `ERROR: ${error}`
             else return fields.map(a=>a.name)
@@ -46,7 +45,7 @@ export default class GenericModel{
      * @method Creates a new member of the table
      * @returns {string} Returns a success or error message
      */
-    create(values){
+    static create(values){
         databaseConn.execute(`INSERT INTO ${this.tableName}(${this.fields.forEach(field=>field + ",")}) VALUES(${this.fields.forEach(field=>field + " = ?,")})`,values,(error, results)=>{
             if(error) return `ERROR: ${error}`
             else return results
@@ -61,7 +60,7 @@ export default class GenericModel{
      * @param {string[]} values Values corresponding to the column names
      * @returns {string} Returns a success or error message
      */
-    update(id,fields,values){
+    static update(id,fields,values){
         databaseConn.execute(`UPDATE ${this.tableName} SET ${fields.forEach(field=>{return `${field} = ?, `})}WHERE ${this.fields[0]} = ${id}`,values,(error,results)=>{
             if(error) return `ERROR: ${error}`
             else return results
