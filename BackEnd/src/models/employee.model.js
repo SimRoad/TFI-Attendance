@@ -4,7 +4,18 @@ import GenericModel from './generic.model.js'
 export default class Employee extends GenericModel{
     static tableName = 'employee'
     //this is a local list. Check latest through getFields()
-    static fields = ["employeeID","firstName","middleName","lastName","birthDate","jobPosition","currentStatus","contactNumber","email"]
+    static fields = [
+        "employeeID",
+        "firstName",
+        "middleName",
+        "lastName",
+        "addressID",
+        "birthDate",
+        "jobPosition",
+        "currentStatus",
+        "contactNumber",
+        "email"
+    ]
     constructor(employee){
         this.employeeID = employee.employeeID
         this.addressID = employee.addressID

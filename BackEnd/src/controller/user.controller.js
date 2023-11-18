@@ -7,9 +7,15 @@ export default class UserController{
     }
     static getColumnNames = (req,res)=>{
         User.getFields(fields=>res.send(fields))
-        console.log(req.query.userID)
     }
     static create = (req,res)=>{
-        
+        if(compareFields(Object.keys(req.query),User.fields)){
+            User.create(req.query,response=>res.send(response))
+        }
     }
+}
+
+function compareFields(first,second){
+    second.splice(0)
+    return first.length === second.length && first.every((elem,index)=>elem === second[index])
 }
