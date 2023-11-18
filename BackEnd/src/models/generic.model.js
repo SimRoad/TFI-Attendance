@@ -18,6 +18,16 @@ import databaseConn from '../../database.config.js'
  */
 export default class GenericModel{
     tableName = null
+    static getID(id,res){
+        databaseConn.getConnection((err,conn)=>{
+            if(err) console.error(err)
+            else conn.execute(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)],(error,results,fields)=>{
+                conn.release()
+                if(error) console.error(error)
+                else res(results)
+            })
+        })
+    }
     /**
      * @method Queries all of the columns of all of the members of the table. It can be dangerous to query everything so as much as possible don't use this.
      * @returns {string} Returns a success or error message

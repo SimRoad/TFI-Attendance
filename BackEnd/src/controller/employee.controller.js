@@ -8,19 +8,17 @@ export default class EmployeeController{
     static findAll = (req, res)=>{
         Employee.getAll(results=>res.send(results))
     }
+    static findByID = (req, res)=>{
+        //1 is temporary, replace later
+        Employee.getID(1,results=>res.send(results))
+    }
     static getColumnNames = (req,res)=>{
         Employee.getFields(fields=>res.send(fields))
         console.log(Employee.fields)
     }
     static create = (req,res)=>{
-        const keys = Object.keys(req.query)
-        if(compareFields(keys,Employee.fields)){
-            Employee.create(keys.map(key=>String(req.query[key])),response=>res.send(response))
-        }else console.error(`Missing field!`)
+        // const keys = Object.keys(req.body.Employee)
+        // Address.create()
+        // Employee.create(keys.map(key=>String(req.query[key])),response=>res.send(response))
     }
-}
-
-function compareFields(first,second){
-    second.splice(0,1)
-    return first.length === second.length && first.every((elem,index)=>elem === second[index])
 }

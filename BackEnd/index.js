@@ -13,6 +13,7 @@ import addressRouter from "./src/routes/address.router.js"
 const app = express()
 
 app.use(cors())
+app.use(express.json())
 
 app.use('/employee',employeeRouter)
 app.use('/user',userRouter)

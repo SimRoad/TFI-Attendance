@@ -3,7 +3,8 @@ import AddressController from "../controller/address.controller.js";
 
 const addressRouter = Router()
 
-addressRouter.get('/all',AddressController.getAll)
+addressRouter.get('/id',AddressController.findByID)
+addressRouter.get('/all',AddressController.findAll)
 addressRouter.get('/fields',AddressController.getFieldNames)
 
 export default addressRouter
