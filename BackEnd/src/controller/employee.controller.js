@@ -12,14 +12,14 @@ export default class EmployeeController{
         console.log(Employee.fields)
     }
     static create = (req,res)=>{
-        if(compareFields(Object.keys(req.query),Employee.fields)){
-            res.send(req.query)
-            // Employee.create(req.query,response=>res.send(response))
-        }
+        const keys = Object.keys(req.query)
+        if(compareFields(keys,Employee.fields)){
+            Employee.create(keys.map(key=>req.query[key]),response=>res.send(response))
+        }else console.error(`Missing field!`)
     }
 }
 
 function compareFields(first,second){
-    second.splice(0)
+    second.splice(0,1)
     return first.length === second.length && first.every((elem,index)=>elem === second[index])
 }

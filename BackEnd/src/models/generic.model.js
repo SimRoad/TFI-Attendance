@@ -57,8 +57,9 @@ export default class GenericModel{
      */
     static create(values,res){
         databaseConn.getConnection((err,conn)=>{
+            console.log(this.fields.join(`, `))
             if(err) console.error(err)
-            else conn.execute(`INSERT INTO ${this.tableName}(${this.fields.forEach(field=>field + ",")}) VALUES(${this.fields.forEach(field=>field + " = ?,")})`,values,(error, results)=>{
+            else conn.execute(`INSERT INTO ${this.tableName}(${this.fields.join(`, `)}) VALUES(${this.fields.join(` = ?, `)})`,values,(error, results)=>{
                 if(error) console.error(err)
                 else res(results)
             })
