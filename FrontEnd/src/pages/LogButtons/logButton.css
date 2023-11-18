@@ -1,0 +1,17 @@
+.dashLogsButton {
+    width: 400px;
+    height: 80px;
+    border-radius: 16px;
+    border: 1px solid #FFF;
+
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 38px;
+    margin: 0 0.5cm 0.5cm;
+}
+
+.dashLogsButton:hover {
+    font-weight: bolder;
+    border: none;
+    box-shadow: 0px 0px 8px 3px #996C29;
+}

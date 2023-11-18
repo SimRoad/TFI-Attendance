@@ -1,22 +1,109 @@
+.dashBody {
+    background-color: #402B0C;
+    border-radius: 7px;
+
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 1cm;
+    padding: 0.5cm 0 0.2cm;
+}
+
 .dashDiv {
     display: flex;
-    flex-direction: column;
-    align-items: center; 
     justify-content: center;
     
     flex: 80%;
     height: fit-content;
     border-radius: 15px;
-    padding: 1cm 0;
-    overflow-y: hidden;
-    border: 5px solid black;
+    margin-top: 1cm;
+    /* border: 5px solid black; */
+}
+
+.dashElem {
+    margin-right: 8px;
+    margin-left: 1cm;
+    width: fit-content;
+    vertical-align: middle;
+    /* border: 5px solid black; */
+
+}
+
+.dashGreet, .dashStats, .dashSearchText {
+    margin: 0 0 0.5cm;
+    padding: 2px 1cm 2px 0.7cm;
+}
+
+.dashImg, .dashGreet, .dashStats {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);     
+}
+
+.dashImg:hover, .dashGreet:hover, .dashStats:hover {
+    box-shadow: 0px 0px 5px 3px #996C29;
 }
 
 .dashImg {
-    border: 5px solid red;
-    height: 5cm;
-    width: 5cm;
+    height: 6cm;
+    width: 6cm;
     border-radius: 272px;
-    border: 1px solid #000;
+    border: 5px ridge #67C9A9;
     background: #FFF;
+}
+
+.dashGreet {
+    color: #000;
+    font-family: Inter;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 34px;
+    background: #FFF;
+    width: fit-content;
+    text-wrap: nowrap;
+}
+
+.dashStats {
+    border-radius: 34px;
+    background: #FFF;
+    height: 65%;
+    min-width: 68vw;
+    overflow-y: auto;
+    padding-top: 5px;
+}
+
+.dashSearchButton, .dashSearchText {
+    margin-top: 10px;
+    height: 1.2cm;
+}
+
+.dashSearchText {
+    border-radius: 34px 0px 0px 34px;
+    border: 1px solid #000;
+    min-width: 80vw;
+
+    color: #343434;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 38px;
+}
+
+.dashSearchButton {
+    border-radius: 0px 34px 34px 0px;
+    border: 1px solid #000;
+    background: #394548;
+    padding: 2px 8px 2px 8px;
+}
+
+.dashLogsButton {
+    width: 400px;
+    height: 80px;
+    border-radius: 16px;
+    border: 1px solid #FFF;
+
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 38px;
+}
+
+.dashSearchButton:hover {
+    box-shadow: 3px 0px 5px 3px #996C29;
 }
