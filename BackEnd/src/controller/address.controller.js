@@ -8,4 +8,9 @@ export default class AddressController{
     static getFieldNames = (req,res)=>{
         Address.getFields(fields=>res.send(fields))
     }
+    static create = (req,res)=>{
+        Address.create(keys.map(key=>String(req.query[key])),response=>{
+            res.send(response)
+        })
+    }
 }

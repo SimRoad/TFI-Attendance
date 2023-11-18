@@ -56,9 +56,10 @@ export default class GenericModel{
      * @returns {string} Returns a success or error message
      */
     static create(values,res){
+        console.log(values)
         databaseConn.getConnection((err,conn)=>{
             if(err) console.error(err)
-            else conn.execute(`INSERT INTO ${this.tableName}(${this.fields.join(`, `)}) VALUES(${this.fields.join(` = ?, `)})`,values,(error, results)=>{
+            else conn.execute(`INSERT INTO ${this.tableName}(${this.fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,(error, results)=>{
                 conn.release()
                 if(error) console.error(error)
                 else res(results)
