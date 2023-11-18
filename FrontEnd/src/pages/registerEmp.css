@@ -79,7 +79,7 @@
     width: 80%;
 }
 
-.logSubmit>input {
+.registerBtn {
     height: 1.5cm;
     padding: 2px 1.5cm;
     border-radius: 10px;
@@ -94,7 +94,7 @@
     line-height: normal;
 }
 
-.logSubmit>input:hover {
+.registerBtn:hover {
     color: white;
     background-color: #000;
 }
