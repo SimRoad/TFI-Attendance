@@ -1,9 +1,9 @@
 import {Router} from 'express'
 import EmployeeController from '../controller/employee.controller.js'
 
-const router = Router()
+const employeeRouter = Router()
 
-router.get(`/all`,EmployeeController.findAll)
-router.get(`/fields`,EmployeeController.getColumnNames)
+employeeRouter.get(`/all`,EmployeeController.findAll)
+employeeRouter.get(`/fields`,EmployeeController.getColumnNames)
 
-export default router
+export default employeeRouter

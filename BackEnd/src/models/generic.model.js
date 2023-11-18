@@ -17,6 +17,7 @@ import databaseConn from '../../database.config.js'
  * @author LaurenceTest
  */
 export default class GenericModel{
+    tableName = null
     /**
      * @method Queries all of the columns of all of the members of the table. It can be dangerous to query everything so as much as possible don't use this.
      * @returns {string} Returns a success or error message
@@ -24,9 +25,9 @@ export default class GenericModel{
     static getAll(send){
         databaseConn.getConnection((err,conn)=>{
             if(err) console.error(err)
-            else conn.query('SELECT * FROM employee',(error,results,fields)=>{
+            else conn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
                 conn.release()
-                if(err) console.error(err)
+                if(error) console.error(error)
                 else send(results)
             })
         })
@@ -39,14 +40,13 @@ export default class GenericModel{
     static getFields(send){
         databaseConn.getConnection((err,conn)=>{
             if(err) console.error(err)
-            else conn.query('SELECT * FROM employee',(error,results,fields)=>{
+            else conn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
                 conn.release()
-                if(err) console.error(err)
+                if(error) console.error(error)
                 else send(fields.map(a=>a.name))
             })
         })
     }
-    
     /**
      * 
      * @param {string[]} values An array that contains the values of the table's contents. It is important that it will have the same order as the {@link getAll} method.
