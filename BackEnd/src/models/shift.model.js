@@ -1,7 +1,7 @@
 import databaseConn from '../../database.config.js'
 import GenericModel from './generic.model.js'
 
-class Shift extends GenericModel{
+export default class Shift extends GenericModel{
     constructor(shift){
         this.shiftID = shift.shiftID
         this.employeeID = shift.employeeID
@@ -10,5 +10,3 @@ class Shift extends GenericModel{
         this.weekDay = shift.weekDay
     }
 }
-
-export default Shift

@@ -1,7 +1,7 @@
 import databaseConn from '../../database.config.js'
 import GenericModel from './generic.model.js'
 
-class DaySession extends GenericModel{
+export default class DaySession extends GenericModel{
     constructor(daySession){
         this.sessionID = daySession.sessionID
         this.employeeID = daySession.employeeID
@@ -10,5 +10,3 @@ class DaySession extends GenericModel{
         this.dayStatus = daySession.dayStatus
     }
 }
-
-export default DaySession

@@ -16,7 +16,7 @@ import databaseConn from '../../database.config.js'
  * @prop {string[]} fields
  * @author LaurenceTest
  */
-class GenericModel{
+export default class GenericModel{
     constructor(){}
     /**
      * @method Queries all of the columns of all of the members of the table. It can be dangerous to query everything so as much as possible don't use this.
@@ -68,5 +68,3 @@ class GenericModel{
         })
     }
 }
-
-export default GenericModel

@@ -1,7 +1,7 @@
 import databaseConn from '../../database.config.js'
 import GenericModel from './generic.model.js'
 
-class Holidays extends GenericModel{
+export default class Holidays extends GenericModel{
     constructor(holiday){
         this.holidayID = holiday.holidayID
         this.holidayName = holiday.holidayName
@@ -10,5 +10,3 @@ class Holidays extends GenericModel{
         this.holidayType = holiday.holidayType
     }
 }
-
-export default Holidays

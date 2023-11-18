@@ -1,7 +1,7 @@
 import databaseConn from '../../database.config.js'
 import GenericModel from './generic.model.js';
 
-class User extends GenericModel{
+export default class User extends GenericModel{
     constructor(user){
         this.userID = user.userID;
         this.employeeID = user.employeeID;
@@ -14,5 +14,3 @@ class User extends GenericModel{
     create(){}
     findAll(){}
 }
-
-export default User

@@ -1,6 +1,6 @@
 import databaseConn from '../../database.config.js'
 
-class Leaves{
+export default class Leaves{
     constructor(Leaves){
         this.leaveID = Leaves.leaveID
         this.employeeID = Leaves.employeeID
@@ -9,5 +9,3 @@ class Leaves{
         this.leaveDesc = Leave.leaveDesc
     }
 }
-
-export default Leaves
