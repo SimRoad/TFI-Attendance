@@ -22,13 +22,13 @@ export default class GenericModel{
      * @method Queries all of the columns of all of the members of the table. It can be dangerous to query everything so as much as possible don't use this.
      * @returns {string} Returns a success or error message
      */
-    static getAll(send){
+    static getAll(res){
         databaseConn.getConnection((err,conn)=>{
             if(err) console.error(err)
             else conn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
                 conn.release()
                 if(error) console.error(error)
-                else send(results)
+                else res(results)
             })
         })
     }
@@ -37,13 +37,13 @@ export default class GenericModel{
      * @method Queries all of the column names of the table.
      * @returns {string[]} Returns an array of the table's column names.
      */
-    static getFields(send){
+    static getFields(res){
         databaseConn.getConnection((err,conn)=>{
             if(err) console.error(err)
             else conn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
                 conn.release()
                 if(error) console.error(error)
-                else send(fields.map(a=>a.name))
+                else res(fields.map(a=>a.name))
             })
         })
     }
@@ -55,10 +55,13 @@ export default class GenericModel{
      * @method Creates a new member of the table
      * @returns {string} Returns a success or error message
      */
-    static create(values){
-        databaseConn.execute(`INSERT INTO ${this.tableName}(${this.fields.forEach(field=>field + ",")}) VALUES(${this.fields.forEach(field=>field + " = ?,")})`,values,(error, results)=>{
-            if(error) return `ERROR: ${error}`
-            else return results
+    static create(values,res){
+        databaseConn.getConnection((err,conn)=>{
+            if(err) console.error(err)
+            else conn.execute(`INSERT INTO ${this.tableName}(${this.fields.forEach(field=>field + ",")}) VALUES(${this.fields.forEach(field=>field + " = ?,")})`,values,(error, results)=>{
+                if(error) console.error(err)
+                else res(results)
+            })
         })
     }
     //Index 0 in WHERE relies that its always the table ID
@@ -70,10 +73,13 @@ export default class GenericModel{
      * @param {string[]} values Values corresponding to the column names
      * @returns {string} Returns a success or error message
      */
-    static update(id,fields,values){
-        databaseConn.execute(`UPDATE ${this.tableName} SET ${fields.forEach(field=>{return `${field} = ?, `})}WHERE ${this.fields[0]} = ${id}`,values,(error,results)=>{
-            if(error) return `ERROR: ${error}`
-            else return results
+    static update(id,fields,values,res){
+        databaseConn.getConnection((err,conn)=>{
+            if(err) console.error(err)
+            else conn.execute(`UPDATE ${this.tableName} SET ${fields.forEach(field=>{return `${field} = ?, `})}WHERE ${this.fields[0]} = ${id}`,values,(error,results)=>{
+                if(error) console.error(err)
+                else res(results)
+            })
         })
     }
 }

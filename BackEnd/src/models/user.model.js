@@ -3,7 +3,7 @@ import GenericModel from './generic.model.js';
 
 export default class User extends GenericModel{
     static tableName = 'user'
-    static fields = []
+    static fields = ["userID","employeeID","userName","userPassword","position","lastLogin","email"]
     constructor(user){
         this.userID = user.userID;
         this.employeeID = user.employeeID;

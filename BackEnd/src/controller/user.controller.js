@@ -7,6 +7,9 @@ export default class UserController{
     }
     static getColumnNames = (req,res)=>{
         User.getFields(fields=>res.send(fields))
-        User.getFields(fields=>console.log(fields))
+        console.log(req.query.userID)
+    }
+    static create = (req,res)=>{
+        
     }
 }
