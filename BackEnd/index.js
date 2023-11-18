@@ -6,7 +6,7 @@ const app = express()
 
 app.use(cors())
 
-app.use('/home',router)
+app.use('/employee',router)
 app.get('*',(res,req)=>{
     req.send('404 Page not Found')
 })

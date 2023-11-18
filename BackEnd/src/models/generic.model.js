@@ -21,22 +21,32 @@ export default class GenericModel{
      * @method Queries all of the columns of all of the members of the table. It can be dangerous to query everything so as much as possible don't use this.
      * @returns {string} Returns a success or error message
      */
-    static getAll(){
-        databaseConn.query(`SELECT * FROM ${table.tableName}`,(error,results)=>{
-            if(error) return `ERROR: ${error}`
-            else return results
+    static getAll(send){
+        databaseConn.getConnection((err,conn)=>{
+            if(err) console.error(err)
+            else conn.query('SELECT * FROM employee',(error,results,fields)=>{
+                conn.release()
+                if(err) console.error(err)
+                else send(results)
+            })
         })
     }
     /**
+     * @static
      * @method Queries all of the column names of the table.
      * @returns {string[]} Returns an array of the table's column names.
      */
-    static getFields(){
-        databaseConn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
-            if(error) return `ERROR: ${error}`
-            else return fields.map(a=>a.name)
+    static getFields(send){
+        databaseConn.getConnection((err,conn)=>{
+            if(err) console.error(err)
+            else conn.query('SELECT * FROM employee',(error,results,fields)=>{
+                conn.release()
+                if(err) console.error(err)
+                else send(fields.map(a=>a.name))
+            })
         })
     }
+    
     /**
      * 
      * @param {string[]} values An array that contains the values of the table's contents. It is important that it will have the same order as the {@link getAll} method.

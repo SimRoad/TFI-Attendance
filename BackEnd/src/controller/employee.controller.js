@@ -5,26 +5,10 @@ import Employee from "../models/employee.model.js";
 
 export default class EmployeeController{
     static findAll = (req, res)=>{
-        res.send({status:200})
+        Employee.getAll(results=>res.send(results))
     }
     static getColumnNames = (req,res)=>{
-        databaseConn.getConnection((err,conn)=>{
-            if(err){
-                console.error(err)
-                return
-            }
-            console.log('CONNECTION ESTABLISHED 😱');
-            conn.query('SELECT * FROM employee',(error,results,fields)=>{
-                conn.release()
-                
-                if(err){
-                    console.error(err)
-                    return
-                }
-                console.log('QUERY WORKED???!?! 😱');
-
-                res.send(fields.map(a=>a.name))
-            })
-        })
+        Employee.getFields(fields=>res.send(fields))
+        console.log(Employee.fields)
     }
 }
