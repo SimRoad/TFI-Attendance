@@ -2,9 +2,14 @@ import express from "express"
 import cors from 'cors'
 import router from "./src/routes/employee.router.js"
 
-express().use(cors())
+const app = express()
 
-express().use('/',router)
-express().listen(8080,()=>{
+app.use(cors())
+
+app.use('/home',router)
+app.get('*',(res,req)=>{
+    req.send('404 Page not Found')
+})
+app.listen(8080,()=>{
     console.log(`Server is listening on port 8080`)
 })

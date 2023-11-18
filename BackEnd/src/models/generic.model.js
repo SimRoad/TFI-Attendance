@@ -33,7 +33,7 @@ export default class GenericModel{
      * @returns {string[]} Returns an array of the table's column names.
      */
     getFields(){
-        databaseConn.query(`SELECT * FROM ${table.tableName}`,(error,results,fields)=>{
+        databaseConn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
             if(error) return `ERROR: ${error}`
             else return fields.map(a=>a.name)
         })

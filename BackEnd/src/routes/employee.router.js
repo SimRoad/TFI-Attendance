@@ -1,10 +1,9 @@
-import express,{Router} from 'express'
+import {Router} from 'express'
 import EmployeeController from '../controller/employee.controller.js'
 
 const router = Router()
 
-router.get(`/`,(req,res)=>{
-    console.log('bruh')
-})
+router.get(`/about`,EmployeeController.findAll)
+router.get(`/fields`,EmployeeController.getColumnNames)
 
 export default router

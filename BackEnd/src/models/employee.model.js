@@ -2,6 +2,8 @@ import databaseConn from '../../database.config.js'
 import GenericModel from './generic.model.js'
 
 export default class Employee extends GenericModel{
+    tableName = 'employee'
+    fields = this.getFields()
     constructor(employee){
         this.employeeID = employee.employeeID
         this.firstName = employee.firstName
@@ -13,8 +15,6 @@ export default class Employee extends GenericModel{
         this.status = employee.currentStatus
         this.contactNumber = employee.contactNumber
         this.email = employee.email
-        this.tableName = 'employee'
-        this.fields = this.getFields()
     }
     
 }
