@@ -20,7 +20,10 @@ export default class GenericModel{
     tableName = null
     static getID(id,res){
         databaseConn.getConnection((err,conn)=>{
-            if(err) console.error(err)
+            if(err){
+                console.error(err)
+                conn.release()
+            }
             else conn.execute(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)],(error,results,fields)=>{
                 conn.release()
                 if(error) console.error(error)
@@ -34,7 +37,10 @@ export default class GenericModel{
      */
     static getAll(res){
         databaseConn.getConnection((err,conn)=>{
-            if(err) console.error(err)
+            if(err){
+                console.error(err)
+                conn.release()
+            }
             else conn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
                 conn.release()
                 if(error) console.error(error)
@@ -49,7 +55,10 @@ export default class GenericModel{
      */
     static getFields(res){
         databaseConn.getConnection((err,conn)=>{
-            if(err) console.error(err)
+            if(err){
+                console.error(err)
+                conn.release()
+            }
             else conn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
                 conn.release()
                 if(error) console.error(error)
@@ -66,10 +75,15 @@ export default class GenericModel{
      * @returns {string} Returns a success or error message
      */
     static create(values,res){
+        let fields = this.fields
+        fields.splice(0,1)
         console.log(values)
         databaseConn.getConnection((err,conn)=>{
-            if(err) console.error(err)
-            else conn.execute(`INSERT INTO ${this.tableName}(${this.fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,(error, results)=>{
+            if(err){
+                console.error(err)
+                conn.release()
+            }
+            else conn.execute(`INSERT INTO ${this.tableName}(${this.fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values,(error, results)=>{
                 conn.release()
                 if(error) console.error(error)
                 else res(results)
@@ -87,7 +101,10 @@ export default class GenericModel{
      */
     static update(id,fields,values,res){
         databaseConn.getConnection((err,conn)=>{
-            if(err) console.error(err)
+            if(err){
+                console.error(err)
+                conn.release()
+            }
             else conn.execute(`UPDATE ${this.tableName} SET ${fields.forEach(field=>{return `${field} = ?, `})}WHERE ${this.fields[0]} = ${id}`,values,(error,results)=>{
                 if(error) console.error(err)
                 else res(results)
