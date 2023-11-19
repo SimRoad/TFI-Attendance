@@ -5,6 +5,11 @@ export default class Holidays extends GenericModel{
     static tableName = 'holidays'
     static fields = ["holidayID","holidayName","holiddayDesc","holidayType"]
     constructor(holiday){
+        super()
+        this.table = {
+            name: Holidays.tableName,
+            fields: Holidays.fields
+        }
         this.holidayID = holiday.holidayID
         this.holidayName = holiday.holidayName
         this.holidayDesc = holiday.holidayDesc

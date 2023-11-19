@@ -1,23 +1,6 @@
 import databaseConn from '../../database.config.js'
 
-/**
- * @class The parent of all models. Contains most of the basic queries including:
- * 
- * - Select *
- * 
- * - Create
- * 
- * - Update
- * 
- * This is general purpose so if there are any nuances, create the solution through the child, maybe through override or other methods. Do not instantiate this class.
- * 
- * (Note: I think this can be turned into abstract?? Maybe it can be an interface? Contact me if you found anything)
- * @prop {string} tableName
- * @prop {string[]} fields
- * @author LaurenceTest
- */
 export default class GenericModel{
-    tableName = null
     static getID(id,res){
         databaseConn.getConnection((err,conn)=>{
             if(err){
@@ -31,10 +14,6 @@ export default class GenericModel{
             })
         })
     }
-    /**
-     * @method Queries all of the columns of all of the members of the table. It can be dangerous to query everything so as much as possible don't use this.
-     * @returns {string} Returns a success or error message
-     */
     static getAll(res){
         databaseConn.getConnection((err,conn)=>{
             if(err){
@@ -48,11 +27,6 @@ export default class GenericModel{
             })
         })
     }
-    /**
-     * @static
-     * @method Queries all of the column names of the table.
-     * @returns {string[]} Returns an array of the table's column names.
-     */
     static getFields(res){
         databaseConn.getConnection((err,conn)=>{
             if(err){
@@ -68,20 +42,15 @@ export default class GenericModel{
     }
     /**
      * 
-     * @param {string[]} values An array that contains the values of the table's contents. It is important that it will have the same order as the {@link getAll} method.
-     * 
-     * Index 0 will be ignored as it is the ID and will not be inserted.
-     * @method Creates a new member of the table
-     * @returns {string} Returns a success or error message
+     * @param {string[]} values Array of values ordered respectively according to the fields
+     * @param {callback} res Callback function
      */
     static create(values,res){
-        let fields = this.fields
-        fields.splice(0,1)
-        console.log(values)
+        let fields = this.fields.slice(1)
         databaseConn.getConnection((err,conn)=>{
             if(err){
                 console.error(err)
-                conn.release()
+                if(err.errno === -4078) conn.release()
             }
             else conn.execute(`INSERT INTO ${this.tableName}(${this.fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values,(error, results)=>{
                 conn.release()
@@ -90,15 +59,30 @@ export default class GenericModel{
             })
         })
     }
-    //Index 0 in WHERE relies that its always the table ID
-    //Its a bit hacky, will break if boilerplate changes
     /**
-     * @method
-     * @param {number} id ID of the targeted member
-     * @param {string[]} fields Column names to be updated
-     * @param {string[]} values Values corresponding to the column names
-     * @returns {string} Returns a success or error message
+     * 
+     * @param {callback} res Callback function
      */
+    create(res){
+        const values = Object.values(this).filter(value=>value != undefined).slice(1)
+        const fields = this.table.fields.slice(1)
+        databaseConn.getConnection((err,conn)=>{
+            if(err){
+                console.error(err)
+                if(err.errno === -4078) conn.release()
+            }
+            else {
+                conn.execute(`INSERT INTO ${this.table.name}(${fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values,(error, results)=>{
+                    conn.release()
+                    if(error) console.error(error)
+                    else {
+                        console.log(`${this.table.name} ID ${results.insertId} has been successfully inserted.`)
+                        res(results)
+                    }
+                })
+            }
+        })
+    }
     static update(id,fields,values,res){
         databaseConn.getConnection((err,conn)=>{
             if(err){

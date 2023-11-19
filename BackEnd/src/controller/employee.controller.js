@@ -18,10 +18,11 @@ export default class EmployeeController{
         console.log(Employee.fields)
     }
     static create = (req,res)=>{
-        Address.create(Object.keys(req.body.address).map(key=>String(req.body.address[key])),(response)=>{
-            req.body.employee.addressID = response.insertId
-            const keys = Object.keys(req.body.employee)
-            Employee.create(keys.map(key=>String(req.body.employee[key])),response=>res.send(response))
+        const newAddress = new Address(req.body.address)
+        newAddress.create(response=>{
+            const newEmployee = new Employee(req.body.employee)
+            newEmployee.addressID = response.insertId
+            newEmployee.create(response=>res.send(response))
         })
     }
 }
