@@ -5,5 +5,7 @@ const shiftRouter = Router()
 
 shiftRouter.get('/all',ShiftController.getAll)
 shiftRouter.get('/fields',ShiftController.getFieldNames)
+shiftRouter.post('/create',ShiftController.create)
+shiftRouter.patch('/update',ShiftController.update)
 
 export default shiftRouter

@@ -5,5 +5,7 @@ const holidaysRouter = Router();
 
 holidaysRouter.get('/all',HolidaysController.getAll)
 holidaysRouter.get('/fields', HolidaysController.getFieldNames)
+holidaysRouter.post('/create',HolidaysController.create)
+holidaysRouter.patch(`/update`,HolidaysController.update)
 
 export default holidaysRouter

@@ -7,7 +7,7 @@ export default class GenericModel{
                 console.error(err)
                 conn.release()
             }
-            else conn.execute(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)],(error,results,fields)=>{
+            else conn.execute(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)],(error,results)=>{
                 conn.release()
                 if(error) console.error(error)
                 else res(results)
