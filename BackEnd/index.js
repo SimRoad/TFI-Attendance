@@ -22,7 +22,7 @@ app.use('/holidays',holidaysRouter)
 app.use('/leaves',leavesRouter)
 app.use('/logs',logsRouter)
 app.use('/reasons',reasonRouter)
-app.use('/shifts',shiftRouter)
+app.use('/shift',shiftRouter)
 app.use('/address',addressRouter)
 
 

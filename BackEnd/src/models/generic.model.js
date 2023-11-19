@@ -50,10 +50,6 @@ export default class GenericModel{
             })
         })
     }
-    /**
-     * 
-     * @param {callback} res Callback function
-     */
     create(res,error){
         const values = Object.values(this).map(value=>value ?? null).slice(2)
         const fields = this.table.fields.slice(1)

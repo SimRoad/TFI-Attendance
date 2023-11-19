@@ -1,4 +1,3 @@
-import databaseConn from '../../database.config.js'
 import User from '../models/user.model.js'
 
 export default class UserController{
