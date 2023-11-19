@@ -5,7 +5,7 @@ const reasonRouter = Router()
 
 reasonRouter.get('/all',ReasonController.getAll)
 reasonRouter.get('/fields',ReasonController.getFieldNames)
-reasonRouter.post('/creare',ReasonController.create)
+reasonRouter.post('/create',ReasonController.create)
 reasonRouter.patch('/update',ReasonController.update)
 
 export default reasonRouter

@@ -10,9 +10,18 @@ export default class DaySessionController{
     static getColumnFields = (req,res)=>{
         DaySession.getFields(fields=>res.send(fields))
     }
+    static findbyID = (req,res)=>{
+        DaySession.getID(req.params.id,result=>res.send(result))
+    }
     static create = (req,res,next)=>{
         const newDaySession = new DaySession(req.body.daySession)
-        newDaySession.create(response=>res.send(response),error=>next(error))
+        req.params.id = req.body.daySession.employeeID
+        EmployeeController.findByID(req,{send:response=>{
+            console.log(response)
+            if(response.length !== 0)
+            newDaySession.create(response=>res.send(response),error=>next(error))
+            else res.status(404).send(response)
+        }})
     }
     static update = (req,res,next)=>{
         const updateDaySession = new DaySession(req.body.daySession)

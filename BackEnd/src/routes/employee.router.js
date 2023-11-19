@@ -10,3 +10,4 @@ employeeRouter.post(`/create`,EmployeeController.create)
 employeeRouter.patch(`/update`,EmployeeController.update)
 
 export default employeeRouter
+

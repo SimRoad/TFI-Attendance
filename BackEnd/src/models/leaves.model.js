@@ -13,7 +13,7 @@ export default class Leaves extends GenericModel{
         this.leaveID = leaves.leaveID
         this.employeeID = leaves.employeeID
         this.leaveName = leaves.leaveName
-        this.daysLeft = leave.daysLeft
-        this.leaveDesc = leave.leaveDesc
+        this.daysLeft = leaves.daysLeft
+        this.leaveDesc = leaves.leaveDesc
     }
 }
