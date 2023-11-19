@@ -24,7 +24,8 @@ export default class EmployeeController{
             newEmployee.create(empResponse=>res.send(empResponse),error=>next(error))
         }})
     }
-    static update = (req,res)=>{
-        Employee.update()
+    static update = (req,res,next)=>{
+        const updateEmployee = new Employee(req.body.employee)
+        updateEmployee.update(response=>res.send(response),error=>next(error))
     }
 }

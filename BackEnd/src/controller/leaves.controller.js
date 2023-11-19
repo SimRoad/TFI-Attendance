@@ -8,4 +8,12 @@ export default class LeavesController{
     static getFieldNames = (req,res)=>{
         Leaves.getFields(fields=>res.send(fields))
     }
+    static create = (req,res,next)=>{
+        const newLeaves = new Leaves(req.body.leaves)
+        newLeaves.create(response=>res.send(response),error=>next(error))
+    }
+    static update = (req,res,next)=>{
+        const updateLeaves = new Leaves(req.body.leaves)
+        updateLeaves.update(response=>res.send(response),error=>next(error))
+    }
 }

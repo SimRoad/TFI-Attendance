@@ -7,6 +7,6 @@ employeeRouter.get(`/all`,EmployeeController.findAll)
 employeeRouter.get(`/:id`,EmployeeController.findByID)
 employeeRouter.get(`/fields`,EmployeeController.getColumnNames)
 employeeRouter.post(`/create`,EmployeeController.create)
-employeeRouter.post(`/update`,EmployeeController.create)
+employeeRouter.patch(`/update`,EmployeeController.update)
 
 export default employeeRouter

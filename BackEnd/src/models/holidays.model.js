@@ -3,7 +3,7 @@ import GenericModel from './generic.model.js'
 
 export default class Holidays extends GenericModel{
     static tableName = 'holidays'
-    static fields = ["holidayID","holidayName","holiddayDesc","holidayType"]
+    static fields = ["holidayID","holidayName","holidayDesc","holidayType"]
     constructor(holiday){
         super()
         this.table = {
@@ -13,7 +13,7 @@ export default class Holidays extends GenericModel{
         this.holidayID = holiday.holidayID
         this.holidayName = holiday.holidayName
         this.holidayDesc = holiday.holidayDesc
-        this.holidayDate = new Date(holiday.holidayDate)
+        this.holidayDate = holiday.holidayDate ? new Date(holiday.holidayDate) : undefined
         this.holidayType = holiday.holidayType
     }
 }

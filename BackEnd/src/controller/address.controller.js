@@ -15,4 +15,8 @@ export default class AddressController{
         const newAddress = new Address(req.body.address)
         newAddress.create(response=>res.send(response),error=>next(error))
     }
+    static update = (req,res,next)=>{
+        const updateAddress = new Address(req.body.address)
+        updateAddress.update(response=>res.send(response),error=>next(error))
+    }
 }

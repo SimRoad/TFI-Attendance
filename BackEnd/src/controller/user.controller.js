@@ -13,6 +13,10 @@ export default class UserController{
             User.create(req.query,response=>res.send(response))
         }
     }
+    static update = (req,res,next)=>{
+        const updateUser = new User(req.body.user)
+        updateUser.update(response=>res.send(response),error=>next(error))
+    }
 }
 
 function compareFields(first,second){

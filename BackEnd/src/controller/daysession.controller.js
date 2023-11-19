@@ -8,4 +8,12 @@ export default class DaySessionController{
     static getColumnFields = (req,res)=>{
         DaySession.getFields(fields=>res.send(fields))
     }
+    static create = (req,res,next)=>{
+        const newDaySession = new DaySession(req.body.daySession)
+        newDaySession.create(response=>res.send(response),error=>next(error))
+    }
+    static update = (req,res,next)=>{
+        const updateDaySession = new DaySession(req.body.daySession)
+        updateDaySession.update(response=>res.send(response),error=>next(error))
+    }
 }

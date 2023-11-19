@@ -24,12 +24,12 @@ export default class Employee extends GenericModel{
         this.employeeID = employee.employeeID
         this.addressID = employee.addressID
         this.firstName = employee.firstName
-        this.middleName = employee.middleName ?? null
+        this.middleName = employee.middleName
         this.lastName = employee.lastName
-        this.birthdate = new Date(employee.birthDate)
-        this.position = employee.jobPosition
-        this.status = employee.currentStatus
+        this.birthdate = employee.birthDate ? new Date(employee.birthDate) : undefined
+        this.jobPosition = employee.jobPosition
+        this.currentStatus = employee.currentStatus
         this.contactNumber = employee.contactNumber
-        this.email = employee.email ?? null
+        this.email = employee.email
     }
 }

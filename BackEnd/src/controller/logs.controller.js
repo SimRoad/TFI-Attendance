@@ -8,4 +8,12 @@ export default class LogsController{
     static getFieldNames = (req,res)=>{
         Logs.getFields(fields=>res.send(fields))
     }
+    static create = (req,res,next)=>{
+        const newLogs = new Logs(req.body.logs)
+        newLogs.create(response=>res.send(response),error=>next(error))
+    }
+    static update = (req,res,next)=>{
+        const updateLogs = new Logs(req.body.logs)
+        updateLogs.update(response=>res.send(response),error=>next(error))
+    }
 }

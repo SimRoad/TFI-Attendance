@@ -14,7 +14,7 @@ export default class Address extends GenericModel{
         this.street = address.street
         this.district = address.district
         this.barangay = address.barangay
-        this.postalCode = address.postalCode ?? null
+        this.postalCode = address.postalCode
         this.city_municipality = address.city_municipality
         this.province = address.province
     }

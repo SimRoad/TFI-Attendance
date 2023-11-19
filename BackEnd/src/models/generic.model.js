@@ -45,7 +45,8 @@ export default class GenericModel{
      * @param {callback} res Callback function
      */
     create(res,error){
-        const values = Object.values(this).filter(value=>value !== undefined).slice(1)
+        // const values = Object.values(this).filter(value=>value !== undefined).slice(1)
+        const values = Object.values(this).map(value=>value ?? null).slice(2)
         const fields = this.table.fields.slice(1)
         databaseConn.getConnection((err,conn)=>{
             if(err){
@@ -67,14 +68,19 @@ export default class GenericModel{
         })
     }
     update(res,error){
+        const values = Object.values(this).filter(value=>value !== undefined).slice(1)
+        const fields = this.table.fields.filter(field=>this[field] !== undefined).slice(1)
         databaseConn.getConnection((err,conn)=>{
             if(err){
                 error(err)
                 if(err.errno !== -4078) conn.release()
             }
-            else conn.execute(`UPDATE ${this.table.name} SET ${fields.forEach(field=>{return `${field} = ?, `})}WHERE ${this.fields[0]} = ${id}`,values,(error,results)=>{
-                if(error) error(err)
-                else res(results)
+            else conn.execute(`UPDATE ${this.table.name} SET ${fields.map(field=>`${field} = ?`)} WHERE ${this.table.fields[0]} = ${values.splice(0,1)}`,values,(err,results)=>{
+                if(err) error(err)
+                else{
+                    console.log(`${this.table.name} ID ${results.insertId} has been successfully updated.`)
+                    res(results)
+                } 
             })
         })
     }
