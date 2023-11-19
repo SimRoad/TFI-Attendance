@@ -1,5 +1,15 @@
 import databaseConn from '../../database.config.js'
 
+/**
+ * @class
+ * @exports
+ * @description Contains the core methods of the data models. Has the basic methods such as:
+ * - Select All
+ * - Select by ID
+ * - Get Column Names
+ * - Create
+ * - Update
+ */
 export default class GenericModel{
     static getID(id,res){
         databaseConn.getConnection((err,conn)=>{
@@ -45,7 +55,6 @@ export default class GenericModel{
      * @param {callback} res Callback function
      */
     create(res,error){
-        // const values = Object.values(this).filter(value=>value !== undefined).slice(1)
         const values = Object.values(this).map(value=>value ?? null).slice(2)
         const fields = this.table.fields.slice(1)
         databaseConn.getConnection((err,conn)=>{
