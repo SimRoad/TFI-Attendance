@@ -13,7 +13,7 @@ export default class DaySession extends GenericModel{
         this.sessionID = daySession.sessionID
         this.employeeID = daySession.employeeID
         this.timeIn = daySession.timeIn
-        this.timeOut = daySession.timeOut
+        this.timeOut = daySession.timeOut ?? null
         this.dayStatus = daySession.dayStatus
     }
 }

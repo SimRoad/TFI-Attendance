@@ -18,7 +18,7 @@ export default class GenericModel{
         databaseConn.getConnection((err,conn)=>{
             if(err){
                 console.error(err)
-                conn.release()
+                if(err.errno !== -4078) conn.release()
             }
             else conn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
                 conn.release()
@@ -31,7 +31,7 @@ export default class GenericModel{
         databaseConn.getConnection((err,conn)=>{
             if(err){
                 console.error(err)
-                conn.release()
+                if(err.errno !== -4078) conn.release()
             }
             else conn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
                 conn.release()
@@ -42,39 +42,22 @@ export default class GenericModel{
     }
     /**
      * 
-     * @param {string[]} values Array of values ordered respectively according to the fields
      * @param {callback} res Callback function
      */
-    static create(values,res){
-        let fields = this.fields.slice(1)
-        databaseConn.getConnection((err,conn)=>{
-            if(err){
-                console.error(err)
-                if(err.errno === -4078) conn.release()
-            }
-            else conn.execute(`INSERT INTO ${this.tableName}(${this.fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values,(error, results)=>{
-                conn.release()
-                if(error) console.error(error)
-                else res(results)
-            })
-        })
-    }
-    /**
-     * 
-     * @param {callback} res Callback function
-     */
-    create(res){
-        const values = Object.values(this).filter(value=>value != undefined).slice(1)
+    create(res,error){
+        const values = Object.values(this).filter(value=>value !== undefined).slice(1)
         const fields = this.table.fields.slice(1)
         databaseConn.getConnection((err,conn)=>{
             if(err){
-                console.error(err)
-                if(err.errno === -4078) conn.release()
+                error(err)
+                if(err.errno !== -4078) conn.release()
             }
             else {
-                conn.execute(`INSERT INTO ${this.table.name}(${fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values,(error, results)=>{
+                conn.execute(`INSERT INTO ${this.table.name}(${fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values,(err, results)=>{
                     conn.release()
-                    if(error) console.error(error)
+                    if(err){
+                        error(err)
+                    }
                     else {
                         console.log(`${this.table.name} ID ${results.insertId} has been successfully inserted.`)
                         res(results)
@@ -83,14 +66,14 @@ export default class GenericModel{
             }
         })
     }
-    static update(id,fields,values,res){
+    update(res,error){
         databaseConn.getConnection((err,conn)=>{
             if(err){
-                console.error(err)
-                conn.release()
+                error(err)
+                if(err.errno !== -4078) conn.release()
             }
-            else conn.execute(`UPDATE ${this.tableName} SET ${fields.forEach(field=>{return `${field} = ?, `})}WHERE ${this.fields[0]} = ${id}`,values,(error,results)=>{
-                if(error) console.error(err)
+            else conn.execute(`UPDATE ${this.table.name} SET ${fields.forEach(field=>{return `${field} = ?, `})}WHERE ${this.fields[0]} = ${id}`,values,(error,results)=>{
+                if(error) error(err)
                 else res(results)
             })
         })

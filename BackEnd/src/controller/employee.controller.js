@@ -8,21 +8,23 @@ import Address from '../models/address.model.js';
 export default class EmployeeController{
     static findAll = (req, res)=>{
         Employee.getAll(results=>res.send(results))
+        console.log(Employee.fields)
     }
     static findByID = (req, res)=>{
-        //1 is temporary, replace later
-        Employee.getID(1,results=>res.send(results))
+        Employee.getID(req.params.id,results=>res.send(results))
     }
     static getColumnNames = (req,res)=>{
         Employee.getFields(fields=>res.send(fields))
         console.log(Employee.fields)
     }
-    static create = (req,res)=>{
-        const newAddress = new Address(req.body.address)
-        newAddress.create(response=>{
+    static create = (req,res,next)=>{
+        AddressController.create(req,{send: response=>{
             const newEmployee = new Employee(req.body.employee)
             newEmployee.addressID = response.insertId
-            newEmployee.create(response=>res.send(response))
-        })
+            newEmployee.create(empResponse=>res.send(empResponse),error=>next(error))
+        }})
+    }
+    static update = (req,res)=>{
+        Employee.update()
     }
 }

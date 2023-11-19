@@ -30,6 +30,6 @@ export default class Employee extends GenericModel{
         this.position = employee.jobPosition
         this.status = employee.currentStatus
         this.contactNumber = employee.contactNumber
-        this.email = employee.email
+        this.email = employee.email ?? null
     }
 }

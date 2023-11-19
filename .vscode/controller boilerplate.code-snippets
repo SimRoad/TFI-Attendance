@@ -11,7 +11,7 @@
 		"prefix": "cprop",
 		"body": [
 			"static ${1:method} = (req,res)=>{",
-			"${2:Insert Code here}",
+			"	${2:/*Insert Code here*/}",
 			"}"
 		],
 		"description": "Sets up the boilerplate for controller method"

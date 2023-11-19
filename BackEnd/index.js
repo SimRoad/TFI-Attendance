@@ -17,7 +17,7 @@ app.use(express.json())
 
 app.use('/employee',employeeRouter)
 app.use('/user',userRouter)
-app.use('/Daysession',daySessionRouter)
+app.use('/daysession',daySessionRouter)
 app.use('/holidays',holidaysRouter)
 app.use('/leaves',leavesRouter)
 app.use('/logs',logsRouter)
