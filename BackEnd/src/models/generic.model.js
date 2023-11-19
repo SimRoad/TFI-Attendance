@@ -53,6 +53,7 @@ export default class GenericModel{
     create(res,error){
         const values = Object.values(this).map(value=>value ?? null).slice(2)
         const fields = this.table.fields.slice(1)
+        console.log(values,`INSERT INTO ${this.table.name}(${fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`)
         databaseConn.getConnection((err,conn)=>{
             if(err){
                 error(err)

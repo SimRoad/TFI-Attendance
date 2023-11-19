@@ -7,7 +7,6 @@ export default class EmployeeController{
         Employee.getAll(results=>res.send(results))
     }
     static findByID = (req, res)=>{
-        console.log(req.params.id)
         Employee.getID(req.params.id,results=>res.send(results))
     }
     static getColumnNames = (req,res)=>{
