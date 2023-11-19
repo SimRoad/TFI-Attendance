@@ -1,5 +1,7 @@
 import databaseConn from '../../database.config.js'
 import DaySession from '../models/daySession.model.js'
+import Employee from '../models/employee.model.js'
+import EmployeeController from './employee.controller.js'
 
 export default class DaySessionController{
     static getAll = (req,res)=>{
@@ -17,3 +19,4 @@ export default class DaySessionController{
         updateDaySession.update(response=>res.send(response),error=>next(error))
     }
 }
+
