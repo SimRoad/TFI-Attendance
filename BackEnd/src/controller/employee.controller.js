@@ -45,15 +45,14 @@ export default class EmployeeController{
         }})
     }
     static async update(req,res,next){
-        let responses = []
-        AddressController.update(req,{send: async response=>{
-            responses.push(response)
+        try {
+            if(!req.body.employee.employeeID) throw new Error(`employeeID is undefined`)
+            if(Object.values(req.body.employee).filter(a=>a !== undefined).length <= 1) throw new Error(`Insufficient values`)
             const updateEmployee = new Employee(req.body.employee)
-            updateEmployee.update().then(val=>{
-                responses.push(val)
-                res.send(responses)
-            }).catch(err=>next(err))
-            
-        }})
+            res.send(await updateEmployee.update())
+        } catch (error) {
+            console.error(error);
+            res.status(500).send(error)
+        }
     }
 }

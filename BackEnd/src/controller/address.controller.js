@@ -33,8 +33,14 @@ export default class AddressController{
         res.send(await newAddress.create().catch(err=>next(err)))
     }
     static async update(req,res,next){
-        if(!req.body.address.addressID) next(Error(`addressID is undefined`))
-        const updateAddress = new Address(req.body.address)
-        res.send(await updateAddress.update().catch(err=>next(err)))
+        try {
+            if(!req.body.address.addressID) throw new Error(`addressID is undefined`)
+            if(Object.values(req.body.address).filter(a=>a !== undefined).length <= 1) throw new Error(`Insufficient values`)
+            const updateAddress = new Address(req.body.address)
+            res.send(await updateAddress.update())
+        } catch (error) {
+            console.error(error);
+            res.status(500).send(error)
+        }
     }
 }

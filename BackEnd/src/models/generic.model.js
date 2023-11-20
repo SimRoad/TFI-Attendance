@@ -130,7 +130,7 @@ export default class GenericModel{
         try {
             const values = Object.values(this).filter(value=>value !== undefined).slice(1)
             const fields = this.table.fields.filter(field=>this[field] !== undefined).slice(1)
-            return await conn.query(`UPDATE ${this.table.name} SET ${fields.map(field=>`${field} = ?`)} WHERE ${this.table.fields[0]} = ${values.splice(0,1)}`,values,{saveAsPrepared:true})
+            return await databaseConn.query(`UPDATE ${this.table.name} SET ${fields.map(field=>`${field} = ?`)} WHERE ${this.table.fields[0]} = ${values.splice(0,1)}`,values,{saveAsPrepared:true})
         } catch (error) {
             console.error(error)
             throw(error)
