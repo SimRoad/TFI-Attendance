@@ -45,7 +45,15 @@ export default class EmployeeController{
         }})
     }
     static async update(req,res,next){
-        const updateEmployee = new Employee(req.body.employee)
-        res.send(updateEmployee.update().catch(err=>next(err)))
+        let responses = []
+        AddressController.update(req,{send: async response=>{
+            responses.push(response)
+            const updateEmployee = new Employee(req.body.employee)
+            updateEmployee.update().then(val=>{
+                responses.push(val)
+                res.send(responses)
+            }).catch(err=>next(err))
+            
+        }})
     }
 }
