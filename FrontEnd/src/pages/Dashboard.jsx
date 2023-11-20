@@ -16,7 +16,7 @@ function Dashboard() {
 
   return (
     <>
-      <Header />
+      
         <div className='body'>
           <div className='dashBody'>
             <div className='dashDiv'>
@@ -53,6 +53,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
+      <Header />
       <Footer />
     </>
   )
