@@ -11,24 +11,20 @@ export default class UserController{
     static findbyID = (req,res)=>{
         User.getID(req.params.id,result=>res.send(result))
     }
-    static create = (req,res)=>{
-        // if(compareFields(Object.keys(req.query),User.fields)){
-        //     User.create(req.query,response=>res.send(response))
-        // }
+    static create = async (req,res)=>{
         const newUser = new User(req.body.user)
+        const response = await newUser.encryptPassword()
+        console.log(newUser);
+        res.send(newUser)
+        return
         EmployeeController.findByID(req,{send:response=>{
             if(req.length !== 0)
             newUser.create(response=>res.send(response),error=>res.next(error))
-            else res.status(404).send(response)
+            else res.send(response)
         }})
     }
     static update = (req,res,next)=>{
         const updateUser = new User(req.body.user)
         updateUser.update(response=>res.send(response),error=>next(error))
     }
-}
-
-function compareFields(first,second){
-    second.splice(0)
-    return first.length === second.length && first.every((elem,index)=>elem === second[index])
 }
