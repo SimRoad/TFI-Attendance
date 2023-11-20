@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt'
-import util from 'util'
 import GenericModel from './generic.model.js';
 
 export default class User extends GenericModel{

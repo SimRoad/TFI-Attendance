@@ -1,16 +1,27 @@
 import mysql from 'mysql2'
+import db from 'mysql2-async'
 
 /**
  * @type {mysql.Pool}
  */
-const databaseConn = mysql.createPool({
+export const databaseConnSync = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    port: 3306,
     database: 'attendancemgmtsys',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
+})
+
+const databaseConn = new db({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'attendancemgmtsys',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
+    skiptzfix: true
 })
 
 export default databaseConn

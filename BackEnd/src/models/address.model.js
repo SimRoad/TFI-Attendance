@@ -1,4 +1,3 @@
-import databaseConn from "../../database.config.js";
 import GenericModel from "./generic.model.js";
 
 export default class Address extends GenericModel{
