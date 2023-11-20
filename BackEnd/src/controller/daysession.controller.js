@@ -20,7 +20,7 @@ export default class DaySessionController{
             console.log(response)
             if(response.length !== 0)
             newDaySession.create(response=>res.send(response),error=>next(error))
-            else res.status(404).send(response)
+            else res.send(response)
         }})
     }
     static update = (req,res,next)=>{

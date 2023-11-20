@@ -1,4 +1,5 @@
-import databaseConn from '../../database.config.js'
+import bcrypt from 'bcrypt'
+import util from 'util'
 import GenericModel from './generic.model.js';
 
 export default class User extends GenericModel{
@@ -12,9 +13,18 @@ export default class User extends GenericModel{
         }
         this.userID = user.userID;
         this.employeeID = user.employeeID;
-        this.userPassword = user.userPassword;
+        this.userPassword = user.userPassword
         this.position = user.position;
         this.lastLogin = user.lastLogin
         this.email = user.email;
+    }
+    async encryptPassword(){
+        this.userPassword = await bcrypt.hash(this.userPassword,await bcrypt.genSalt())
+        return
+    }
+    async comparePassword(encryptedPass){
+        const bool = await bcrypt.compare(this.userPassword,encryptedPass)
+        if(!bool) console.error(bool)
+        return bool
     }
 }

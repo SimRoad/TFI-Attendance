@@ -15,7 +15,7 @@ export default class LogsController{
         UserController.findbyID(req,{send:response=>{
             if(response.length !== 0)
             newLogs.create(response=>res.send(response),error=>next(error))
-            else res.status(404).send(response)
+            else res.send(response)
         }})
     }
     static update = (req,res,next)=>{

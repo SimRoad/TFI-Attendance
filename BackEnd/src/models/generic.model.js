@@ -11,7 +11,8 @@ import databaseConn from '../../database.config.js'
  * - Update
  */
 export default class GenericModel{
-    static getID(id,res){
+    /**@deprecated */
+    static getIDSync(id,res){
         databaseConn.getConnection((err,conn)=>{
             if(err){
                 console.error(err)
@@ -24,7 +25,17 @@ export default class GenericModel{
             })
         })
     }
-    static getAll(res){
+    static async getID(id){
+        try {
+            const conn = await databaseConn.getConnection()
+                return await conn.execute(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)])
+            .catch(error=>{throw(error)}).finally(()=>conn.release())
+        } catch (error) {
+            console.erroror(error)
+            throw(error)
+        }
+    }
+    static getAllSync(res){
         databaseConn.getConnection((err,conn)=>{
             if(err){
                 console.error(err)
@@ -37,7 +48,17 @@ export default class GenericModel{
             })
         })
     }
-    static getFields(res){
+    static async getAll(){
+        try {
+            const conn = await databaseConn.getConnection()
+            return await conn.query(`SELECT * FROM ${this.tableName}`)
+            .catch(error=>{throw(error)}).finally(()=>conn.release())
+        } catch (error) {
+            console.error(error)
+            throw(error)
+        }
+    }
+    static getFieldsSync(res){
         databaseConn.getConnection((err,conn)=>{
             if(err){
                 console.error(err)
@@ -50,10 +71,19 @@ export default class GenericModel{
             })
         })
     }
-    create(res,error){
+    static async getFields(){
+        try {
+            const conn = databaseConn.getConnection()
+            return await conn.query(`SELECT * FROM ${this.tableName}`)
+            .catch(error=>{throw(error)}).finally(()=>conn.release())
+        } catch (error) {
+            console.error(error)
+            throw(error)
+        }
+    }
+    createSync(res,error){
         const values = Object.values(this).map(value=>value ?? null).slice(2)
         const fields = this.table.fields.slice(1)
-        console.log(values,`INSERT INTO ${this.table.name}(${fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`)
         databaseConn.getConnection((err,conn)=>{
             if(err){
                 error(err)
@@ -73,7 +103,19 @@ export default class GenericModel{
             }
         })
     }
-    update(res,error){
+    async create(){
+        try {
+            const conn = databaseConn.getConnection()
+            const values = Object.values(this).map(value=>value ?? null).slice(2)
+            const fields = this.table.fields.slice(1)
+            return await conn.execute(`INSERT INTO ${this.table.name}(${fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values)
+            .catch(error=>{throw(error)}).finally(()=>conn.release())
+        } catch (error) {
+            console.error(error)
+            throw(error)
+        }
+    }
+    updateSync(res,error){
         const values = Object.values(this).filter(value=>value !== undefined).slice(1)
         const fields = this.table.fields.filter(field=>this[field] !== undefined).slice(1)
         databaseConn.getConnection((err,conn)=>{
@@ -89,5 +131,17 @@ export default class GenericModel{
                 } 
             })
         })
+    }
+    async update(){
+        try {
+            const conn = databaseConn.getConnection()
+            const values = Object.values(this).filter(value=>value !== undefined).slice(1)
+            const fields = this.table.fields.filter(field=>this[field] !== undefined).slice(1)
+            return await conn.execute(`UPDATE ${this.table.name} SET ${fields.map(field=>`${field} = ?`)} WHERE ${this.table.fields[0]} = ${values.splice(0,1)}`,values)
+            .catch(error=>{throw(error)}).finally(()=>conn.release())
+        } catch (error) {
+            console.error(error)
+            throw(error)
+        }
     }
 }

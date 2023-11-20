@@ -17,7 +17,7 @@ export default class ReasonController{
             if(response.length !== 0){
             newReason.create(response=>res.send(response),error=>next(error))
             }
-            else res.status(404).send(response)
+            else res.send(response)
         }})
         
     }
