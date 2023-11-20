@@ -31,7 +31,7 @@ export default class HolidaysController{
     }
     static async update(req,res,next){
         try {
-            if(!req.body.holidays.hoidayID) throw new Error(`hoidayID is undefined`)
+            if(!req.body.holidays.holidayID) throw new Error(`holidayID is undefined`)
             if(Object.values(req.body.holidays).filter(a=>a !== undefined).length <= 1) throw new Error(`Insufficient values`)
             const updateHolidays = new Holidays(req.body.holidays)
             res.send(await updateHolidays.update())
