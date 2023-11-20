@@ -3,13 +3,13 @@ import Shift from '../models/shift.model.js'
 import EmployeeController from './employee.controller.js'
 
 export default class ShiftController{
-    static getAll = (req,res)=>{
+    static getAllSync = (req,res)=>{
         Shift.getAll(Result=>res.send(Result))
     }
-    static getFieldNames = (req,res)=>{
+    static getFieldNamesSync = (req,res)=>{
         Shift.getFields(fields=>res.send(fields))
     }
-    static create = (req,res,next)=>{
+    static createSync = (req,res,next)=>{
         const newShift = new Shift(req.body.shift)
         req.params.id = req.body.shift.employeeID
         EmployeeController.findByID(req,{send:response=>{
@@ -18,8 +18,32 @@ export default class ShiftController{
             else res.send(response)
         }})
     }
-    static update = (req,res,next)=>{
+    static updateSync = (req,res,next)=>{
         const updateShift = new Shift(req.body.shift)
         updateShift.update(response=>res.send(response),error=>next(error))
+    }
+    static async findAll(req,res,next){
+        res.send(await Shift.getAll().catch(err=>next(err)))
+    }
+    static async findByID(req,res){
+        res.send(await Shift.getID(req.params.id).catch(err=>next(err)))
+    }
+    static async getFieldNames(req,res){
+        res.send(await Shift.getFields().catch(err=>next(err)))
+    }
+    static async create(req,res,next){
+        const newShift = new Shift(req.body.shift)
+        res.send(await newShift.create().catch(err=>next(err)))
+    }
+    static async update(req,res,next){
+        try {
+            if(!req.body.shift.shiftID) throw new Error(`shiftID is undefined`)
+            if(Object.values(req.body.shift).filter(a=>a !== undefined).length <= 1) throw new Error(`Insufficient values`)
+            const updateShift = new Shift(req.body.shift)
+            res.send(await updateShift.update())
+        } catch (error) {
+            console.error(error);
+            res.status(500).send(error)
+        }
     }
 }
