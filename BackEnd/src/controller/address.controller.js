@@ -34,6 +34,6 @@ export default class AddressController{
     }
     static async update(req,res,next){
         const updateAddress = new Address(req.body.address)
-        res.send(await newAddress.update().catch(err=>next(err)))
+        res.send(await updateAddress.update().catch(err=>next(err)))
     }
 }
