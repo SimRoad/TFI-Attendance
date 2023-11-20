@@ -1,0 +1,32 @@
+.divYear {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 5px dashed palevioletred; */
+
+    margin: 10px 0;
+    width: 100%;
+    height: fit-content;
+}
+
+.divYear>h1 {
+    background-color: white;
+    padding: 1px 3cm;
+    border-radius: 56px;
+    margin: 0 0.5cm;
+
+    font-size: 40px;
+}
+
+.yearUpdate {
+    height: 20vh;
+    width: 20vw;
+    background: none;
+}
+
+.yearTable {
+    border: 5px dashed rgb(255, 188, 65);
+    display: block;
+    width: 90vw;
+    height: 100%;
+}
