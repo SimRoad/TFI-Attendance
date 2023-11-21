@@ -5,7 +5,7 @@ function LogAbsent() {
 
     return (
       <>
-        <button className='dashLogsButton' style={{backgroundColor: "#730000"}}>Absent</button>
+        <button className='dashLogsButton' style={{backgroundColor: "#9F0000"}}>Absent</button>
       </>
     )
   }

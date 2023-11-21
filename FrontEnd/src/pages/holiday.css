@@ -9,24 +9,65 @@
     height: fit-content;
 }
 
-.divYear>h1 {
+.editYear {
+    text-align: center;
     background-color: white;
     padding: 1px 3cm;
+
     border-radius: 56px;
     margin: 0 0.5cm;
 
     font-size: 40px;
+    
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+         -webkit-appearance: none;
 }
 
 .yearUpdate {
-    height: 20vh;
-    width: 20vw;
+    height: 2cm;
+    width: 2cm;
     background: none;
 }
 
 .yearTable {
-    border: 5px dashed rgb(255, 188, 65);
     display: block;
     width: 90vw;
-    height: 100%;
+    height: fit-content;
+
+    border-radius: 36px;
+    border: 1px solid #000;
+    background: #745329;
+    padding: 1cm 1.5cm;
+}
+
+.actualTable {
+    width: 100%;
+    border-spacing: 4px 0;
+}
+
+.monthRow{
+    background-color: #394548;
+}
+
+.monthRow>th {
+    border: black 2px solid;
+    width: 10%;
+    color: white;
+}
+
+.holiDaysRow {
+    margin-bottom: 1cm;
+    vertical-align: baseline;
+    background-color: rgb(255, 249, 239);
+    
+}
+
+.holiDaysRow>td {
+    border: black 1px solid;
+}
+
+.divDivider {
+    height: 8px;
 }

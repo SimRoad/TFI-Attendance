@@ -18,16 +18,57 @@ function HolidayCalendar() {
   return (
     <>
       <div className='body'>
-        <div>
+        <div className='divHolidayCalendar'>
           <div className='divYear'>
             <input className='yearUpdate' type="image" src=".\src\assets\tdesign_arrow-up.svg" alt="left arrow" style={{transform: 'scaleX(-1)'}} onClick={updateYear}/>
             
-            <h1>{currYear}</h1>
+            <input className='editYear' type="number"  readonly onfocus="this.blur()" placeholder={currYear} />
+
             <input className='yearUpdate' type="image" onClick={()=>updateYear(true)} src=".\src\assets\tdesign_arrow-up.svg" alt="right arrow"/>
           </div>
 
           <div className='yearTable'>
-            <h1>hi</h1>
+            <table className='actualTable'>
+              <thead className='monthRow'>
+                <th>January</th>
+                <th>February</th>
+                <th>March</th>
+                <th>April</th>
+                <th>May</th>
+                <th>June</th>
+              </thead>
+
+              <tbody className='holiDaysRow'>
+                <td>?</td>
+                <td>?</td>
+                <td>?</td>
+                <td>?</td>
+                <td>?</td>
+                <td>?</td>
+              </tbody>
+
+              <tr className='divDivider'>
+                <td></td>
+              </tr>
+            
+              <thead className='monthRow'>
+                <th>July</th>
+                <th>August</th>
+                <th>September</th>
+                <th>October</th>
+                <th>November</th>
+                <th>December</th>
+              </thead>
+              <tbody className='holiDaysRow'>
+                <td>?<br />?</td>
+                <td>?</td>
+                <td>?</td>
+                <td>?</td>
+                <td>?</td>
+                <td>?</td>
+              </tbody>
+              
+            </table>
           </div>
         </div>
       </div>

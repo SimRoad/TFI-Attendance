@@ -5,7 +5,7 @@ function LogLate() {
 
     return (
       <>
-        <button className='dashLogsButton' style={{backgroundColor: "#020073"}}>Late</button>
+        <button className='dashLogsButton' style={{backgroundColor: "#242297"}}>Late</button>
       </>
     )
   }
