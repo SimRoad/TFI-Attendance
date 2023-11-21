@@ -50,6 +50,7 @@ export default class GenericModel{
     static async getAll(){
         try {
             const [rows,fields] = await databaseConn.query(`SELECT * FROM ${this.tableName}`)
+            console.log(rows)
             return rows
         } catch (error) {
             console.error(error)
@@ -71,7 +72,8 @@ export default class GenericModel{
     }
     static async getFields(){
         try {
-            let [rows,fields] = await databaseConn.execute(`SELECT * FROM ${this.tableName}`)
+            let [rows,fields] = await databaseConn.execute(`SELECT * FROM \`${this.tableName}\``)
+            console.log(fields)
             return fields.map(field=>field.name)
         } catch (error) {
             console.error(error)
