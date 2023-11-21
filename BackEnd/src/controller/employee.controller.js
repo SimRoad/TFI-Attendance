@@ -23,14 +23,13 @@ export default class EmployeeController{
     //     const updateEmployee = new Employee(req.body.employee)
     //     updateEmployee.update(response=>res.send(response),error=>next(error))
     // }
-    static async findAll(req, res){
-        console.log(await Employee.getAll().catch(err=>next(err)))
+    static async findAll(req, res,next){
         res.send(await Employee.getAll().catch(err=>next(err)))
     }
-    static async findByID(req, res){
+    static async findByID(req, res,next){
         res.send(await Employee.getID(req.params.id).catch(err=>next(err)))
     }
-    static async getColumnNames(req,res){
+    static async getColumnNames(req,res,next){
         res.send(await Employee.getFields().catch(err=>next(err)))
     }
     static async create(req,res,next){
@@ -46,6 +45,7 @@ export default class EmployeeController{
         }})
     }
     static async update(req,res,next){
+        console.log(`updating`)
         try {
             if(!req.body.employee.employeeID) throw new Error(`employeeID is undefined`)
             if(Object.values(req.body.employee).filter(a=>a !== undefined).length <= 1) throw new Error(`Insufficient values`)
@@ -54,6 +54,7 @@ export default class EmployeeController{
         } catch (error) {
             console.error(error);
             res.status(500).send(error)
+            next(error)
         }
     }
 }

@@ -5,6 +5,7 @@ const daySessionRouter = Router();
 
 daySessionRouter.get(`/all`, DaySessionController.findAll)
 daySessionRouter.get(`/fields`,DaySessionController.getColumnFieldNames)
+daySessionRouter.get(`/:id`,DaySessionController.findByID)
 daySessionRouter.post(`/create`,DaySessionController.create)
 daySessionRouter.patch(`/update`,DaySessionController.update)
 

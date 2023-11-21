@@ -73,7 +73,6 @@ export default class GenericModel{
     static async getFields(){
         try {
             let [rows,fields] = await databaseConn.execute(`SELECT * FROM \`${this.tableName}\``)
-            console.log(fields)
             return fields.map(field=>field.name)
         } catch (error) {
             console.error(error)
