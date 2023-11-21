@@ -27,7 +27,7 @@ export default class GenericModel{
     }
     static async getID(id){
         try {
-            const [rows,fields] = await databaseConn.promise().execute(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)])
+            const [rows,fields] = await databaseConn.execute(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)])
             return rows
         } catch (error) {
             console.error(error)
@@ -49,7 +49,7 @@ export default class GenericModel{
     }
     static async getAll(){
         try {
-            const [rows,fields] = await databaseConn.promise().query(`SELECT * FROM ${this.tableName}`)
+            const [rows,fields] = await databaseConn.query(`SELECT * FROM ${this.tableName}`)
             return rows
         } catch (error) {
             console.error(error)
@@ -71,7 +71,7 @@ export default class GenericModel{
     }
     static async getFields(){
         try {
-            let [rows,fields] = await databaseConn.promise().execute(`SELECT * FROM ${this.tableName}`)
+            let [rows,fields] = await databaseConn.execute(`SELECT * FROM ${this.tableName}`)
             return fields.map(field=>field.name)
         } catch (error) {
             console.error(error)
@@ -104,7 +104,9 @@ export default class GenericModel{
         try {
             const values = Object.values(this).map(value=>value ?? null).slice(2)
             const fields = this.table.fields.slice(1)
-            return await databaseConn.promise().execute(`INSERT INTO ${this.table.name}(${fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values)
+            const [response] = await databaseConn.execute(`INSERT INTO ${this.table.name}(${fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values)
+            console.log(response)
+            return response
         } catch (error) {
             console.error(error)
             throw(error)

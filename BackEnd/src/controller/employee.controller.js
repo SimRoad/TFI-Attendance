@@ -34,7 +34,6 @@ export default class EmployeeController{
         res.send(await Employee.getFields().catch(err=>next(err)))
     }
     static async create(req,res,next){
-        console.log(req.body)
         AddressController.create(req,{send: async response=>{
             try {
                 const newEmployee = new Employee(req.body.employee)

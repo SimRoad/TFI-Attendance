@@ -12,4 +12,4 @@ const databaseConn = mysql.createPool({
     queueLimit: 0
 })
 
-export default databaseConn
+export default databaseConn.promise()

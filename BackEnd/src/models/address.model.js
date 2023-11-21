@@ -2,7 +2,7 @@ import GenericModel from "./generic.model.js";
 
 export default class Address extends GenericModel{
     static tableName = 'address'
-    static fields = ["addressID","street","district","barangay","postalCode","city_municipality","province"]
+    static fields = ["addressID","street","barangay","postalCode","city_municipality","province"]
     constructor(address){
         super()
         this.table = {
@@ -11,7 +11,6 @@ export default class Address extends GenericModel{
         }
         this.addressID = address.addressID
         this.street = address.street
-        this.district = address.district
         this.barangay = address.barangay
         this.postalCode = address.postalCode
         this.city_municipality = address.city_municipality
