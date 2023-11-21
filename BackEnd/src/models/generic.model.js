@@ -105,7 +105,7 @@ export default class GenericModel{
     async create(){
         try {
             const values = Object.values(this).filter(val=>val !== undefined).slice(1)
-            const fields = this.table.fields.slice(1).filter((field,index)=>values[index] !== undefined)
+            const fields = this.table.fields.slice(1).filter((field,index)=>this[field] !== undefined || this[field] instanceof Date)
             const [response] = await databaseConn.execute(`INSERT INTO ${this.table.name}(${fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values)
             return response
         } catch (error) {
