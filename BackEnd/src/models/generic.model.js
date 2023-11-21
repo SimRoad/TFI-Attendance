@@ -104,10 +104,9 @@ export default class GenericModel{
     }
     async create(){
         try {
-            const values = Object.values(this).map(value=>value ?? null).slice(2)
-            const fields = this.table.fields.slice(1)
+            const values = Object.values(this).filter(val=>val !== undefined).slice(1)
+            const fields = this.table.fields.slice(1).filter((field,index)=>values[index] !== undefined)
             const [response] = await databaseConn.execute(`INSERT INTO ${this.table.name}(${fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values)
-            console.log(response)
             return response
         } catch (error) {
             console.error(error)
@@ -135,7 +134,8 @@ export default class GenericModel{
         try {
             const values = Object.values(this).filter(value=>value !== undefined).slice(1)
             const fields = this.table.fields.filter(field=>this[field] !== undefined).slice(1)
-            return await databaseConn.query(`UPDATE ${this.table.name} SET ${fields.map(field=>`${field} = ?`)} WHERE ${this.table.fields[0]} = ${values.splice(0,1)}`,values,{saveAsPrepared:true})
+            const [response] = await databaseConn.query(`UPDATE ${this.table.name} SET ${fields.map(field=>`${field} = ?`)} WHERE ${this.table.fields[0]} = ${values.splice(0,1)}`,values)
+            return response
         } catch (error) {
             console.error(error)
             throw(error)
