@@ -25,7 +25,7 @@ export default class Employee extends GenericModel{
         this.middleName = employee.middleName
         this.lastName = employee.lastName
         this.addressID = employee.addressID
-        this.birthdate = new Date(employee.birthDate)
+        this.birthDate = new Date(employee.birthDate)
         this.jobPosition = employee.jobPosition
         this.currentStatus = employee.currentStatus
         this.contactNumber = employee.contactNumber
