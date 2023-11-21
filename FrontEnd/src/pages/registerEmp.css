@@ -130,13 +130,16 @@
 }
 
 #address {
-    width: 55vw;
+    width: 22vw;
+}
+#addressv2 {
+    width: 30vw;
 }
 
 #number {
-    width: 20vw;
+    width: 18vw;
 }
 
 #mail {
-    width: 49vw;
+    width: 34vw;
 }
