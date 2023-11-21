@@ -34,7 +34,7 @@ export default class DaySessionController{
     static async findByID(req,res){
         res.send(await DaySession.getID(req.params.id).catch(err=>next(err)))
     }
-    static async getFieldNames(req,res){
+    static async getColumnFieldNames(req,res){
         res.send(await DaySession.getFields().catch(err=>next(err)))
     }
     static async create(req,res,next){

@@ -9,7 +9,7 @@
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+08:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -65,7 +65,7 @@ CREATE TABLE `employee` (
   `addressID` int(11) NOT NULL,
   `birthDate` date NOT NULL,
   `jobPosition` varchar(32) NOT NULL,
-  `currentStatus` enum('Fired','Working Employee') NOT NULL,
+  `currentStatus` enum('Fired','Working Employee') DEFAULT 'Working Employee' NOT NULL,
   `contactNumber` varchar(16) NOT NULL,
   `email` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

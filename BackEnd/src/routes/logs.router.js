@@ -4,7 +4,7 @@ import Logs from "../models/Logs.model.js";
 
 const logsRouter = Router()
 
-logsRouter.get('/all',LogsController.getAll)
+logsRouter.get('/all',LogsController.findAll)
 logsRouter.get('/fields',LogsController.getFieldNames)
 logsRouter.post('/create',LogsController.create)
 logsRouter.patch('/update',LogsController.update)
