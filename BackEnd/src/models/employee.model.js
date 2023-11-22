@@ -1,7 +1,6 @@
 import GenericModel from './generic.model.js'
 
 export default class Employee extends GenericModel{
-    static tableName = 'employee'
     static fields = [
         "employeeID",
         "firstName",
@@ -16,16 +15,11 @@ export default class Employee extends GenericModel{
     ]
     constructor(employee){
         super()
-        this.table = {
-            name: Employee.tableName,
-            fields: Employee.fields
-        }
-        this.employeeID = employee.employeeID
         this.firstName = employee.firstName
         this.middleName = employee.middleName
         this.lastName = employee.lastName
         this.addressID = employee.addressID
-        this.birthDate = new Date(employee.birthDate)
+        this.birthDate = employee.birthDate ? new Date(employee.birthDate) : undefined
         this.jobPosition = employee.jobPosition
         this.currentStatus = employee.currentStatus
         this.contactNumber = employee.contactNumber

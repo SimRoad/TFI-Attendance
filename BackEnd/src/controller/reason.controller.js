@@ -1,30 +1,32 @@
-import databaseConn from '../../database.config.js'
-import Reason from '../models/reason.model.js'
-import DaySessionController from './daysession.controller.js'
+import DaySession from '../models/daysession.model.js'
+import ExcuseReason from '../models/reason.model.js'
 
 export default class ReasonController{
     static async findAll(req,res,next){
-        res.send(await Reason.getAll().catch(err=>next(err)))
+        res.json(await ExcuseReason.getAll().catch(err=>next(err)))
     }
     static async findByID(req,res){
-        res.send(await Reason.getID(req.params.id).catch(err=>next(err)))
+        res.json(await ExcuseReason.getID(req.params.id).catch(err=>next(err)))
     }
     static async getFieldNames(req,res){
-        res.send(await Reason.getFields().catch(err=>next(err)))
+        res.json(await ExcuseReason.getFields().catch(err=>next(err)))
     }
     static async create(req,res,next){
-        const newReason = new Reason(req.body.reason)
-        res.send(await newReason.create().catch(err=>next(err)))
+        try {
+            if((await DaySession.getID(req.body.reason.sessionID)).length){
+                const newReason = new ExcuseReason(req.body.reason)
+                res.json(await newReason.create())
+            } else throw Error(`Session ID does not exist`)
+        } catch (error) {
+            next(error)
+        }
     }
     static async update(req,res,next){
         try {
-            if(!req.body.reason.reasonID) throw new Error(`reasonID is undefined`)
-            if(Object.values(req.body.reason).filter(a=>a !== undefined).length <= 1) throw new Error(`Insufficient values`)
-            const updateReason = new Reason(req.body.reason)
-            res.send(await updateReason.update())
+            const updateReason = new ExcuseReason(req.body.reason)
+            res.json(await updateReason.update())
         } catch (error) {
-            console.error(error);
-            res.status(500).send(error)
+            next(error);
         }
     }
 }

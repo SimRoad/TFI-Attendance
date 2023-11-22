@@ -1,6 +1,5 @@
 import { Router } from "express";
 import LogsController from "../controller/logs.controller.js";
-import Logs from "../models/Logs.model.js";
 
 const logsRouter = Router()
 
