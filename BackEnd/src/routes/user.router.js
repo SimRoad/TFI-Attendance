@@ -4,7 +4,7 @@ import UserController from '../controller/user.controller.js'
 const userRouter = Router()
 
 userRouter.get(`/all`,UserController.findAll)
-userRouter.get(`/fields`,UserController.getColumnNames)
+userRouter.get(`/fields`,UserController.getFieldNames)
 userRouter.get('/:id',UserController.findByID)
 userRouter.post('/create',UserController.create)
 userRouter.patch('/update',UserController.update)
