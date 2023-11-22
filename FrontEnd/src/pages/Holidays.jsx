@@ -22,7 +22,9 @@ function HolidayCalendar() {
           <div className='divYear'>
             <input className='yearUpdate' type="image" src=".\src\assets\tdesign_arrow-up.svg" alt="left arrow" style={{transform: 'scaleX(-1)'}} onClick={updateYear}/>
             
-            <input className='editYear' type="number"  readonly onfocus="this.blur()" placeholder={currYear} />
+            <h1 className='editYear'>{currYear}</h1>
+
+            {/* <input className='editYear' type="text" onfocus="this.blur()" placeholder={currYear} maxLength={4} disabled/> */}
 
             <input className='yearUpdate' type="image" onClick={()=>updateYear(true)} src=".\src\assets\tdesign_arrow-up.svg" alt="right arrow"/>
           </div>
@@ -39,8 +41,19 @@ function HolidayCalendar() {
               </thead>
 
               <tbody className='holiDaysRow'>
-                <td>?</td>
-                <td>?</td>
+                <td>
+                  <div className='monthHoliday'>
+                    1 New Year Ball
+                  </div>
+                  <div className='monthHoliday' disabled>
+                    1 New Year Ball
+                  </div>
+                </td>
+                <td>
+                <div className='monthHoliday'>
+                    1 New Year Ball
+                  </div>
+                </td>
                 <td>?</td>
                 <td>?</td>
                 <td>?</td>

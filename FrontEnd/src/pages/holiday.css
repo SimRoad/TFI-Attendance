@@ -12,13 +12,14 @@
 .editYear {
     text-align: center;
     background-color: white;
-    padding: 1px 3cm;
 
     border-radius: 56px;
     margin: 0 0.5cm;
 
     font-size: 40px;
-    
+    padding: 0 2cm;
+    width: 3cm;
+    box-shadow: 0 0 3px 0 rgb(14, 14, 14)
 }
 
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -33,41 +34,61 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 .yearTable {
     display: block;
-    width: 90vw;
+    min-width: 30cm;
     height: fit-content;
 
     border-radius: 36px;
-    border: 1px solid #000;
     background: #745329;
-    padding: 1cm 1.5cm;
+    padding: 1cm 1.2cm;
+    box-shadow: 0 0 3px 1px rgb(14, 14, 14);
 }
 
 .actualTable {
     width: 100%;
-    border-spacing: 4px 0;
+    border-spacing: 10px 0;
 }
 
 .monthRow{
-    background-color: #394548;
+    
 }
 
 .monthRow>th {
-    border: black 2px solid;
-    width: 10%;
+    width: 5.2cm;
     color: white;
+    background-color: #394548;
+
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 0 5px 0px black;
 }
 
 .holiDaysRow {
     margin-bottom: 1cm;
     vertical-align: baseline;
-    background-color: rgb(255, 249, 239);
-    
 }
 
 .holiDaysRow>td {
-    border: black 1px solid;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 1px 5px 1px rgb(14, 14, 14);
+    padding: 0 2px 5px;
 }
 
 .divDivider {
-    height: 8px;
+    height: 18px;
+}
+
+.monthHoliday {
+    border: #747474ab solid 1px;
+    box-shadow: 0 0 1px 1px rgb(175, 175, 175);
+    border-radius: 5px;
+    width: 90%;
+    margin: 2px 2% 0;
+    padding: 1px 5px;
+    background-color: white;
+    text-wrap: nowrap;
+}
+
+.monthHoliday:hover{
+    box-shadow: 0 0 3px 2px rgb(175, 175, 175);
+    color: #555555;
 }

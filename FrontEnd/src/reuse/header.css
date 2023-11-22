@@ -10,6 +10,7 @@ header {
     top: 0;
     left: 0;
     background-color: #17392E;
+    box-shadow: 0 1px 1px 1px;
 }
 
 .headSpace {
@@ -49,6 +50,7 @@ header {
     width: 4.8vw;
     justify-content: center;
     font-size: xx-large;
+    box-shadow: 0 0 4px 0 black inset;
 }
 
 .headButtons {
@@ -64,4 +66,5 @@ footer {
     bottom: 0;
     left: 0;
     background-color: #4D391A;
+    box-shadow: 0 -1px 3px 1px;
 }
