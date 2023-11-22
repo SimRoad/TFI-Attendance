@@ -3,28 +3,6 @@ import Reason from '../models/reason.model.js'
 import DaySessionController from './daysession.controller.js'
 
 export default class ReasonController{
-    static getAllSync = (req,res)=>{
-        Reason.getAll(Result=>res.send(Result))
-    }
-    static getFieldNamesSync = (req,res)=>{
-        Reason.getFields(fields=>res.send(fields))
-    }
-    static createSync = (req,res,next)=>{
-        const newReason = new Reason(req.body.reason)
-        req.params.id = req.body.reason.sessionID
-        DaySessionController.findbyID(req,{send:response=>{
-            console.log(response)
-            if(response.length !== 0){
-            newReason.create(response=>res.send(response),error=>next(error))
-            }
-            else res.send(response)
-        }})
-        
-    }
-    static updateSync = (req,res,next)=>{
-        const updateReason = new Reason(req.body.reason)
-        updateReason.update(response=>res.send(response),error=>next(error))
-    }
     static async findAll(req,res,next){
         res.send(await Reason.getAll().catch(err=>next(err)))
     }

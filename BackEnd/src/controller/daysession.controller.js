@@ -4,29 +4,6 @@ import Employee from '../models/employee.model.js'
 import EmployeeController from './employee.controller.js'
 
 export default class DaySessionController{
-    static getAllSync = (req,res)=>{
-        DaySession.getAll(results=>res.send(results))
-    }
-    static getColumnFieldsSync = (req,res)=>{
-        DaySession.getFields(fields=>res.send(fields))
-    }
-    static findbyIDSync = (req,res)=>{
-        DaySession.getID(req.params.id,result=>res.send(result))
-    }
-    static createSync = (req,res,next)=>{
-        const newDaySession = new DaySession(req.body.daySession)
-        req.params.id = req.body.daySession.employeeID
-        EmployeeController.findByID(req,{send:response=>{
-            console.log(response)
-            if(response.length !== 0)
-            newDaySession.create(response=>res.send(response),error=>next(error))
-            else res.send(response)
-        }})
-    }
-    static updateSync = (req,res,next)=>{
-        const updateDaySession = new DaySession(req.body.daySession)
-        updateDaySession.update(response=>res.send(response),error=>next(error))
-    }
     
     static async findAll(req,res,next){
         res.send(await DaySession.getAll().catch(err=>next(err)))

@@ -1,24 +1,8 @@
 import Address from "../models/address.model.js";
 import databaseConn from "../../database.config.js";
+import Holidays from "../models/holidays.model.js";
 
 export default class AddressController{
-    static findAllSync(req,res){
-        Address.getAllSync(response=>res.send(response))
-    }
-    static findByIDSync(req,res){
-        Address.getID(req.query.id,response=>res.send(response))
-    }
-    static getFieldNamesSync(req,res){
-        Address.getFields(fields=>res.send(fields))
-    }
-    static createSync(req,res,next){
-        const newAddress = new Address(req.body.address)
-        newAddress.create(response=>res.send(response),error=>next(error))
-    }
-    static updateSync(req,res,next){
-        const updateAddress = new Address(req.body.address)
-        updateAddress.update(response=>res.send(response),error=>next(error))
-    }
     static async findAll(req,res,next){
         res.send(await Address.getAll().catch(err=>next(err)))
     }
@@ -36,4 +20,5 @@ export default class AddressController{
         const updateAddress = new Address(req.body.address)
         res.send(await updateAddress.update())
     }
+    
 }

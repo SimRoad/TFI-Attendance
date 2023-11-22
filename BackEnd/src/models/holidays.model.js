@@ -1,3 +1,4 @@
+import Address from './address.model.js'
 import GenericModel from './generic.model.js'
 
 export default class Holidays extends GenericModel{

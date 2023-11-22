@@ -2,20 +2,6 @@ import databaseConn from '../../database.config.js'
 import Holidays from '../models/holidays.model.js'
 
 export default class HolidaysController{
-    static getAllSync = (req,res)=>{
-        Holidays.getAll(result=>res.send(result));
-    }
-    static getFieldNamesSync = (req,res) =>{
-        Holidays.getFields(fields=>res.send(fields));
-    }
-    static createSync = (req,res,next)=>{
-        const newHolidays = new Holidays(req.body.holidays)
-        newHolidays.create(response=>res.send(response),error=>next(error))
-    }
-    static updateSync = (req,res,next)=>{
-        const updateHolidays = new Holidays(req.body.holidays)
-        updateHolidays.update(response=>res.send(response),error=>next(error))
-    }
     static async findAll(req,res,next){
         res.send(await Holidays.getAll().catch(err=>next(err)))
     }
@@ -39,5 +25,9 @@ export default class HolidaysController{
             console.error(error);
             res.status(500).send(error)
         }
+    }
+
+    static async showAllHolidays(){
+
     }
 }
