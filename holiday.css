@@ -1,0 +1,125 @@
+.divYear {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 5px dashed palevioletred; */
+
+    margin: 10px 0;
+    width: 100%;
+    height: fit-content;
+}
+
+.editYear {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    background-color: white;
+
+    border-radius: 56px;
+    margin: 0 0.5cm;
+    padding: 0 2cm;
+    width: 3cm;
+    box-shadow: 0 0 3px 0 rgb(161, 161, 161);
+
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.editYear>img {
+    border: #707070 1px solid;
+    border-radius: 100%;
+    height: 1cm;
+    width: 1cm;
+
+    opacity: 1;
+    transition: box-shadow 250ms;
+}
+
+.editYear>img:hover {
+    box-shadow: 0 0 5px 1px grey inset;
+}
+
+.yearUpdate {
+    height: 2cm;
+    width: 2cm;
+    background: none;
+}
+
+.yearTable {
+    display: block;
+    min-width: 30cm;
+    height: fit-content;
+
+    border-radius: 36px;
+    background: #745329;
+    padding: 1cm 1.2cm;
+    box-shadow: 0 0 3px 1px rgb(14, 14, 14);
+}
+
+.actualTable {
+    width: 100%;
+    border-spacing: 10px 0;
+}
+
+.monthRow{
+    
+}
+
+.monthRow>th {
+    width: 5.2cm;
+    color: white;
+    background-color: #394548;
+
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 0 5px 0px black;
+}
+
+.holiDaysRow {
+    margin-bottom: 1cm;
+    vertical-align: baseline;
+    width: 6cm;
+}
+
+.holiDaysRow>td {
+    background-color: rgb(255, 255, 255);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 1px 5px 1px rgb(14, 14, 14);
+    padding: 0 2px 5px;
+}
+
+.divDivider {
+    height: 18px;
+}
+
+.monthHoliday {
+    border: #747474ab solid 1px;
+    border-radius: 5px;
+    width: 4.6cm;
+    margin: 2px 2% 0;
+    padding: 1px 5px;
+    background-color: rgba(245, 222, 179, 0.678);
+    text-wrap: nowrap;
+    font-weight: bolder;
+    display: flex;
+    overflow-x: hidden;
+    transition: box-shadow 280ms;
+}
+
+.monthHoliday:hover{
+    box-shadow: 0 0 3px 2px rgb(175, 175, 175);
+    color: #707070;
+    transition: box-shadow 280ms;
+}
+
+.holidayDate {
+    width: 12%;
+    height: 0.6cm;
+    display: flex;
+    justify-content: center;
+    margin-right: 3px;
+    text-decoration: underline;
+}
+
+.holdayName {
+    width: 82%;
+}
