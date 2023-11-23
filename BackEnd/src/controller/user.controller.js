@@ -19,6 +19,7 @@ export default class UserController{
             }
             else if(req.body.user.employeeID && (await Employee.getID(req.body.user.employeeID)).length){
                 const newUser = new User(req.body.user)
+                await newUser.encryptPassword()
                 res.json(await newUser.create())
             }
             throw Error(`Employee ID does not exist`)
@@ -32,6 +33,13 @@ export default class UserController{
             res.json(await updateUser.update())
         } catch (error) {
             next(error);
+        }
+    }
+    static async login(req,res,next){
+        try {
+            
+        } catch (error) {
+            
         }
     }
 }

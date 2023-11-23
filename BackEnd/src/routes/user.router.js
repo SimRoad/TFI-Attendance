@@ -5,6 +5,7 @@ const userRouter = Router()
 
 userRouter.get(`/all`,UserController.findAll)
 userRouter.get(`/fields`,UserController.getFieldNames)
+userRouter.get('/login',UserController.login)
 userRouter.get('/:id',UserController.findByID)
 userRouter.post('/create',UserController.create)
 userRouter.patch('/update',UserController.update)

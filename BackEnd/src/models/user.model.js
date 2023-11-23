@@ -13,7 +13,6 @@ export default class User extends GenericModel{
     }
     async encryptPassword(){
         this.userPassword = await bcrypt.hash(this.userPassword,await bcrypt.genSalt())
-        return
     }
     async comparePassword(encryptedPass){
         const bool = await bcrypt.compare(this.userPassword,encryptedPass)
