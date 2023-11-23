@@ -1,5 +1,4 @@
 import databaseConn from '../../database.config.js'
-import {databaseConnSync} from '../../database.config.js'
 
 /**
  * @class
@@ -12,128 +11,60 @@ import {databaseConnSync} from '../../database.config.js'
  * - Update
  */
 export default class GenericModel{
-    /**@deprecated */
-    static getIDSync(id,res){
-        databaseConnSync.getConnection((err,conn)=>{
-            if(err){
-                console.error(err)
-                conn.release()
-            }
-            else conn.execute(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)],(error,results)=>{
-                conn.release()
-                if(error) console.error(error)
-                else res(results)
-            })
-        })
+    constructor(){
+        this.tableName = this.constructor.name.toLowerCase()
     }
     static async getID(id){
         try {
-            return await databaseConn.query(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)],{saveAsPrepared:true})
+            const [rows,fields] = await databaseConn.execute(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)])
+            return rows
         } catch (error) {
             console.error(error)
             throw(error)
         }
-    }
-    static getAllSync(res){
-        databaseConnSync.getConnection((err,conn)=>{
-            if(err){
-                console.error(err)
-                if(err.errno !== -4078) conn.release()
-            }
-            else conn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
-                conn.release()
-                if(error) console.error(error)
-                else res(results)
-            })
-        })
     }
     static async getAll(){
         try {
-            return await databaseConn.query(`SELECT * FROM ${this.tableName}`)
+            const [rows,fields] = await databaseConn.query(`SELECT * FROM ${this.tableName}`)
+            console.log(rows)
+            return rows
         } catch (error) {
             console.error(error)
             throw(error)
         }
-    }
-    static getFieldsSync(res){
-        databaseConnSync.getConnection((err,conn)=>{
-            if(err){
-                console.error(err)
-                if(err.errno !== -4078) conn.release()
-            }
-            else conn.query(`SELECT * FROM ${this.tableName}`,(error,results,fields)=>{
-                conn.release()
-                if(error) console.error(error)
-                else res(fields.map(a=>a.name))
-            })
-        })
     }
     static async getFields(){
         try {
-            let results = await databaseConn.query(`DESCRIBE ${this.tableName}`)
-            return results.map(a=>a.Field)
+            let [rows,fields] = await databaseConn.execute(`SELECT * FROM ${this.tableName}`)
+            return fields.map(field=>field.name)
         } catch (error) {
             console.error(error)
             throw(error)
         }
-    }
-    createSync(res,error){
-        const values = Object.values(this).map(value=>value ?? null).slice(2)
-        const fields = this.table.fields.slice(1)
-        databaseConnSync.getConnection((err,conn)=>{
-            if(err){
-                error(err)
-                if(err.errno !== -4078) conn.release()
-            }
-            else {
-                conn.execute(`INSERT INTO ${this.table.name}(${fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values,(err, results)=>{
-                    conn.release()
-                    if(err){
-                        error(err)
-                    }
-                    else {
-                        console.log(`${this.table.name} ID ${results.insertId} has been successfully inserted.`)
-                        res(results)
-                    }
-                })
-            }
-        })
     }
     async create(){
         try {
-            const values = Object.values(this).map(value=>value ?? null).slice(2)
-            const fields = this.table.fields.slice(1)
-            return await databaseConn.query(`INSERT INTO ${this.table.name}(${fields.join(`, `)}) VALUES(${values.map(() => '?').join(', ')})`,values,{saveAsPrepared:true})
+            const fields = {}
+            for (const key in this) if (this[key] !== undefined && key !== `tableName`) fields[key] = this[key];
+            const [response] = await databaseConn.execute(`INSERT INTO ${this.tableName} SET ${Object.keys(fields).map(field=>`${field} = ?`)}`,Object.values(fields))
+            return response
         } catch (error) {
             console.error(error)
             throw(error)
         }
     }
-    updateSync(res,error){
-        const values = Object.values(this).filter(value=>value !== undefined).slice(1)
-        const fields = this.table.fields.filter(field=>this[field] !== undefined).slice(1)
-        databaseConnSync.getConnection((err,conn)=>{
-            if(err){
-                error(err)
-                if(err.errno !== -4078) conn.release()
-            }
-            else conn.execute(`UPDATE ${this.table.name} SET ${fields.map(field=>`${field} = ?`)} WHERE ${this.table.fields[0]} = ${values.splice(0,1)}`,values,(err,results)=>{
-                if(err) error(err)
-                else{
-                    console.log(`${this.table.name} ID ${results.insertId} has been successfully updated.`)
-                    res(results)
-                } 
-            })
-        })
-    }
-    async update(){
+    async update(id){
         try {
-            const values = Object.values(this).filter(value=>value !== undefined).slice(1)
-            const fields = this.table.fields.filter(field=>this[field] !== undefined).slice(1)
-            return await databaseConn.query(`UPDATE ${this.table.name} SET ${fields.map(field=>`${field} = ?`)} WHERE ${this.table.fields[0]} = ${values.splice(0,1)}`,values,{saveAsPrepared:true})
+            const fields = {}
+            for (const key in this) if (this[key] !== undefined && key !== `tableName`) fields[key] = this[key];
+            const [response] = await databaseConn.query(`UPDATE ${this.tableName} SET ? WHERE ? = ?`,[fields,id,Object.values(fields)[0]])
+            return response
         } catch (error) {
             console.error(error)
             throw(error)
         }
+    }
+    static get tableName(){
+        return this.name.toLowerCase()
     }
 }

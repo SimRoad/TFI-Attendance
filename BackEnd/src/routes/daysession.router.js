@@ -3,8 +3,9 @@ import { Router } from "express";
 
 const daySessionRouter = Router();
 
-daySessionRouter.get(`/all`, DaySessionController.getAll)
-daySessionRouter.get(`/fields`,DaySessionController.getColumnFields)
+daySessionRouter.get(`/all`, DaySessionController.findAll)
+daySessionRouter.get(`/fields`,DaySessionController.getColumnFieldNames)
+daySessionRouter.get(`/:id`,DaySessionController.findByID)
 daySessionRouter.post(`/create`,DaySessionController.create)
 daySessionRouter.patch(`/update`,DaySessionController.update)
 

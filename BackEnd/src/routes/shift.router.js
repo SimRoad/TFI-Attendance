@@ -3,8 +3,9 @@ import { Router } from "express";
 
 const shiftRouter = Router()
 
-shiftRouter.get('/all',ShiftController.getAll)
+shiftRouter.get('/all',ShiftController.findAll)
 shiftRouter.get('/fields',ShiftController.getFieldNames)
+shiftRouter.get('/:id',ShiftController.findByID)
 shiftRouter.post('/create',ShiftController.create)
 shiftRouter.patch('/update',ShiftController.update)
 
