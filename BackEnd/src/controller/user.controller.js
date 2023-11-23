@@ -5,7 +5,7 @@ export default class UserController{
     static async findAll(req,res,next){
         res.json(await User.getAll().catch(err=>next(err)))
     }
-    static async findByID(req,res){
+    static async findByID(req,res,next){
         res.json(await User.getID(req.params.id).catch(err=>next(err)))
     }
     static async getFieldNames(req,res){
