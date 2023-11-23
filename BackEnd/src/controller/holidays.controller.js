@@ -27,7 +27,7 @@ export default class HolidaysController{
         }
     }
 
-    static async showAllHolidays(){
-
+    static async showAllHolidays(req,res,next){
+        
     }
 }
