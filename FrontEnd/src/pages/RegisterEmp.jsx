@@ -1,33 +1,25 @@
-import { useState, useEffect } from "react"
-import { Form } from "react-router-dom"
 import './App.css'
 import './registerEmp.css'
 import Header from '../reuse/Header'
 import Footer from '../reuse/footer'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 
 function RegisterEmployee() {
-  const initialValues = { fname: "", mname: "", lname: "", bday: "", number: "", email: "", street: "", barangay: "", postalCode: "", city_municipality: "", province: "", file: "" };
-  const [formValues, setFormValues] = useState(initialValues)
-  const [formErrors, setFormErrors] = useState({})
-  const [isSubmit, setIsSubmit] = useState(false)
-  
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormValues({ ...formValues, [name]: value })
-  }
+  const schema = yup.object().shape({
+    fname: yup.string().required("First name is required!"),
+    mname: yup.string().required("Middle name is required!"),
+    lname: yup.string().required("Last name is required!"),
+  })
 
-  const handleSubmit = (e) => {
-    e.preventDfault()
-    setFormErrors(validate(formValues))
-    setIsSubmit(true)
-  }
+  const { register, handleSubmit, formState: {errors} } = useForm({
+    resolver: yupResolver(schema),
+  })
 
-  useEffect(() => {
-    console.log(formErrors)
-    if(Object.keys(formErrors).length === 0 && isSubmit){
-      console.log(formValues)
-    }
-  }, [formErrors])
+  const onSubmit = (data) => {
+    console.log('Registration Sent', data)
+  }
 
   const validate = (values) => {
     const errors = {}
@@ -79,48 +71,25 @@ function RegisterEmployee() {
             <div className='divRegistryHead'>
               <h1>Register Employee Information</h1>
             </div>
+            <pre>{ JSON.stringify(formValues, undefined, 2) }</pre>
 
-            {Object.keys(formErrors).length === 0 && isSubmit ? (
-              <div className="successfulReg">Registered Successfully</div>
-            ) : (
-              <pre>{ JSON.stringify(formValues, undefined, 2) }</pre>
-            )}
-
-            <Form onSubmit={ handleSubmit }>
+            <form onSubmit={ handleSubmit(onSubmit) }>
               <div className='divRegistry'>
                 <div className='logInput'>
                   <div className="boxInput">
                     <h1>First Name:</h1> 
-                    <input 
-                      type="text" 
-                      placeholder='First Name' 
-                      name="fname"
-                      value={ formValues.fname } 
-                      onChange={ handleChange } 
-                    />
-                    <p>{ formErrors.fname }</p>
+                    <input type="text" placeholder='First Name' {...register("fname")} />
+                    <p>{ errors.fname?.message }</p>
                   </div>
                   <div className="boxInput">
                     <h1>Middle Name:</h1>
-                    <input 
-                      type="text" 
-                      placeholder='Middle Name' 
-                      name="mname"
-                      value={ formValues.mname } 
-                      onChange={ handleChange } 
-                    />
-                    <p>{ formErrors.mname }</p>
+                    <input type="text" placeholder='Middle Name' {...register("mname")} />
+                    <p>{ errors.mname?.message }</p>
                   </div>
                   <div className="boxInput">
                     <h1>Last Name:</h1>
-                    <input 
-                      type="text" 
-                      placeholder='Last Name' 
-                      name="lname"
-                      value={ formValues.lname } 
-                      onChange={ handleChange } 
-                    />
-                    <p>{ formErrors.lname }</p>
+                    <input type="text" placeholder='Last Name' {...register("lname")} />
+                    <p>{ errors.lname?.message }</p>
                   </div>
                 </div>
               </div>
@@ -132,9 +101,7 @@ function RegisterEmployee() {
                     <input 
                       type="date" 
                       id='bday' 
-                      name="bday"
-                      value={ formValues.bday } 
-                      onChange={ handleChange } 
+                      {...register("lname")}
                     />
                     <p>{ formErrors.bday }</p>
                   </div>
@@ -143,10 +110,8 @@ function RegisterEmployee() {
                     <input 
                       type="text" 
                       id='number' 
-                      name="number"
                       placeholder='Contact Number' 
-                      value={ formValues.number } 
-                      onChange={ handleChange } 
+                      {...register("lname")}
                     />
                     <p>{ formErrors.number }</p>
                   </div>
@@ -155,10 +120,8 @@ function RegisterEmployee() {
                     <input 
                       type="email" 
                       id='mail' 
-                      name="email"
                       placeholder='Email Address' 
-                      value={ formValues.email } 
-                      onChange={ handleChange } 
+                      {...register("lname")}
                     />
                     <p>{ formErrors.email }</p>
                   </div>
@@ -172,10 +135,8 @@ function RegisterEmployee() {
                     <input 
                       type="text" 
                       id='address'
-                      name="street" 
                       placeholder='Street' 
-                      value={ formValues.street } 
-                      onChange={ handleChange } 
+                      {...register("lname")}
                     />
                     <p>{ formErrors.street }</p>
                   </div>
@@ -184,10 +145,8 @@ function RegisterEmployee() {
                     <input 
                       type="text" 
                       id='address'
-                      name="barangay" 
                       placeholder='Barangay' 
-                      value={ formValues.barangay } 
-                      onChange={ handleChange } 
+                      {...register("lname")}
                     />
                     <p>{ formErrors.barangay }</p>
                   </div>
@@ -196,10 +155,8 @@ function RegisterEmployee() {
                     <input 
                       type="text" 
                       id='address'
-                      name="postalCode" 
                       placeholder='Postal Code' 
-                      value={ formValues.postalCode } 
-                      onChange={ handleChange } 
+                      {...register("lname")}
                     />
                   </div>
                 </div>
@@ -212,10 +169,8 @@ function RegisterEmployee() {
                     <input 
                       type="text" 
                       id='addressv2'
-                      name="city_municipality" 
                       placeholder='City/Municipality' 
-                      value={ formValues.city_municipality } 
-                      onChange={ handleChange } 
+                      {...register("lname")}
                     />
                     <p>{ formErrors.city_municipality }</p>
                   </div>
@@ -224,10 +179,8 @@ function RegisterEmployee() {
                     <input 
                       type="text" 
                       id='addressv2'
-                      name="province" 
                       placeholder='Province' 
-                      value={ formValues.province } 
-                      onChange={ handleChange } 
+                      {...register("lname")}
                     />
                     <p>{ formErrors.province }</p>
                   </div>
@@ -249,10 +202,9 @@ function RegisterEmployee() {
                 </div>
                 <div className='logSubmit'>
                   <button className="registerBtn">Register</button>
-                  {/* <input id="registerBtn" type="submit" value="Register" /> */}
                 </div>
               </div>
-            </Form>
+            </form>
           </div>
         </div>
       <Header />
