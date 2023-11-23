@@ -28,6 +28,10 @@ export default class HolidaysController{
     }
 
     static async showAllHolidays(req,res,next){
-        
+        res.json(await Holidays.showHolidays().catch(err=>next(err)))
+    }
+    
+    static async showFilteredHolidays(req,res,next){
+         
     }
 }

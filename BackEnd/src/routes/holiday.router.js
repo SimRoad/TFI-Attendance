@@ -5,10 +5,11 @@ const holidaysRouter = Router();
 
 holidaysRouter.get('/all',HolidaysController.findAll)
 holidaysRouter.get('/fields', HolidaysController.getFieldNames)
+holidaysRouter.get(`/ShowAllHolidays`,HolidaysController.showAllHolidays) // WIP basically find all but just the holiday name and date.
+
 holidaysRouter.get('/:id',HolidaysController.findByID)
 holidaysRouter.post('/create',HolidaysController.create)
 holidaysRouter.patch(`/update`,HolidaysController.update)
-holidaysRouter.get(`/ShowAllHolidays`,HolidaysController.showAllHolidays) // WIP basically find all but just the holiday name and date.
 
 
 export default holidaysRouter
