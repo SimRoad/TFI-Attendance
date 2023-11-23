@@ -84,6 +84,8 @@ CREATE TABLE `employee` (
   `currentStatus` enum('Fired','Working Employee') NOT NULL DEFAULT 'Working Employee',
   `contactNumber` varchar(16) NOT NULL,
   `email` varchar(128) DEFAULT NULL
+--  `biometric` varchar(255) NOT NULL
+-- `imageDir` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -150,7 +152,7 @@ CREATE TABLE `leaves` (
 CREATE TABLE `logs` (
   `logID` int(11) NOT NULL,
   `generatedBy` int(11) DEFAULT NULL,
-  `dateGenerated` datetime NOT NULL,
+  `dateGenerated` datetime DEFAULT NOW() NOT NULL,
   `changeDesc` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -186,7 +188,7 @@ INSERT INTO `shift` (`shiftID`, `employeeID`, `timeIn`, `timeOut`, `leaveID`, `s
 CREATE TABLE `user` (
   `userID` int(11) NOT NULL,
   `employeeID` int(11) NOT NULL,
-  `userPassword` varchar(32) NOT NULL,
+  `userPassword` varchar(64) NOT NULL,
   `position` enum('Management','Admin','Suspended') NOT NULL,
   `lastLogin` datetime DEFAULT NULL,
   `email` varchar(128) NOT NULL
