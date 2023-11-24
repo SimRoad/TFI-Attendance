@@ -26,7 +26,6 @@ export default class GenericModel{
     static async getAll(){
         try {
             const [rows,fields] = await databaseConn.query(`SELECT * FROM ${this.tableName}`)
-            console.log(rows)
             return rows
         } catch (error) {
             console.error(error)

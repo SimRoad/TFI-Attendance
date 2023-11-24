@@ -2,7 +2,9 @@ import LoginForm from "../components/LoginForm";
 
 const loginPage = ()=>{
     return(
-        <LoginForm/>
+        <div className='bg-background'>
+            <LoginForm/>
+        </div>
     )
 }
 

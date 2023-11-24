@@ -3,13 +3,13 @@ import User from '../models/user.model.js'
 
 export default class UserController{
     static async findAll(req,res,next){
-        res.json(await User.getAll().catch(err=>next(err)))
+        res.send(await User.getAll().catch(err=>next(err)))
     }
     static async findByID(req,res,next){
-        res.json(await User.getID(req.params.id).catch(err=>next(err)))
+        res.send(await User.getID(req.params.id).catch(err=>next(err)))
     }
     static async getFieldNames(req,res){
-        res.json(await User.getFields().catch(err=>next(err)))
+        res.send(await User.getFields().catch(err=>next(err)))
     }
     static async create(req,res,next){
         try {
@@ -20,7 +20,7 @@ export default class UserController{
             else if(req.body.user.employeeID && (await Employee.getID(req.body.user.employeeID)).length){
                 const newUser = new User(req.body.user)
                 await newUser.encryptPassword()
-                res.json(await newUser.create())
+                res.send(await newUser.create())
             }
             throw Error(`Employee ID does not exist`)
         } catch (error){
@@ -30,16 +30,18 @@ export default class UserController{
     static async update(req,res,next){
         try {
             const updateUser = new User(req.body.user)
-            res.json(await updateUser.update())
+            res.send(await updateUser.update())
         } catch (error) {
             next(error);
         }
     }
     static async login(req,res,next){
         try {
-            
+            req.body.user.userPassword = req.body.user.password
+            const user = new User(req.body.user)
+            res.send(await user.verifyLogin())
         } catch (error) {
-            
+            next(error)
         }
     }
 }

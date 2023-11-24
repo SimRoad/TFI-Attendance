@@ -1,17 +1,30 @@
 import { TextInput, Label, Button } from "flowbite-react";
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
-import axios from 'axios'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+import client from '../axiosURL'
 
 const loginForm = ()=>{
-  const {handleSubmit, register, control} = useForm()
-  const request = data=>{
-    axios.get('http://127.0.0.1:8080/user/all').then(response=>console.log(response))
+  const schema = yup.object().shape({
+    email: yup.string().email(`Test`).required(`Test`),
+    password : yup.string().matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+    ).required()
+  })
+  const {handleSubmit, register, control, formState:{errors}} = useForm({
+    resolver: yupResolver(schema)
+  })
+  const request = user=>{
+    client.post({user})
+    .then(response=>console.log(JSON.stringify(response.data)))
+    .catch(error=>console.error(error))
   }
     return(
       <>
 
-        <form className="flex max-w-md flex-col gap-4" onSubmit={handleSubmit(request)}>
+        <form className="flex max-w-md flex-col gap-4 bg-primary border-2 border-accent/20" onSubmit={handleSubmit(request)}>
       <div>
         <div className="mb-2 block">
           <Label htmlFor="email1" value="Your email" />
