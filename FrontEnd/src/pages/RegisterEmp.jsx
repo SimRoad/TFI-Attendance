@@ -11,6 +11,15 @@ function RegisterEmployee() {
     fname: yup.string().required("First name is required!"),
     mname: yup.string().required("Middle name is required!"),
     lname: yup.string().required("Last name is required!"),
+    bday: yup.date().required("Birthdate required!"),
+    number: yup.string().min(11).max(15).required("Number required!"),
+    email: yup.string().email().required("Email required!"),
+    street: yup.string().required("Street required!"),
+    barangay: yup.string().required("Barangay required!"),
+    postalCode: yup.number().positive().integer().max(4),
+    city_municipality: yup.string().required("City/Municipality required!"),
+    province: yup.string().required("Province required!"),
+    // file: yup.file().required("Picture required!"),
   })
 
   const { register, handleSubmit, formState: {errors} } = useForm({
@@ -21,48 +30,6 @@ function RegisterEmployee() {
     console.log('Registration Sent', data)
   }
 
-  const validate = (values) => {
-    const errors = {}
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i
-
-    if (!errors.fname) {
-      errors.fname = "First name is required"
-    }
-    if (!errors.mname) {
-      errors.mname = "Middle name is required"
-    }
-    if (!errors.lname) {
-      errors.lname = "Last name is required"
-    }
-    if (!errors.bday) {
-      errors.bday = "Birthday is required"
-    }
-    if (!errors.number) {
-      errors.number = "Contact number is required"
-    }
-    if (!errors.email) {
-      errors.email = "Email is required"
-    } else if (!regex.test(values.email)) {
-      errors.email = "Not a valid email format!"
-    }
-    if (!errors.street) {
-      errors.street = "Street is required"
-    }
-    if (!errors.barangay) {
-      errors.barangay = "Barangay is required"
-    }
-    if (!errors.city_municipality) {
-      errors.city_municipality = "City/Municipality is required"
-    }
-    if (!errors.province) {
-      errors.province = "Province is required"
-    }
-    if (!errors.file) {
-      errors.file = "Picture is required"
-    }
-    return errors
-  }
-
   return (
     <>
       <Header />
@@ -71,7 +38,6 @@ function RegisterEmployee() {
             <div className='divRegistryHead'>
               <h1>Register Employee Information</h1>
             </div>
-            <pre>{ JSON.stringify(formValues, undefined, 2) }</pre>
 
             <form onSubmit={ handleSubmit(onSubmit) }>
               <div className='divRegistry'>
@@ -98,32 +64,18 @@ function RegisterEmployee() {
                 <div className="logInput">
                   <div className="boxInput">
                     <h1>Birthdate:</h1>
-                    <input 
-                      type="date" 
-                      id='bday' 
-                      {...register("lname")}
-                    />
-                    <p>{ formErrors.bday }</p>
+                    <input type="date" id='bday' {...register("bday")} />
+                    <p>{ errors.bday?.message }</p>
                   </div>
                   <div className="boxInput">
                     <h1>Contact No:</h1>
-                    <input 
-                      type="text" 
-                      id='number' 
-                      placeholder='Contact Number' 
-                      {...register("lname")}
-                    />
-                    <p>{ formErrors.number }</p>
+                    <input type="text" id='number' placeholder='Contact Number' {...register("number")} />
+                    <p>{ errors.number?.message }</p>
                   </div>
                   <div className="boxInput">
                     <h1>Email:</h1>
-                    <input 
-                      type="email" 
-                      id='mail' 
-                      placeholder='Email Address' 
-                      {...register("lname")}
-                    />
-                    <p>{ formErrors.email }</p>
+                    <input type="email" id='mail' placeholder='Email Address' {...register("email")} />
+                    <p>{ errors.email?.message }</p>
                   </div>
                 </div>
               </div>
@@ -132,32 +84,17 @@ function RegisterEmployee() {
                 <div className="logInput">
                   <div className="boxInput">
                     <h1>Street:</h1>
-                    <input 
-                      type="text" 
-                      id='address'
-                      placeholder='Street' 
-                      {...register("lname")}
-                    />
-                    <p>{ formErrors.street }</p>
+                    <input type="text" id='address' placeholder='Street' {...register("street")} />
+                    <p>{ errors.street?.message }</p>
                   </div>
                   <div className="boxInput">
                     <h1>Barangay:</h1>
-                    <input 
-                      type="text" 
-                      id='address'
-                      placeholder='Barangay' 
-                      {...register("lname")}
-                    />
-                    <p>{ formErrors.barangay }</p>
+                    <input type="text" id='address' placeholder='Barangay' {...register("barangay")} />
+                    <p>{ errors.barangay?.message }</p>
                   </div>
                   <div className="boxInput">
                     <h1>Postal Code(optional):</h1>
-                    <input 
-                      type="text" 
-                      id='address'
-                      placeholder='Postal Code' 
-                      {...register("lname")}
-                    />
+                    <input type="number" id='address' placeholder='Postal Code' {...register("postalCode")} />
                   </div>
                 </div>
               </div>
@@ -166,23 +103,13 @@ function RegisterEmployee() {
                 <div className="logInput">
                   <div className="boxInput">
                     <h1>City/Municipality:</h1>
-                    <input 
-                      type="text" 
-                      id='addressv2'
-                      placeholder='City/Municipality' 
-                      {...register("lname")}
-                    />
-                    <p>{ formErrors.city_municipality }</p>
+                    <input type="text" id='addressv2' placeholder='City/Municipality' {...register("city_municipality")} />
+                    <p>{ errors.city_municipality?.message }</p>
                   </div>
                   <div className="boxInput">
                     <h1>Province:</h1>
-                    <input 
-                      type="text" 
-                      id='addressv2'
-                      placeholder='Province' 
-                      {...register("lname")}
-                    />
-                    <p>{ formErrors.province }</p>
+                    <input type="text" id='addressv2' placeholder='Province' {...register("province")} />
+                    <p>{ errors.province?.message }</p>
                   </div>
                 </div>
               </div>
@@ -191,13 +118,8 @@ function RegisterEmployee() {
                 <div className="logInput">
                   <div className="boxInput">
                     <h1>Picture File</h1>
-                    <input 
-                      type="file" 
-                      name="file"
-                      value={ formValues.file } 
-                      onChange={ handleChange } 
-                    />
-                    <p>{ formErrors.file }</p>
+                    <input type="file" {...register("file")} />
+                    {/* <p>{ errors.file?.message }</p> */}
                   </div>
                 </div>
                 <div className='logSubmit'>

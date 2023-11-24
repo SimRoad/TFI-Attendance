@@ -124,6 +124,9 @@
     font-size: 28px;
     color: #414141;
 }
+.boxInput>p {
+    color: red;
+}
 
 #bday {
     width: 14vw;
