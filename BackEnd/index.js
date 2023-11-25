@@ -1,5 +1,6 @@
 import express from "express"
 import cors from 'cors'
+import cookieSession from "cookie-session"
 import employeeRouter from "./src/routes/employee.router.js"
 import userRouter from "./src/routes/user.router.js"
 import daySessionRouter from "./src/routes/daysession.router.js"
@@ -12,8 +13,19 @@ import addressRouter from "./src/routes/address.router.js"
 
 const app = express()
 
-app.use(cors())
+app.set('trust_proxy',1)
+
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}))
 app.use(express.json())
+app.use(cookieSession({
+    name: 'sesssion',
+    keys: ['7478c724-da6e-4a61-9cc1-1adb2edd983a','c84e8598-73a7-492a-9254-3800fb73d1e2'],
+    domain: 'localhost:5173',
+    
+}))
 
 app.use('/employee',employeeRouter)
 app.use('/user',userRouter)

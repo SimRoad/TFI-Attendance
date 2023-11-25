@@ -2,6 +2,7 @@
 
 import logo from '../assets/TFIicon.png'
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
+import {memo} from 'react'
 
 function header() {
   return (
@@ -43,4 +44,4 @@ function header() {
   );
 }
 
-export default header
+export default memo(header)

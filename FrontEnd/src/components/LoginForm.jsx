@@ -1,23 +1,27 @@
 'use client'
 
+import { useState,useContext } from "react";
 import { TextInput, Label, Button, Alert } from "flowbite-react";
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {loginSchema} from '../yupSchema'
 import client from '../axiosURL'
-import { useState } from "react";
+import {SessionContext} from "../session/SessionProvider";
+import {useNavigate} from 'react-router-dom'
 
 const loginForm = ()=>{
   const [alertModal,setAlertModal] = useState(false)
-  const {handleSubmit, register, control, formState:{errors}} = useForm({
-    resolver: yupResolver(loginSchema)
-  })
+  const {handleSubmit, register, control, formState:{errors}} = useForm({resolver: yupResolver(loginSchema)})
+  const {cookies, setCookies} = useContext(SessionContext)
+  const navigate = useNavigate()
   const request = async user=>{
-    client.post('/user/login',user)
+    client.post('/user/login',user,{withCredentials:true})
     .then(response=>{
-      console.log(response.data)
-      if(response.data) alert(`success`)
+      if(response.data.authentication){
+        setCookies('session', response.data.userID)
+        navigate('/dashboard')
+      } 
       else setAlertModal(true)
     })
     .catch(error=>console.error(error))
