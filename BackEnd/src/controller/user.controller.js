@@ -22,7 +22,7 @@ export default class UserController{
                 await newUser.encryptPassword()
                 res.send(await newUser.create())
             }
-            throw Error(`Employee ID does not exist`)
+            else throw Error(`Employee ID does not exist`)
         } catch (error){
             next(error)
         }
@@ -37,9 +37,9 @@ export default class UserController{
     }
     static async login(req,res,next){
         try {
-            req.body.user.userPassword = req.body.user.password
-            const user = new User(req.body.user)
-            res.send(await user.verifyLogin())
+            req.body.userPassword = req.body.password
+            const user = new User(req.body)
+            res.send((await user.verifyLogin()) ? true : false)
         } catch (error) {
             next(error)
         }

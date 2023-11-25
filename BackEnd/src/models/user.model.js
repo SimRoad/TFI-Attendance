@@ -14,14 +14,12 @@ export default class User extends GenericModel{
     }
     async verifyLogin(){
         const [rows] = await databaseConfig.execute(`SELECT email, userPassword FROM user WHERE email = ?`, [this.email])
-        return await rows.length && this.comparePassword([userPassword]) ? {err:false} : {err: true}
+        return rows.length && await this.comparePassword(rows[0].userPassword)
     }
     async encryptPassword(){
         this.userPassword = await bcrypt.hash(this.userPassword,await bcrypt.genSalt())
     }
     async comparePassword(encryptedPass){
-        const bool = await bcrypt.compare(this.userPassword,encryptedPass)
-        if(!bool) console.error(bool)
-        return bool
+        return await bcrypt.compare(this.userPassword,encryptedPass)
     }
 }
