@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import {TextInput, Datepicker, Label, Button, Select, FileInput} from 'flowbite-react'
 import { employeeRegisterSchema } from '../yupSchema'
 import { LuMapPin } from "react-icons/lu";
+import {useState} from 'react'
 import client from '../axiosURL'
 
 const EmployeeRegisterForm = ()=>{
@@ -17,7 +18,7 @@ const EmployeeRegisterForm = ()=>{
                 <ProfileSection {...fields} />
                 <AddressPortion {...fields} />
                 <ContactPortion {...fields}/>
-                <Button type='submit'>Submit</Button>
+                <Button color='default' type='submit'>Submit</Button>
             </form>
             <DevTool control={control}/>
         </div>
@@ -144,7 +145,17 @@ export const AddressPortion = ({register,errors})=>{
                 <div className="mb-2 block">
                     <Label htmlFor="postalCode1" value="Postal Code" />
                 </div>
-                <TextInput id="postalCode1" type="number" icon={LuMapPin} placeholder="12345 or 12345-6789" required />
+                <TextInput 
+                    id="postalCode1" 
+                    type="number" 
+                    icon={LuMapPin} 
+                    placeholder="12345 or 12345-6789" 
+                    helperText={
+                        <>
+                            {addressErr?.postalCode ? addressErr?.postalCode.message : ''}
+                        </>
+                    }
+                />
             </div>
             <Label htmlFor="city_municipality1" value="City/Municipality" />
             <TextInput 
@@ -174,6 +185,7 @@ export const AddressPortion = ({register,errors})=>{
 
 export const ContactPortion = ({register,errors})=>{
     const employeeErr = errors.employee
+    const [file,setFile]= useState()
     return(
         <>
             <Label htmlFor="contactNumber1" value="Contact Number" />
@@ -202,7 +214,13 @@ export const ContactPortion = ({register,errors})=>{
                 <div className="mb-2 block">
                     <Label htmlFor="file" value="Upload file" />
                 </div>
-                <FileInput id="file" helperText="A profile picture is useful to confirm your are logged into your account" />
+                <FileInput 
+                    id="file" 
+                    {...register('employee.profileImage')}
+                    onChange={e=>setFile(URL.createObjectURL(e.target.files[0]))}
+                    color={employeeErr?.profileImage ? 'failure' : ''}
+                    helperText="Requirement: 2mb Max Size, 600x600, .jpg, .jpeg, .png file format" />
+                    {file && <img src={file} alt='Preview'/>}
             </div>
         </>
     )
