@@ -15,9 +15,15 @@ export default class UserController{
         try {
             if(req.body.employee){
                 const newEmployee = new Employee(req.body.employee)
-                newEmployee.create().then(response=>req.body.user.employeeID = response.insertID).catch(err=>{throw(err)})
+                newEmployee.create()
+                .then(async response=>{
+                    const newUser = new User(req.body.user)
+                    req.body.user.employeeID = response.insertID
+                    await newUser.encryptPassword()
+                    res.send(await newUser.create())
+                })
             }
-            else if(req.body.user.employeeID && (await Employee.getID(req.body.user.employeeID)).length){
+            else if(req.body.user?.employeeID && (await Employee.getID(req.body.user.employeeID)).length){
                 const newUser = new User(req.body.user)
                 await newUser.encryptPassword()
                 res.send(await newUser.create())

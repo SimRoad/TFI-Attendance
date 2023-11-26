@@ -73,7 +73,7 @@ CREATE TABLE `employee` (
   `contactNumber` varchar(16) NOT NULL,
   `email` varchar(128) DEFAULT NULL
 --  `biometric` varchar(255) NOT NULL
--- `imageDir` varchar(128) DEFAULT NULL
+`imageDir` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

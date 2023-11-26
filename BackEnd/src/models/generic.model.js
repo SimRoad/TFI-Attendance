@@ -19,7 +19,6 @@ export default class GenericModel{
             const [rows,fields] = await databaseConn.execute(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)])
             return rows
         } catch (error) {
-            console.error(error)
             throw(error)
         }
     }
@@ -28,7 +27,6 @@ export default class GenericModel{
             const [rows,fields] = await databaseConn.query(`SELECT * FROM ${this.tableName}`)
             return rows
         } catch (error) {
-            console.error(error)
             throw(error)
         }
     }
@@ -37,18 +35,16 @@ export default class GenericModel{
             let [rows,fields] = await databaseConn.execute(`SELECT * FROM ${this.tableName}`)
             return fields.map(field=>field.name)
         } catch (error) {
-            console.error(error)
             throw(error)
         }
     }
-    async create(){
+    async create(conn){
         try {
             const fields = {}
             for (const key in this) if (this[key] !== undefined && key !== `tableName`) fields[key] = this[key];
-            const [response] = await databaseConn.execute(`INSERT INTO ${this.tableName} SET ${Object.keys(fields).map(field=>`${field} = ?`)}`,Object.values(fields))
+            const [response] = await conn.execute(`INSERT INTO ${this.tableName} SET ${Object.keys(fields).map(field=>`${field} = ?`)}`,Object.values(fields))
             return response
         } catch (error) {
-            console.error(error)
             throw(error)
         }
     }
@@ -59,7 +55,15 @@ export default class GenericModel{
             const [response] = await databaseConn.query(`UPDATE ${this.tableName} SET ? WHERE ? = ?`,[fields,id,Object.values(fields)[0]])
             return response
         } catch (error) {
-            console.error(error)
+            throw(error)
+        }
+    }
+    static async getLastID(){
+        try {
+            const [rows,fields] = await databaseConn.execute(`SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = "attendancemgmtsys" AND TABLE_NAME = "${this.tableName}"`)
+            const {AUTO_INCREMENT} = rows[0]
+            return AUTO_INCREMENT
+        } catch (error) {
             throw(error)
         }
     }

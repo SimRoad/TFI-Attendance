@@ -13,7 +13,8 @@ export default class Employee extends GenericModel{
         "jobPosition",
         "currentStatus",
         "contactNumber",
-        "email"
+        "email",
+        "imageDir"
     ]
     constructor(employee){
         super()

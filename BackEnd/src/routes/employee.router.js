@@ -1,4 +1,5 @@
 import {Router} from 'express'
+import imgReceive from '../middleware/imgReceive.js'
 import EmployeeController from '../controller/employee.controller.js'
 
 const employeeRouter = Router()
@@ -6,8 +7,7 @@ const employeeRouter = Router()
 employeeRouter.get(`/all`,EmployeeController.findAll)
 employeeRouter.get(`/fields`,EmployeeController.getColumnNames)
 employeeRouter.get(`/:id`,EmployeeController.findByID)
-employeeRouter.post(`/create`,EmployeeController.create)
+employeeRouter.post(`/create`,imgReceive.single('profileImage'),EmployeeController.create)
 employeeRouter.patch(`/update`,EmployeeController.update)
 
 export default employeeRouter
-

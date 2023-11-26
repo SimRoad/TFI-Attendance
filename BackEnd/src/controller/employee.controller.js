@@ -1,30 +1,41 @@
 import Address from '../models/address.model.js';
 import Employee from "../models/employee.model.js";
+import databaseConfig from '../../database.config.js';
 
 export default class EmployeeController{
     static async findAll(req,res,next){
-        res.json(await Employee.getAll().catch(err=>next(err)))
+        res.send(await Employee.getAll().catch(err=>next(err)))
     }
     static async findByID(req,res,next){
-        res.json(await Employee.getID(req.params.id).catch(err=>next(err)))
+        res.send(await Employee.getID(req.params.id).catch(err=>next(err)))
     }
     static async getColumnNames(req,res,next){
-        res.json(await Employee.getFields().catch(err=>next(err)))
+        res.send(await Employee.getFields().catch(err=>next(err)))
     }
     static async create(req,res,next){
+        const conn = await databaseConfig.getConnection()
+        console.log(req.file)
         try {
+            await conn.beginTransaction()
             const newAddress = new Address(req.body.address)
             const newEmployee = new Employee(req.body.employee)
-            await newAddress.create().then(response=>newEmployee.addressID = response.insertId)
-            res.json(await newEmployee.create())
+            newEmployee.imageDir = req.file.originalName
+            await newAddress.create(conn)
+            .then(({insertId})=>newEmployee.addressID = insertId)
+            .then(async()=>await newEmployee.create(conn))
+            console.log(process.cwd())
+            res.send(await conn.commit())
         } catch (error) {
-            next(error)
+            if(conn) conn.rollback()
+            next(error) 
+        } finally {
+            if(conn) conn.release()
         }
     }
     static async update(req,res,next){
         try {
             const updateEmployee = new Employee(req.body.employee)
-            res.json(await updateEmployee.update())
+            res.send(await updateEmployee.update())
         } catch (error) {
             next(error)
         }

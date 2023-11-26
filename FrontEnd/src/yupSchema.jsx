@@ -13,37 +13,42 @@ export const loginSchema = yup.object().shape({
 
 const imageUploadSchema = yup.mixed()
     .test(
+        "fileExist",
+        "Missing Image",
+        value => value && value[0]
+    )
+    .test(
         "fileSize",
         "File too large",
-        value => value && value[0] && value[0].size <= 2000000 // 2MB
+        value => value && value[0] && value[0].size <= 2000000
     )
     .test(
         "fileType",
         "Unsupported Format",
         value => value && value[0] && value[0].type.includes("image/")
-    ).required()
+    )
 
 const employeeSchema = yup.object().shape({
-    firstName: yup.string().required(),
-    middleName: yup.string().notRequired(),
-    lastName: yup.string().required(),
-    birthDate: yup.date().required(),
-    jobPosition: yup.string().required(),
-    civilStatus: yup.string().required(),
-    contactNumber: yup.string().required(),
-    email: yup.string(),
-    profileImage: imageUploadSchema
+    firstName: yup.string('temp').required('temp'),
+    middleName: yup.string('temp').notRequired(),
+    lastName: yup.string('temp').required('temp'),
+    birthDate: yup.date('temp').required('temp'),
+    jobPosition: yup.string('temp').required('AGHHHHHHHHHHH'),
+    civilStatus: yup.string('temp').required('temp'),
+    contactNumber: yup.number('temp').required('temp'),
+    email: yup.string('temp').notRequired()
 })
 
 const addressSchema = yup.object().shape({
-    street: yup.string().required(),
-    barangay: yup.string().required(),
-    postalCode: yup.string(),
-    city_municipality: yup.string().required(),
-    province: yup.string().required()
+    street: yup.string('temp').required('temp'),
+    barangay: yup.string('temp').required('temp'),
+    province: yup.string('temp').required('temp'),
+    postalCode: yup.number('temp').notRequired(),
+    city_municipality: yup.string('temp').required('temp'),
 })
 
 export const employeeRegisterSchema = yup.object().shape({
+    profileImage: imageUploadSchema,
     employee: employeeSchema,
     address: addressSchema,
 })
