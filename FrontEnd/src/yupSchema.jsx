@@ -36,5 +36,7 @@ export const employeeRegisterSchema = yup.object().shape({
 })
 
 export const userSchema = yup.object().shape({
-    
+    email: yup.string().email().required("Email required"),
+    password: yup.string().min(4).max(15).required(),
+    repeatpassword: yup.string().oneOf([yup.ref("password"), null]),
 })
