@@ -5,9 +5,11 @@ import CompFooter from "../components/Footer";
 const loginPage = ()=>{
     return(
         <>
-            <CompHeader/>
-            <LoginForm/>
-            <CompFooter/>
+            <div className="grid h-screen grid-rows-3 m-0 p-0 ">
+                <CompHeader/>
+                <LoginForm/>
+                <CompFooter/>
+            </div>
         </>
     )
 }

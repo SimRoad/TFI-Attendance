@@ -13,7 +13,7 @@ import {useNavigate} from 'react-router-dom'
 const loginForm = ()=>{
   const [alertModal,setAlertModal] = useState(false)
   const {handleSubmit, register, control, formState:{errors}} = useForm({resolver: yupResolver(loginSchema)})
-  const {cookies, setCookies} = useContext(SessionContext)
+  const {setCookies} = useContext(SessionContext)
   const navigate = useNavigate()
   const request = async user=>{
     client.post('/user/login',user,{withCredentials:true})
@@ -41,15 +41,31 @@ const loginForm = ()=>{
             <div className="mb-2 block">
               <Label htmlFor="email1" value="Your email" />
             </div>
-            <TextInput id="email1" placeholder="name@domain.com" {...register('email')} className={`form-control ${emailErr ? `is-invalid` : ``}invalid:border-red-500`}/>
-            {errors.email && <p className="text-red-500 text-sm font-medium font-poly/loose">{errors.email.message}</p>}
+            <TextInput id="email1" 
+              placeholder="name@domain.com" 
+              {...register('email')} 
+              color={errors.email ? 'failure' : ''}
+              helperText={
+                  <>
+                      {errors.email ? errors.email.message : ''}
+                  </>
+              }
+              />
           </div>
           <div>
             <div className="mb-2 block">
               <Label htmlFor="password1" value="Your password" />
             </div>
-            <TextInput id="password1" type="password" {...register('password')} className={`form-control ${passErr ? `is-invalid` : ``} invalid:border-red-500`}/>
-            {errors.password && <p className="text-red-500 text-sm font-medium font-poly/loose overflow-clip">{errors.password.message}</p>}
+            <TextInput 
+            id="password1" 
+            type="password" 
+            {...register('password')} 
+            helperText={
+              <>
+                  {errors.password ? errors.password.message : ''}
+              </>
+          }
+          />
           </div>
           <div className="flex items-center gap-2">
           </div>

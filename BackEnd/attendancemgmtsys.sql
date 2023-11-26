@@ -9,7 +9,7 @@
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+08:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `attendancemgmtsys`
 --
+
+CREATE DATABASE attendancemgmtsys;
+USE attendancemgmtsys;
 
 -- --------------------------------------------------------
 
@@ -36,14 +39,6 @@ CREATE TABLE `address` (
   `province` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `address`
---
-
-INSERT INTO `address` (`addressID`, `street`, `barangay`, `postalCode`, `city_municipality`, `province`) VALUES
-(1, 'bruh', 'bro', 'bro', 'bro', 'bro'),
-(2, 'bruh', 'bro', 'bro', 'bro', 'bro');
-
 -- --------------------------------------------------------
 
 --
@@ -58,15 +53,6 @@ CREATE TABLE `daysession` (
   `dayStatus` enum('paid_leave','absent','present','non_work','late','inspect','excused','pending') NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `daysession`
---
-
-INSERT INTO `daysession` (`sessionID`, `employeeID`, `timeIn`, `timeOut`, `dayStatus`) VALUES
-(2, 1, '2023-11-19 15:15:36', '2023-11-19 23:15:36', 'present'),
-(3, 1, '2023-11-19 10:20:10', NULL, 'present'),
-(4, 1, '2023-11-19 10:20:10', NULL, 'present');
-
 -- --------------------------------------------------------
 
 --
@@ -78,6 +64,8 @@ CREATE TABLE `employee` (
   `firstName` varchar(32) NOT NULL,
   `middleName` varchar(32) DEFAULT NULL,
   `lastName` varchar(32) NOT NULL,
+  `gender` enum('Male','Female') NOT NULL,
+  `civilStatus` enum('Single','Married','Window','Legally Separated') NOT NULL,
   `addressID` int(11) NOT NULL,
   `birthDate` date NOT NULL,
   `jobPosition` varchar(32) NOT NULL,
@@ -87,14 +75,6 @@ CREATE TABLE `employee` (
 --  `biometric` varchar(255) NOT NULL
 -- `imageDir` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `employee`
---
-
-INSERT INTO `employee` (`employeeID`, `firstName`, `middleName`, `lastName`, `addressID`, `birthDate`, `jobPosition`, `currentStatus`, `contactNumber`, `email`) VALUES
-(1, 'Bro', 'Bro', 'Bruh', 1, '2003-09-06', 'Janitor', 'Working Employee', '0123456890', 'bigbro@gmail.com'),
-(2, 'Bro', 'Bro', 'Bruh', 2, '2003-09-06', 'Janitor', 'Working Employee', '0123456890', 'bigbro@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -107,13 +87,6 @@ CREATE TABLE `excusereason` (
   `sessionID` int(11) NOT NULL,
   `reason` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `excusereason`
---
-
-INSERT INTO `excusereason` (`reasonID`, `sessionID`, `reason`) VALUES
-(1, 3, 'Explosive Diarrhea');
 
 -- --------------------------------------------------------
 
@@ -172,13 +145,6 @@ CREATE TABLE `shift` (
   `isWork` enum('True','False') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `shift`
---
-
-INSERT INTO `shift` (`shiftID`, `employeeID`, `timeIn`, `timeOut`, `leaveID`, `shiftDate`, `isWork`) VALUES
-(1, 1, '08:00:00', '17:00:00', NULL, '2023-09-06', 'True');
-
 -- --------------------------------------------------------
 
 --
@@ -193,13 +159,6 @@ CREATE TABLE `user` (
   `lastLogin` datetime DEFAULT NULL,
   `email` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`userID`, `employeeID`, `userPassword`, `position`, `lastLogin`, `email`) VALUES
-(1, 1, 'abc@123a', 'Admin', '2023-11-19 14:12:12', 'user@gmail.com');
 
 --
 -- Indexes for dumped tables

@@ -5,7 +5,6 @@ export const SessionContext = createContext()
 
 export const SessionProvider = ({children})=>{
     const [cookies,setCookies,removeCookies] = useCookies(['session'])
-    console.log(cookies)
     return (
         <SessionContext.Provider value={{cookies,setCookies,removeCookies}}>{children}</SessionContext.Provider>
     )

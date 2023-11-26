@@ -21,7 +21,6 @@ const index = ()=>{
 
 const PrivateRoutes = ({children, ...rest})=>{
     const {cookies} = useContext(SessionContext)
-    console.log(cookies.session)
     return(
         cookies.session ? <Outlet/> : <Navigate to='/login'/>
     )
