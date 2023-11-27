@@ -15,7 +15,6 @@ export default class Holidays extends GenericModel{
     static async showHolidays(){
         try{
             const [HolidayList,fields] = await databaseConfig.query(`SELECT holidayName, holidayDate FROM ${this.tableName}`)
-            console.log(HolidayList)
             return HolidayList
         }catch (error){
             throw(error)
@@ -24,7 +23,6 @@ export default class Holidays extends GenericModel{
     static async showFilteredHolidays(){
         try{
             let SpecialList = await databaseConfig.query(`SELECT holidayName, HolidayDate FROM ${this.tableName} WHERE holidayType = ?`,req.body.holidays.Type)
-            console.log(SpecialList)
             return SpecialList
         }catch (error){
             throw (error)

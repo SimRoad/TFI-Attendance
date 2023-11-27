@@ -15,7 +15,6 @@ export default class EmployeeController{
     }
     static async create(req,res,next){
         const conn = await databaseConfig.getConnection()
-        console.log(req.file)
         try {
             await conn.beginTransaction()
             const newAddress = new Address(req.body.address)

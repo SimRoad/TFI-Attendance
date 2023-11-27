@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-ro
 import SessionProvider,{SessionContext} from './session/SessionProvider'
 import {useContext} from 'react'
 import CreateUser from './pages/CreateUser'
+import EmployeeRegisterForm from './components/EmployeeRegister'
 
 const index = ()=>{
     return(
