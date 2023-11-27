@@ -38,10 +38,12 @@ export default class GenericModel{
             throw(error)
         }
     }
-    async create(conn){
+    async create(dbconn){
         try {
+            //Remove databaseConn after implementing transaction to all
+            const conn = dbconn || databaseConn
             const fields = {}
-            for (const key in this) if (this[key] !== undefined && key !== `tableName`) fields[key] = this[key];
+            for (const key in this) if (this[key] && key !== `tableName`) fields[key] = this[key];
             const [response] = await conn.execute(`INSERT INTO ${this.tableName} SET ${Object.keys(fields).map(field=>`${field} = ?`)}`,Object.values(fields))
             return response
         } catch (error) {

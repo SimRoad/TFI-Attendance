@@ -71,9 +71,9 @@ CREATE TABLE `employee` (
   `jobPosition` varchar(32) NOT NULL,
   `currentStatus` enum('Fired','Working Employee') NOT NULL DEFAULT 'Working Employee',
   `contactNumber` varchar(16) NOT NULL,
-  `email` varchar(128) DEFAULT NULL
+  `email` varchar(128) DEFAULT NULL,
 --  `biometric` varchar(255) NOT NULL
-`imageDir` varchar(128) DEFAULT NULL
+  `imageDir` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -153,11 +153,10 @@ CREATE TABLE `shift` (
 
 CREATE TABLE `user` (
   `userID` int(11) NOT NULL,
-  `employeeID` int(11) NOT NULL,
+  `employeeID` int(11) NOT NULL UNIQUE,
   `userPassword` varchar(64) NOT NULL,
   `position` enum('Management','Admin','Suspended') NOT NULL,
-  `lastLogin` datetime DEFAULT NULL,
-  `email` varchar(128) NOT NULL
+  `lastLogin` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -183,6 +182,7 @@ ALTER TABLE `daysession`
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`employeeID`),
   ADD KEY `fk_employee_address` (`addressID`);
+  UNIQUE (email);
 
 --
 -- Indexes for table `excusereason`

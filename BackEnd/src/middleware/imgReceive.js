@@ -8,10 +8,13 @@ const upload = multer({
             cb(null, './src/assets/profile')
         },
         filename: async (req,file,cb)=>{
-            cb(null, `${await Employee.getLastID()}_Employee${extname(file.originalname)}`)
+            cb(null, await generateImageName(file))
         }
     })
 })
 
+export const generateImageName = async (file)=>{
+    return `${await Employee.getLastID()}_Employee${extname(file.originalname)}`
+}
 
 export default upload

@@ -20,24 +20,46 @@ const userCreate = () => {
 
     return(
         <>
-            <form className="flex container w-64 p-5 flex-wrap rounded-md flex-col gap-4 border-accent/20 border-b-2 bg-secondary/30" onSubmit={ handleSubmit(onSubmit) }>
-                <div className="mb-2 block">
-                    <label htmlFor="email" value="Your email">Email</label>
-                    <input type="email" id="email" placeholder="name@flowbite.com" { ...register('email')} />
-                    <p>{ errors.email?.message }</p>
-                </div>
-                <div className="mb-5">
-                    <label htmlFor="password" value="Your password">Password</label>
-                    <input type="password" id="password" { ...register('password') } />
-                    <p>{ errors.password?.message }</p>
-                </div>
-                <div className="mb-5">
-                    <label htmlFor="repeat-password" value="Repeat password">Confirm Password</label>
-                    <input type="password" id="repeat-password" { ...register('repeatpassword') } />
-                    <p>{ errors.repeatpassword && "Passwords should match!" }</p>
-                </div>
-                <button type="submit" className="text-text border-b-2 border-accent/20 rounded-md bg-primary">Register new account</button>
-            </form>
+            <div className="flex justify-center items-center">
+                <form className="flex max-w-md flex-col gap-4" onSubmit={ handleSubmit(onSubmit) }>
+                    <div className="mb-2 block">
+                        <Label htmlFor="email" value="Your email">Email</Label>
+                        <TextInput 
+                            type="email" 
+                            id="email" 
+                            placeholder="name@flowbite.com" 
+                            { ...register('email') } 
+                            color={ errors.email ? 'failure' : '' } 
+                            helperText={ <>{ errors.email ? errors.email.message : ''}</> }
+                        />
+                    </div>
+                    <div className="mb-2 block">
+                        <Label htmlFor="password" value="Your password">Password</Label>
+                        <TextInput 
+                            type="password" 
+                            id="password" 
+                            { ...register('password') } 
+                            color={ errors.password ? 'failure' : '' } 
+                            helperText={ <>{ errors.password ? errors.password.message : ''}</> }
+                        />
+                    </div>
+                    <div className="mb-2 block">
+                        <div className="mb-2 block">
+                            <Label htmlFor="repeat-password" value="Repeat password" />
+                        </div>
+                        <TextInput 
+                            id="repeat-password" 
+                            type="password" 
+                            { ...register('repeatpassword') } 
+                            color={ errors.repeatpassword ? 'failure' : '' } 
+                            helperText={ <>{ errors.repeatpassword ? errors.repeatpassword.message : ''}</> }
+                        />
+                    </div>
+                    <Button type="submit" className="text-text border-b-2 border-accent/20 rounded-md bg-primary">
+                        Register new account
+                    </Button>
+                </form>
+            </div>
         </>
     )
 }

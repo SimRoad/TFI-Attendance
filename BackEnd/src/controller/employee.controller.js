@@ -1,6 +1,7 @@
 import Address from '../models/address.model.js';
 import Employee from "../models/employee.model.js";
 import databaseConfig from '../../database.config.js';
+import { generateImageName } from '../middleware/imgReceive.js';
 
 export default class EmployeeController{
     static async findAll(req,res,next){
@@ -19,11 +20,10 @@ export default class EmployeeController{
             await conn.beginTransaction()
             const newAddress = new Address(req.body.address)
             const newEmployee = new Employee(req.body.employee)
-            newEmployee.imageDir = req.file.originalName
+            newEmployee.imageDir = await generateImageName(req.file)
             await newAddress.create(conn)
             .then(({insertId})=>newEmployee.addressID = insertId)
             .then(async()=>await newEmployee.create(conn))
-            console.log(process.cwd())
             res.send(await conn.commit())
         } catch (error) {
             if(conn) conn.rollback()

@@ -1,5 +1,5 @@
 import { Controller } from 'react-hook-form';
-import { TextInput, Datepicker, Label, Select } from 'flowbite-react';
+import { TextInput, Datepicker, Label, Select } from 'flowbite-react'
 
 
 export const ProfileSection = ({ register, control, errors }) => {
@@ -60,9 +60,9 @@ export const ProfileSection = ({ register, control, errors }) => {
             <Controller
                 name='employee.birthDate'
                 control={control}
-                color={employeeErr?.civilStatus ? 'failure' : ''}
+                color={employeeErr?.birthDate ? 'failure' : ''}
                 helperText={<>
-                    {employeeErr?.civilStatus ? employeeErr?.civilStatus.message : ''}
+                    {employeeErr?.birthDate ? employeeErr?.birthDate.message : ''}
                 </>}
                 render={({ field: { onChange, value } }) => (<Datepicker
                     id='birthDate1'
@@ -71,13 +71,14 @@ export const ProfileSection = ({ register, control, errors }) => {
                     autoHide={true}
                     onSelectedDateChanged={(date) => onChange(date)} />
                 )} />
+            {/* <span>{ employeeErr?.birthDate?.message }</span> */}
             <Label htmlFor="jobPosition1" value="Job Position" />
             <TextInput
                 id='jobPosition1'
                 {...register('employee.jobPosition')}
                 color={employeeErr?.jobPosition ? 'failure' : ''}
                 helperText={<>
-                    {errors?.employee?.jobPosition ? errors?.employee?.jobPosition.message : 'AMO'}
+                    {errors?.employee?.jobPosition ? errors?.employee?.jobPosition.message : ''}
                 </>} />
         </>
     );

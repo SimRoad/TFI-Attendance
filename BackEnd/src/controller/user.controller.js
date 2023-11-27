@@ -45,7 +45,7 @@ export default class UserController{
         try {
             req.body.userPassword = req.body.password
             const user = new User(req.body)
-            const result = await user.verifyLogin()
+            const result = await user.verifyLogin(req.body.email)
             if(result.authentication) req.session.userID = result.userID
             res.send(result)
         } catch (error) {

@@ -29,22 +29,22 @@ const imageUploadSchema = yup.mixed()
     )
 
 const employeeSchema = yup.object().shape({
-    firstName: yup.string('temp').required('temp'),
-    middleName: yup.string('temp').notRequired(),
-    lastName: yup.string('temp').required('temp'),
-    birthDate: yup.date('temp').required('temp'),
-    jobPosition: yup.string('temp').required('AGHHHHHHHHHHH'),
-    civilStatus: yup.string('temp').required('temp'),
-    contactNumber: yup.number('temp').required('temp'),
-    email: yup.string('temp').notRequired()
+    firstName: yup.string().required("Required"),
+    middleName: yup.string().notRequired(),
+    lastName: yup.string().required("Required"),
+    birthDate: yup.date().required("Required"),
+    jobPosition: yup.string().required("Required"),
+    civilStatus: yup.string().required("Required"),
+    contactNumber: yup.string().required("Required").matches(/((^(\+)(\d){12}$)|(^\d{11}$))/, "Not a valid contact number"),
+    email: yup.string().notRequired()
 })
 
 const addressSchema = yup.object().shape({
-    street: yup.string('temp').required('temp'),
-    barangay: yup.string('temp').required('temp'),
-    province: yup.string('temp').required('temp'),
-    postalCode: yup.number('temp').notRequired(),
-    city_municipality: yup.string('temp').required('temp'),
+    street: yup.string().required('Required'),
+    barangay: yup.string().required('Required'),
+    province: yup.string().required('Required'),
+    postalCode: yup.number().notRequired(),
+    city_municipality: yup.string().required('Required'),
 })
 
 export const employeeRegisterSchema = yup.object().shape({
@@ -54,7 +54,12 @@ export const employeeRegisterSchema = yup.object().shape({
 })
 
 export const userSchema = yup.object().shape({
-    email: yup.string().email().required("Email required"),
-    password: yup.string().min(4).max(15).required(),
-    repeatpassword: yup.string().oneOf([yup.ref("password"), null]),
+    email: yup.string().email("Not a valid email").required("Required"),
+    password: yup.string()
+        .required("Required")
+        .min(4, "Password must be atleast 4 characters long")
+        .max(15, "Password must not exceed 15 characters"),
+    repeatpassword: yup.string().required("Required").oneOf([yup.ref("password"), null], "Password must match"),
+    // postion: yup.select().required(),
+    // employeeId: ,
 })
