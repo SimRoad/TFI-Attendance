@@ -3,32 +3,26 @@ import { Sidebar } from "flowbite-react"
 import { FaUser , FaCalendarAlt } from "react-icons/fa";
 import { BsFillBriefcaseFill } from "react-icons/bs";
 import { MdDashboard, MdEditCalendar } from "react-icons/md"
+import { Link } from "react-router-dom";
 
 function WebSideBar(){
-    // still need to make the change work? 
-    
-    useEffect(() => {
-        fetch('http://localhost:8080/')
-          .then(response => response.json())
-          .then(data => setUser(data));
-      }, [change]);
 
     return (
         <Sidebar>
-            <Sidebar.Item href="#" icon = {MdDashboard}>
-                Dashboard
+            <Sidebar.Item icon = {MdDashboard}>
+                <Link to ="/">Dashboard</Link>
             </Sidebar.Item>
-            <Sidebar.Item href="#" icon = {FaUser}>
-                Employees
+            <Sidebar.Item icon = {FaUser}>
+                <Link to = "/employees">Employees</Link>
             </Sidebar.Item>
-            <Sidebar.Item href="#" icon = {MdEditCalendar}>
-                Shifts
+            <Sidebar.Item icon = {MdEditCalendar}>
+                <Link to = "/shifts">Shifts</Link>
             </Sidebar.Item>
-            <Sidebar.Item href="#" icon = {BsFillBriefcaseFill}>
-                Leaves
+            <Sidebar.Item icon = {BsFillBriefcaseFill}>
+                <Link to = "/leaves">Leaves</Link>
             </Sidebar.Item>
-            <Sidebar.Item href="#" icon = {FaCalendarAlt}>
-                Holiday 
+            <Sidebar.Item icon = {FaCalendarAlt}>
+                <Link to = "/holidays">Holidays</Link>
             </Sidebar.Item>
         </Sidebar>
     )
