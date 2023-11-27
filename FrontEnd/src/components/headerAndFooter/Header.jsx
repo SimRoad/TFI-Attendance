@@ -1,6 +1,6 @@
 'use client';
 
-import logo from '../assets/TFIicon.png'
+import logo from '../../assets/TFIicon.png'
 import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
 import {memo} from 'react'
 
