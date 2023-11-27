@@ -1,6 +1,6 @@
 'use strict'
 import { Sidebar, SidebarItemGroup } from "flowbite-react"
-import { FaUser , FaCalendarAlt } from "react-icons/fa";
+import { FaUser , FaCalendarAlt , FaRegUserCircle } from "react-icons/fa";
 import { BsFillBriefcaseFill } from "react-icons/bs";
 import { MdDashboard, MdEditCalendar } from "react-icons/md"
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
@@ -8,6 +8,7 @@ import { CgDebug } from "react-icons/cg"
 function WebSideBar(){
 
     return (
+        <div class="flex w-60 position: fixed">
         <Sidebar>
             <Sidebar.Items>
                 <SidebarItemGroup>
@@ -26,7 +27,7 @@ function WebSideBar(){
                     <Sidebar.Item icon = {FaCalendarAlt}>
                         <Link to = "/holidays" relative="path"></Link>Holidays
                     </Sidebar.Item>
-                    <Sidebar.Item>
+                    <Sidebar.Item icon = {FaRegUserCircle}>
                         <Link to = "/createUser" relative="path"></Link>Create User
                     </Sidebar.Item>
                     <Sidebar.Item icon = {CgDebug}>
@@ -35,6 +36,7 @@ function WebSideBar(){
                 </SidebarItemGroup>
             </Sidebar.Items>
         </Sidebar>
+        </div>
     )
 }
 
