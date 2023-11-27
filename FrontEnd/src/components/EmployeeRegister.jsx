@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {Button} from 'flowbite-react'
 import { employeeRegisterSchema } from '../yupSchema'
@@ -33,7 +32,6 @@ const EmployeeRegisterForm = ()=>{
                 <ContactPortion {...fields}/>
                 <Button className="text-text border-b-2 border-accent/20 rounded-md bg-primary" color='default' type='submit'>Submit</Button>
             </form>
-            <DevTool control={control}/>
         </div>
         </>
     )
