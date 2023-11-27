@@ -10,31 +10,32 @@ const EmployeeTable = ({setEmpList})=>{
         const request = async () => {
             const response = await client.get(`employee/all?offset=${offset}`)
             setEmployees(prev=>[...prev, ...response.data]);
-            console.log(response.data,employees)
         }
-        request()
-    },[offset])
+        if(!employees.length && employees.length - offset <= 0) request()
+    },[offset,employees]) //Uhhh might cause an infinite loop
     return(
-        <Table hoverable>
-            <Table.Head>
-                <Table.HeadCell><Checkbox/></Table.HeadCell>
-                <Table.HeadCell>Name</Table.HeadCell>
-                <Table.HeadCell>Total Hours</Table.HeadCell>
-                <Table.HeadCell>Overtime</Table.HeadCell>
-                <Table.HeadCell>Shift</Table.HeadCell>
-                <Table.HeadCell>Errors</Table.HeadCell>
-                <Table.HeadCell>
-                    <span className="sr-only">Edit</span>
-                </Table.HeadCell>
-            </Table.Head>
-            <Table.Body className='divide-y'>
-                {
-                    employees.map(emp=>
-                        <TableRow key={emp.employeeID} id={emp.employeeID} name={emp.fullName} setEmpList={setEmpList}/>
-                    )
-                }
-            </Table.Body>
-        </Table>
+        <div className='overflow-y-auto max-h-[40vh]'>
+            <Table className='table-auto' hoverable>
+                <Table.Head>
+                    <Table.HeadCell><Checkbox/></Table.HeadCell>
+                    <Table.HeadCell>Name</Table.HeadCell>
+                    <Table.HeadCell>Total Hours</Table.HeadCell>
+                    <Table.HeadCell>Overtime</Table.HeadCell>
+                    <Table.HeadCell>Shift</Table.HeadCell>
+                    <Table.HeadCell>Errors</Table.HeadCell>
+                    <Table.HeadCell>
+                        <span className="sr-only">Edit</span>
+                    </Table.HeadCell>
+                </Table.Head>
+                <Table.Body className='divide-y'>
+                    {
+                        employees.map(emp=>
+                            <TableRow key={emp.employeeID} id={emp.employeeID} name={emp.fullName} setEmpList={setEmpList}/>
+                        )
+                    }
+                </Table.Body>
+            </Table>
+        </div>
     )
 }
 
@@ -48,23 +49,21 @@ const TableRow = ({setEmpList,id,name})=>{
     }
     return(
         <>
-        <div>
-            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                <Table.Cell><Checkbox onChange={()=>checkHandler()}/></Table.Cell>
-                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                    {name}
-                </Table.Cell>
-                <Table.Cell>32</Table.Cell>
-                <Table.Cell>0</Table.Cell>
-                <Table.Cell>smth</Table.Cell>
-                <Table.Cell>stuff</Table.Cell>
-                <Table.Cell>
-                    <Button className='border-2 border-accent/50'>
-                        <FaUserEdit className="ml-1 h-5 w-5" fill='black'/>
-                    </Button>
-                </Table.Cell>
-            </Table.Row>
-        </div>
+        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell><Checkbox onChange={()=>checkHandler()}/></Table.Cell>
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                {name}
+            </Table.Cell>
+            <Table.Cell>32</Table.Cell>
+            <Table.Cell>0</Table.Cell>
+            <Table.Cell>smth</Table.Cell>
+            <Table.Cell>stuff</Table.Cell>
+            <Table.Cell>
+                <Button className='border-2 border-accent/50'>
+                    <FaUserEdit className="ml-1 h-5 w-5" fill='black'/>
+                </Button>
+            </Table.Cell>
+        </Table.Row>
         </>
     )
 }

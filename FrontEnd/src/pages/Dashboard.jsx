@@ -25,11 +25,11 @@ const dashboard = ()=>{
         <>
             <Header/>
             {/* <WebSideBar/> */}
-            <LogoutButton/>
+            <EmployeeTable setEmpList={setEmpList}/>
             <form onSubmit={handleSubmit(submission)}>
                 {temp && <ShiftForm fields={fields}/>}
             </form>
-            <EmployeeTable setEmpList={setEmpList}/>
+            <LogoutButton/>
             <EmployeeRegisterForm/>
         </>
     )
