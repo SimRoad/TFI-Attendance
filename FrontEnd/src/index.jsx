@@ -17,7 +17,7 @@ const index = ()=>{
                         <Route element={<EmployeeRegisterForm/>} path='/employeeregister' />
                     </Route>
                     {/* <Route path='/login' element={<Login/>}></Route> */}
-                    <Route path='/debug' element={<EmployeeRegisterForm/>}></Route>
+                    <Route path='/debug' element={<CreateUser/>}></Route>
                 </Routes>
             </Router>
         </SessionProvider>

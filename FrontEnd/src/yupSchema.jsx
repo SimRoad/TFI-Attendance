@@ -61,6 +61,6 @@ export const userSchema = yup.object().shape({
         .min(4, "Password must be atleast 4 characters long")
         .max(15, "Password must not exceed 15 characters"),
     repeatpassword: yup.string().required("Required").oneOf([yup.ref("password"), null], "Password must match"),
-    position: yup.string().required("Required").oneOf(["admin", "management", "suspended"], "Please input a job position"),
+    position: yup.string().required("Required").oneOf(["admin", "management", "suspended"], "Required"),
     // employeeId: ,
 })
