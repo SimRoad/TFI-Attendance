@@ -1,4 +1,4 @@
-import {Table, Button} from 'flowbite-react'
+import {Table, Button, Checkbox} from 'flowbite-react'
 import { FaUserEdit } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 
@@ -6,6 +6,7 @@ const EmployeeTable = ()=>{
     return(
         <Table>
             <Table.Head>
+                <Table.HeadCell><Checkbox/></Table.HeadCell>
                 <Table.HeadCell>Name</Table.HeadCell>
                 <Table.HeadCell>Total Hours</Table.HeadCell>
                 <Table.HeadCell>Overtime</Table.HeadCell>
@@ -26,6 +27,7 @@ const TableRow = ()=>{
     return(
         <>
         <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell><Checkbox/></Table.Cell>
             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                 {'Lance Ramoose'}
             </Table.Cell>
