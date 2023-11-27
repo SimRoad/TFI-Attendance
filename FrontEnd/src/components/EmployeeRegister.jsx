@@ -26,12 +26,12 @@ const EmployeeRegisterForm = ()=>{
     }
     return(
         <>
-        <div>
+        <div className="flex justify-center items-center">
             <form onSubmit={handleSubmit(submit)}>
                 <ProfileSection {...fields} />
                 <AddressPortion {...fields} />
                 <ContactPortion {...fields}/>
-                <Button color='default' type='submit'>Submit</Button>
+                <Button className="text-text border-b-2 border-accent/20 rounded-md bg-primary" color='default' type='submit'>Submit</Button>
             </form>
             <DevTool control={control}/>
         </div>

@@ -10,12 +10,13 @@ export const ContactPortion = ({ register, errors }) => {
             <Label htmlFor="contactNumber1" value="Contact Number" />
             <TextInput
                 id='contactNumber1'
+                type='text'
                 {...register('employee.contactNumber')}
                 color={employeeErr?.contactNumber ? 'failure' : ''}
                 helperText={<>
                     {employeeErr?.contactNumber ? employeeErr?.contactNumber.message : ''}
                 </>} />
-            <Label htmlFor="email1" value="Email" />
+            <Label htmlFor="email1" value="Email (Optional)" />
             <TextInput
                 id='email1'
                 {...register('employee.email')}

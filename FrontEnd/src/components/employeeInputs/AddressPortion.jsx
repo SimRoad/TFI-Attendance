@@ -26,7 +26,7 @@ export const AddressPortion = ({ register, errors }) => {
                 </>} />
             <div className="max-w-md">
                 <div className="mb-2 block">
-                    <Label htmlFor="postalCode1" value="Postal Code" />
+                    <Label htmlFor="postalCode1" value="Postal Code (Optional)" />
                 </div>
                 <TextInput
                     id="postalCode1"
