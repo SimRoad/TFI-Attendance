@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-ro
 import SessionProvider,{SessionContext} from './session/SessionProvider'
 import {useContext} from 'react'
 import CreateUser from './pages/CreateUser'
+import EmployeeRegisterForm from './components/EmployeeRegister'
 
 const index = ()=>{
     return(
@@ -14,8 +15,8 @@ const index = ()=>{
                         <Route element={<Dashboard/>} path='/dashboard'/>
                         <Route element={<CreateUser/>} path='/createuser'/>
                     </Route>
-                    {/* <Route path='/login' element={<Login/>}></Route> */}
-                    <Route path='/debug' element={<EmployeeRegisterForm/>}></Route>
+                    <Route path='/login' element={<Login/>}></Route>
+                    {/* <Route path='/debug' element={<EmployeeRegisterForm/>}></Route> */}
                 </Routes>
             </Router>
         </SessionProvider>

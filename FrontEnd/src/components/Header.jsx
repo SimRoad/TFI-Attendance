@@ -1,7 +1,7 @@
 'use client';
 
 import logo from '../assets/TFIicon.png'
-import { Avatar, Dropdown, Navbar } from 'flowbite-react';
+import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
 import {memo} from 'react'
 
 function header() {
@@ -9,10 +9,10 @@ function header() {
     <Navbar fluid rounded>
       <Navbar.Brand href="https://flowbite-react.com">
         <img src={logo} className="mr-3 h-6 sm:h-9" alt="TFI Logo" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Tenessee Feedmill Inc.</span>
+        <span className="self-center whitespace-nowrap text-xl ">Tenessee Feedmill Inc.</span>
       </Navbar.Brand>
-      <div className="flex md:order-2">
-        <Dropdown
+      <div className="flex md:order-2 text-gray-900">
+        {/* <Dropdown
           arrowIcon={false}
           inline
           label={
@@ -23,12 +23,12 @@ function header() {
             <span className="block text-sm">Bonnie Green</span>
             <span className="block truncate text-sm font-medium">name@flowbite.com</span>
           </Dropdown.Header>
-          <Dropdown.Item>Dashboard</Dropdown.Item>
           <Dropdown.Item>Settings</Dropdown.Item>
-          <Dropdown.Item>Earnings</Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item>Sign out</Dropdown.Item>
-        </Dropdown>
+        </Dropdown> */}
+        <Button>Settings</Button>
+        <Button>Sign Out</Button>
         <Navbar.Toggle />
       </div>
     </Navbar>
