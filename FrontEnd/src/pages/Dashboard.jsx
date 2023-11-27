@@ -1,6 +1,6 @@
 import EmployeeRegisterForm from "../components/EmployeeRegister";
 import LogoutButton from "../components/LogoutButton";
-import Header from "../components/Header";
+import Header from "../components/headerAndFooter/Header";
 import EmployeeTable from "../components/EmployeeTable";
 
 const dashboard = ()=>{
