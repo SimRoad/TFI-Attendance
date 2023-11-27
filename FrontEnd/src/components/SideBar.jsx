@@ -3,26 +3,29 @@ import { Sidebar } from "flowbite-react"
 import { FaUser , FaCalendarAlt } from "react-icons/fa";
 import { BsFillBriefcaseFill } from "react-icons/bs";
 import { MdDashboard, MdEditCalendar } from "react-icons/md"
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 function WebSideBar(){
 
     return (
         <Sidebar>
             <Sidebar.Item icon = {MdDashboard}>
-                <Link to ="/">Dashboard</Link>
+                <Link to ="/dashboard" relative="path">Dashboard</Link>
             </Sidebar.Item>
             <Sidebar.Item icon = {FaUser}>
-                <Link to = "/employees">Employees</Link>
+                <Link to = "/employees" relative="path" >Employees</Link>
             </Sidebar.Item>
             <Sidebar.Item icon = {MdEditCalendar}>
-                <Link to = "/shifts">Shifts</Link>
+                <Link to = "/shifts"  relative="path">Shifts</Link>
             </Sidebar.Item>
             <Sidebar.Item icon = {BsFillBriefcaseFill}>
-                <Link to = "/leaves">Leaves</Link>
+                <Link to = "/leaves" relative="path">Leaves</Link>
             </Sidebar.Item>
             <Sidebar.Item icon = {FaCalendarAlt}>
-                <Link to = "/holidays">Holidays</Link>
+                <Link to = "/holidays" relative="path">Holidays</Link>
+            </Sidebar.Item>
+            <Sidebar.Item>
+                <Link to = "/createUser" relative="path">Create User</Link>
             </Sidebar.Item>
         </Sidebar>
     )
