@@ -1,35 +1,39 @@
 'use strict'
-import { Sidebar } from "flowbite-react"
+import { Sidebar, SidebarItemGroup } from "flowbite-react"
 import { FaUser , FaCalendarAlt } from "react-icons/fa";
 import { BsFillBriefcaseFill } from "react-icons/bs";
 import { MdDashboard, MdEditCalendar } from "react-icons/md"
-
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { CgDebug } from "react-icons/cg"
 function WebSideBar(){
-    // still need to make the change work? 
-    
-    useEffect(() => {
-        fetch('http://localhost:8080/')
-          .then(response => response.json())
-          .then(data => setUser(data));
-      }, [change]);
 
     return (
         <Sidebar>
-            <Sidebar.Item href="#" icon = {MdDashboard}>
-                Dashboard
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon = {FaUser}>
-                Employees
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon = {MdEditCalendar}>
-                Shifts
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon = {BsFillBriefcaseFill}>
-                Leaves
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon = {FaCalendarAlt}>
-                Holiday 
-            </Sidebar.Item>
+            <Sidebar.Items>
+                <SidebarItemGroup>
+                    <Sidebar.Item icon = {MdDashboard}>
+                        <Link to ="/dashboard" relative="path"></Link>Dashboard 
+                    </Sidebar.Item>
+                    <Sidebar.Item icon = {FaUser}>
+                        <Link to = "/employees" relative="path" ></Link>Employee
+                    </Sidebar.Item>
+                    <Sidebar.Item icon = {MdEditCalendar}>
+                        <Link to = "/shifts"  relative="path"></Link>Shifts
+                    </Sidebar.Item>
+                    <Sidebar.Item icon = {BsFillBriefcaseFill}>
+                        <Link to = "/leaves" relative="path"></Link>Leaves
+                    </Sidebar.Item>
+                    <Sidebar.Item icon = {FaCalendarAlt}>
+                        <Link to = "/holidays" relative="path"></Link>Holidays
+                    </Sidebar.Item>
+                    <Sidebar.Item>
+                        <Link to = "/createUser" relative="path"></Link>Create User
+                    </Sidebar.Item>
+                    <Sidebar.Item icon = {CgDebug}>
+                        <Link to = "/debug" relative="path"></Link>Debugging
+                    </Sidebar.Item>
+                </SidebarItemGroup>
+            </Sidebar.Items>
         </Sidebar>
     )
 }
