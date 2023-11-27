@@ -2,6 +2,7 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import CreateUser from './pages/CreateUser'
 import EmployeeRegisterForm from './components/EmployeeRegister'
+import TimeRange from './components/TimeRange'
 import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-router-dom'
 import SessionProvider,{SessionContext} from './session/SessionProvider'
 import {useContext} from 'react'
@@ -17,7 +18,7 @@ const index = ()=>{
                         <Route element={<EmployeeRegisterForm/>} path='/employeeregister' />
                     </Route>
                     {/* <Route path='/login' element={<Login/>}></Route> */}
-                    <Route path='/debug' element={<CreateUser/>}></Route>
+                    <Route path='/debug' element={<TimeRange/>}></Route>
                 </Routes>
             </Router>
         </SessionProvider>
