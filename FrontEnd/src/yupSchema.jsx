@@ -34,7 +34,8 @@ const employeeSchema = yup.object().shape({
     lastName: yup.string().required("Required"),
     birthDate: yup.date().required("Required"),
     jobPosition: yup.string().required("Required"),
-    civilStatus: yup.string().required("Required"),
+    gender: yup.string().required("Required").oneOf(["male","female"], "Required"),
+    civilStatus: yup.string().required("Required").oneOf(["single","married", "widowed", "legally separated"],"Required"),
     contactNumber: yup.string().required("Required").matches(/((^(\+)(\d){12}$)|(^\d{11}$))/, "Not a valid contact number"),
     email: yup.string().notRequired()
 })
@@ -60,6 +61,6 @@ export const userSchema = yup.object().shape({
         .min(4, "Password must be atleast 4 characters long")
         .max(15, "Password must not exceed 15 characters"),
     repeatpassword: yup.string().required("Required").oneOf([yup.ref("password"), null], "Password must match"),
-    // postion: yup.select().required(),
+    position: yup.string().required("Required").oneOf(["admin", "management", "suspended"], "Please input a job position"),
     // employeeId: ,
 })

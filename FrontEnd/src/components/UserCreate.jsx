@@ -55,11 +55,15 @@ const userCreate = () => {
                     </div>
                     <div className="max-w-md">
                         <Label htmlFor="positions" value="Position" />
-                        <Select id="positions" required>
+                        <Select 
+                            id="positions" { ...register('position') } 
+                            color={ errors.position ? 'failure' : '' } 
+                            helperText={ <>{ errors.position ? errors.position.message : ''}</> }
+                        >
                             <option className='color-gray-500'>---</option>
-                            <option>Admin</option>
-                            <option>Management</option>
-                            <option>Suspended</option>
+                            <option value="admin">Admin</option>
+                            <option value="management">Management</option>
+                            <option value="suspended">Suspended</option>
                         </Select>
                     </div>
                     <Button type="submit" className="text-text border-b-2 border-accent/20 rounded-md bg-primary">

@@ -39,8 +39,8 @@ export const ProfileSection = ({ register, control, errors }) => {
                 </>}
             >
                 <option>--</option>
-                <option>Male</option>
-                <option>Female</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
             </Select>
             <Label htmlFor="civilStatus1" value="Civil Status" />
             <Select id="civilStatus1"
@@ -51,10 +51,10 @@ export const ProfileSection = ({ register, control, errors }) => {
                 </>}
             >
                 <option className='color-gray-500'>--</option>
-                <option>Single</option>
-                <option>Married</option>
-                <option>Widowed</option>
-                <option>Legally Separated</option>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="widowed">Widowed</option>
+                <option value="legally separated">Legally Separated</option>
             </Select>
             <Label htmlFor="birthDate1" value="Birth Date" />
             <Controller
