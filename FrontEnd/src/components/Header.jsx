@@ -11,7 +11,7 @@ function header() {
         <img src={logo} className="mr-3 h-6 sm:h-9" alt="TFI Logo" />
         <span className="self-center whitespace-nowrap text-xl ">Tenessee Feedmill Inc.</span>
       </Navbar.Brand>
-      <div className="flex md:order-2 text-gray-900">
+      <div className="flex md:order-2 flex flex-wrap gap-2">
         {/* <Dropdown
           arrowIcon={false}
           inline
@@ -27,8 +27,8 @@ function header() {
           <Dropdown.Divider />
           <Dropdown.Item>Sign out</Dropdown.Item>
         </Dropdown> */}
-        <Button>Settings</Button>
-        <Button>Sign Out</Button>
+        <Button color = "green" pill>Settings</Button>
+        <Button color = "red" pill>Log Out</Button>
         <Navbar.Toggle />
       </div>
     </Navbar>
