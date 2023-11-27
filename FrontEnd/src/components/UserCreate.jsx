@@ -1,6 +1,6 @@
 'use client'
 
-import { TextInput, Label, Button, Alert } from "flowbite-react"
+import { TextInput, Label, Button, Select } from "flowbite-react"
 import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import { userSchema } from '../yupSchema'
@@ -44,9 +44,7 @@ const userCreate = () => {
                         />
                     </div>
                     <div className="mb-2 block">
-                        <div className="mb-2 block">
-                            <Label htmlFor="repeat-password" value="Repeat password" />
-                        </div>
+                        <Label htmlFor="repeat-password" value="Repeat password" />
                         <TextInput 
                             id="repeat-password" 
                             type="password" 
@@ -54,6 +52,15 @@ const userCreate = () => {
                             color={ errors.repeatpassword ? 'failure' : '' } 
                             helperText={ <>{ errors.repeatpassword ? errors.repeatpassword.message : ''}</> }
                         />
+                    </div>
+                    <div className="max-w-md">
+                        <Label htmlFor="positions" value="Position" />
+                        <Select id="positions" required>
+                            <option className='color-gray-500'>---</option>
+                            <option>Admin</option>
+                            <option>Management</option>
+                            <option>Suspended</option>
+                        </Select>
                     </div>
                     <Button type="submit" className="text-text border-b-2 border-accent/20 rounded-md bg-primary">
                         Register new account
