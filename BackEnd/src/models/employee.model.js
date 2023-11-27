@@ -1,4 +1,5 @@
 import GenericModel from './generic.model.js'
+import databaseConfig from '../../database.config.js'
 
 export default class Employee extends GenericModel{
     static fields = [
@@ -29,5 +30,13 @@ export default class Employee extends GenericModel{
         this.currentStatus = employee.currentStatus
         this.contactNumber = employee.contactNumber
         this.email = employee.email
+    }
+    static async getEmployeeList(offset){
+        try {
+            const [rows,fields] = await databaseConfig.execute(`SELECT employeeID, CONCAT_WS(' ',firstName, IFNULL(LEFT(middleName, 1),''), lastName) AS fullName FROM employee LIMIT ?, 10`,[offset])
+            return rows
+        } catch (error) {
+            throw(error)
+        }
     }
 }

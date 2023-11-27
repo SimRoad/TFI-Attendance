@@ -5,7 +5,14 @@ import { generateImageName } from '../middleware/imgReceive.js';
 
 export default class EmployeeController{
     static async findAll(req,res,next){
-        res.send(await Employee.getAll().catch(err=>next(err)))
+        try {
+            let response
+            if(!req.query.offset) response = await Employee.getAll()
+            else response = await Employee.getEmployeeList(req.query.offset)
+            res.send(response)
+        } catch (error) {
+            next(error)
+        }
     }
     static async findByID(req,res,next){
         res.send(await Employee.getID(req.params.id).catch(err=>next(err)))

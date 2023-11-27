@@ -1,10 +1,21 @@
 import {Table, Button, Checkbox} from 'flowbite-react'
 import { FaUserEdit } from "react-icons/fa";
-import { CiEdit } from "react-icons/ci";
+import { useState, useEffect } from 'react'
+import client from '../axiosURL'
 
-const EmployeeTable = ()=>{
+const EmployeeTable = ({setEmpList})=>{
+    const [employees,setEmployees] = useState([])
+    const [offset,setOffset] = useState(0)
+    useEffect(()=>{
+        const request = async () => {
+            const response = await client.get(`employee/all?offset=${offset}`)
+            setEmployees(prev=>[...prev, ...response.data]);
+            console.log(response.data,employees)
+        }
+        request()
+    },[offset])
     return(
-        <Table>
+        <Table hoverable>
             <Table.Head>
                 <Table.HeadCell><Checkbox/></Table.HeadCell>
                 <Table.HeadCell>Name</Table.HeadCell>
@@ -17,30 +28,43 @@ const EmployeeTable = ()=>{
                 </Table.HeadCell>
             </Table.Head>
             <Table.Body className='divide-y'>
-                <TableRow/>
+                {
+                    employees.map(emp=>
+                        <TableRow key={emp.employeeID} id={emp.employeeID} name={emp.fullName} setEmpList={setEmpList}/>
+                    )
+                }
             </Table.Body>
         </Table>
     )
 }
 
-const TableRow = ()=>{
+const TableRow = ({setEmpList,id,name})=>{
+    const checkHandler = ()=>{
+        setEmpList(list=>{
+            console.log(list)
+            if(list.includes(id)) return list.filter(val=>val !== id)
+            return [...list,id]
+        })
+    }
     return(
         <>
-        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell><Checkbox/></Table.Cell>
-            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                {'Lance Ramoose'}
-            </Table.Cell>
-            <Table.Cell>32</Table.Cell>
-            <Table.Cell>0</Table.Cell>
-            <Table.Cell>smth</Table.Cell>
-            <Table.Cell>stuff</Table.Cell>
-            <Table.Cell>
-                <Button className='border-2 border-accent/50'>
-                    <FaUserEdit className="ml-1 h-5 w-5" fill='black'/>
-                </Button>
-            </Table.Cell>
-        </Table.Row>
+        <div>
+            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                <Table.Cell><Checkbox onChange={()=>checkHandler()}/></Table.Cell>
+                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                    {name}
+                </Table.Cell>
+                <Table.Cell>32</Table.Cell>
+                <Table.Cell>0</Table.Cell>
+                <Table.Cell>smth</Table.Cell>
+                <Table.Cell>stuff</Table.Cell>
+                <Table.Cell>
+                    <Button className='border-2 border-accent/50'>
+                        <FaUserEdit className="ml-1 h-5 w-5" fill='black'/>
+                    </Button>
+                </Table.Cell>
+            </Table.Row>
+        </div>
         </>
     )
 }

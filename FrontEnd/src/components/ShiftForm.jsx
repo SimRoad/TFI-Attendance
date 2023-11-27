@@ -5,16 +5,13 @@ import { DevTool } from '@hookform/devtools'
 import TimeRange from './TimeRange'
 
 
-const ShiftForm = ()=>{
-    const {handleSubmit, register, control, formState:{errors}} = useForm()
+const ShiftForm = ({fields})=>{
+    const {handleSubmit, register, control, formState:{errors}} = fields
     return(
         <>
-        <form onSubmit={handleSubmit(e=>console.log(e))}>
             <WeekdaySelect register={register}/>
             <TimeRange register={register} />
             <Button  color='blue' type='submit' className='color-black'>SUBMIT?</Button>
-        </form>
-        <DevTool control={control}/>
         </>
     )
 }
