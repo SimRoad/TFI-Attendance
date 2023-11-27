@@ -6,6 +6,8 @@ import client from '../axiosURL'
 import { ProfileSection } from './employeeInputs/ProfileSection'
 import { AddressPortion } from './employeeInputs/AddressPortion'
 import { ContactPortion } from './employeeInputs/ContactPortion'
+import WebSideBar from './SideBar'
+
 
 const EmployeeRegisterForm = ()=>{
     const {handleSubmit, register, control, reset, formState:{errors}} = useForm({resolver: yupResolver(employeeRegisterSchema)})

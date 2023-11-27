@@ -3,6 +3,7 @@ import LogoutButton from "../components/LogoutButton";
 import Header from "../components/headerAndFooter/Header";
 import EmployeeTable from "../components/EmployeeTable";
 import ShiftForm from '../components/ShiftForm'
+import WebSideBar from "../components/SideBar";
 
 const dashboard = ()=>{
     return(

@@ -1,6 +1,6 @@
 import { TextInput, Label, FileInput } from 'flowbite-react';
 import { useState } from 'react';
-
+import { HiMail } from 'react-icons/hi'
 
 export const ContactPortion = ({ register, errors }) => {
     const employeeErr = errors.employee;
@@ -19,6 +19,7 @@ export const ContactPortion = ({ register, errors }) => {
             <Label htmlFor="email1" value="Email (Optional)" />
             <TextInput
                 id='email1'
+                icon={HiMail}
                 {...register('employee.email')}
                 color={employeeErr?.email ? 'failure' : ''}
                 helperText={<>
