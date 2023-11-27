@@ -9,7 +9,7 @@ import { AddressPortion } from './employeeInputs/AddressPortion'
 import { ContactPortion } from './employeeInputs/ContactPortion'
 
 const EmployeeRegisterForm = ()=>{
-    const {handleSubmit, register, control, formState:{errors}} = useForm({resolver: yupResolver(employeeRegisterSchema)})
+    const {handleSubmit, register, control, reset, formState:{errors}} = useForm({resolver: yupResolver(employeeRegisterSchema)})
     const fields = {register,control,errors}
     const submit = result=>{
         let data = result
@@ -21,7 +21,7 @@ const EmployeeRegisterForm = ()=>{
             }
         })
         .then(response=>{
-            console.log(response)
+            response.status === 200 ? reset() : alert(`Something went wrong`)
         })
     }
     return(

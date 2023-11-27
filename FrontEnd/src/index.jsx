@@ -3,7 +3,6 @@ import Dashboard from './pages/Dashboard'
 import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-router-dom'
 import SessionProvider,{SessionContext} from './session/SessionProvider'
 import {useContext} from 'react'
-import EmployeeRegisterForm from './components/EmployeeRegister'
 import CreateUser from './pages/CreateUser'
 
 const index = ()=>{
@@ -13,6 +12,7 @@ const index = ()=>{
                 <Routes>
                     <Route element={<PrivateRoutes/>}>
                         <Route element={<Dashboard/>} path='/dashboard'/>
+                        <Route element={<CreateUser/>} path='/createuser'/>
                     </Route>
                     {/* <Route path='/login' element={<Login/>}></Route> */}
                     <Route path='/debug' element={<EmployeeRegisterForm/>}></Route>
