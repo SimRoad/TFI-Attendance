@@ -3,17 +3,16 @@ import GenericModel from './generic.model.js'
 import databaseConfig from '../../database.config.js'
 
 export default class User extends GenericModel{
-    static fields = ["userID","employeeID","userPassword","position","lastLogin","email"]
+    static fields = ["userID","employeeID","userPassword","position","lastLogin"]
     constructor(user){
         super()
         this.employeeID = user.employeeID
         this.userPassword = user.userPassword
         this.position = user.position
         this.lastLogin = user.lastLogin
-        this.email = user.email
     }
-    async verifyLogin(){
-        const [rows] = await databaseConfig.execute(`SELECT userID, userPassword FROM user WHERE email = ?`, [this.email])
+    async verifyLogin(email){
+        const [rows] = await databaseConfig.execute(`SELECT userID, userPassword FROM user AS u JOIN employee AS e ON u.employeeID = e.employeeID WHERE e.email = ?`, [email])
         if(rows.length && await this.comparePassword(rows[0].userPassword)){
             return {authentication: true, userID: rows[0].userID}
         }else return {authentication: false}
