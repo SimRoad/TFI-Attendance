@@ -31,6 +31,14 @@ export default class Employee extends GenericModel{
         this.contactNumber = employee.contactNumber
         this.email = employee.email
     }
+    static async checkEmail(email){
+        try {
+            const [rows] = await databaseConfig.execute(`SELECT employeeID FROM employee WHERE email = ? LIMIT 1`,[email])
+            return rows
+        } catch (error) {
+            throw(error)
+        }
+    }
     static async getEmployeeList(offset){
         try {
             const [rows,fields] = await databaseConfig.execute(`SELECT employeeID, CONCAT_WS(' ',firstName, IFNULL(LEFT(middleName, 1),''), lastName) AS fullName FROM employee LIMIT ?, 10`,[offset])

@@ -3,7 +3,7 @@ import Address from './address.model.js'
 import GenericModel from './generic.model.js'
 
 export default class Holidays extends GenericModel{
-    static fields = ["holidayID","holidayName","holidayDesc","holidayType"]
+    static fields = ["holidayID","holidayName","holidayDesc","holidayDate","holidayType"]
     constructor(holiday){
         super()
         this.holidayName = holiday.holidayName

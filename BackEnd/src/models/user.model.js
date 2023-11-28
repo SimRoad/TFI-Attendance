@@ -17,11 +17,11 @@ export default class User extends GenericModel{
             return {authentication: true, userID: rows[0].userID}
         }else return {authentication: false}
     }
-    async encryptPassword(){
+    async hashPassword(){
         this.userPassword = await bcrypt.hash(this.userPassword,await bcrypt.genSalt())
     }
-    async comparePassword(encryptedPass){
-        return await bcrypt.compare(this.userPassword,encryptedPass)
+    async comparePassword(hashedPass){
+        return await bcrypt.compare(this.userPassword,hashedPass)
     }
     async cookies(){
 

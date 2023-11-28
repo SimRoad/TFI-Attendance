@@ -13,6 +13,7 @@ export default class UserController{
     }
     static async create(req,res,next){
         try {
+            let email
             if(req.body.employee){
                 const newEmployee = new Employee(req.body.employee)
                 newEmployee.create()
@@ -23,12 +24,13 @@ export default class UserController{
                     res.send(await newUser.create())
                 })
             }
-            else if(req.body.user?.employeeID && (await Employee.getID(req.body.user.employeeID)).length){
-                const newUser = new User(req.body.user)
-                await newUser.encryptPassword()
+            else if((email = await Employee.checkEmail(req.body.email)).length){
+                const newUser = new User(req.body)
+                newUser.employeeID = email[0].employeeID
+                await newUser.hashPassword()
                 res.send(await newUser.create())
             }
-            else throw Error(`Employee ID does not exist`)
+            else throw Error(`Employee does not exist`)
         } catch (error){
             next(error)
         }
