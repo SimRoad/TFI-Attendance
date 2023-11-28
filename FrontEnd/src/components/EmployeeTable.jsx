@@ -29,8 +29,8 @@ const EmployeeTable = ({setEmpList})=>{
                 </Table.Head>
                 <Table.Body className='divide-y'>
                     {
-                        employees.map(emp=>
-                            <TableRow key={emp.employeeID} id={emp.employeeID} name={emp.fullName} setEmpList={setEmpList}/>
+                        employees.map((emp,ndx)=>
+                            <TableRow key={ndx} id={emp.employeeID} name={emp.fullName} setEmpList={setEmpList}/>
                         )
                     }
                 </Table.Body>

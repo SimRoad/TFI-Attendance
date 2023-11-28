@@ -14,7 +14,7 @@ const TimeRange = ({register})=>{
 
     return(
         <>
-            <div className="flex justify-center items-center">
+            {/* <div className="flex justify-center items-center">
                 <div className='md-2 block'>
                     <h1>Time-In & Time-Out System</h1>
                     <Button color='green' onClick={ () => setTimedIn(getTime()) }>Time-In</Button> 
@@ -25,9 +25,9 @@ const TimeRange = ({register})=>{
                     <p>Timed-In: { timedIn }</p>
                     <p>Timed-Out: { timedOut }</p>
                 </div>
-            </div>
-            {/* <input {...register('timeIn')} type='time'/>
-            <input {...register('timeOut')} type='time'/> */}
+            </div> */}
+            <input {...register('timeIn')} type='time'/>
+            <input {...register('timeOut')} type='time'/>
         </>
     )
 }
