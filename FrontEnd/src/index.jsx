@@ -6,6 +6,9 @@ import TimeRange from './components/TimeRange'
 import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-router-dom'
 import SessionProvider,{SessionContext} from './session/SessionProvider'
 import {useContext} from 'react'
+import HolidayForm from './components/HolidayForm'
+import HolidayTable from './components/HolidayTable'
+import EmployeeTable from './components/EmployeeTable'
 
 const index = ()=>{
     return(
