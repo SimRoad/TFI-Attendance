@@ -2,7 +2,7 @@ import WeekdaySelect from './WeekdaySelect'
 import {Button} from 'flowbite-react'
 import TimeRange from './TimeRange'
 import MultiDatePicker from './MultiSelectDate'
-// import DatePicker from 'react-multi-date-picker'
+import DatePicker from 'react-multi-date-picker'
 import {Controller} from 'react-hook-form'
 
 
