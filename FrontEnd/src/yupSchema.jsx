@@ -56,11 +56,11 @@ export const employeeRegisterSchema = yup.object().shape({
 
 export const userSchema = yup.object().shape({
     email: yup.string().email("Not a valid email").required("Required"),
-    password: yup.string()
-        .required("Required")
+    userPassword: yup.string()
         .min(4, "Password must be atleast 4 characters long")
-        .max(15, "Password must not exceed 15 characters"),
-    repeatpassword: yup.string().required("Required").oneOf([yup.ref("password"), null], "Password must match"),
+        .max(15, "Password must not exceed 15 characters")
+        .required("Required"),
+    repeatpassword: yup.string().required("Required").oneOf([yup.ref("userPassword"), null], "Password must match"),
     position: yup.string().required("Required").oneOf(["admin", "management", "suspended"], "Required"),
     // employeeId: ,
 })

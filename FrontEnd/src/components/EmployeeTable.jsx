@@ -11,13 +11,13 @@ const EmployeeTable = ({setEmpList})=>{
             const response = await client.get(`employee/all?offset=${offset}`)
             setEmployees(prev=>[...prev, ...response.data]);
         }
-        if(!employees.length && employees.length - offset <= 0) request()
-    },[offset,employees]) //Uhhh might cause an infinite loop
+        if(!employees.length) request()
+    },[offset])//BROKEN
     return(
         <div className='overflow-y-auto max-h-[40vh]'>
             <Table className='table-auto' hoverable>
                 <Table.Head>
-                    <Table.HeadCell><Checkbox/></Table.HeadCell>
+                    <Table.HeadCell><Checkbox onChange={()=>setOffset(a=>a+1)}/></Table.HeadCell>
                     <Table.HeadCell>Name</Table.HeadCell>
                     <Table.HeadCell>Total Hours</Table.HeadCell>
                     <Table.HeadCell>Overtime</Table.HeadCell>
