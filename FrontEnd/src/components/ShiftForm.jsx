@@ -2,7 +2,7 @@ import {Button} from 'flowbite-react'
 import TimeRange from './TimeRange'
 import MultiDatePicker from './MultiSelectDate'
 import {Controller} from 'react-hook-form'
-import { Calendar } from 'react-multi-date-picker'
+import {Calendar} from 'react-multi-date-picker'
 
 
 const ShiftForm = ({fields})=>{
@@ -17,7 +17,7 @@ const ShiftForm = ({fields})=>{
                     formState: {errors}
                 })=>(
                     <>
-                    <MultiDatePicker value={value} onChange={onChange}/>
+                    <MultiDatePicker value={value} onChange={onChange} register={register}/>
                     {errors && errors[name] && errors[name].type === "required" && (
                         //if you want to show an error message
                         <span>your error message !</span>
@@ -25,7 +25,7 @@ const ShiftForm = ({fields})=>{
                     </>
                 )}
             />
-            <TimeRange register={register} />
+            {/* <TimeRange register={register} /> */}
             <Button color='blue' type='submit' className='text-black'>SUBMIT?</Button>
         </>
     )

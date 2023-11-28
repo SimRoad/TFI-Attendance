@@ -19,8 +19,8 @@ const dashboard = ()=>{
         //     results.employeeID = e
         //     return results
         // }))
-        let date = new DateObject
-        console.log(date.add(1,'month').add(date.daysLeft,'days'))
+        results.employees = empList
+        console.log(results)
     }
     useEffect(()=>{
         console.log(empList)
@@ -34,7 +34,6 @@ const dashboard = ()=>{
                 {temp && <ShiftForm fields={fields}/>}
             </form>
             <DevTool control={control}/>
-            <LogoutButton/>
             {/* <EmployeeRegisterForm/> */}
         </>
     )
