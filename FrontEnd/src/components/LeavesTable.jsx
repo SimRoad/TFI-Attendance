@@ -9,7 +9,7 @@ function LeaveTable({setLeaveList}){
     useEffect(()=>{
         const request = async ()=>{
             const response = await client.get(`leaves/all`)
-            setLeaves(prev=>[...prev,...response.data])
+            setLeaves(prev=>[...prev,response.data])
         }
         if(!leaves.length) request()
     },[leaves])
