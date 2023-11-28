@@ -14,7 +14,7 @@ const EmployeeTable = ({setEmpList})=>{
         if(!employees.length) request()
     },[offset])//BROKEN
     return(
-        <div className='overflow-y-auto max-h-[40vh]'>
+        <div className='overflow-y-auto max-h-[70vh]'>
             <Table className='table-auto' hoverable>
                 <Table.Head>
                     <Table.HeadCell><Checkbox onChange={()=>setOffset(a=>a+1)}/></Table.HeadCell>
@@ -54,10 +54,10 @@ const TableRow = ({setEmpList,id,name})=>{
             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                 {name}
             </Table.Cell>
-            <Table.Cell>32</Table.Cell>
-            <Table.Cell>0</Table.Cell>
-            <Table.Cell>smth</Table.Cell>
-            <Table.Cell>stuff</Table.Cell>
+            <Table.Cell>WIP</Table.Cell>
+            <Table.Cell>WIP</Table.Cell>
+            <Table.Cell>WIP</Table.Cell>
+            <Table.Cell>WIP</Table.Cell>
             <Table.Cell>
                 <Button className='border-2 border-accent/50'>
                     <FaUserEdit className="ml-1 h-5 w-5" fill='black'/>
