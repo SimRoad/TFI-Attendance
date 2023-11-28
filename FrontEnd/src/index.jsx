@@ -6,6 +6,7 @@ import TimeRange from './components/TimeRange'
 import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-router-dom'
 import SessionProvider,{SessionContext} from './session/SessionProvider'
 import {useContext} from 'react'
+import LeaveTable from './components/LeavesTable'
 import HolidayForm from './components/HolidayForm'
 import HolidayTable from './components/HolidayTable'
 import EmployeeTable from './components/EmployeeTable'
@@ -19,7 +20,8 @@ const index = ()=>{
                         <Route element={<Dashboard/>} path='/dashboard'/>
                         <Route element={<CreateUser/>} path='/createuser'/>
                         <Route element={<EmployeeRegisterForm/>} path='/employeeregister' />
-                        <Route element={<EmployeeRegisterForm/>} path='createemployee'/>
+                        <Route element={<EmployeeRegisterForm/>} path='/createemployee'/>
+                        <Route element={<LeaveTable/>} path='/leaves'/>
                     </Route>
                     <Route path='/login' element={<Login/>}></Route>
                     {/* <Route path='/dashboard' element={<Dashboard/>}></Route>

@@ -7,6 +7,7 @@ import WebSideBar from "../components/SideBar";
 import { useForm } from "react-hook-form";
 import {useState, useEffect} from 'react'
 import {DevTool} from '@hookform/devtools'
+import { DateObject } from "react-multi-date-picker";
 
 const dashboard = ()=>{
     const fields = useForm()
@@ -18,7 +19,8 @@ const dashboard = ()=>{
         //     results.employeeID = e
         //     return results
         // }))
-        console.log(results?.dates.map(date=>date.format()))
+        results.employees = empList
+        console.log(results)
     }
     useEffect(()=>{
         console.log(empList)
@@ -32,7 +34,6 @@ const dashboard = ()=>{
                 {temp && <ShiftForm fields={fields}/>}
             </form>
             <DevTool control={control}/>
-            <LogoutButton/>
             {/* <EmployeeRegisterForm/> */}
         </>
     )

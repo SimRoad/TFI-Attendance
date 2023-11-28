@@ -1,4 +1,4 @@
-import {Checkbox, Table} from 'flowbite-react'
+import {Checkbox, Table, Button} from 'flowbite-react'
 import client from '../axiosURL'
 import {useState,useEffect} from 'react'
 import { FaEdit } from 'react-icons/fa'
@@ -46,8 +46,8 @@ const LeaveBody = ({setLeaveList,id,name,duration})=>{
     return(
         <Table.Row>
             <Table.Cell><Checkbox onChange ={()=>checkHandler()}/></Table.Cell>
-            <Table.Cell>{name}</Table.Cell>
-            <Table.Cell>{duration}</Table.Cell>
+            <Table.Cell className='text-black'>{name}</Table.Cell>
+            <Table.Cell className='text-black'>{duration}</Table.Cell>
             <Table.Cell><Button><FaEdit/></Button></Table.Cell>
         </Table.Row>
     )
