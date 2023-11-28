@@ -1,4 +1,3 @@
-import Employee from '../models/employee.model.js'
 import Shift from '../models/shift.model.js'
 
 export default class ShiftController{
@@ -14,10 +13,11 @@ export default class ShiftController{
     }
     static async create(req,res,next){
         try {
-            if((await Employee.getID(req.body.shift.employeeID)).length){
-                const newShift = new Shift(req.body.shift)
-                res.send(await newShift.create())
-            }else throw Error(`Employee ID does not exist`)
+            let response = await Shift.getShiftConflict(req.body.dates,req.body.employees)
+            if(!response.length){
+                response = Shift.formatToShiftArr(req.body)
+            }
+            res.send(response)
         } catch (error) {
             next(error)
         }
