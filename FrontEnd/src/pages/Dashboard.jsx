@@ -33,7 +33,7 @@ const dashboard = ()=>{
             </form>
             <DevTool control={control}/>
             <LogoutButton/>
-            <EmployeeRegisterForm/>
+            {/* <EmployeeRegisterForm/> */}
         </>
     )
 }

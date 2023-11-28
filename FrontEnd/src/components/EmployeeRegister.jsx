@@ -7,7 +7,8 @@ import { ProfileSection } from './employeeInputs/ProfileSection'
 import { AddressPortion } from './employeeInputs/AddressPortion'
 import { ContactPortion } from './employeeInputs/ContactPortion'
 import WebSideBar from './SideBar'
-
+import Header from './headerAndFooter/Header'
+import Footer from './headerAndFooter/Footer'
 
 const EmployeeRegisterForm = ()=>{
     const {handleSubmit, register, control, reset, formState:{errors}} = useForm({resolver: yupResolver(employeeRegisterSchema)})
@@ -27,6 +28,7 @@ const EmployeeRegisterForm = ()=>{
     }
     return(
         <>
+        <Header/>
         <div className="flex justify-center items-center">
             <form onSubmit={handleSubmit(submit)}>
                 <ProfileSection {...fields} />
@@ -35,6 +37,7 @@ const EmployeeRegisterForm = ()=>{
                 <Button className="text-text border-b-2 border-accent/20 rounded-md bg-primary" color='default' type='submit'>Submit</Button>
             </form>
         </div>
+        <Footer/>
         </>
     )
 }
