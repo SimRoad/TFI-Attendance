@@ -1,4 +1,4 @@
-import { Button, TextInput, Label, Textarea, Datepicker } from 'flowbite-react'
+import { Button, TextInput, Label, Textarea, Datepicker, Select } from 'flowbite-react'
 
 const HolidayForm = () => {
     return(
@@ -13,7 +13,7 @@ const HolidayForm = () => {
                         <Textarea id="description" placeholder="Feliz navi'dad..." required rows={4} />
                 </div>
                 <div className="max-w-md">
-                    <Label htmlFor="holidate" value="Repeat password" />
+                    <Label htmlFor="holidate" value="Holier Than thou Date" />
                     <Datepicker id="holidate" required shadow />
                 </div>
                 <div className="flex items-center gap-2">
