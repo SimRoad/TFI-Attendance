@@ -3,6 +3,7 @@
 import logo from '../../assets/TFIicon.png'
 import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
 import {memo} from 'react'
+import LogoutButton from '../LogoutButton';
 
 function header() {
   return (
@@ -28,7 +29,8 @@ function header() {
           <Dropdown.Item>Sign out</Dropdown.Item>
         </Dropdown> */}
         <Button color = "green" pill>Settings</Button>
-        <Button color = "red" pill>Log Out</Button>
+        {/* <Button color = "red" pill>Log Out</Button> */}
+        <LogoutButton/>
         <Navbar.Toggle />
       </div>
     </Navbar>

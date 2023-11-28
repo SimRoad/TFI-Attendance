@@ -7,7 +7,7 @@ const LogoutButton = ()=>{
     const {removeCookies} = useContext(SessionContext)
     return(
         <Link to='/login' onClick={()=>{removeCookies('session')}}>
-            <Button color="Blue">Log Out</Button>
+            <Button color="Red">Log Out</Button>
         </Link>
     )
 }
