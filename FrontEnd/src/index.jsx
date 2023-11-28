@@ -15,13 +15,16 @@ const index = ()=>{
         <SessionProvider>
             <Router>
                 <Routes>
-                    <Route element={<PrivateRoutes/>}>
+                    {/* <Route element={<PrivateRoutes/>}>
                         <Route element={<Dashboard/>} path='/dashboard'/>
                         <Route element={<CreateUser/>} path='/createuser'/>
                         <Route element={<EmployeeRegisterForm/>} path='/employeeregister' />
-                    </Route>
+                    </Route> */}
                     {/* <Route path='/login' element={<Login/>}></Route> */}
-                    <Route path='/debug' element={<HolidayTable/>}></Route>
+
+                    <Route path='/debug' element={<TimeRange/>}></Route>
+                    <Route path='/createuser' element={<CreateUser/>}></Route>
+                    <Route path='/dashboard' element={<Dashboard/>}></Route>
                 </Routes>
             </Router>
         </SessionProvider>
@@ -31,8 +34,9 @@ const index = ()=>{
 const PrivateRoutes = ({children, ...rest})=>{
     const {cookies} = useContext(SessionContext)
     return(
+        <></>
         // cookies.session ? <Outlet/> : <Navigate to='/login'/>
-        cookies.session ? <Outlet/> : <Navigate to='/debug'/>
+        // cookies.session ? <Outlet/> : <Navigate to='/createuser'/>
     )
 }
 

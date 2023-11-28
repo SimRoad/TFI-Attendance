@@ -64,3 +64,10 @@ export const userSchema = yup.object().shape({
     position: yup.string().required("Required").oneOf(["admin", "management", "suspended"], "Required"),
     // employeeId: ,
 })
+
+export const holidaySchema = yup.object().shape({
+    holidayName: yup.string().required("Required"),
+    holidesc: yup.string().notRequired(),
+    holidate: yup.date().required("Required"),
+    holitype: yup.string().required().oneOf(["special", "regular"], "Required"),
+})

@@ -5,17 +5,22 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import { userSchema } from '../yupSchema'
 import client from '../axiosURL'
+import { DevTool } from "@hookform/devtools"
 import { SessionContext } from "../session/SessionProvider"
 import { useNavigate } from "react-router-dom"
 
 const userCreate = () => {
 
-    const { register, handleSubmit, formState: {errors} } = useForm({
+    const { register, handleSubmit, control, formState: {errors} } = useForm({
         resolver: yupResolver( userSchema ),
     })
 
     const onSubmit = (data) => {
-        console.log('Registration Sent', data)
+        const {repeatpassword,...results} = data
+        console.log('Registration Sent', results)
+        client.post('user/create',results)
+        .then(res=>console.log(res))
+        .catch(err=>console.error(err))
     }
 
     return(
@@ -35,13 +40,13 @@ const userCreate = () => {
                             />
                         </div>
                         <div className="mb-2 block">
-                            <Label htmlFor="password" value="Your password">Password</Label>
+                            <Label htmlFor="userPassword" value="Your password">Password</Label>
                             <TextInput 
                                 type="password" 
-                                id="password" 
-                                { ...register('password') } 
-                                color={ errors.password ? 'failure' : '' } 
-                                helperText={ <>{ errors.password ? errors.password.message : ''}</> }
+                                id="userPassword" 
+                                { ...register('userPassword') } 
+                                color={ errors.userPassword ? 'failure' : '' } 
+                                helperText={ <>{ errors.userPassword ? errors.userPassword.message : ''}</> }
                             />
                         </div>
                         <div className="mb-2 block">
@@ -71,6 +76,7 @@ const userCreate = () => {
                             Register new account
                         </Button>
                     </form>
+                    <DevTool control={control}/>
                 </Card>
             </div>
         </>

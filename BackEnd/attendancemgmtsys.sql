@@ -39,6 +39,8 @@ CREATE TABLE `address` (
   `province` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+
 -- --------------------------------------------------------
 
 --
@@ -72,9 +74,11 @@ CREATE TABLE `employee` (
   `currentStatus` enum('Fired','Working Employee') NOT NULL DEFAULT 'Working Employee',
   `contactNumber` varchar(16) NOT NULL,
   `email` varchar(128) DEFAULT NULL,
---  `biometric` varchar(255) NOT NULL
+  `biometric` varchar(255) DEFAULT NULL,
   `imageDir` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 
 -- --------------------------------------------------------
 
@@ -181,8 +185,8 @@ ALTER TABLE `daysession`
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`employeeID`),
-  ADD KEY `fk_employee_address` (`addressID`);
-  UNIQUE (email);
+  ADD KEY `fk_employee_address` (`addressID`),
+  ADD UNIQUE (email);
 
 --
 -- Indexes for table `excusereason`
@@ -234,25 +238,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `addressID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `addressID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `daysession`
 --
 ALTER TABLE `daysession`
-  MODIFY `sessionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sessionID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `excusereason`
 --
 ALTER TABLE `excusereason`
-  MODIFY `reasonID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `reasonID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `holidays`
@@ -264,7 +268,7 @@ ALTER TABLE `holidays`
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-  MODIFY `leavesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `leavesID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `logs`
@@ -276,13 +280,13 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT for table `shift`
 --
 ALTER TABLE `shift`
-  MODIFY `shiftID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `shiftID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -335,3 +339,12 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+INSERT INTO `address` (street, barangay, city_municipality, province) VALUES
+('Grove','Tarmac','Mandaue','Cebu'),
+('Leaf','Palpa','Minglanilla','Cebu'),
+('Tintay','Merkado','Bogo','Cebu');
+INSERT INTO `employee` (firstName,middleName,lastName,gender,civilStatus,addressID,birthDate,jobPosition,contactNumber,email,imageDir) VALUES
+('Joselito','Loser','Yap','Male','Single','1','2003-11-28','Janitor','01234567890','joselito@gmail.com','1_Employee.png'),
+('Lance','Big','Ramoose','Male','Legally Separated','2','2003-09-06','Janitor','01234567891','lance@gmail.com','2_Employee.png'),
+('Simon','Something','Montana','Male','Widowed','3','2003-9-28','Janitor','01234567892','simon@gmail.com','3_Employee.png');
