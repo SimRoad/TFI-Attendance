@@ -29,11 +29,16 @@ export default class Shift extends GenericModel{
             throw(error)
         }
     }
-    static async getMonthShiftsSpecial(employees){
+    static async getMonthShiftSpecial(employees){
         try {
-            const [rows] = await databaseConfig.execute(`SELECT shiftDate FROM shift WHERE employeeID IN(?) AND (isWork = FALSE OR leaveID != null)`)
+            const employeePH = employees.map(()=>`?`).join(',')
+            const temporaryExemption = `AND (isWork = FALSE OR leaveID != null)`
+            const shiftQuery = `SELECT shiftDate FROM shift WHERE employeeID IN(${employeePH}) AND MONTH(shiftDate) = MONTH(NOW()) AND YEAR(shiftDate) = YEAR(NOW())`
+            const [rows] = await databaseConfig.execute(shiftQuery,employees)
+            console.log(rows)
+            return rows
         } catch (error) {
-            
+            throw(error)
         }
     }
 

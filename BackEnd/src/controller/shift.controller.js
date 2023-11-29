@@ -30,4 +30,12 @@ export default class ShiftController{
             next(error);
         }
     }
+    static async getMonthDates(req,res,next){
+        try {
+            console.log(`Shift Controller running`)
+            res.send(await Shift.getMonthShiftSpecial(req.body))
+        } catch (error) {
+            next(error)
+        }
+    }
 }

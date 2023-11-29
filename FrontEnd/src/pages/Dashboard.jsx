@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import {useState, useEffect} from 'react'
 import {DevTool} from '@hookform/devtools'
 import client from '../axiosURL'
-import axios from 'axios'
+import {Button} from 'flowbite-react'
 import ConflictModal from "../components/ConflictModal";
 
 const dashboard = ()=>{
@@ -15,7 +15,7 @@ const dashboard = ()=>{
     const [openModal, setOpenModal] = useState(false);
     const [conflict, setConflict] = useState({});
     const [temp, setTemp] = useState(true)
-    const {handleSubmit, register, control, formState:{errors}} = fields
+    const {handleSubmit, control, formState:{errors}} = fields
     const submission = results=>{
         results.employees = empList
         results.dates.forEach((date,ndx)=>results.dates[ndx] = date.format('YYYY-MM-DD'))
@@ -31,9 +31,6 @@ const dashboard = ()=>{
             console.error(error)
         })
     }
-    useEffect(()=>{
-        console.log(empList)
-    },[empList])
     return(
         <>
             <Header/>
@@ -41,7 +38,7 @@ const dashboard = ()=>{
             <ConflictModal openModal={openModal} setOpenModal={setOpenModal} conflict={conflict}/>
             <EmployeeTable setEmpList={setEmpList}/>
             <form onSubmit={handleSubmit(submission)}>
-                {temp && <ShiftForm fields={fields}/>}
+                {temp && <ShiftForm fields={fields} employees={empList}/>}
             </form>
             <DevTool control={control}/>
         </>

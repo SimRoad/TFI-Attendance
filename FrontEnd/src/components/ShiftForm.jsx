@@ -3,16 +3,10 @@ import MultiDatePicker from './MultiSelectDate'
 import {Controller} from 'react-hook-form'
 import {useState} from 'react'
 
-
-const ShiftForm = ({fields})=>{
+const ShiftForm = ({fields,employees})=>{
     const {register, control, formState:{errors}} = fields
-    const [displayDates,setDisplayDates] = useState()
     return(
         <>
-        <Button.Group>
-            <Button>Work</Button>
-            <Button>Leaves</Button>
-        </Button.Group>
             <Controller
                 control={control}
                 name='dates'
@@ -21,7 +15,7 @@ const ShiftForm = ({fields})=>{
                     formState: {errors}
                 })=>(
                     <>
-                    <MultiDatePicker value={value} onChange={onChange} register={register}/>
+                    <MultiDatePicker employees={employees} value={value} onChange={onChange} register={register}/>
                     {errors && errors[name] && errors[name].type === "required" && (
                         <span>your error message !</span>
                         )}
