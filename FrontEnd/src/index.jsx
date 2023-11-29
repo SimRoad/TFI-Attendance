@@ -12,6 +12,7 @@ import HolidayTable from './components/HolidayTable'
 import EmployeeTable from './components/EmployeeTable'
 import LeaveForm from './components/LeaveForm'
 import LogTable from './components/LogsTable'
+import WebSideBar from './components/SideBar'
 
 const index = ()=>{
     return(
@@ -19,16 +20,21 @@ const index = ()=>{
             <Router>
                 <Routes>
                     <Route element={<PrivateRoutes/>}>
-                        <Route element={<Dashboard/>} path='/dashboard'/>
-                        
+                        <Route element={<Dashboard/>} path='/dashboard/*'/>
+
                         <Route element={<EmployeeRegisterForm/>} path='/employeeregister' />
                         <Route element={<EmployeeRegisterForm/>} path='/createemployee'/>
                         <Route element={<LeaveTable/>} path='/leaves'/>
                         <Route element={<LeaveForm/>} path='/leaveform'/>
+                        
                     </Route>
                     <Route path='/login' element={<Login/>}></Route>
+                    <Route element={<Dashboard/>} path='/dashboard/*'/>
+                    <Route element={<EmployeeTable/>} path='/employeeTable'/>
+                    <Route element={<HolidayTable/>} path='/holidayTable'/>
                     <Route element={<CreateUser/>} path='/createuser'/>
                     <Route element={<LeaveTable/>} path='/logtable'/>
+                    <Route element={<WebSideBar/>} path='/sidebar'/>
                     {/* <Route path='/dashboard' element={<Dashboard/>}></Route>
                     <Route path='/createuser' element={<CreateUser/>}></Route>
                     <Route path='/createemployee' element={<EmployeeRegisterForm/>}></Route> */}

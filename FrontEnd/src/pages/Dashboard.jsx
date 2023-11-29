@@ -7,7 +7,9 @@ import {useState, useEffect} from 'react'
 import {DevTool} from '@hookform/devtools'
 import client from '../axiosURL'
 import axios from 'axios'
+import { Route, Routes } from "react-router-dom";
 import ConflictModal from "../components/ConflictModal";
+import CompFooter from "../components/headerAndFooter/Footer";
 
 const dashboard = ()=>{
     const fields = useForm()
@@ -37,13 +39,16 @@ const dashboard = ()=>{
     return(
         <>
             <Header/>
-            {/* <WebSideBar/> */}
             <ConflictModal openModal={openModal} setOpenModal={setOpenModal} conflict={conflict}/>
             <EmployeeTable setEmpList={setEmpList}/>
             <form onSubmit={handleSubmit(submission)}>
+                <Routes>
+                    <Route element={<ShiftForm/>} path='*/shift'/>
+                </Routes>
                 {temp && <ShiftForm fields={fields}/>}
             </form>
             <DevTool control={control}/>
+            <CompFooter/>
         </>
     )
 }
