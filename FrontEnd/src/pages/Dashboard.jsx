@@ -6,8 +6,11 @@ import { useForm } from "react-hook-form";
 import {useState, useEffect} from 'react'
 import {DevTool} from '@hookform/devtools'
 import client from '../axiosURL'
-import {Button} from 'flowbite-react'
+import axios from 'axios'
+import { Route, Routes as Routers } from "react-router-dom";
 import ConflictModal from "../components/ConflictModal";
+import CompFooter from "../components/headerAndFooter/Footer";
+import LogTable from "../components/LogsTable";
 
 const dashboard = ()=>{
     const fields = useForm()
@@ -32,15 +35,22 @@ const dashboard = ()=>{
         })
     }
     return(
-        <>
+        <>  
             <Header/>
-            {/* <WebSideBar/> */}
-            <ConflictModal openModal={openModal} setOpenModal={setOpenModal} conflict={conflict}/>
+            {/* <ConflictModal openModal={openModal} setOpenModal={setOpenModal} conflict={conflict}/> */}
+            <div className="grid grid-flow-col h-auto-max">
+            <WebSideBar/>
             <EmployeeTable setEmpList={setEmpList}/>
+                <Routers>
+                    <Route element={<ShiftForm/>} path='*/shift'/>
+                    <Route element={<LogTable/>} path='*/logs'/>
+                </Routers>
+            </div>
             <form onSubmit={handleSubmit(submission)}>
-                {temp && <ShiftForm fields={fields} employees={empList}/>}
+                {temp && <ShiftForm fields={fields}/>}
             </form>
             <DevTool control={control}/>
+            <CompFooter/>
         </>
     )
 }

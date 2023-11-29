@@ -8,31 +8,48 @@ import { CgDebug } from "react-icons/cg"
 function WebSideBar(){
 
     return (
-        <div class="flex w-60 position: fixed">
+        
+        <div class="flex w-60">
         <Sidebar>
             <Sidebar.Items>
                 <SidebarItemGroup>
-                    <Sidebar.Item icon = {MdDashboard}>
-                        <Link to ="/dashboard" relative="path"></Link>Dashboard 
-                    </Sidebar.Item>
-                    <Sidebar.Item icon = {FaUser}>
-                        <Link to = "/employees" relative="path" ></Link>Employee
-                    </Sidebar.Item>
-                    <Sidebar.Item icon = {MdEditCalendar}>
-                        <Link to = "/shifts"  relative="path"></Link>Shifts
-                    </Sidebar.Item>
-                    <Sidebar.Item icon = {BsFillBriefcaseFill}>
-                        <Link to = "/leaves" relative="path"></Link>Leaves
-                    </Sidebar.Item>
-                    <Sidebar.Item icon = {FaCalendarAlt}>
-                        <Link to = "/holidays" relative="path"></Link>Holidays
-                    </Sidebar.Item>
-                    <Sidebar.Item icon = {FaRegUserCircle}>
-                        <Link to = "/createUser" relative="path"></Link>Create User
-                    </Sidebar.Item>
-                    <Sidebar.Item icon = {CgDebug}>
-                        <Link to = "/debug" relative="path"></Link>Debugging
-                    </Sidebar.Item>
+                    <Sidebar.Collapse>
+                        <Link to ="/dashboard" relative="path">
+                            <Sidebar.Item icon = {MdDashboard}>
+                                Dashboard
+                            </Sidebar.Item>
+                        </Link>
+                        <Link to = "employeeTable" relative="path">
+                            <Sidebar.Item icon = {FaUser}>
+                                Employees
+                            </Sidebar.Item>
+                        </Link>
+                        <Link to = "shift" relative="path">
+                            <Sidebar.Item icon = {MdEditCalendar}>
+                                Shifts
+                            </Sidebar.Item>
+                        </Link>
+                        <Link to = "/leaves" relative="path">
+                            <Sidebar.Item icon = {BsFillBriefcaseFill}>
+                                Leaves
+                            </Sidebar.Item>
+                        </Link>
+                        <Link to = "/holidayTable" relative="path">
+                            <Sidebar.Item icon = {FaCalendarAlt}>
+                                Holidays
+                            </Sidebar.Item>
+                        </Link>
+                        <Link to = "/createuser" relative="path">
+                            <Sidebar.Item icon = {FaRegUserCircle}>
+                                Create User
+                            </Sidebar.Item>
+                        </Link>
+                        <Link to = "/debug" relative="path">
+                            <Sidebar.Item icon = {CgDebug}>
+                                Debugging
+                            </Sidebar.Item>
+                        </Link>
+                    </Sidebar.Collapse>
                 </SidebarItemGroup>
             </Sidebar.Items>
         </Sidebar>
