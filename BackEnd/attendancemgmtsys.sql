@@ -50,6 +50,7 @@ CREATE TABLE `address` (
 CREATE TABLE `daysession` (
   `sessionID` int(11) NOT NULL,
   `employeeID` int(11) NOT NULL,
+  `reasonID` int(11) NOT NULL,
   `timeIn` datetime DEFAULT NULL,
   `timeOut` datetime DEFAULT NULL,
   `dayStatus` enum('paid_leave','absent','present','non_work','late','inspect','excused','pending') NOT NULL DEFAULT 'pending'
@@ -88,7 +89,6 @@ CREATE TABLE `employee` (
 
 CREATE TABLE `excusereason` (
   `reasonID` int(11) NOT NULL,
-  `sessionID` int(11) NOT NULL,
   `reason` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -142,6 +142,7 @@ CREATE TABLE `logs` (
 CREATE TABLE `shift` (
   `shiftID` int(11) NOT NULL,
   `employeeID` int(11) NOT NULL,
+  `reasonID` int(11) NOT NULL,
   `timeIn` time DEFAULT NULL,
   `timeOut` time DEFAULT NULL,
   `leaveID` int(11) DEFAULT NULL,
@@ -297,6 +298,7 @@ ALTER TABLE `user`
 --
 ALTER TABLE `daysession`
   ADD CONSTRAINT `fk_session_employeeID` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`);
+  ADD CONSTRAINT `fk_session_reasonID` FOREIGN KEY (`reasonID`) REFERENCES `leaves` (`reasonID`);
 
 --
 -- Constraints for table `employee`
@@ -307,8 +309,6 @@ ALTER TABLE `employee`
 --
 -- Constraints for table `excusereason`
 --
-ALTER TABLE `excusereason`
-  ADD CONSTRAINT `fk_excuseReason_sessionID` FOREIGN KEY (`sessionID`) REFERENCES `daysession` (`sessionID`);
 
 --
 -- Constraints for table `leaves`
@@ -328,6 +328,7 @@ ALTER TABLE `logs`
 ALTER TABLE `shift`
   ADD CONSTRAINT `fk_shift_employeeID` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`),
   ADD CONSTRAINT `fk_shift_leaveID` FOREIGN KEY (`leaveID`) REFERENCES `leaves` (`leavesID`);
+  ADD CONSTRAINT `fk_shift_reasonID` FOREIGN KEY (`reasonID`) REFERENCES `leaves` (`reasonID`);
 
 --
 -- Constraints for table `user`
