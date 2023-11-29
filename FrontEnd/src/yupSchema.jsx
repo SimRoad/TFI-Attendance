@@ -56,12 +56,12 @@ export const employeeRegisterSchema = yup.object().shape({
 
 export const userSchema = yup.object().shape({
     email: yup.string().email("Not a valid email").required("Required"),
-    password: yup.string()
+    userPassword: yup.string()
         .required("Required")
         .min(4, "Password must be atleast 4 characters long")
         .max(15, "Password must not exceed 15 characters"),
-    repeatpassword: yup.string().required("Required").oneOf([yup.ref("password"), null], "Password must match"),
-    position: yup.string().required("Required").oneOf(["admin", "management", "suspended"], "Required"),
+    repeatpassword: yup.string().required("Required").oneOf([yup.ref("userPassword"), null], "Password must match"),
+    position: yup.string().required().oneOf(["admin", "management", "suspended"], "Required"),
     // employeeId: ,
 })
 
@@ -70,4 +70,10 @@ export const holidaySchema = yup.object().shape({
     holidesc: yup.string().notRequired(),
     holidate: yup.date().required("Required"),
     holitype: yup.string().required().oneOf(["special", "regular"], "Required"),
+})
+
+export const leaveSchema = yup.object().shape({
+    leaveName: yup.string().required("Required"),
+    leaveDuration: yup.string().required("Required").matches(([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9])),
+    leaveDesc: yup.string().notRequired()
 })
