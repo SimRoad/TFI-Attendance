@@ -7,9 +7,10 @@ import {useState, useEffect} from 'react'
 import {DevTool} from '@hookform/devtools'
 import client from '../axiosURL'
 import axios from 'axios'
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes as Routers } from "react-router-dom";
 import ConflictModal from "../components/ConflictModal";
 import CompFooter from "../components/headerAndFooter/Footer";
+import LogTable from "../components/LogsTable";
 
 const dashboard = ()=>{
     const fields = useForm()
@@ -37,14 +38,19 @@ const dashboard = ()=>{
         console.log(empList)
     },[empList])
     return(
-        <>
+        <>  
             <Header/>
-            <ConflictModal openModal={openModal} setOpenModal={setOpenModal} conflict={conflict}/>
+            {/* <ConflictModal openModal={openModal} setOpenModal={setOpenModal} conflict={conflict}/> */}
+            <div className="grid grid-flow-col h-auto-max">
+            <WebSideBar/>
             <EmployeeTable setEmpList={setEmpList}/>
-            <form onSubmit={handleSubmit(submission)}>
-                <Routes>
+                <Routers>
                     <Route element={<ShiftForm/>} path='*/shift'/>
-                </Routes>
+                    <Route element={<LogTable/>} path='*/logs'/>
+                </Routers>
+            </div>
+            <form onSubmit={handleSubmit(submission)}>
+                
                 {temp && <ShiftForm fields={fields}/>}
             </form>
             <DevTool control={control}/>
