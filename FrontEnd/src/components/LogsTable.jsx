@@ -7,7 +7,7 @@ function LogTable({setLogList}){
     useEffect(()=>{
         const request = async()=>{
             const response = await client.get(`logs/all`)
-            setLogList(prev=>[...prev,response.data])
+            setLogs(prev=>[...prev,response.data])
         }
         if(!logs.length) request()
     },[logs])
