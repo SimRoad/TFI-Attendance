@@ -14,15 +14,15 @@ function LeaveTable({setLeaveList}){
         if(!leaves.length) request()
     },[leaves])
     return(
-        <div>
-            <Table>
+        <div className='overflow-y-auto max-h-[40vh]'>
+            <Table className="table-auto"hoverable>
                 <Table.Head>
                     <Table.HeadCell></Table.HeadCell>
                     <Table.HeadCell>Leave Name</Table.HeadCell>
                     <Table.HeadCell>Leave Duration</Table.HeadCell>
                     <Table.HeadCell><span className='sr-only'>Edit</span></Table.HeadCell>
                 </Table.Head>
-                <Table.Body>
+                <Table.Body className="divide-y">
                     {
                         leaves.map((Leave,ndx)=>
                             <LeaveBody key={ndx} id={Leave.leaveID} name={Leave.leaveName} duration={Leave.daysLeft}/>
@@ -44,7 +44,7 @@ const LeaveBody = ({setLeaveList,id,name,duration})=>{
          })
     }
     return(
-        <Table.Row>
+        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <Table.Cell><Checkbox onChange ={()=>checkHandler()}/></Table.Cell>
             <Table.Cell className='text-black'>{name}</Table.Cell>
             <Table.Cell className='text-black'>{duration}</Table.Cell>
