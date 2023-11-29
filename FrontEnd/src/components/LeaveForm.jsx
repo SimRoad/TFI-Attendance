@@ -1,4 +1,4 @@
-import { Card, Label, TextInput } from 'flowbite-react'
+import { Button, Card, Label, TextInput, Textarea } from 'flowbite-react'
 import { useForm } from 'react-hook-form'
 import CompHeader from '../components/headerAndFooter/Header'
 import CompFooter from '../components/headerAndFooter/Footer'
@@ -18,7 +18,7 @@ const LeaveForm = ()=>{
             <div className='flex justify-center items-center'>
                 <Card className='max-w-sm'>
                     <h1>Create Leave</h1>
-                    <form className='flex max-w-md flex-col gap-4'>
+                    <form className='flex max-w-md flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
                         <div className='max-w-md'>
                             <Label htmlFor='leaves' value='Leave'/>
                             <TextInput
@@ -31,30 +31,34 @@ const LeaveForm = ()=>{
                                 />
                         </div>
                         <div className='max-w-md'>
-                            <Label htmlFor='leaves' value='Leave'/>
+                            <Label htmlFor='duration' value='Leave Duration'/>
                             <TextInput
-                                id="leave"
+                                id="Duration"
                                 type='text'
-                                placeholder='Leave Name'
-                                {...register("leaveName")}
-                                color={errors.leaveName ? 'failure' : ''}
-                                helperText={<>{errors.leaveName? errors.leaveName.message : ''}</>}
+                                placeholder='Duration'
+                                {...register("leaveDuration")}
+                                color={errors.leaveDuration ? 'failure' : ''}
+                                helperText={<>{errors.leaveDuration? errors.leaveDuration.message : ''}</>}
                                 />
                         </div>
                         <div className='max-w-md'>
-                            <Label htmlFor='leaves' value='Leave'/>
-                            <TextInput
-                                id="leave"
-                                type='text'
-                                placeholder='Leave Name'
-                                {...register("leaveName")}
-                                color={errors.leaveName ? 'failure' : ''}
-                                helperText={<>{errors.leaveName? errors.leaveName.message : ''}</>}
+                            <Label htmlFor='leaveDesc' value='Leave Description'/>
+                            <Textarea
+                                id="leaveDesc"
+                                placeholder="Description"
+                                rows={4}
+                                {...register("leaveDesc")}
+                                color={errors.leaveDesc ? 'failure' : ''}
+                                helperText={<>{errors.leaveDesc? errors.leaveDesc.message : ''}</>}
                                 />
                         </div>
+                        <Button type='submit'>Create Leave</Button>
                     </form>
                 </Card>
             </div>
+            <CompFooter/>
         </>
     )
 }
+
+export default LeaveForm

@@ -71,3 +71,9 @@ export const holidaySchema = yup.object().shape({
     holidate: yup.date().required("Required"),
     holitype: yup.string().required().oneOf(["special", "regular"], "Required"),
 })
+
+export const leaveSchema = yup.object().shape({
+    leaveName: yup.string().required("Required"),
+    leaveDuration: yup.string().required("Required").matches(([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9])),
+    leaveDesc: yup.string().notRequired()
+})
