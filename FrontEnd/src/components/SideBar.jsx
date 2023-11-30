@@ -46,7 +46,7 @@ function WebSideBar(){
                                 Create User
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "debug" relative="path">
+                        <Link to = "/dashboard/debug" relative="path">
                             <Sidebar.Item icon = {CgDebug}>
                                 Debugging
                             </Sidebar.Item>

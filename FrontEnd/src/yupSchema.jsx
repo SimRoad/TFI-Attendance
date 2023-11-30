@@ -62,7 +62,6 @@ export const userSchema = yup.object().shape({
         .max(15, "Password must not exceed 15 characters"),
     repeatpassword: yup.string().required("Required").oneOf([yup.ref("userPassword"), null], "Password must match"),
     position: yup.string().required().oneOf(["admin", "management", "suspended"], "Required"),
-    // employeeId: ,
 })
 
 export const holidaySchema = yup.object().shape({
