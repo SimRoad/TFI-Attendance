@@ -21,24 +21,21 @@ const index = ()=>{
             <Router>
                 <Routes>
                     <Route element={<PrivateRoutes/>}>
-                        <Route element={<Dashboard/>} path='/dashboard/*'/>
-
                         <Route element={<EmployeeRegisterForm/>} path='/employeeregister' />
                         <Route element={<EmployeeRegisterForm/>} path='/createemployee'/>
                         <Route element={<LeaveTable/>} path='/leaves'/>
                         <Route element={<LeaveForm/>} path='/leaveform'/>
-                        
+                        <Route element={<Dashboard/>} path='/dashboard'>
+                            <Route index element={<EmployeeTable/>} />
+                            <Route element={<EmployeeTable/>} path='/dashboard/employeeTable'/>
+                            <Route element={<HolidayTable/>} path='/dashboard/holidayTable'/>
+                            <Route element={<LeaveTable/>} path='/dashboard/leaves'/>
+                            <Route element={<ShiftForm/>} path='shift'/>
+                            <Route element={<CreateUser/>} path='/dashboard/createuser'/>
+                            <Route element={<LogTable/>} path='/dashboard/logs'/>
+                        </Route>
                     </Route>
                     <Route path='/login' element={<Login/>}></Route>
-                    <Route element={<Dashboard/>} path='/dashboard'>
-                        <Route index element={<EmployeeTable/>} />
-                        <Route element={<EmployeeTable/>} path='/dashboard/employeeTable'/>
-                        <Route element={<HolidayTable/>} path='/dashboard/holidayTable'/>
-                        <Route element={<LeaveTable/>} path='/dashboard/leaves'/>
-                        <Route element={<ShiftForm/>} path='shift'/>
-                        <Route element={<CreateUser/>} path='/dashboard/createuser'/>
-                        <Route element={<LogTable/>} path='/dashboard/logs'/>
-                    </Route>
                     {/* <Route path='/dashboard' element={<Dashboard/>}></Route>
                     <Route path='/createuser' element={<CreateUser/>}></Route>
                     <Route path='/createemployee' element={<EmployeeRegisterForm/>}></Route> */}

@@ -16,7 +16,7 @@ const EmployeeTable = ({setEmpList})=>{
     },[])
     return(
         <div className='overflow-y-auto max-h-[70vh]'>
-            <Button onClick={()=>{setOffset(a=>a+1)}}/>
+            {/* <Button onClick={()=>{setOffset(a=>a+1)}}/> */}
             <Table className='table-auto' hoverable>
                 <Table.Head>
                     <Table.HeadCell><Checkbox onChange={()=>setOffset(a=>a+1)}/></Table.HeadCell>

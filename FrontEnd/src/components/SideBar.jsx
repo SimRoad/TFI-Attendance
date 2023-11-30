@@ -55,10 +55,6 @@ function WebSideBar(){
                 </SidebarItemGroup>
             </Sidebar.Items>
         </Sidebar>
-        <Routers>
-                    <Route element={<ShiftForm/>} path='*/shift'/>
-                    <Route element={<LogTable/>} path='*/logs'/>
-                </Routers>
         </div>
     )
 }
