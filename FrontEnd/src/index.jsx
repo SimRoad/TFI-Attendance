@@ -29,12 +29,13 @@ const index = ()=>{
                         
                     </Route>
                     <Route path='/login' element={<Login/>}></Route>
-                    <Route element={<Dashboard/>} path='/dashboard/*'/>
-                    <Route element={<EmployeeTable/>} path='/employeeTable'/>
-                    <Route element={<HolidayTable/>} path='/holidayTable'/>
+                    <Route element={<Dashboard/>} path='/dashboard'>
+                        <Route index element={<EmployeeTable/>} />
+                        <Route element={<EmployeeTable/>} path='employeeTable'/>
+                        <Route element={<HolidayTable/>} path='holidayTable'/>
+                        <Route element={<LeaveTable/>} path='leaveTable'/>
+                    </Route>
                     <Route element={<CreateUser/>} path='/createuser'/>
-                    <Route element={<LeaveTable/>} path='/logtable'/>
-                    <Route element={<WebSideBar/>} path='/sidebar'/>
                     {/* <Route path='/dashboard' element={<Dashboard/>}></Route>
                     <Route path='/createuser' element={<CreateUser/>}></Route>
                     <Route path='/createemployee' element={<EmployeeRegisterForm/>}></Route> */}
