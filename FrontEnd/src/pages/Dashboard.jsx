@@ -40,7 +40,7 @@ const dashboard = ()=>{
             {/* <ConflictModal openModal={openModal} setOpenModal={setOpenModal} conflict={conflict}/> */}
             <div className="grid grid-flow-col h-auto-max">
             <WebSideBar/>
-            <Outlet/>
+            <div className="w-full"><Outlet/></div>
             </div>
             <form onSubmit={handleSubmit(submission)}>
                 {temp && <ShiftForm fields={fields} employees={empList}/>}

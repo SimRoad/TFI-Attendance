@@ -5,9 +5,9 @@ import CompFooter from "../components/headerAndFooter/Footer";
 const CreateUser = ()=>{
     return(
         <>
-            <CompHeader/>
+            
             <UserCreate/>
-            <CompFooter/>
+            
         </>
     )
 }

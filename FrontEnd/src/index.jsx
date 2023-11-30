@@ -13,6 +13,7 @@ import EmployeeTable from './components/EmployeeTable'
 import LeaveForm from './components/LeaveForm'
 import LogTable from './components/LogsTable'
 import WebSideBar from './components/SideBar'
+import ShiftForm from './components/ShiftForm'
 
 const index = ()=>{
     return(
@@ -31,11 +32,13 @@ const index = ()=>{
                     <Route path='/login' element={<Login/>}></Route>
                     <Route element={<Dashboard/>} path='/dashboard'>
                         <Route index element={<EmployeeTable/>} />
-                        <Route element={<EmployeeTable/>} path='employeeTable'/>
-                        <Route element={<HolidayTable/>} path='holidayTable'/>
-                        <Route element={<LeaveTable/>} path='leaveTable'/>
+                        <Route element={<EmployeeTable/>} path='/dashboard/employeeTable'/>
+                        <Route element={<HolidayTable/>} path='/dashboard/holidayTable'/>
+                        <Route element={<LeaveTable/>} path='/dashboard/leaves'/>
+                        <Route element={<ShiftForm/>} path='shift'/>
+                        <Route element={<CreateUser/>} path='/dashboard/createuser'/>
+                        <Route element={<LogTable/>} path='/dashboard/logs'/>
                     </Route>
-                    <Route element={<CreateUser/>} path='/createuser'/>
                     {/* <Route path='/dashboard' element={<Dashboard/>}></Route>
                     <Route path='/createuser' element={<CreateUser/>}></Route>
                     <Route path='/createemployee' element={<EmployeeRegisterForm/>}></Route> */}

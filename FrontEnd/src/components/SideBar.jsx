@@ -10,8 +10,8 @@ import LogTable from "./LogsTable";
 function WebSideBar(){
 
     return (
-        
-        <div class="flex w-60">
+        // WIP shifts not working
+        <div class="flex w-5">
         <Sidebar>
             <Sidebar.Items>
                 <SidebarItemGroup>
@@ -21,27 +21,27 @@ function WebSideBar(){
                                 Dashboard
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "employeeTable" relative="path">
+                        <Link to = "/dashboard/employeeTable" relative="path">
                             <Sidebar.Item icon = {FaUser}>
                                 Employees
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "shift" relative="path">
+                        <Link to = "shift" relative="path"> 
                             <Sidebar.Item icon = {MdEditCalendar}>
                                 Shifts
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "leaves" relative="path">
+                        <Link to = "/dashboard/leaves" relative="path">
                             <Sidebar.Item icon = {BsFillBriefcaseFill}>
                                 Leaves
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "holidayTable" relative="path">
+                        <Link to = "/dashboard/holidayTable">
                             <Sidebar.Item icon = {FaCalendarAlt}>
                                 Holidays
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "createuser" relative="path">
+                        <Link to = "/dashboard/createuser" relative="path">
                             <Sidebar.Item icon = {FaRegUserCircle}>
                                 Create User
                             </Sidebar.Item>
