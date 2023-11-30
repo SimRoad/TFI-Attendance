@@ -1,3 +1,6 @@
+import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-router-dom'
+import SessionProvider,{SessionContext} from './session/SessionProvider'
+import {useContext} from 'react'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import UserCreate from './components/UserCreate'
@@ -11,9 +14,6 @@ import LeaveForm from './components/LeaveForm'
 import LogTable from './components/LogsTable'
 import WebSideBar from './components/SideBar'
 import ShiftForm from './components/ShiftForm'
-import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-router-dom'
-import SessionProvider,{SessionContext} from './session/SessionProvider'
-import {useContext} from 'react'
 
 const index = ()=>{
     return(
@@ -36,9 +36,6 @@ const index = ()=>{
                         </Route>
                     </Route>
                     <Route path='/login' element={<Login/>}></Route>
-                    {/* <Route path='/dashboard' element={<Dashboard/>}></Route>
-                    <Route path='/createuser' element={<CreateUser/>}></Route>
-                    <Route path='/createemployee' element={<EmployeeRegisterForm/>}></Route> */}
                 </Routes>
             </Router>
         </SessionProvider>
