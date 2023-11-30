@@ -1,11 +1,8 @@
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
-import CreateUser from './pages/CreateUser'
+import UserCreate from './components/UserCreate'
 import EmployeeRegisterForm from './components/EmployeeRegister'
 import TimeRange from './components/TimeRange'
-import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-router-dom'
-import SessionProvider,{SessionContext} from './session/SessionProvider'
-import {useContext} from 'react'
 import LeaveTable from './components/LeavesTable'
 import HolidayForm from './components/HolidayForm'
 import HolidayTable from './components/HolidayTable'
@@ -14,6 +11,9 @@ import LeaveForm from './components/LeaveForm'
 import LogTable from './components/LogsTable'
 import WebSideBar from './components/SideBar'
 import ShiftForm from './components/ShiftForm'
+import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-router-dom'
+import SessionProvider,{SessionContext} from './session/SessionProvider'
+import {useContext} from 'react'
 
 const index = ()=>{
     return(
@@ -36,12 +36,9 @@ const index = ()=>{
                         <Route element={<HolidayTable/>} path='/dashboard/holidayTable'/>
                         <Route element={<LeaveTable/>} path='/dashboard/leaves'/>
                         <Route element={<ShiftForm/>} path='shift'/>
-                        <Route element={<CreateUser/>} path='/dashboard/createuser'/>
+                        <Route element={<UserCreate/>} path='/dashboard/createuser'/>
                         <Route element={<LogTable/>} path='/dashboard/logs'/>
                     </Route>
-                    {/* <Route path='/dashboard' element={<Dashboard/>}></Route>
-                    <Route path='/createuser' element={<CreateUser/>}></Route>
-                    <Route path='/createemployee' element={<EmployeeRegisterForm/>}></Route> */}
                 </Routes>
             </Router>
         </SessionProvider>
