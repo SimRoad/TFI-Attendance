@@ -24,6 +24,7 @@ export default class Shift extends GenericModel{
         try {
             const datesPH = dates.map(()=>`?`).join(',')
             const [rows] = await databaseConfig.execute(`SELECT shiftID, shiftDate, leaveID, isWork FROM shift WHERE DATE(shiftDate) IN (${datesPH}) AND employeeID IN (${datesPH})`,[...dates,...employees])
+            console.log(rows)
             return rows
         } catch (error) {
             throw(error)
@@ -31,6 +32,7 @@ export default class Shift extends GenericModel{
     }
     static async getMonthShiftSpecial(employees){
         try {
+            if(!employees.length) return []
             const employeePH = employees.map(()=>`?`).join(',')
             const temporaryExemption = `AND (isWork = FALSE OR leaveID != null)`
             const shiftQuery = `SELECT shiftDate FROM shift WHERE employeeID IN(${employeePH}) AND MONTH(shiftDate) = MONTH(NOW()) AND YEAR(shiftDate) = YEAR(NOW())`

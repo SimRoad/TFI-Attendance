@@ -3,10 +3,9 @@ import EmployeeTable from "../components/EmployeeTable";
 import ShiftForm from '../components/ShiftForm'
 import WebSideBar from "../components/SideBar";
 import { useForm } from "react-hook-form";
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import {DevTool} from '@hookform/devtools'
 import client from '../axiosURL'
-import axios from 'axios'
 import { Route, Routes as Routers } from "react-router-dom";
 import ConflictModal from "../components/ConflictModal";
 import CompFooter from "../components/headerAndFooter/Footer";
@@ -47,7 +46,7 @@ const dashboard = ()=>{
                 </Routers>
             </div>
             <form onSubmit={handleSubmit(submission)}>
-                {temp && <ShiftForm fields={fields}/>}
+                {temp && <ShiftForm fields={fields} employees={empList}/>}
             </form>
             <DevTool control={control}/>
             <CompFooter/>

@@ -13,7 +13,7 @@ const MultiDatePicker = ({onChange,value,employees,register})=>{
     const [holidays,setHolidays] = useState()
     const openCalendar = useRef()
     useEffect(()=>{
-        openCalendar.current.openCalendar()
+        // openCalendar.current.openCalendar()
         client.get('/holidays/month')
         .then(response=>setHolidays(response.data))
     },[])
@@ -28,25 +28,23 @@ const MultiDatePicker = ({onChange,value,employees,register})=>{
         <DatePicker 
             multiple
             ref={openCalendar}
-            mapDays={({date,selectedDate})=>{
+            mapDays={({date,selectedDate,isSameDate})=>{
                 const props = {}
-                let holidayDates = holidays?.map(a=>(new DateObject(new Date(a.holidayDate))).format())
-                let shiftDates = shifts?.map(a=>(new DateObject(new Date(a.shiftDate))).format())
-                let selected = selectedDate.map(a=>a.format())
-                // console.log(selected)
-                // console.log(shiftDates)
-                // console.log(shiftDates.some(date1 => selected.includes(date1)))
-                // if(shiftDates.some(date1 => selected.includes(date1))){
-                //     props.style = { backgroundColor: "#FF0000"}
-                //     console.log(`bg`)
-                // }
-                //Problematic when it comes to identifying the specific day
-                if(shiftDates?.includes(date.format())){
-                    props.style = { backgroundColor: "#FFA500"}
+                let holidayDates = holidays?.map(a=>new DateObject(new Date(a.holidayDate)))
+                let shiftDates = shifts?.map(a=>new DateObject(new Date(a.shiftDate)))
+                let conflict = shiftDates?.filter(a=>selectedDate.some(b=> isSameDate(a,b)))
+                if(conflict.length && conflict.some(a=>isSameDate(a,date))){
+                    props.className = "highlight highlight-red"
+                    props.title = "Conflicting Shift"
                 }
-                else if (holidayDates?.includes(date.format())){
+                else if(shiftDates?.some(a=> isSameDate(a,date))){
+                    props.style = { backgroundColor: "#FFA500"}
+                    props.title = "Existing Shift"
+                }
+                if (holidayDates?.some(a=> isSameDate(a,date))){
                     props.disabled = true
-                    props.style = { color: "#ccc", backgroundColor: "#FFBF00" }
+                    props.style = { color: "#ccc", backgroundColor: "#800080" }
+                    props.title = "Holiday"
                 }
                 return props
               }}
