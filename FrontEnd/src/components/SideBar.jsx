@@ -11,7 +11,7 @@ function WebSideBar(){
 
     return (
         // WIP shifts not working
-        <div class="flex w-5">
+        <div className="flex w-5">
         <Sidebar>
             <Sidebar.Items>
                 <SidebarItemGroup>

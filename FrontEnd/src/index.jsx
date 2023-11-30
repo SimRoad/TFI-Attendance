@@ -14,6 +14,7 @@ import LeaveForm from './components/LeaveForm'
 import LogTable from './components/LogsTable'
 import WebSideBar from './components/SideBar'
 import ShiftForm from './components/ShiftForm'
+import TimeInOut from './components/TimeInOut'
 
 const index = ()=>{
     return(
@@ -31,8 +32,9 @@ const index = ()=>{
                             <Route element={<HolidayTable/>} path='/dashboard/holidayTable'/>
                             <Route element={<LeaveTable/>} path='/dashboard/leaves'/>
                             <Route element={<ShiftForm/>} path='shift'/>
-                            <Route element={<CreateUser/>} path='/dashboard/createuser'/>
+                            <Route element={<UserCreate/>} path='/dashboard/createuser'/>
                             <Route element={<LogTable/>} path='/dashboard/logs'/>
+                            <Route element={<TimeInOut/>} path='/dashboard/debug'/>
                         </Route>
                     </Route>
                     <Route path='/login' element={<Login/>}></Route>
