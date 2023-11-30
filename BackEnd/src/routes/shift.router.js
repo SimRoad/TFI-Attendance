@@ -7,6 +7,7 @@ shiftRouter.get('/all',ShiftController.findAll)
 shiftRouter.get('/fields',ShiftController.getFieldNames)
 shiftRouter.get('/:id',ShiftController.findByID)
 shiftRouter.post('/',ShiftController.create)
+shiftRouter.post('/conflict',ShiftController.getMonthDates)
 shiftRouter.patch('/update',ShiftController.update)
 
 export default shiftRouter

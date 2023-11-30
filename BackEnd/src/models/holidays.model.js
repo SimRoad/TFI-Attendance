@@ -28,4 +28,12 @@ export default class Holidays extends GenericModel{
             throw (error)
         }
     }
+    static async getMonthHolidayDate(){
+        try {
+            const [rows] = await databaseConfig.execute(`SELECT holidayName, holidayDate FROM holidays WHERE MONTH(holidayDate) = MONTH(NOW()) AND YEAR(holidayDate) = YEAR(NOW())`)
+            return rows
+        } catch (error) {
+            throw(error)
+        }
+    }
 }

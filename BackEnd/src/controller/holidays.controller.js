@@ -34,4 +34,12 @@ export default class HolidaysController{
     static async showFilteredHolidays(req,res,next){
          
     }
+
+    static async getMonthDates(req,res,next){
+        try {
+             res.send(await Holidays.getMonthHolidayDate())
+        } catch (error) {
+            next(error)
+        }
+    }
 }
