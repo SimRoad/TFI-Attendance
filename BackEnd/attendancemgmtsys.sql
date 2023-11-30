@@ -147,7 +147,7 @@ CREATE TABLE `shift` (
   `timeOut` time DEFAULT NULL,
   `leaveID` int(11) DEFAULT NULL,
   `shiftDate` date NOT NULL,
-  `isWork` enum('True','False') NOT NULL
+  `isWork` enum('True','False') DEFAULT 'True' NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -349,3 +349,8 @@ INSERT INTO `employee` (firstName,middleName,lastName,gender,civilStatus,address
 ('Joselito','Loser','Yap','Male','Single','1','2003-11-28','Janitor','01234567890','joselito@gmail.com','1_Employee.png'),
 ('Lance','Big','Ramoose','Male','Legally Separated','2','2003-09-06','Janitor','01234567891','lance@gmail.com','2_Employee.png'),
 ('Simon','Something','Montana','Male','Widowed','3','2003-9-28','Janitor','01234567892','simon@gmail.com','3_Employee.png');
+INSERT INTO `holidays` (holidayName,holidayDate,holidayType) VALUES
+('Bonifacio Day','2023-11-27','Regular'),
+("All Saints' Day",'2023-11-1','Regular');
+INSERT INTO `shift` (employeeID, shiftDate) VALUES
+(1,'2023-11-16')
