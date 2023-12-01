@@ -24,9 +24,7 @@ export default class Shift extends GenericModel{
         try {
             //NOT YET COMPATIBLE WITH LEAVES AND NO WORK
             shifts.forEach(shift=>{
-                shift[1] = shift[1] ?? null
-                shift[2] = shift[2] ?? null
-                shift[3] = shift[3] ?? null
+                shift.forEach(prop=>prop = prop ?? null)
             })
             const placeholder = shifts.map(a=>'(?,?,?,?)')
             const [rows] = await databaseConfig.execute(`INSERT INTO shift(shiftDate,timeIn,timeOut,employeeID) VALUES${placeholder}`,shifts.flat())
@@ -38,8 +36,8 @@ export default class Shift extends GenericModel{
     static async getShiftConflict(dates,employees){
         try {
             const datesPH = dates.map(()=>`?`).join(',')
-            const [rows] = await databaseConfig.execute(`SELECT shiftID, shiftDate, leaveID, isWork FROM shift WHERE DATE(shiftDate) IN (${datesPH}) AND employeeID IN (${datesPH})`,[...dates,...employees])
-            (rows)
+            const employeesPH = employees.map(()=>`?`).join(',')
+            const [rows] = await databaseConfig.execute(`SELECT shiftID, shiftDate, leaveID, isWork FROM shift WHERE DATE(shiftDate) IN (${datesPH}) AND employeeID IN (${employeesPH})`,[...dates,...employees])
             return rows
         } catch (error) {
             throw(error)
