@@ -1,4 +1,4 @@
-import DaySession from '../models/daysession.model.js'
+import DaySession from '../models/daySession.model.js'
 import Employee from '../models/employee.model.js'
 
 export default class DaySessionController{
@@ -14,9 +14,15 @@ export default class DaySessionController{
     }
     static async create(req,res,next){
         try {
-            if((await Employee.findByID(req.body.daysession.employeeID)).length){
+            if((await Employee.getID(req.body.daysession.employeeID)).length){
                 const newDaySession = new DaySession(req.body.daysession)
-                res.send(await newDaySession.create().catch(err=>next(err)))
+                let response
+                if(newDaySession.timeIn){
+                    response = await newDaySession.setTimeIn()
+                }else if(newDaySession.timeOut){
+                    response = await newDaySession.setTimeOut()
+                }
+                res.send(response)
             }else throw Error(`Employee ID does not exist`)
         } catch (error) {
             next(error)

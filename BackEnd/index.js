@@ -24,7 +24,7 @@ app.use(cookieSession({
     name: 'sesssion',
     keys: ['7478c724-da6e-4a61-9cc1-1adb2edd983a','c84e8598-73a7-492a-9254-3800fb73d1e2'],
     domain: 'localhost:5173',
-    
+    maxAge: 20 * 60 * 1000
 }))
 
 app.use('/employee',employeeRouter)
