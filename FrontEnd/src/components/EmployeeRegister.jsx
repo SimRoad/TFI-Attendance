@@ -16,7 +16,7 @@ const EmployeeRegisterForm = ()=>{
     const submit = result=>{
         let data = result
         data.profileImage = data.profileImage[0]
-        console.log(data)
+        (data)
         client.post('/employee/create',data,{
             headers: {
                 'Content-Type': 'multipart/form-data'

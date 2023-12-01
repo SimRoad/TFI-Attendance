@@ -16,6 +16,9 @@ export default class ShiftController{
             let response = await Shift.getShiftConflict(req.body.dates,req.body.employees)
             if(!response.length){
                 response = Shift.formatToShiftArr(req.body)
+                if(response.length !== 1){
+                    response = await Shift.bulkCreate(response)
+                }
             }
             res.send(response)
         } catch (error) {
@@ -32,7 +35,7 @@ export default class ShiftController{
     }
     static async getMonthDates(req,res,next){
         try {
-            console.log(`Shift Controller running`)
+            (`Shift Controller running`)
             res.send(await Shift.getMonthShiftSpecial(req.body))
         } catch (error) {
             next(error)

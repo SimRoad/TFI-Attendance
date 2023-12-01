@@ -3,12 +3,13 @@ import { FaUserEdit } from "react-icons/fa";
 import { useState, useEffect } from 'react'
 import client from '../axiosURL'
 
-const EmployeeTable = ({setEmpList})=>{
+const EmployeeTable = ({setter,columns,data})=>{
+    columns = columns ?? ['Placeholder']
     const [employees,setEmployees] = useState([])
     const [offset,setOffset] = useState(0)
     useEffect(()=>{
         const request = async () => {
-            console.log(offset)
+            (offset)
             const response = await client.get(`employee/all?offset=${offset}`)
             setEmployees(prev=>[...prev, ...response.data]);
         }
@@ -21,18 +22,17 @@ const EmployeeTable = ({setEmpList})=>{
                 <Table.Head>
                     <Table.HeadCell><Checkbox onChange={()=>setOffset(a=>a+1)}/></Table.HeadCell>
                     <Table.HeadCell>Name</Table.HeadCell>
-                    <Table.HeadCell>Total Hours</Table.HeadCell>
-                    <Table.HeadCell>Overtime</Table.HeadCell>
-                    <Table.HeadCell>Shift</Table.HeadCell>
-                    <Table.HeadCell>Errors</Table.HeadCell>
-                    <Table.HeadCell>
-                        <span className="sr-only">Edit</span>
-                    </Table.HeadCell>
+                    
+                    {
+                        columns.map((col,ndx)=>{
+                            return <Table.HeadCell key={ndx}>{col}</Table.HeadCell>
+                        })
+                    }
                 </Table.Head>
                 <Table.Body className='divide-y'>
                     {
                         employees.map((emp,ndx)=>
-                            <TableRow key={ndx} id={emp.employeeID} name={emp.fullName} setEmpList={setEmpList}/>
+                            <TableRow key={ndx} id={emp.employeeID} name={emp.fullName} setEmpList={setter}/>
                         )
                     }
                 </Table.Body>
@@ -55,9 +55,6 @@ const TableRow = ({setEmpList,id,name})=>{
             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                 {name}
             </Table.Cell>
-            <Table.Cell>WIP</Table.Cell>
-            <Table.Cell>WIP</Table.Cell>
-            <Table.Cell>WIP</Table.Cell>
             <Table.Cell>WIP</Table.Cell>
             <Table.Cell>
                 <Button className='border-2 border-accent/50'>

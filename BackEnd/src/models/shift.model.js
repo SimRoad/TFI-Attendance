@@ -20,11 +20,26 @@ export default class Shift extends GenericModel{
             })
         }).flat()
     }
+    static async bulkCreate(shifts){
+        try {
+            //NOT YET COMPATIBLE WITH LEAVES AND NO WORK
+            shifts.forEach(shift=>{
+                shift[1] = shift[1] ?? null
+                shift[2] = shift[2] ?? null
+                shift[3] = shift[3] ?? null
+            })
+            const placeholder = shifts.map(a=>'(?,?,?,?)')
+            const [rows] = await databaseConfig.execute(`INSERT INTO shift(shiftDate,timeIn,timeOut,employeeID) VALUES${placeholder}`,shifts.flat())
+            return rows
+        } catch (error) {
+            throw(error)
+        }
+    }
     static async getShiftConflict(dates,employees){
         try {
             const datesPH = dates.map(()=>`?`).join(',')
             const [rows] = await databaseConfig.execute(`SELECT shiftID, shiftDate, leaveID, isWork FROM shift WHERE DATE(shiftDate) IN (${datesPH}) AND employeeID IN (${datesPH})`,[...dates,...employees])
-            console.log(rows)
+            (rows)
             return rows
         } catch (error) {
             throw(error)
@@ -37,7 +52,6 @@ export default class Shift extends GenericModel{
             const temporaryExemption = `AND (isWork = FALSE OR leaveID != null)`
             const shiftQuery = `SELECT shiftDate FROM shift WHERE employeeID IN(${employeePH}) AND MONTH(shiftDate) = MONTH(NOW()) AND YEAR(shiftDate) = YEAR(NOW())`
             const [rows] = await databaseConfig.execute(shiftQuery,employees)
-            console.log(rows)
             return rows
         } catch (error) {
             throw(error)
