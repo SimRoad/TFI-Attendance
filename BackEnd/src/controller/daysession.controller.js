@@ -19,7 +19,7 @@ export default class DaySessionController{
                 let response
                 if(newDaySession.timeIn){
                     response = await newDaySession.setTimeIn()
-                }else if(newDaySession.timeOut){
+                }else{
                     response = await newDaySession.setTimeOut()
                 }
                 res.send(response)

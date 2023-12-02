@@ -23,7 +23,4 @@ export default class User extends GenericModel{
     async comparePassword(hashedPass){
         return await bcrypt.compare(this.userPassword,hashedPass)
     }
-    async cookies(){
-
-    }
 }

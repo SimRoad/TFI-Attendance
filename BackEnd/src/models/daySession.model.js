@@ -17,12 +17,17 @@ export default class DaySession extends GenericModel{
             const fields = Object.keys(this).filter(key=>this[key]).slice(1)
             const values = Object.values(this).filter(prop=>prop).slice(1)
             const valuesPH = values.map(a=>`?`).join(',')
+            let response
             const temp = await databaseConfig.getConnection()
-            console.log(`INSERT INTO daySession (${fields}) VALUES(${values})`)
             temp.beginTransaction()
-            const response = await temp.execute(`INSERT INTO daySession (${fields}) VALUES(${valuesPH})`,values)
-            temp.rollback()
-            temp.release()
+            const [rows] = await temp.execute(`SELECT shiftID FROM shift WHERE employeeID = ? AND shiftDate = NOW()`,[this.employeeID])
+            if(rows.length){
+                response = await temp.execute(`INSERT INTO daySession (${fields}) VALUES(${valuesPH})`,values)
+                temp.rollback()
+                temp.release()
+            }else{
+                response = "There is no shift for this employee today"
+            }
             return response
         } catch (error) {
             throw(error)
@@ -30,13 +35,19 @@ export default class DaySession extends GenericModel{
     }
     async setTimeOut(){
         try {
-            timeOutDate = this.timeOut ?? new Date()
+            const timeOutDate = this.timeOut ?? new Date()
+            let response
             const temp = await databaseConfig.getConnection()
             temp.beginTransaction()
-            const response = await temp.execute('UPDATE daySession SET timeOut = ?, dayStatus = ? WHERE employeeID = ? AND DATE(timeIn) = NOW() AND timeOut = null',[timeOut,this.dayStatus,this.employeeID])
-            console.log(response)
-            temp.rollback()
-            temp.release()
+            const [rows] = await temp.execute(`SELECT shiftID FROM shift WHERE employeeID = ? AND shiftDate = NOW() AND timeIN != null AND timeOut = null`,[this.employeeID])
+            if(rows.length){
+                response = await temp.execute('UPDATE daySession SET timeOut = ?, dayStatus = ? WHERE employeeID = ? AND DATE(timeIn) = NOW() AND timeOut = null',[timeOut,this.dayStatus,this.employeeID])
+                console.log(response)
+                temp.rollback()
+                temp.release()
+            }else{
+                response = "No time in found for today"
+            }
             return response
         } catch (error) {
             throw(error)

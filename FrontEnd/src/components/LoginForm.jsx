@@ -3,7 +3,6 @@
 import { useState,useContext } from "react";
 import { TextInput, Label, Button, Alert } from "flowbite-react";
 import { useForm } from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {loginSchema} from '../yupSchema'
 import client from '../axiosURL'
@@ -71,7 +70,6 @@ const loginForm = ()=>{
           </div>
           <Button type="submit" className="text-text border-b-2 border-accent/20 rounded-md bg-primary">Submit</Button>
         </form>
-        <DevTool control = {control}/>
       </div>
       </>
     )
