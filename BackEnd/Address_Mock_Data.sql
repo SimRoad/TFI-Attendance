@@ -1,50 +1,50 @@
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Dimasalang Street', 'Kamputhaw', 'Mandaue', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('M. J. Cuenco Avenue', 'Duljo Fatima', 'Bantayan', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Dimasalang Street', 'Guadalupe', 'Carcar City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Noli Me Tangere Street', 'Pit-os', 'Bantayan', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Noli Me Tangere Street', 'Guadalupe', 'Cebu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('S. D. Tecson Street', 'Luz', 'Toledo City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('M. J. Cuenco Avenue', 'Pit-os', 'Carcar City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('S. D. Tecson Street', 'Adlaon', 'Cebu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('P. Del Rosario Street', 'Duljo Fatima', 'Cebu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('A. Soriano Jr Avenue', 'Luz', 'Mandaue', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('P. Del Rosario Street', 'Guadalupe', 'Lapu-Lapu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('S. D. Tecson Street', 'Luz', 'Lapu-Lapu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('M. J. Cuenco Avenue', 'Pit-os', 'Mandaue', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Dimasalang Street', 'Luz', 'Carcar City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('P. Del Rosario Street', 'Pit-os', 'Mandaue', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Noli Me Tangere Street', 'Kamputhaw', 'Mandaue', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('P. Del Rosario Street', 'Pit-os', 'Lapu-Lapu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('S. D. Tecson Street', 'Luz', 'Toledo City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('A. Soriano Jr Avenue', 'Duljo Fatima', 'Lapu-Lapu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('A. Soriano Jr Avenue', 'Busay', 'Cebu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('P. Del Rosario Street', 'Busay', 'Toledo City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('P. Del Rosario Street', 'Guadalupe', 'Bantayan', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('S. D. Tecson Street', 'Pit-os', 'Toledo City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('P. Del Rosario Street', 'Pit-os', 'Cebu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('S. D. Tecson Street', 'Busay', 'Carcar City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('A. Soriano Jr Avenue', 'Busay', 'Toledo City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('S. D. Tecson Street', 'Guadalupe', 'Mandaue', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Dimasalang Street', 'Kamputhaw', 'Toledo City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Noli Me Tangere Street', 'Busay', 'Toledo City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('M. J. Cuenco Avenue', 'Adlaon', 'Toledo City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Dimasalang Street', 'Pit-os', 'Toledo City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('P. Del Rosario Street', 'Kamputhaw', 'Lapu-Lapu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Dimasalang Street', 'Kamputhaw', 'Cebu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('S. D. Tecson Street', 'Kamputhaw', 'Cebu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Dimasalang Street', 'Adlaon', 'Mandaue', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('A. Soriano Jr Avenue', 'Kamputhaw', 'Bantayan', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Dimasalang Street', 'Adlaon', 'Mandaue', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('P. Del Rosario Street', 'Guadalupe', 'Mandaue', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('A. Soriano Jr Avenue', 'Guadalupe', 'Carcar City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('P. Del Rosario Street', 'Pit-os', 'Mandaue', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('S. D. Tecson Street', 'Adlaon', 'Toledo City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('M. J. Cuenco Avenue', 'Guadalupe', 'Cebu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('P. Del Rosario Street', 'Duljo Fatima', 'Lapu-Lapu City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('M. J. Cuenco Avenue', 'Guadalupe', 'Toledo City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Noli Me Tangere Street', 'Adlaon', 'Carcar City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('P. Del Rosario Street', 'Kamputhaw', 'Carcar City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Noli Me Tangere Street', 'Duljo Fatima', 'Bantayan', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Dimasalang Street', 'Guadalupe', 'Carcar City', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('A. Soriano Jr Avenue', 'Duljo Fatima', 'Bantayan', 'Cebu');
-insert into Address_Mock_Data (street, barangay, city_municipality, province) values ('Dimasalang Street', 'Kamputhaw', 'Mandaue', 'Cebu');
+ ('Dimasalang Street', 'Kamputhaw', 'Mandaue', 'Cebu'),
+ ('M. J. Cuenco Avenue', 'Duljo Fatima', 'Bantayan', 'Cebu'),
+ ('Dimasalang Street', 'Guadalupe', 'Carcar City', 'Cebu'),
+ ('Noli Me Tangere Street', 'Pit-os', 'Bantayan', 'Cebu'),
+ ('Noli Me Tangere Street', 'Guadalupe', 'Cebu City', 'Cebu'),
+ ('S. D. Tecson Street', 'Luz', 'Toledo City', 'Cebu'),
+ ('M. J. Cuenco Avenue', 'Pit-os', 'Carcar City', 'Cebu'),
+ ('S. D. Tecson Street', 'Adlaon', 'Cebu City', 'Cebu'),
+ ('P. Del Rosario Street', 'Duljo Fatima', 'Cebu City', 'Cebu'),
+ ('A. Soriano Jr Avenue', 'Luz', 'Mandaue', 'Cebu'),
+ ('P. Del Rosario Street', 'Guadalupe', 'Lapu-Lapu City', 'Cebu'),
+ ('S. D. Tecson Street', 'Luz', 'Lapu-Lapu City', 'Cebu'),
+ ('M. J. Cuenco Avenue', 'Pit-os', 'Mandaue', 'Cebu'),
+ ('Dimasalang Street', 'Luz', 'Carcar City', 'Cebu'),
+ ('P. Del Rosario Street', 'Pit-os', 'Mandaue', 'Cebu'),
+ ('Noli Me Tangere Street', 'Kamputhaw', 'Mandaue', 'Cebu'),
+ ('P. Del Rosario Street', 'Pit-os', 'Lapu-Lapu City', 'Cebu'),
+ ('S. D. Tecson Street', 'Luz', 'Toledo City', 'Cebu'),
+ ('A. Soriano Jr Avenue', 'Duljo Fatima', 'Lapu-Lapu City', 'Cebu'),
+ ('A. Soriano Jr Avenue', 'Busay', 'Cebu City', 'Cebu'),
+ ('P. Del Rosario Street', 'Busay', 'Toledo City', 'Cebu'),
+ ('P. Del Rosario Street', 'Guadalupe', 'Bantayan', 'Cebu'),
+ ('S. D. Tecson Street', 'Pit-os', 'Toledo City', 'Cebu'),
+ ('P. Del Rosario Street', 'Pit-os', 'Cebu City', 'Cebu'),
+ ('S. D. Tecson Street', 'Busay', 'Carcar City', 'Cebu'),
+ ('A. Soriano Jr Avenue', 'Busay', 'Toledo City', 'Cebu'),
+ ('S. D. Tecson Street', 'Guadalupe', 'Mandaue', 'Cebu'),
+ ('Dimasalang Street', 'Kamputhaw', 'Toledo City', 'Cebu'),
+ ('Noli Me Tangere Street', 'Busay', 'Toledo City', 'Cebu'),
+ ('M. J. Cuenco Avenue', 'Adlaon', 'Toledo City', 'Cebu'),
+ ('Dimasalang Street', 'Pit-os', 'Toledo City', 'Cebu'),
+ ('P. Del Rosario Street', 'Kamputhaw', 'Lapu-Lapu City', 'Cebu'),
+ ('Dimasalang Street', 'Kamputhaw', 'Cebu City', 'Cebu'),
+ ('S. D. Tecson Street', 'Kamputhaw', 'Cebu City', 'Cebu'),
+ ('Dimasalang Street', 'Adlaon', 'Mandaue', 'Cebu'),
+ ('A. Soriano Jr Avenue', 'Kamputhaw', 'Bantayan', 'Cebu'),
+ ('Dimasalang Street', 'Adlaon', 'Mandaue', 'Cebu'),
+ ('P. Del Rosario Street', 'Guadalupe', 'Mandaue', 'Cebu'),
+ ('A. Soriano Jr Avenue', 'Guadalupe', 'Carcar City', 'Cebu'),
+ ('P. Del Rosario Street', 'Pit-os', 'Mandaue', 'Cebu'),
+ ('S. D. Tecson Street', 'Adlaon', 'Toledo City', 'Cebu'),
+ ('M. J. Cuenco Avenue', 'Guadalupe', 'Cebu City', 'Cebu'),
+ ('P. Del Rosario Street', 'Duljo Fatima', 'Lapu-Lapu City', 'Cebu'),
+ ('M. J. Cuenco Avenue', 'Guadalupe', 'Toledo City', 'Cebu'),
+ ('Noli Me Tangere Street', 'Adlaon', 'Carcar City', 'Cebu'),
+ ('P. Del Rosario Street', 'Kamputhaw', 'Carcar City', 'Cebu'),
+ ('Noli Me Tangere Street', 'Duljo Fatima', 'Bantayan', 'Cebu'),
+ ('Dimasalang Street', 'Guadalupe', 'Carcar City', 'Cebu'),
+ ('A. Soriano Jr Avenue', 'Duljo Fatima', 'Bantayan', 'Cebu'),
+ ('Dimasalang Street', 'Kamputhaw', 'Mandaue', 'Cebu'),
