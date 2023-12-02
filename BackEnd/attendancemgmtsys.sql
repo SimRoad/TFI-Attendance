@@ -451,6 +451,13 @@ INSERT INTO `employee` (firstName,middleName,lastName,gender,civilStatus,address
 ('Elia', 'V', 'Nowak', 'Male', 'Widow', '53', '1978-02-06', 'Driver', 'Working Employee', '1436292952', 'enowak1d@feedburner.com','53_Employee.png');
 INSERT INTO `holidays` (holidayName,holidayDate,holidayType) VALUES
 ('Bonifacio Day','2023-11-27','Regular'),
-("All Saints' Day",'2023-11-1','Regular');
+("All Saints' Day",'2023-11-1','Regular'),
+("All Souls' Day", '2023-11-2','Regular'),
+("New Years Day", '2024-1-1','Regular'),
+("Labor Day", '2024-5-1', 'Regular'),
+("Independence Day", '2024-6-12', 'Regular'),
+("Rizal Day",'2023-12-30','Regular'),
+("Christmas Day",'2023-12-25','Regular') 
+;
 INSERT INTO `shift` (employeeID, shiftDate) VALUES
 (1,'2023-11-16')
