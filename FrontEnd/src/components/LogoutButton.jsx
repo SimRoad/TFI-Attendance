@@ -1,12 +1,14 @@
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
-import {useContext} from 'react'
-import { SessionContext } from "../session/SessionProvider";
+import client from '../axiosURL'
 
 const LogoutButton = ()=>{
-    const {removeCookies} = useContext(SessionContext)
+    const logout = ()=>{
+        client.get('user/logout')
+        .then(console.log)
+    }
     return(
-        <Link to='/login' onClick={()=>{removeCookies('session')}}>
+        <Link to='/login' onClick={()=>logout()}>
             <Button color="Red">Log Out</Button>
         </Link>
     )

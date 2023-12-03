@@ -20,8 +20,15 @@ export default class DaySession extends GenericModel{
             let response
             const temp = await databaseConfig.getConnection()
             temp.beginTransaction()
-            const [rows] = await temp.execute(`SELECT shiftID FROM shift WHERE employeeID = ? AND shiftDate = NOW()`,[this.employeeID])
-            if(rows.length){
+            const existQuery = `
+                SELECT CASE 
+                WHEN EXISTS(SELECT 1 FROM shift WHERE employeeID = ? AND shiftDate = CURDATE())
+                AND NOT EXISTS(SELECT 1 FROM daysession WHERE DATE(timeIn) = CURDATE() AND employeeID = ? AND timeOut is NULL)
+                THEN 'Proceed'
+                ELSE 'Halt'
+                END AS Exist
+            `
+            if(await temp.execute(existQuery,[this.employeeID]) === 'Proceed'){
                 response = await temp.execute(`INSERT INTO daySession (${fields}) VALUES(${valuesPH})`,values)
                 temp.rollback()
                 temp.release()
@@ -41,7 +48,7 @@ export default class DaySession extends GenericModel{
             temp.beginTransaction()
             const [rows] = await temp.execute(`SELECT shiftID FROM shift WHERE employeeID = ? AND shiftDate = NOW() AND timeIN != null AND timeOut = null`,[this.employeeID])
             if(rows.length){
-                response = await temp.execute('UPDATE daySession SET timeOut = ?, dayStatus = ? WHERE employeeID = ? AND DATE(timeIn) = NOW() AND timeOut = null',[timeOut,this.dayStatus,this.employeeID])
+                response = await temp.execute('UPDATE daySession SET timeOut = ?, dayStatus = ? WHERE employeeID = ? AND DATE(timeIn) = NOW() AND timeOut = null',[timeOutDate,this.dayStatus,this.employeeID])
                 console.log(response)
                 temp.rollback()
                 temp.release()

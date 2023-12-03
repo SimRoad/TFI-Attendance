@@ -1,10 +1,38 @@
-import {Button} from 'flowbite-react'
+import {Button, Dropdown, Select} from 'flowbite-react'
 import MultiDatePicker from './MultiSelectDate'
 import {Controller} from 'react-hook-form'
-
+import { ImBlocked } from "react-icons/im"
+import {useState,useEffect} from 'react'
+import client from '../axiosURL'
 
 const ShiftForm = ({fields,employees})=>{
     const {register, control, formState:{errors}} = fields
+    const [category,setCategory] = useState('')
+    const [leaves,setLeaves] = useState({})
+
+    const switchCategory = selected =>{
+        switch (selected) {
+            case 'Non-Work':
+                setCategory(category !== selected ? selected : null)
+                console.log(category)
+                break;
+            case 'Leave':
+                setCategory(category !== selected ? selected : null)
+                break;
+            default:
+                setCategory(null)
+                break;
+        }
+    }
+
+    useEffect(()=>{
+        client.get('leaves/all')
+        .then(response=>{
+            setLeaves(response.data)
+            console.log(response.data)
+        })
+    },[])
+
     return(
         <>
             <Controller
@@ -15,6 +43,15 @@ const ShiftForm = ({fields,employees})=>{
                     formState: {errors}
                 })=>(
                     <>
+                    <Button.Group>
+                        <Button onClick={()=>switchCategory('Non-Work')} color={category === 'Non-Work' ? 'blue' : 'dark'}><ImBlocked />Non-Work</Button>
+                        <Button onClick={()=>switchCategory('Leave')} color={category === 'Leave' ? 'blue' : 'dark'}><ImBlocked />Leave</Button>
+                    </Button.Group>
+                    <Select>
+                        {/* {leaves.map(leave=>{
+                            
+                        })} */}
+                    </Select>
                     <MultiDatePicker employees={employees} value={value} onChange={onChange} register={register}/>
                     {errors && errors[name] && errors[name].type === "required" && (
                         <span>your error message !</span>

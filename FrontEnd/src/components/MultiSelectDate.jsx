@@ -56,8 +56,7 @@ const MultiDatePicker = ({onChange,value,employees,register})=>{
                 <DatePanel
                 markFocused
                 removeButton={false}
-                />,
-                Weekends()
+                />
             ]}
             render={<Icon/>}
         >

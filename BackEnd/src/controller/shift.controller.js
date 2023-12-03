@@ -16,9 +16,7 @@ export default class ShiftController{
             let response = await Shift.getShiftConflict(req.body.dates,req.body.employees)
             if(!response.length){
                 response = Shift.formatToShiftArr(req.body)
-                if(response.length !== 1){
-                    response = await Shift.bulkCreate(response)
-                }
+                response = await Shift.bulkCreate(response)
             }
             res.send(response)
         } catch (error) {

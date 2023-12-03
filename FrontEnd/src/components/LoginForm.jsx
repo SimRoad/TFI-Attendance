@@ -6,19 +6,16 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {loginSchema} from '../yupSchema'
 import client from '../axiosURL'
-import {SessionContext} from "../session/SessionProvider";
 import {useNavigate} from 'react-router-dom'
 
 const loginForm = ()=>{
   const [alertModal,setAlertModal] = useState(false)
   const {handleSubmit, register, control, formState:{errors}} = useForm({resolver: yupResolver(loginSchema)})
-  const {setCookies} = useContext(SessionContext)
   const navigate = useNavigate()
   const request = async user=>{
     client.post('/user/login',user,{withCredentials:true})
     .then(response=>{
-      if(response.data.authentication){
-        setCookies('session', response.data.userID)
+      if(response.status === 200){
         navigate('/dashboard')
       } 
       else setAlertModal(true)

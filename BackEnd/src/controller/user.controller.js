@@ -54,4 +54,19 @@ export default class UserController{
             next(error)
         }
     }
+    static authorize(req,res,next){
+        try {
+            res.send(req.session?.userID ? {valid : true} : {valid : false})
+        } catch (error) {
+            next(error)
+        }
+    }
+    static logout(req,res,next){
+        try {
+            req.session = null
+            res.send({message: "Log Out Complete"})
+        } catch (error) {
+            next(error)
+        }
+    }
 }

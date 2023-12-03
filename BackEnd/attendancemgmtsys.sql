@@ -101,9 +101,7 @@ CREATE TABLE `excusereason` (
 CREATE TABLE `holidays` (
   `holidaysID` int(11) NOT NULL,
   `holidayName` varchar(32) NOT NULL,
-  `holidayDesc` varchar(100) DEFAULT NULL,
-  `holidayDate` date NOT NULL,
-  `holidayType` enum('Special','Regular') NOT NULL
+  `holidayDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -115,7 +113,6 @@ CREATE TABLE `holidays` (
 CREATE TABLE `leaves` (
   `leavesID` int(11) NOT NULL,
   `leaveName` varchar(32) NOT NULL,
-  `leaveDesc` varchar(100) DEFAULT NULL,
   `daysLeft` tinyint(4) NOT NULL,
   `employeeID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

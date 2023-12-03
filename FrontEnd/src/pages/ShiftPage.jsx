@@ -19,6 +19,8 @@ const ShiftPage = ()=>{
             if(response.data[0].shiftID){
                 setConflict(response.data)
                 setOpenModal(true)
+            }else{
+                console.log('Shift may be saved?')
             }
         })
         .catch(error=>{

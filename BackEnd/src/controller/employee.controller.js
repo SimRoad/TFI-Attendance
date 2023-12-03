@@ -1,5 +1,6 @@
 import Address from '../models/address.model.js';
 import Employee from "../models/employee.model.js";
+import Leaves from '../models/leaves.model.js';
 import databaseConfig from '../../database.config.js';
 import { generateImageName } from '../middleware/imgReceive.js';
 
@@ -29,7 +30,9 @@ export default class EmployeeController{
             newEmployee.imageDir = await generateImageName(req.file)
             await newAddress.create(conn)
             .then(({insertId})=>newEmployee.addressID = insertId)
-            .then(async()=>await newEmployee.create(conn))
+            .then(async()=>await newEmployee.create(conn)
+                .then(({insertId})=> Leaves.createDefault(insertId,conn))
+            )
             res.send(await conn.commit())
         } catch (error) {
             if(conn) conn.rollback()
