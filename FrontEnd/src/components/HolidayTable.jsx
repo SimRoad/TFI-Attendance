@@ -2,6 +2,7 @@ import {Checkbox, Table, Button} from "flowbite-react"
 import client from '../axiosURL'
 import {useState,useEffect} from 'react'
 import { FaEdit } from "react-icons/fa"
+import { getFormattedDate } from "flowbite-react/lib/esm/components/Datepicker/helpers"
 
 function HolidayTable({setHolidayList}){
     const [holidays,setHolidays] = useState([])
@@ -26,7 +27,7 @@ function HolidayTable({setHolidayList}){
                 <Table.Body className="divide-y">
                     {
                     holidays.map((holiday,ndx)=>
-                        <HolidayTableBody key={ndx} id={holiday.holidayID} name={holiday.holidayName} date={holiday.holidayDate} type={holiday.holidayType}/>
+                        <HolidayTableBody key={ndx} id={holiday.holidayID} name={holiday.holidayName} date={new Date(holiday.holidayDate).toDateString()}/>
                     )
                     }
                 </Table.Body>
@@ -35,7 +36,7 @@ function HolidayTable({setHolidayList}){
     )
 }
 
-const HolidayTableBody = ({setHolidayList,id,name,date,type})=>{
+const HolidayTableBody = ({setHolidayList,id,name,date})=>{
     const checkHandler = ()=>{
         setHolidayList(list=>{
             console.log(list)
@@ -48,7 +49,6 @@ const HolidayTableBody = ({setHolidayList,id,name,date,type})=>{
             <Table.Cell><Checkbox onChange={()=>checkHandler()}/></Table.Cell>
             <Table.Cell className ="whitespace-nowrap font-medium text-gray-900 dark:text-white">{name}</Table.Cell>
             <Table.Cell>{date}</Table.Cell>
-            <Table.Cell>{special}</Table.Cell>
             <Table.Cell><Button className="border-2 border-accent/50" icon ={FaEdit}></Button></Table.Cell>
         </Table.Row>
     )
