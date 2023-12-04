@@ -10,9 +10,13 @@ const ShiftPage = ()=>{
     const [empList, setEmpList] = useState([])
     const [openModal, setOpenModal] = useState(false);
     const [conflict, setConflict] = useState({});
+    const [category,setCategory] = useState('')
+
     const submission = results=>{
         results.employees = empList
         results.dates.forEach((date,ndx)=>results.dates[ndx] = date.format('YYYY-MM-DD'))
+        if(category === 'Non-Work') results.isWork = true
+        else if(category === 'Leave') results.
         client.post('/shift',results)
         .then(response=>{
             console.log(response)
@@ -33,7 +37,7 @@ const ShiftPage = ()=>{
             {/* <ConflictModal openModal={openModal} setOpenModal={setOpenModal} conflict={conflict}/> */}
             <EmployeeTable setter={setEmpList} columns={['Assigned','Shifts']}/>
             <form onSubmit={fields.handleSubmit(submission)}>
-                <ShiftForm fields={fields} employees={empList}/>
+                <ShiftForm fields={fields} employees={empList} cat={{category,setCategory}}/>
             </form>
             <DevTool control={fields.control}/>
         </>
