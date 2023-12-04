@@ -5,9 +5,8 @@ import { ImBlocked } from "react-icons/im"
 import {useState,useEffect} from 'react'
 import client from '../axiosURL'
 
-const ShiftForm = ({fields,employees})=>{
+const ShiftForm = ({fields,employees,cat:{category,setCategory}})=>{
     const {register, control, formState:{errors}} = fields
-    const [category,setCategory] = useState('')
     const [leaves,setLeaves] = useState({})
 
     const switchCategory = selected =>{
@@ -26,7 +25,7 @@ const ShiftForm = ({fields,employees})=>{
     }
 
     useEffect(()=>{
-        client.get('leaves/all')
+        client.get('leaves/all',)
         .then(response=>{
             setLeaves(response.data)
             console.log(response.data)
@@ -47,7 +46,7 @@ const ShiftForm = ({fields,employees})=>{
                         <Button onClick={()=>switchCategory('Non-Work')} color={category === 'Non-Work' ? 'blue' : 'dark'}><ImBlocked />Non-Work</Button>
                         <Button onClick={()=>switchCategory('Leave')} color={category === 'Leave' ? 'blue' : 'dark'}><ImBlocked />Leave</Button>
                     </Button.Group>
-                    <Select>
+                    <Select disabled={category !== 'Leave'}>
                         {/* {leaves.map(leave=>{
                             
                         })} */}

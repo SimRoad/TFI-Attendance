@@ -1,8 +1,8 @@
 import Address from '../models/address.model.js';
 import Employee from "../models/employee.model.js";
-import Leaves from '../models/leaves.model.js';
 import databaseConfig from '../../database.config.js';
 import { generateImageName } from '../middleware/imgReceive.js';
+import LeaveDays from '../models/leaveDays.model.js';
 
 export default class EmployeeController{
     static async findAll(req,res,next){
@@ -31,7 +31,7 @@ export default class EmployeeController{
             await newAddress.create(conn)
             .then(({insertId})=>newEmployee.addressID = insertId)
             .then(async()=>await newEmployee.create(conn)
-                .then(({insertId})=> Leaves.createDefault(insertId,conn))
+                .then(({insertId})=> LeaveDays.createDefault(insertId,conn))
             )
             res.send(await conn.commit())
         } catch (error) {
