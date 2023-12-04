@@ -113,9 +113,18 @@ CREATE TABLE `holidays` (
 CREATE TABLE `leaves` (
   `leavesID` int(11) NOT NULL,
   `leaveName` varchar(32) NOT NULL,
-  `daysLeft` tinyint(4) NOT NULL,
-  `employeeID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `leaveDays`(
+`leaveDaysID` INT AUTO_INCREMENT PRIMARY KEY,
+`leaveID` INT NOT NULL,
+`employeeID` INT NOT NULL,
+`activeYear` DATE NOT NULL,
+CONSTRAINT `fk_leaveDays_leaveID` FOREIGN KEY(`leaveID`) REFERENCES `leaves`(`leavesID`),
+CONSTRAINT `fk_leaveDays_employeeID` FOREIGN KEY(`employeeID`) REFERENCES `employee`(`employeeID`)
+);
+
 
 -- --------------------------------------------------------
 
@@ -202,8 +211,7 @@ ALTER TABLE `holidays`
 -- Indexes for table `leaves`
 --
 ALTER TABLE `leaves`
-  ADD PRIMARY KEY (`leavesID`),
-  ADD KEY `fk_leaves_employeeID` (`employeeID`);
+  ADD PRIMARY KEY (`leavesID`);
 
 --
 -- Indexes for table `logs`
@@ -456,5 +464,11 @@ INSERT INTO `holidays` (holidayName,holidayDate,holidayType) VALUES
 ("Rizal Day",'2023-12-30','Regular'),
 ("Christmas Day",'2023-12-25','Regular') 
 ;
-INSERT INTO `shift` (employeeID, shiftDate) VALUES
-(1,'2023-11-16')
+INSERT INTO `leaves` (`leavesID`, `leaveName`) VALUES
+(1, 'Sick Leave'),
+(2, 'Maternal Leave'),
+(3, 'Paternity Leave'),
+(4, 'Parental Leave'),
+(5, 'Special Leave for Women'),
+(6, 'Victims of Violence Leave'),
+(7, 'Bereavement Leave');
