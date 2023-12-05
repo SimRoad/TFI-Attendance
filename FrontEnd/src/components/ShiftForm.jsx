@@ -1,4 +1,4 @@
-import {Button, Dropdown, Select} from 'flowbite-react'
+import {Button, Select} from 'flowbite-react'
 import MultiDatePicker from './MultiSelectDate'
 import {Controller} from 'react-hook-form'
 import { ImBlocked } from "react-icons/im"
@@ -31,7 +31,11 @@ const ShiftForm = ({fields,employees,cat:{category,setCategory}})=>{
                     formState: {errors}
                 })=>(
                     <>
-                    <Button onClick={()=>switchCategory('Non-Work')} color={category === 'Non-Work' ? 'blue' : 'dark'}><ImBlocked />Non-Work</Button>
+                    <Button.Group>
+                        <Button onClick={()=>switchCategory('Non-Work')} color={category === 'Non-Work' ? 'blue' : 'dark'}><ImBlocked />Non-Work</Button>
+                        <Button onClick={()=>switchCategory('Leaves')} color={category === 'Leaves' ? 'blue' : 'dark'}>Leaves</Button>
+                    </Button.Group>
+                    {category === 'Leaves' && <LeavesInput leaves={leaves}/>}
                     <MultiDatePicker employees={employees} value={value} onChange={onChange} register={register}/>
                     {errors && errors[name] && errors[name].type === "required" && (
                         <span>your error message !</span>
@@ -43,6 +47,14 @@ const ShiftForm = ({fields,employees,cat:{category,setCategory}})=>{
             </div>
             <Button color='blue' type='submit' className='text-black'>SUBMIT?</Button>
         </>
+    )
+}
+
+const LeavesInput = ({leaves})=>{
+    return(
+        <Select>
+            {leaves?.map(leave=><option>{leaves.leaveName}</option>)}
+        </Select>
     )
 }
 

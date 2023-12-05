@@ -15,7 +15,7 @@ const LeavesCalendar = ()=>{
             <Controller 
                 control={fields.control}
                 name = 'leaves'
-                render={({field:{onChange,value},formState:{errors}})=>{
+                render={({field:{onChange,value},formState:{errors}})=>
                     <DatePicker 
                         multiple
                         onChange={onChange}
@@ -30,7 +30,7 @@ const LeavesCalendar = ()=>{
                         ]}
                         render={<Icon/>}
                     />
-                }}
+                }
             />
         </form>
     )

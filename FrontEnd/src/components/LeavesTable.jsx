@@ -1,18 +1,7 @@
 import {Checkbox, Table, Button} from 'flowbite-react'
-import client from '../axiosURL'
-import {useState,useEffect} from 'react'
 import { FaEdit } from 'react-icons/fa'
 
-function LeaveTable({setLeaveList}){
-    const [leaves,setLeaves] = useState([])
-
-    useEffect(()=>{
-        const request = async ()=>{
-            const response = await client.get(`leaves/all`)
-            setLeaves(prev=>[...prev,response.data])
-        }
-        if(!leaves.length) request()
-    },[leaves])
+function LeaveTable({leaves}){
     return(
         <div className='overflow-y-auto max-h-[40vh]'>
             <Table className="table-auto"hoverable>
@@ -24,7 +13,7 @@ function LeaveTable({setLeaveList}){
                 </Table.Head>
                 <Table.Body className="divide-y">
                     {
-                        leaves.map((Leave,ndx)=>
+                        leaves?.map((Leave,ndx)=>
                             <LeaveBody key={ndx} id={Leave.leaveID} name={Leave.leaveName} duration={Leave.daysLeft}/>
                         )
                     }

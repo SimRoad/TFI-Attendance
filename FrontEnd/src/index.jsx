@@ -6,7 +6,6 @@ import EmployeeRegisterForm from './components/EmployeeRegister'
 import LeaveTable from './components/LeavesTable'
 import HolidayTable from './components/HolidayTable'
 import EmployeeTable from './components/EmployeeTable'
-import LeaveForm from './components/LeaveForm'
 import LogTable from './components/LogsTable'
 import LeavesPage from './pages/LeavesPage'
 import TimeInOut from './components/TimeInOut'
@@ -22,7 +21,6 @@ const index = ()=>{
                     <Route element={<EmployeeRegisterForm/>} path='/employeeregister' />
                     <Route element={<EmployeeRegisterForm/>} path='/createemployee'/>
                     <Route element={<LeaveTable/>} path='/leaves'/>
-                    <Route element={<LeaveForm/>} path='/leaveform'/>
                     <Route element={<Dashboard/>} path='/dashboard'>
                         <Route index element={<EmployeeTable/>} />
                         <Route element={<EmployeeTable/>} path='/dashboard/employeeTable'/>
