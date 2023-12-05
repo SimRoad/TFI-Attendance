@@ -12,18 +12,22 @@ import TimeInOut from './components/TimeInOut'
 import ShiftPage from '../src/pages/ShiftPage'
 import client from './axiosURL'
 import {useEffect, useState} from 'react'
+import EditEmployeeForm from './components/EditEmployeeData'
 
 const index = ()=>{
     return(
         <Router>
             <Routes>
                 <Route element={<PrivateRoutes/>}>
+                    <Route element={<EditEmployeeForm/>} path='/editemployee'/>
                     <Route element={<EmployeeRegisterForm/>} path='/employeeregister' />
                     <Route element={<EmployeeRegisterForm/>} path='/createemployee'/>
                     <Route element={<LeaveTable/>} path='/leaves'/>
                     <Route element={<Dashboard/>} path='/dashboard'>
                         <Route index element={<EmployeeTable/>} />
-                        <Route element={<EmployeeTable/>} path='/dashboard/employeeTable'/>
+                        <Route element={<EmployeeTable/>} path='/dashboard/employeeTable'>
+                           
+                        </Route>
                         <Route element={<ShiftPage/>} path='/dashboard/shift'/>
                         <Route element={<HolidayTable/>} path='/dashboard/holidayTable'/>
                         <Route element={<LeavesPage/>} path='/dashboard/leaves'/>

@@ -5,26 +5,38 @@ import { useState , useEffect} from "react"
 import { ProfileSection } from "./employeeInputs/ProfileSection"
 import { AddressPortion } from "./employeeInputs/AddressPortion"
 import { ContactPortion } from "./employeeInputs/ContactPortion"
+import { employeeRegisterSchema } from "../yupSchema"
+import {useForm} from 'react-hook-form'
 
-const editEmployeeForm = ({id})=>{
+const EditEmployeeForm = ({id})=>{
     const {handleSubmit, register, control, reset, formState:{errors}} = useForm({resolver: yupResolver(employeeRegisterSchema)})
+    const fields = {register,control,errors}
     const [empData,setEmpdata] = useState([])
     const empID = id 
-    client.get(`employee/${id}`).then(response => setEmpdata(response.data)).then(console.log(empData))
+    client.get(`employee/${empID}`).then(response => setEmpdata(response.data)).then(console.log(empData))
     
-    // const submit = result=>{
-    //     let data = result;
-    //     client.put
-    // }
+    const submit = result=>{
+        let data = result;
+        data.profileImage = data.profileImage[0]
+        (data)
+        client.put(`employee/${empID}`,data,{
+            headers:{
+                'Content-Type' : 'multipart/form-data'
+            }.then(response=>{
+                response.status === 200 ? reset() : alert("Something went Wrong");
+            })
+
+        })
+    }
 
     return (
         <>
             <form onSubmit={handleSubmit(submit)}>
-                <ProfileSection/>
-                <AddressPortion/>
-                <ContactPortion/>
+                <ProfileSection {...fields} value={empData}/>
+                <AddressPortion {...fields} value={empData}/>
+                <ContactPortion {...fields} value={empData}/>
             </form>
         </>
     )
 }
-export default editEmployeeForm
+export default EditEmployeeForm
