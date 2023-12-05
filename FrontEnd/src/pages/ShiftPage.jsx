@@ -15,8 +15,7 @@ const ShiftPage = ()=>{
     const submission = results=>{
         results.employees = empList
         results.dates.forEach((date,ndx)=>results.dates[ndx] = date.format('YYYY-MM-DD'))
-        if(category === 'Non-Work') results.isWork = true
-        else if(category === 'Leave') results.
+        if(category === 'Non-Work') results.isWork = false
         client.post('/shift',results)
         .then(response=>{
             console.log(response)

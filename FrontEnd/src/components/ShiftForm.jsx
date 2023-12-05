@@ -10,18 +10,7 @@ const ShiftForm = ({fields,employees,cat:{category,setCategory}})=>{
     const [leaves,setLeaves] = useState({})
 
     const switchCategory = selected =>{
-        switch (selected) {
-            case 'Non-Work':
-                setCategory(category !== selected ? selected : null)
-                console.log(category)
-                break;
-            case 'Leave':
-                setCategory(category !== selected ? selected : null)
-                break;
-            default:
-                setCategory(null)
-                break;
-        }
+        setCategory(curr=> curr !== selected ? selected : null)
     }
 
     useEffect(()=>{
@@ -42,15 +31,7 @@ const ShiftForm = ({fields,employees,cat:{category,setCategory}})=>{
                     formState: {errors}
                 })=>(
                     <>
-                    <Button.Group>
-                        <Button onClick={()=>switchCategory('Non-Work')} color={category === 'Non-Work' ? 'blue' : 'dark'}><ImBlocked />Non-Work</Button>
-                        <Button onClick={()=>switchCategory('Leave')} color={category === 'Leave' ? 'blue' : 'dark'}><ImBlocked />Leave</Button>
-                    </Button.Group>
-                    <Select disabled={category !== 'Leave'}>
-                        {/* {leaves.map(leave=>{
-                            
-                        })} */}
-                    </Select>
+                    <Button onClick={()=>switchCategory('Non-Work')} color={category === 'Non-Work' ? 'blue' : 'dark'}><ImBlocked />Non-Work</Button>
                     <MultiDatePicker employees={employees} value={value} onChange={onChange} register={register}/>
                     {errors && errors[name] && errors[name].type === "required" && (
                         <span>your error message !</span>
