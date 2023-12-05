@@ -16,7 +16,7 @@ const EmployeeTable = ({setter,columns,data})=>{
         request()
     },[])
     return(
-        <div className='overflow-y-auto max-h-[70vh]'>
+        <div className='overflow-y-auto max-h-[50vh]'>
             {/* <Button onClick={()=>{setOffset(a=>a+1)}}/> */}
             <Table className='table-auto' hoverable>
                 <Table.Head>

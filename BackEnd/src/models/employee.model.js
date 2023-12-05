@@ -41,7 +41,20 @@ export default class Employee extends GenericModel{
     }
     static async getEmployeeList(offset){
         try {
-            const [rows,fields] = await databaseConfig.execute(`SELECT employeeID, CONCAT_WS(' ',firstName, IFNULL(LEFT(middleName, 1),''), lastName) AS fullName FROM employee LIMIT ?, 10`,[offset])
+            const [rows] = await databaseConfig.execute(`SELECT employeeID, 
+            CONCAT_WS(' ',firstName, IFNULL(LEFT(middleName, 1),''), lastName) AS fullName 
+            FROM employee ORDER BY fullName LIMIT ?, 10`,[offset])
+            return rows
+        } catch (error) {
+            throw(error)
+        }
+    }
+    static async fuzzySearch(string){
+        try {
+            string = `%${string}%`
+            const [rows] = await databaseConfig.execute(`SELECT employeeID, 
+            CONCAT_WS(' ',firstName, IFNULL(LEFT(middleName, 1),''), lastName) AS fullName 
+            FROM employee WHERE firstName LIKE ? OR lastName LIKE ? OR middleName LIKE ? ORDER BY fullName`,[string,string,string])
             return rows
         } catch (error) {
             throw(error)

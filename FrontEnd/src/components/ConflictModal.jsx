@@ -1,7 +1,6 @@
 'use client';
 
 import { Button, Modal } from 'flowbite-react';
-import { useState } from 'react';
 import ConflictTable from './ConflictTable';
 
 
@@ -9,7 +8,6 @@ const ConflictModal = ({openModal,setOpenModal,conflict})=>{
 
   return (
     <>
-      <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
       <Modal show={openModal} onClose={() => setOpenModal(false)}>
         <Modal.Header>Conflict in Shift</Modal.Header>
         <Modal.Body>

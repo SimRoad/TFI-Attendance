@@ -1,7 +1,6 @@
 import DatePicker,{DateObject} from 'react-multi-date-picker'
 import DatePanel from 'react-multi-date-picker/plugins/date_panel'
 import TimeRange from './TimeRange'
-import Weekends from "react-multi-date-picker/plugins/highlight_weekends"
 import Icon from 'react-multi-date-picker/components/icon'
 import {useRef,useEffect,useState} from 'react'
 import client from '../axiosURL'
@@ -21,7 +20,6 @@ const MultiDatePicker = ({onChange,value,employees,register})=>{
         client.post('shift/conflict',employees)
         .then(response=>{
             setShifts(response.data)
-            console.log(response.data)
         })
     },[employees])
     return(

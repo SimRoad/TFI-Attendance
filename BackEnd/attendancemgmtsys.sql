@@ -152,8 +152,7 @@ CREATE TABLE `shift` (
   `timeIn` time DEFAULT NULL,
   `timeOut` time DEFAULT NULL,
   `leaveID` int(11) DEFAULT NULL,
-  `shiftDate` date NOT NULL,
-  `isWork` enum('True','False') DEFAULT 'True' NOT NULL
+  `shiftDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

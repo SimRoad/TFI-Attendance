@@ -1,6 +1,7 @@
 import EmployeeTable from "../components/EmployeeTable";
 import ShiftForm from "../components/ShiftForm";
 import {DevTool} from '@hookform/devtools'
+import ConflictModal from '../components/ConflictModal'
 import client from '../axiosURL'
 import {useState,useEffect} from 'react'
 import { useForm } from "react-hook-form";
@@ -10,12 +11,10 @@ const ShiftPage = ()=>{
     const [empList, setEmpList] = useState([])
     const [openModal, setOpenModal] = useState(false);
     const [conflict, setConflict] = useState({});
-    const [category,setCategory] = useState('')
 
     const submission = results=>{
         results.employees = empList
         results.dates.forEach((date,ndx)=>results.dates[ndx] = date.format('YYYY-MM-DD'))
-        if(category === 'Non-Work') results.isWork = false
         client.post('/shift',results)
         .then(response=>{
             console.log(response)
@@ -30,13 +29,12 @@ const ShiftPage = ()=>{
             console.error(error)
         })
     }
-    useEffect(()=>{console.log(empList)},[empList])
     return(
         <>
-            {/* <ConflictModal openModal={openModal} setOpenModal={setOpenModal} conflict={conflict}/> */}
+            <ConflictModal openModal={openModal} setOpenModal={setOpenModal} conflict={conflict}/>
             <EmployeeTable setter={setEmpList} columns={['Assigned','Shifts']}/>
             <form onSubmit={fields.handleSubmit(submission)}>
-                <ShiftForm fields={fields} employees={empList} cat={{category,setCategory}}/>
+                <ShiftForm fields={fields} employees={empList}/>
             </form>
             <DevTool control={fields.control}/>
         </>

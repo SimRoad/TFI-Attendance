@@ -49,4 +49,11 @@ export default class EmployeeController{
             next(error)
         }
     }
+    static async searchName(req,res,next){
+        try {
+            res.send(await Employee.fuzzySearch(req.query.input))
+        } catch (error) {
+            throw(error)
+        }
+    }
 }

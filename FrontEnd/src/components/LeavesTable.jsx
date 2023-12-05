@@ -1,7 +1,7 @@
-import {Checkbox, Table, Button} from 'flowbite-react'
+import {Table, Button, Radio} from 'flowbite-react'
 import { FaEdit } from 'react-icons/fa'
 
-function LeaveTable({leaves}){
+function LeaveTable({leaves,selected,select}){
     return(
         <div className='overflow-y-auto max-h-[40vh]'>
             <Table className="table-auto"hoverable>
@@ -13,28 +13,20 @@ function LeaveTable({leaves}){
                 </Table.Head>
                 <Table.Body className="divide-y">
                     {
-                        leaves?.map((Leave,ndx)=>
-                            <LeaveBody key={ndx} id={Leave.leaveID} name={Leave.leaveName} duration={Leave.daysLeft}/>
+                        leaves?.map((leave,ndx)=>
+                            <LeaveBody key={ndx} id={leave.leavesID} name={leave.leaveName} duration={leave.defaultDays} selected={selected} select={select}/>
                         )
                     }
                 </Table.Body>
             </Table>
         </div>
-
     )
 }
 
-const LeaveBody = ({setLeaveList,id,name,duration})=>{
-    const checkHandler = ()=>{
-        setLeaveList(list=>{
-            console.log(list)
-            if(list.includes(id)) return list.filter(val=>val!==id)
-            return [...list,id]
-         })
-    }
+const LeaveBody = ({selected,select,id,name,duration})=>{
     return(
         <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell><Checkbox onChange ={()=>checkHandler()}/></Table.Cell>
+            <Table.Cell><Radio checked={selected === id} onChange ={()=>select(id)} /></Table.Cell>
             <Table.Cell className='text-black'>{name}</Table.Cell>
             <Table.Cell className='text-black'>{duration}</Table.Cell>
             <Table.Cell><Button><FaEdit/></Button></Table.Cell>

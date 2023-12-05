@@ -2,7 +2,7 @@ import GenericModel from './generic.model.js'
 import databaseConfig from '../../database.config.js'
 
 export default class Shift extends GenericModel{
-    static fields = ["shiftID","employeeID","leaveID","reasonID","timeIn","timeOut","shiftDate","isWork"]
+    static fields = ["shiftID","employeeID","leaveID","reasonID","timeIn","timeOut","shiftDate"]
     constructor(shift){
         super()
         this.employeeID = shift.employeeID
@@ -11,7 +11,6 @@ export default class Shift extends GenericModel{
         this.timeIn = shift.timeIn ? new Date(shift.timeIn) : undefined
         this.timeOut = shift.timeOut ? new Date(shift.timeOut) : undefined
         this.shiftDate = shift.shiftDate
-        this.isWork = shift.isWork
     }
     static formatToShiftArr(pkg){
         return pkg.dates.map(date=>{
