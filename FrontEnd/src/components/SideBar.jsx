@@ -5,6 +5,7 @@ import { BsFillBriefcaseFill } from "react-icons/bs";
 import { MdDashboard, MdEditCalendar } from "react-icons/md"
 import { Routes as Routers, Link, Route } from "react-router-dom";
 import { CgDebug } from "react-icons/cg"
+import { CiViewList } from "react-icons/ci";
 import ShiftForm from "./ShiftForm";
 import LogTable from "./LogsTable";
 function WebSideBar(){
@@ -49,6 +50,11 @@ function WebSideBar(){
                         <Link to = "/dashboard/debug" relative="path">
                             <Sidebar.Item icon = {CgDebug}>
                                 Debugging
+                            </Sidebar.Item>
+                        </Link>
+                        <Link to = "/dashboard/logs" relative="path">
+                            <Sidebar.Item icon = {CiViewList}>
+                                Logs
                             </Sidebar.Item>
                         </Link>
                     </Sidebar.Collapse>
