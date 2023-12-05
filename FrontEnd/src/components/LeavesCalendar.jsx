@@ -1,10 +1,14 @@
-import DatePicker from 'react-multi-date-picker'
+import DatePicker,{DateObject} from 'react-multi-date-picker'
+import DatePanel from 'react-multi-date-picker/plugins/date_panel'
+import Icon from 'react-multi-date-picker/components/icon'
 import {Controller, useForm} from 'react-hook-form'
 
 const LeavesCalendar = ()=>{
+    const date = new DateObject()
+    const nextMonth = new DateObject()
     const fields = useForm()
     const submission = data=>{
-
+        console.log(data)
     }
     return(
         <form onSubmit={fields.handleSubmit(submission)}>
@@ -31,3 +35,5 @@ const LeavesCalendar = ()=>{
         </form>
     )
 }
+
+export default LeavesCalendar

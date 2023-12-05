@@ -8,6 +8,7 @@ import HolidayTable from './components/HolidayTable'
 import EmployeeTable from './components/EmployeeTable'
 import LeaveForm from './components/LeaveForm'
 import LogTable from './components/LogsTable'
+import LeavesPage from './pages/LeavesPage'
 import TimeInOut from './components/TimeInOut'
 import ShiftPage from '../src/pages/ShiftPage'
 import client from './axiosURL'
@@ -27,7 +28,7 @@ const index = ()=>{
                         <Route element={<EmployeeTable/>} path='/dashboard/employeeTable'/>
                         <Route element={<ShiftPage/>} path='/dashboard/shift'/>
                         <Route element={<HolidayTable/>} path='/dashboard/holidayTable'/>
-                        <Route element={<LeaveTable/>} path='/dashboard/leaves'/>
+                        <Route element={<LeavesPage/>} path='/dashboard/leaves'/>
                         <Route element={<UserCreate/>} path='/dashboard/createuser'/>
                         <Route element={<LogTable/>} path='/dashboard/logs'/>
                         <Route element={<TimeInOut/>} path='/dashboard/debug'/>
