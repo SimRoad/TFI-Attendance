@@ -2,7 +2,7 @@ import { Controller } from 'react-hook-form';
 import { TextInput, Datepicker, Label, Select } from 'flowbite-react'
 
 
-export const ProfileSection = ({ register, control, errors }) => {
+export const ProfileSection = ({ register, control, errors , value }) => {
     const employeeErr = errors.employee;
     return (
         <>
@@ -13,7 +13,7 @@ export const ProfileSection = ({ register, control, errors }) => {
                 color={employeeErr?.firstName ? 'failure' : ''}
                 helperText={<>
                     {employeeErr?.firstName ? employeeErr?.firstName.message : ''}
-                </>} />
+                </>}/>
             <Label htmlFor="middleName1" value="Middle Name" />
             <TextInput
                 id='middleName1'
