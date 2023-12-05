@@ -120,11 +120,9 @@ CREATE TABLE `leaves` (
 CREATE TABLE `leaveDays`(
 `leaveDaysID` INT AUTO_INCREMENT PRIMARY KEY,
 `leaveID` INT NOT NULL,
-`employeeID` TINYINT NOT NULL,
+`employeeID` INT NOT NULL,
 `daysLeft` TINYINT NOT NULL,
-`activeYear` DATE NOT NULL,
-CONSTRAINT `fk_leaveDays_leaveID` FOREIGN KEY(`leaveID`) REFERENCES `leaves`(`leavesID`),
-CONSTRAINT `fk_leaveDays_employeeID` FOREIGN KEY(`employeeID`) REFERENCES `employee`(`employeeID`)
+`activeYear` DATE NOT NULL
 );
 
 
@@ -317,10 +315,12 @@ ALTER TABLE `employee`
 --
 
 --
--- Constraints for table `leaves`
+-- Constraints for table `leavesDays`
 --
-ALTER TABLE `leaves`
-  ADD CONSTRAINT `fk_leaves_employeeID` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`);
+
+ALTER TABLE `leaveDays`
+  ADD CONSTRAINT `fk_leaveDays_leaveID` FOREIGN KEY(`leaveID`) REFERENCES `leaves`(`leavesID`),
+  ADD CONSTRAINT `fk_leaveDays_employeeID` FOREIGN KEY(`employeeID`) REFERENCES `employee`(`employeeID`);
 
 --
 -- Constraints for table `logs`
@@ -466,7 +466,7 @@ INSERT INTO `holidays` (holidayName,holidayDate) VALUES
 ("Rizal Day",'2023-12-30'),
 ("Christmas Day",'2023-12-25') 
 ;
-INSERT INTO `leaves` (`leavesID`, `leaveName`) VALUES
+INSERT INTO `leaves` (`leavesID`, `leaveName`,`defaultDays`) VALUES
 (1, 'Sick Leave',5),
 (2, 'Maternal Leave',105),
 (3, 'Paternity Leave',7),
