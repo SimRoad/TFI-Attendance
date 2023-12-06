@@ -3,7 +3,7 @@ import { LuMapPin } from "react-icons/lu";
 import { useState } from 'react';
 
 
-export const AddressPortion = ({ register, errors }) => {
+export const AddressPortion = ({ register, errors, editData }) => {
     const addressErr = errors.address;
     const [postal, setPostal] = useState('');
     return (
@@ -15,7 +15,8 @@ export const AddressPortion = ({ register, errors }) => {
                 color={addressErr?.street ? 'failure' : ''}
                 helperText={<>
                     {addressErr?.street ? addressErr?.street.message : ''}
-                </>} />
+                </>}
+                value={editData} />
             <Label htmlFor="barangay1" value="Barangay" />
             <TextInput
                 id='barangay1'

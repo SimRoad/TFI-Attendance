@@ -12,7 +12,7 @@ const EditEmployeeForm = ({id})=>{
     const {handleSubmit, register, control, reset, formState:{errors}} = useForm({resolver: yupResolver(employeeRegisterSchema)})
     const fields = {register,control,errors}
     const [empData,setEmpdata] = useState([])
-    const empID = id 
+    const empID = 1
     client.get(`employee/${empID}`).then(response => setEmpdata(response.data)).then(console.log(empData))
     
     const submit = result=>{
@@ -25,15 +25,14 @@ const EditEmployeeForm = ({id})=>{
             }.then(response=>{
                 response.status === 200 ? reset() : alert("Something went Wrong");
             })
-
         })
     }
 
     return (
         <>
             <form onSubmit={handleSubmit(submit)}>
-                <ProfileSection {...fields} value={empData}/>
-                <AddressPortion {...fields} value={empData}/>
+                <ProfileSection {...fields} editData={empData}/>
+                <AddressPortion {...fields} editData={empData}/>
                 <ContactPortion {...fields} value={empData}/>
             </form>
         </>

@@ -25,8 +25,7 @@ const index = ()=>{
                     <Route element={<LeaveTable/>} path='/leaves'/>
                     <Route element={<Dashboard/>} path='/dashboard'>
                         <Route index element={<EmployeeTable/>} />
-                        <Route element={<EmployeeTable/>} path='/dashboard/employeeTable'>
-                           
+                        <Route element={<EmployeeTable/>} path='/dashboard/employeeTable'>  
                         </Route>
                         <Route element={<ShiftPage/>} path='/dashboard/shift'/>
                         <Route element={<HolidayTable/>} path='/dashboard/holidayTable'/>
