@@ -22,7 +22,7 @@ function WebSideBar(){
                                 Dashboard
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "/dashboard/employeeTable" relative="path">
+                        <Link to = "employeeTable" relative="path">
                             <Sidebar.Item icon = {FaUser}>
                                 Employees
                             </Sidebar.Item>
@@ -32,27 +32,27 @@ function WebSideBar(){
                                 Shifts
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "/dashboard/leaves" relative="path">
+                        <Link to = "leaves" relative="path">
                             <Sidebar.Item icon = {BsFillBriefcaseFill}>
                                 Leaves
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "/dashboard/holidayTable">
+                        <Link to = "holidayTable">
                             <Sidebar.Item icon = {FaCalendarAlt}>
                                 Holidays
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "/dashboard/createuser" relative="path">
+                        <Link to = "createuser" relative="path">
                             <Sidebar.Item icon = {FaRegUserCircle}>
                                 Create User
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "/dashboard/debug" relative="path">
+                        <Link to = "debug" relative="path">
                             <Sidebar.Item icon = {CgDebug}>
                                 Debugging
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "/dashboard/logs" relative="path">
+                        <Link to = "logs" relative="path">
                             <Sidebar.Item icon = {CiViewList}>
                                 Logs
                             </Sidebar.Item>
