@@ -332,7 +332,7 @@ ALTER TABLE `logs`
 --
 ALTER TABLE `shift`
   ADD CONSTRAINT `fk_shift_employeeID` FOREIGN KEY (`employeeID`) REFERENCES `employee` (`employeeID`),
-  ADD CONSTRAINT `fk_shift_leaveDaysID` FOREIGN KEY (`leaveDaysID`) REFERENCES `leaveDays` (`leavesDaysID`),
+  ADD CONSTRAINT `fk_shift_leaveDaysID` FOREIGN KEY (`leaveDaysID`) REFERENCES `leaveDays` (`leaveDaysID`),
   ADD CONSTRAINT `fk_shift_reasonID` FOREIGN KEY (`reasonID`) REFERENCES `excusereason` (`reasonID`);
 
 --
