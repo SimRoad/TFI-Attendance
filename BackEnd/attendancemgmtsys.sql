@@ -465,6 +465,7 @@ INSERT INTO `holidays` (holidayName,holidayDate) VALUES
 ("Rizal Day",'2023-12-30'),
 ("Christmas Day",'2023-12-25') 
 ;
+INSERT INTO `user` (`employeeID`,`userPassword`,`position`) VALUES (2,'$2b$10$tZqKpuCvFZIAnZbzGaf2M.wi0nrImMm2RiSBCkmDPfaje7ZhzNQGG','Admin')
 INSERT INTO `leaves` (`leavesID`, `leaveName`,`defaultDays`) VALUES
 (1, 'Sick Leave',5),
 (2, 'Maternal Leave',105),
