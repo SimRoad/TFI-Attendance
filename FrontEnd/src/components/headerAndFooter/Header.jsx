@@ -8,7 +8,7 @@ import LogoutButton from '../LogoutButton';
 function header() {
   return (
     <Navbar fluid rounded>
-      <Navbar.Brand href="https://flowbite-react.com">
+      <Navbar.Brand href="/dashboard">
         <img src={logo} className="mr-3 h-6 sm:h-9" alt="TFI Logo" />
         <span className="self-center whitespace-nowrap text-xl ">Tenessee Feedmill Inc.</span>
       </Navbar.Brand>

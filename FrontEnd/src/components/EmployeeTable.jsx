@@ -1,19 +1,25 @@
 import {Table, Button, Checkbox} from 'flowbite-react'
 import { FaUserEdit } from "react-icons/fa";
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import client from '../axiosURL'
 
 const EmployeeTable = ({setter,columns,data})=>{
     columns = columns ?? ['Placeholder']
     const [employees,setEmployees] = useState([])
     const [offset,setOffset] = useState(0)
+    // useEffect(()=>{
+    //     const request = async () => {
+    //         (offset)
+    //         const response = await client.get(`employee/all?offset=${offset}`)
+    //         setEmployees(prev=>[...prev, ...response.data]);
+    //     }
+    //     request()
+    // },[])
     useEffect(()=>{
-        const request = async () => {
-            (offset)
-            const response = await client.get(`employee/all?offset=${offset}`)
-            setEmployees(prev=>[...prev, ...response.data]);
-        }
-        request()
+        client.get(`employee/all?offset=${offset}`)
+        .then(res => setEmployees(res.data))
+        .catch(err => console.log(err))
     },[])
     return(
         <div className='overflow-y-auto max-h-[50vh]'>
@@ -57,9 +63,11 @@ const TableRow = ({setEmpList,id,name})=>{
             </Table.Cell>
             <Table.Cell>WIP</Table.Cell>
             <Table.Cell>
-                <Button className='border-2 border-accent/50'>
-                    <FaUserEdit className="ml-1 h-5 w-5" fill='black'/>
-                </Button>
+                <Link to={`/dashboard/editEmployeeData/${id}`}>
+                    <Button className='border-2 border-accent/50'>
+                        <FaUserEdit className="ml-1 h-5 w-5" fill='black'/>
+                    </Button>
+                </Link>
             </Table.Cell>
         </Table.Row>
         </>

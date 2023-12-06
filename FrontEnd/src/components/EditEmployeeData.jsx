@@ -1,19 +1,26 @@
 // How will i get/retrieve the data and display in a form for editing
-import { yupResolver } from "@hookform/resolvers/yup"
 import client from "../axiosURL"
+import { yupResolver } from "@hookform/resolvers/yup"
 import { useState , useEffect} from "react"
-import { ProfileSection } from "./employeeInputs/ProfileSection"
-import { AddressPortion } from "./employeeInputs/AddressPortion"
-import { ContactPortion } from "./employeeInputs/ContactPortion"
+import { ProfileSection } from "./editEmployeeInputs/ProfileSection"
+import { AddressPortion } from "./editEmployeeInputs/AddressPortion"
+import { ContactPortion } from "./editEmployeeInputs/ContactPortion"
 import { employeeRegisterSchema } from "../yupSchema"
 import {useForm} from 'react-hook-form'
 
 const EditEmployeeForm = ({id})=>{
-    const {handleSubmit, register, control, reset, formState:{errors}} = useForm({resolver: yupResolver(employeeRegisterSchema)})
+    const {handleSubmit, register, control, reset, formState:{errors}} = useForm(
+        {resolver: yupResolver(employeeRegisterSchema)}
+    )
     const fields = {register,control,errors}
     const [empData,setEmpdata] = useState([])
     const empID = 1
-    client.get(`employee/${empID}`).then(response => setEmpdata(response.data)).then(console.log(empData))
+    useEffect(() => {
+        client.get(`employee/${empID}`)
+        .then(res => setEmpdata(res.data))
+        .then(console.log(empData))
+        .catch(err => console.log(err))
+    }, [])
     
     const submit = result=>{
         let data = result;
@@ -22,8 +29,8 @@ const EditEmployeeForm = ({id})=>{
         client.put(`employee/${empID}`,data,{
             headers:{
                 'Content-Type' : 'multipart/form-data'
-            }.then(response=>{
-                response.status === 200 ? reset() : alert("Something went Wrong");
+            }.then(res=>{
+                res.status === 200 ? reset() : alert("Something went Wrong");
             })
         })
     }

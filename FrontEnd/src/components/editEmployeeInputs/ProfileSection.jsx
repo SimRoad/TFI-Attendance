@@ -14,7 +14,7 @@ export const ProfileSection = ({ register, control, errors , editData }) => {
                 helperText={<>
                     {employeeErr?.firstName ? employeeErr?.firstName.message : ''}
                 </>}
-            />
+                 value={editData.firstName}/>
             <Label htmlFor="middleName1" value="Middle Name" />
             <TextInput
                 id='middleName1'
