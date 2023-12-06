@@ -10,7 +10,9 @@ import Header from './headerAndFooter/Header'
 import Footer from './headerAndFooter/Footer'
 
 const EmployeeRegisterForm = ()=>{
-    const {handleSubmit, register, control, reset, formState:{errors}} = useForm({resolver: yupResolver(employeeRegisterSchema)})
+    const {handleSubmit, register, control, reset, formState:{errors}} = useForm(
+        {resolver: yupResolver(employeeRegisterSchema)}
+    )
     const fields = {register,control,errors}
     const submit = result=>{
         let data = result
@@ -36,7 +38,7 @@ const EmployeeRegisterForm = ()=>{
                 <Button className="text-text border-b-2 border-accent/20 rounded-md bg-primary" color='default' type='submit'>Submit</Button>
             </form>
         </div>
-        <Footer/>
+        {/* <Footer/> */}
         </>
     )
 }

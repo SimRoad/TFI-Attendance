@@ -11,6 +11,7 @@ import LeavesPage from './pages/LeavesPage'
 import TimeInOut from './components/TimeInOut'
 import ShiftPage from '../src/pages/ShiftPage'
 import client from './axiosURL'
+import EditEmployeeForm from './components/EditEmployeeData'
 import {useEffect, useState} from 'react'
 
 const index = ()=>{
@@ -18,7 +19,7 @@ const index = ()=>{
         <Router>
             <Routes>
                 <Route element={<PrivateRoutes/>}>
-                    <Route element={<EmployeeRegisterForm/>} path='/employeeregister' />
+                    <Route element={<EditEmployeeForm/>} path='/editemployee'/>
                     <Route element={<EmployeeRegisterForm/>} path='/createemployee'/>
                     <Route element={<LeaveTable/>} path='/leaves'/>
                     <Route element={<Dashboard/>} path='/dashboard'>
@@ -30,6 +31,7 @@ const index = ()=>{
                         <Route element={<UserCreate/>} path='/dashboard/createuser'/>
                         <Route element={<LogTable/>} path='/dashboard/logs'/>
                         <Route element={<TimeInOut/>} path='/dashboard/debug'/>
+                        <Route element={<EditEmployeeForm/>} path='/dashboard/editEmployeeData/:id'/>
                     </Route>
                 </Route>
                 <Route path='/login' element={<Login/>}></Route>
