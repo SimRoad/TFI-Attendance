@@ -10,6 +10,7 @@ import logsRouter from "./src/routes/logs.router.js"
 import reasonRouter from "./src/routes/reason.router.js"
 import shiftRouter from "./src/routes/shift.router.js"
 import addressRouter from "./src/routes/address.router.js"
+import leaveDaysRouter from './src/routes/leaveDays.router.js'
 
 const app = express()
 
@@ -37,7 +38,7 @@ app.use('/logs',logsRouter)
 app.use('/reasons',reasonRouter)
 app.use('/shift',shiftRouter)
 app.use('/address',addressRouter)
-
+app.use('/leavedays',leaveDaysRouter)
 
 app.get('*',(res,req)=>{
     req.send('404 Page not Found')

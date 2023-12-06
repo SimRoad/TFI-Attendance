@@ -39,11 +39,11 @@ export default class Employee extends GenericModel{
             throw(error)
         }
     }
-    static async getEmployeeList(offset){
+    static async getEmployeeList(){
         try {
             const [rows] = await databaseConfig.execute(`SELECT employeeID, 
             CONCAT_WS(' ',firstName, IFNULL(LEFT(middleName, 1),''), lastName) AS fullName 
-            FROM employee ORDER BY fullName LIMIT ?, 10`,[offset])
+            FROM employee ORDER BY fullName`)
             return rows
         } catch (error) {
             throw(error)

@@ -2,7 +2,7 @@ import {Controller} from 'react-hook-form'
 import Select from 'react-select'
 import client from '../axiosURL'
 
-const SearchInput = ({fields,options,setOptions})=>{
+const SearchInput = ({fields,options,setOptions,setEmployeeID})=>{
     const debounce = (callback,delay)=>{
         let timer
         return (...args)=>{
@@ -22,15 +22,19 @@ const SearchInput = ({fields,options,setOptions})=>{
             }
         })))
     },1000)
+    const select = input=>{
+        setEmployeeID(input.value)
+    }
     return(
         <Controller
             control={fields.control}
-            name='seachBar'
+            name='searchBar'
             render={({field})=>(
                 <Select 
                     {...field}
                     options={options}
                     onInputChange={inputChange}
+                    onChange={select}
                 />
             )}
         />

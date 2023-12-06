@@ -2,11 +2,11 @@ import GenericModel from './generic.model.js'
 import databaseConfig from '../../database.config.js'
 
 export default class Shift extends GenericModel{
-    static fields = ["shiftID","employeeID","leaveID","reasonID","timeIn","timeOut","shiftDate"]
+    static fields = ["shiftID","employeeID","leaveDaysID","reasonID","timeIn","timeOut","shiftDate"]
     constructor(shift){
         super()
         this.employeeID = shift.employeeID
-        this.leaveID = shift.leaveID
+        this.leaveDaysID = shift.leaveDaysID
         this.reasonID = shift.reasonID
         this.timeIn = shift.timeIn ? new Date(shift.timeIn) : undefined
         this.timeOut = shift.timeOut ? new Date(shift.timeOut) : undefined

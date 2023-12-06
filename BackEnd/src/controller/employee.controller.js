@@ -7,10 +7,7 @@ import LeaveDays from '../models/leaveDays.model.js';
 export default class EmployeeController{
     static async findAll(req,res,next){
         try {
-            let response
-            if(!req.query.offset) response = await Employee.getAll()
-            else response = await Employee.getEmployeeList(req.query.offset)
-            res.send(response)
+            res.send(await Employee.getEmployeeList())
         } catch (error) {
             next(error)
         }

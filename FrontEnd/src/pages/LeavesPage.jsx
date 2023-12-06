@@ -3,28 +3,49 @@ import LeaveTable from '../components/LeavesTable'
 import {useState,useEffect} from 'react'
 import { useForm } from 'react-hook-form'
 import {DevTool} from '@hookform/devtools'
+import {Button, TextInput} from 'flowbite-react'
 import client from '../axiosURL'
 import SearchInput from '../components/SearchBar'
 
 const LeavesPage = ()=>{
     const [leaves,setLeaves] = useState()
+    const [leaveDays,setLeaveDays] = useState([])
     const [selected,select] = useState(null)
+    const [employeeID,setEmployeeID] = useState(null)
     const [options,setOptions] = useState([])
     const fields = useForm()
     const submission = result=>{
-        console.log(result)
+        const format = {
+            reason:result.reason,
+            leaveDays: {
+                empID : employeeID,
+                id: selected.leaveDaysID,
+                dates: result.dates
+            }
+        }
+        console.log(format)
+        client.post('/leavedays/use',format)
+        .then(({data})=>console.log(data))
     }
     useEffect(()=>{
         client.get('leaves/all')
         .then(response=>setLeaves(response.data))
     },[])
+    
+    useEffect(()=>{
+        if(employeeID)
+        client.get(`leavedays/employee/${employeeID}`)
+        .then(({data})=>setLeaveDays(data))
+    },[employeeID])
 
     return(
         <>
             <form onSubmit={fields.handleSubmit(submission)}>
-                <LeaveTable selected={selected} select={select} leaves={leaves}/>
+                <LeaveTable selected={selected} select={select} leaves={leaves} leaveDays={leaveDays}/>
                 <LeavesCalendar fields={fields}/>
-                <SearchInput fields={fields} setOptions={setOptions} options={options}/>
+                <SearchInput fields={fields} setOptions={setOptions} options={options} setEmployeeID={setEmployeeID}/>
+                <TextInput {...fields.register('reason')}/>
+                <Button type='submit'>Submit</Button>
             </form>
             <DevTool control={fields.control}/>
         </>

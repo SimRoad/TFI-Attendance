@@ -8,7 +8,7 @@ const LeavesCalendar = ({fields})=>{
     return(
         <Controller 
             control={fields.control}
-            name = 'leaves'
+            name = 'dates'
             render={({field:{onChange,value},formState:{errors}})=>
                 <DatePicker 
                     multiple
