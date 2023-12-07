@@ -1,9 +1,23 @@
-import { Controller } from 'react-hook-form';
+import client from "../../axiosURL"
+import { Controller } from 'react-hook-form'
 import { TextInput, Datepicker, Label, Select } from 'flowbite-react'
+import { useState , useEffect} from "react"
+import { useParams } from 'react-router-dom'
 
 
-export const ProfileSection = ({ register, control, errors , editData }) => {
+export const ProfileSection = ({ register, control, errors }) => {
     const employeeErr = errors.employee;
+
+    const [employee,setEmployee] = useState([])
+    const {id} = useParams()
+
+    useEffect(() => {
+        client.get(`employee/`+ id)
+        .then(res => setEmployee(res.data))
+        // .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }, [])
+
     return (
         <>
             <Label htmlFor="firstName1" value="First Name" />
@@ -14,7 +28,7 @@ export const ProfileSection = ({ register, control, errors , editData }) => {
                 helperText={<>
                     {employeeErr?.firstName ? employeeErr?.firstName.message : ''}
                 </>}
-                //  value={ }
+                 value={ employee.firstName }
             />
             <Label htmlFor="middleName1" value="Middle Name" />
             <TextInput

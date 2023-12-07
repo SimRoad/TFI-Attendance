@@ -1,7 +1,6 @@
 // How will i get/retrieve the data and display in a form for editing
 import client from "../axiosURL"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { useState , useEffect} from "react"
 import { ProfileSection } from "./editEmployeeInputs/ProfileSection"
 import { AddressPortion } from "./editEmployeeInputs/AddressPortion"
 import { ContactPortion } from "./editEmployeeInputs/ContactPortion"
@@ -10,19 +9,11 @@ import {useForm} from 'react-hook-form'
 import { Button } from "flowbite-react"
 import { Link } from "react-router-dom"
 
-const EditEmployeeForm = ({id})=>{
+const EditEmployeeForm = () => {
     const {handleSubmit, register, control, reset, formState:{errors}} = useForm(
         {resolver: yupResolver(employeeRegisterSchema)}
     )
-    const [empData,setEmpdata] = useState([])
-    const fields = {register,control,errors, empData}
-
-    useEffect(() => {
-        client.get(`employee/` + id)
-        .then(res => setEmpdata(res.data))
-        .then(console.log(empData))
-        .catch(err => console.log(err))
-    }, [])
+    const fields = {register,control,errors}
     
     const submit = result=>{
         let data = result;

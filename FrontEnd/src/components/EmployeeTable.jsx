@@ -8,16 +8,10 @@ const EmployeeTable = ({setter,columns,data})=>{
     columns = columns ?? ['Placeholder']
     const [employees,setEmployees] = useState([])
     const [offset,setOffset] = useState(0)
-    // useEffect(()=>{
-    //     const request = async () => {
-    //         (offset)
-    //         const response = await client.get(`employee/all?offset=${offset}`)
-    //         setEmployees(prev=>[...prev, ...response.data]);
-    //     }
-    //     request()
-    // },[])
+
     useEffect(()=>{
-        client.get(`employee/all?offset=${offset}`)
+        // client.get(`employee/all?offset=${offset}`)
+        client.get(`employee/all`)
         .then(res => setEmployees(res.data))
         .catch(err => console.log(err))
     },[])
