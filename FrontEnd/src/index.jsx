@@ -15,6 +15,7 @@ import EditEmployeeForm from './components/EditEmployeeData'
 import {useEffect, useState} from 'react'
 import EmployeeTabs from './components/EmployeeTabs'
 import LeaveTabs from './components/LeaveTabs'
+import Debug from './components/debug'
 
 const index = ()=>{
     return(
@@ -32,7 +33,7 @@ const index = ()=>{
                         <Route element={<LeaveTabs/>} path='/dashboard/leaves'/>
                         <Route element={<UserCreate/>} path='/dashboard/createuser'/>
                         <Route element={<LogTable/>} path='/dashboard/logs'/>
-                        <Route element={<TimeInOut/>} path='/dashboard/debug'/>
+                        <Route element={<Debug/>} path='/dashboard/debug'/>
                         <Route element={<EditEmployeeForm/>} path='/dashboard/editEmployeeData/:id'/>
                     </Route>
                 </Route>
