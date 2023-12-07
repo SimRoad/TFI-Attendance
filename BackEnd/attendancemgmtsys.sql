@@ -225,7 +225,7 @@ ALTER TABLE `logs`
 ALTER TABLE `shift`
   ADD PRIMARY KEY (`shiftID`),
   ADD KEY `fk_shift_employeeID` (`employeeID`) USING BTREE,
-  ADD KEY `fk_shift_leaveID` (`leaveID`);
+  ADD KEY `fk_shift_leaveID` (`leaveDaysID`);
 
 --
 -- Indexes for table `user`

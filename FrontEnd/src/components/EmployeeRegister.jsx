@@ -29,7 +29,6 @@ const EmployeeRegisterForm = ()=>{
     }
     return(
         <>
-        <Header/>
         <div className="flex justify-center items-center">
             <form onSubmit={handleSubmit(submit)}>
                 <ProfileSection {...fields} />
