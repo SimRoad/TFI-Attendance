@@ -60,4 +60,36 @@ export default class DaySession extends GenericModel{
             throw(error)
         }
     }
+    static async getAllDayWorkHours(date){
+        date = date || new Date()
+        const [rows] = await databaseConfig.execute(`SELECT employeeID, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) AS hours_worked FROM daysession WHERE 
+            DATE(timeIn) = ? GROUP BY timeIn`,[date])
+        return rows
+    }
+    static async getEmpDayWorkHours(empID,date){
+        date = date || new Date()
+        const [rows] = await databaseConfig.execute(`SELECT employeeID, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) AS hours_worked FROM daysession WHERE 
+            DATE(timeIn) = ? AND employeeID = ? GROUP BY timeIn`,[date,empID])
+        return rows
+    }
+    static async getAllWeekWorkHours(date){
+        date = date || new Date()
+        const [rows] = await databaseConfig.execute(`SELECT employeeID, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) AS hours_worked FROM daysession WHERE 
+            WEEK(timeIn) = WEEK(?) AND YEAR(timeIn) = YEAR(?) GROUP BY WEEK(timeIn)`,[date,date])
+    }
+    static async getEmpWeekWorkHours(empID,date){
+        date = date || new Date()
+        const [rows] = await databaseConfig.execute(`SELECT employeeID, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) AS hours_worked FROM daysession WHERE 
+            WEEK(timeIn) = WEEK(?) AND YEAR(timeIn) = YEAR(?) AND employeeID = ? GROUP BY WEEK(timeIn)`,[date,date,empID])
+    }
+    static async getAllMonthWorkHours(date){
+        date = date || new Date()
+        const [rows] = await databaseConfig.execute(`SELECT employeeID, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) AS hours_worked FROM daysession WHERE 
+            MONTH(timeIn) = MONTH(?) AND YEAR(timeIn) = YEAR(?) GROUP BY MONTH(timeIn)`,[date,date])
+    }
+    static async getEmpMonthWorkHours(empID,date){
+        date = date || new Date()
+        const [rows] = await databaseConfig.execute(`SELECT employeeID, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) AS hours_worked FROM daysession WHERE 
+            MONTH(timeIn) = MONTH(?) AND YEAR(timeIn) = YEAR(?) AND employeeID = ? GROUP BY MONTH(timeIn)`,[date,date,empID])
+    }
 }

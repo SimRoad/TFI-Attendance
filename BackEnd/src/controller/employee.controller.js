@@ -3,6 +3,7 @@ import Employee from "../models/employee.model.js";
 import databaseConfig from '../../database.config.js';
 import { generateImageName } from '../middleware/imgReceive.js';
 import LeaveDays from '../models/leaveDays.model.js';
+import DaySession from '../models/daySession.model.js';
 
 export default class EmployeeController{
     static async findAll(req,res,next){
@@ -50,7 +51,17 @@ export default class EmployeeController{
         try {
             res.send(await Employee.fuzzySearch(req.query.input))
         } catch (error) {
-            throw(error)
+            next(error)
+        }
+    }
+    static async getWorkHours(req,res,next){
+        try {
+            let response
+            const {id,date} = req.query
+            response = id ? await DaySession.getEmpDayWorkHours(id,date) : await DaySession.getAllDayWorkHours(date)
+            res.send(response)
+        } catch (error) {
+            next(error)
         }
     }
 }
