@@ -25,8 +25,12 @@ class LeaveDays extends GenericModel{
             const dbConn = conn || databaseConfig
             const placeholder = dates.map(()=>`(?,?,?,?)`)
             const values = dates.map(date=>[empID,leaveDaysID,reasonID,new Date(date)])
-            const [rows] = await dbConn.execute(`INSERT INTO shift(employeeID,leaveDaysID,reasonID,shiftDate) VALUES
-            ${placeholder}`,values.flat())
+            // if(await dbConn.execute(`SELECT shiftID FROM shift WHERE employeeID = ? AND shiftDate IN (${dates.map(()=>`?`)})`))
+            // dbConn.execute(`UPDATE shift SET leaveDaysID = ? WHERE shiftDate IN (${dates.map(()=>`?`)})`,[leaveDaysID, dates.map(date=>new Date(date)).flat()])
+            // else {
+                const [rows] = await dbConn.execute(`INSERT INTO shift(employeeID,leaveDaysID,reasonID,shiftDate) VALUES
+                ${placeholder}`,values.flat())
+            // }
             return rows
         } catch (error) {
             throw(error)
