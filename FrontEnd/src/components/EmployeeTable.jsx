@@ -22,7 +22,7 @@ const EmployeeTable = ({setter,columns,data})=>{
         .catch(err => console.log(err))
     },[])
     return(
-        <div className='overflow-y-auto max-h-[79vh] w-full'>
+        <div className='overflow-y-auto max-h-[79vh]'>
             {/* <Button onClick={()=>{setOffset(a=>a+1)}}/> */}
             <Table className='table-auto' hoverable>
                 <Table.Head>
