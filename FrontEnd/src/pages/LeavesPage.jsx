@@ -40,13 +40,15 @@ const LeavesPage = ()=>{
 
     return(
         <>
-            <form onSubmit={fields.handleSubmit(submission)}>
+        <div>
+            <form onSubmit={fields.handleSubmit(submission)} >
                 <LeaveTable selected={selected} select={select} leaves={leaves} leaveDays={leaveDays}/>
                 <LeavesCalendar fields={fields}/>
                 <SearchInput fields={fields} setOptions={setOptions} options={options} setEmployeeID={setEmployeeID}/>
                 <TextInput {...fields.register('reason')}/>
                 <Button type='submit'>Submit</Button>
             </form>
+        </div>
             <DevTool control={fields.control}/>
         </>
     )
