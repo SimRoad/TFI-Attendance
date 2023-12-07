@@ -12,7 +12,7 @@ function LogTable({setLogList}){
         if(!logs.length) request()
     },[logs])
     return(
-        <div className='overflow-y-auto max-h-[40vh]'>
+        <div className='overflow-y-auto max-h-[40vh] w-[100vh]'>
             <Table className="table-auto"hoverable>
                 <Table.Head>
                     <Table.HeadCell></Table.HeadCell>
