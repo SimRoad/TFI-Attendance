@@ -16,8 +16,7 @@ function WebSideBar() {
     return (
         // WIP shifts not working
         <div className="flex flex-col w-max">
-            {/* <div className="flex-initial w-5"> */}
-            <button className='flex place-self-center' onClick={() => setClose(!close)}><IoMenu size={30}/></button>
+            <button className='flex justify-center' onClick={() => setClose(!close)}><IoMenu size={30}/></button>
             <Sidebar collapsed={close}>
                 <Sidebar.Items>
                     <SidebarItemGroup>
@@ -64,7 +63,6 @@ function WebSideBar() {
                     </SidebarItemGroup>
                 </Sidebar.Items>
             </Sidebar>
-            {/* </div> */}
         </div>
     )
 }
