@@ -18,7 +18,7 @@ const ShiftPage = ()=>{
         client.post('/shift',results)
         .then(response=>{
             console.log(response)
-            if(response.data.some(d=>d.shiftID)){
+            if(response.data[0].shiftID){
                 setConflict(response.data)
                 setOpenModal(true)
             }else{
