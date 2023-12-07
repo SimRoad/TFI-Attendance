@@ -15,7 +15,7 @@ function HolidayTable({setHolidayList}){
         if(!holidays.length && holidays.length - offset <=0) request()
     },[offset,holidays])
     return(
-        <div className='overflow-y-auto max-h-[40vh]'>
+        <div className='overflow-y-auto max-h-[90vh]'>
             <Table className="table-auto"hoverable>
                 <Table.Head>
                     <Table.HeadCell><Checkbox/></Table.HeadCell>

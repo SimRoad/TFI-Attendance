@@ -9,10 +9,12 @@ import EmployeeTable from './components/EmployeeTable'
 import LogTable from './components/LogsTable'
 import LeavesPage from './pages/LeavesPage'
 import TimeInOut from './components/TimeInOut'
-import ShiftPage from '../src/pages/ShiftPage'
+import ShiftPage from './pages/ShiftPage'
 import client from './axiosURL'
 import EditEmployeeForm from './components/EditEmployeeData'
 import {useEffect, useState} from 'react'
+import EmployeeTabs from './components/EmployeeTabs'
+import LeaveTabs from './components/LeaveTabs'
 
 const index = ()=>{
     return(
@@ -24,10 +26,10 @@ const index = ()=>{
                     <Route element={<LeaveTable/>} path='/leaves'/>
                     <Route element={<Dashboard/>} path='/dashboard'>
                         <Route index element={<EmployeeTable/>} />
-                        <Route element={<EmployeeTable/>} path='/dashboard/employeeTable'/>
+                        <Route element={<EmployeeTabs/>} path='/dashboard/employee'/>
                         <Route element={<ShiftPage/>} path='/dashboard/shift'/>
                         <Route element={<HolidayTable/>} path='/dashboard/holidayTable'/>
-                        <Route element={<LeavesPage/>} path='/dashboard/leaves'/>
+                        <Route element={<LeaveTabs/>} path='/dashboard/leaves'/>
                         <Route element={<UserCreate/>} path='/dashboard/createuser'/>
                         <Route element={<LogTable/>} path='/dashboard/logs'/>
                         <Route element={<TimeInOut/>} path='/dashboard/debug'/>

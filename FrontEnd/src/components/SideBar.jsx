@@ -6,8 +6,7 @@ import { MdDashboard, MdEditCalendar } from "react-icons/md"
 import { Routes as Routers, Link, Route } from "react-router-dom";
 import { CgDebug } from "react-icons/cg"
 import { CiViewList } from "react-icons/ci";
-import ShiftForm from "./ShiftForm";
-import LogTable from "./LogsTable";
+
 function WebSideBar(){
 
     return (
@@ -22,7 +21,7 @@ function WebSideBar(){
                                 Dashboard
                             </Sidebar.Item>
                         </Link>
-                        <Link to = "employeeTable" relative="path">
+                        <Link to = "employee" relative="path">
                             <Sidebar.Item icon = {FaUser}>
                                 Employees
                             </Sidebar.Item>
