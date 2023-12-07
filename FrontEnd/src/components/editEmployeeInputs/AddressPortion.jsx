@@ -6,6 +6,7 @@ import { useState } from 'react';
 export const AddressPortion = ({ register, errors, editData }) => {
     const addressErr = errors.address;
     const [postal, setPostal] = useState('');
+    
     return (
         <>
             <Label htmlFor="street1" value="Street" />

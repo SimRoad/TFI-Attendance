@@ -14,7 +14,8 @@ export const ProfileSection = ({ register, control, errors , editData }) => {
                 helperText={<>
                     {employeeErr?.firstName ? employeeErr?.firstName.message : ''}
                 </>}
-                 value={editData.firstName}/>
+                //  value={ }
+            />
             <Label htmlFor="middleName1" value="Middle Name" />
             <TextInput
                 id='middleName1'
@@ -22,7 +23,9 @@ export const ProfileSection = ({ register, control, errors , editData }) => {
                 color={employeeErr?.middleName ? 'failure' : ''}
                 helperText={<>
                     {employeeErr?.middleName ? employeeErr?.middleName.message : ''}
-                </>} />
+                </>} 
+                // value={ }
+            />
             <Label htmlFor="lastName1" value="Last Name" />
             <TextInput
                 id='lastName1'
@@ -30,7 +33,8 @@ export const ProfileSection = ({ register, control, errors , editData }) => {
                 color={employeeErr?.lastName ? 'failure' : ''}
                 helperText={<>
                     {employeeErr?.lastName ? employeeErr?.lastName.message : ''}
-                </>} />
+                </>} 
+            />
             <Label htmlFor="gender1" value="Gender" />
             <Select id="gender1"
                 {...register('employee.gender')}

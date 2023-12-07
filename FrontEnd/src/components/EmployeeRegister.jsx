@@ -6,8 +6,6 @@ import client from '../axiosURL'
 import { ProfileSection } from './employeeInputs/ProfileSection'
 import { AddressPortion } from './employeeInputs/AddressPortion'
 import { ContactPortion } from './employeeInputs/ContactPortion'
-import Header from './headerAndFooter/Header'
-import Footer from './headerAndFooter/Footer'
 
 const EmployeeRegisterForm = ()=>{
     const {handleSubmit, register, control, reset, formState:{errors}} = useForm(

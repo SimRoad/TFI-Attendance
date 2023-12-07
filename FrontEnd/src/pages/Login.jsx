@@ -1,5 +1,5 @@
 import LoginForm from "../components/LoginForm";
-import CompHeader from "../components/headerAndFooter/Header"
+import CompHeader from "../components/headerAndFooter/LoginHeader"
 import CompFooter from "../components/headerAndFooter/Footer";
 
 const loginPage = ()=>{
