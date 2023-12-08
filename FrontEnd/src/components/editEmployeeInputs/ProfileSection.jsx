@@ -1,22 +1,9 @@
-import client from "../../axiosURL"
 import { Controller } from 'react-hook-form'
 import { TextInput, Datepicker, Label, Select } from 'flowbite-react'
-import { useState , useEffect} from "react"
-import { useParams } from 'react-router-dom'
 
 
-export const ProfileSection = ({ register, control, errors }) => {
+export const ProfileSection = ({ register, control, errors, employee }) => {
     const employeeErr = errors.employee;
-
-    const [employee,setEmployee] = useState([])
-    const {id} = useParams()
-
-    useEffect(() => {
-        client.get(`employee/`+ id)
-        .then(res => setEmployee(res.data))
-        // .then(res => console.log(res))
-        .catch(err => console.log(err))
-    }, [])
 
     return (
         <>
@@ -25,26 +12,27 @@ export const ProfileSection = ({ register, control, errors }) => {
                 id='firstName1'
                 {...register('employee.firstName')}
                 color={employeeErr?.firstName ? 'failure' : ''}
+                placeholder={employee.firstName}
                 helperText={<>
                     {employeeErr?.firstName ? employeeErr?.firstName.message : ''}
                 </>}
-                 value={ employee.firstName }
             />
             <Label htmlFor="middleName1" value="Middle Name" />
             <TextInput
                 id='middleName1'
                 {...register('employee.middleName')}
                 color={employeeErr?.middleName ? 'failure' : ''}
+                placeholder={employee.middleName}
                 helperText={<>
                     {employeeErr?.middleName ? employeeErr?.middleName.message : ''}
-                </>} 
-                // value={ }
+                </>}
             />
             <Label htmlFor="lastName1" value="Last Name" />
             <TextInput
                 id='lastName1'
                 {...register('employee.lastName')}
                 color={employeeErr?.lastName ? 'failure' : ''}
+                placeholder={employee.lastName}
                 helperText={<>
                     {employeeErr?.lastName ? employeeErr?.lastName.message : ''}
                 </>} 
@@ -90,12 +78,12 @@ export const ProfileSection = ({ register, control, errors }) => {
                     autoHide={true}
                     onSelectedDateChanged={(date) => onChange(date)} />
                 )} />
-            {/* <span>{ employeeErr?.birthDate?.message }</span> */}
             <Label htmlFor="jobPosition1" value="Job Position" />
             <TextInput
                 id='jobPosition1'
                 {...register('employee.jobPosition')}
                 color={employeeErr?.jobPosition ? 'failure' : ''}
+                placeholder={employee.jobPosition}
                 helperText={<>
                     {errors?.employee?.jobPosition ? errors?.employee?.jobPosition.message : ''}
                 </>} />

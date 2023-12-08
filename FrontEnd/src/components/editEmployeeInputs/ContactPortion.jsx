@@ -2,7 +2,7 @@ import { TextInput, Label, FileInput } from 'flowbite-react';
 import { useState } from 'react';
 import { HiMail } from 'react-icons/hi'
 
-export const ContactPortion = ({ register, errors }) => {
+export const ContactPortion = ({ register, errors, employee }) => {
     const employeeErr = errors.employee;
     const [file, setFile] = useState();
     return (
@@ -13,6 +13,7 @@ export const ContactPortion = ({ register, errors }) => {
                 type='text'
                 {...register('employee.contactNumber')}
                 color={employeeErr?.contactNumber ? 'failure' : ''}
+                placeholder={employee.contactNumber}
                 helperText={<>
                     {employeeErr?.contactNumber ? employeeErr?.contactNumber.message : ''}
                 </>} />
@@ -22,6 +23,7 @@ export const ContactPortion = ({ register, errors }) => {
                 icon={HiMail}
                 {...register('employee.email')}
                 color={employeeErr?.email ? 'failure' : ''}
+                placeholder={employee.email}
                 helperText={<>
                     {employeeErr?.email ? employeeErr?.email.message : ''}
                 </>} />

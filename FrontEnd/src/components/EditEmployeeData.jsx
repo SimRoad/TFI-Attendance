@@ -7,13 +7,30 @@ import { ContactPortion } from "./editEmployeeInputs/ContactPortion"
 import { employeeRegisterSchema } from "../yupSchema"
 import {useForm} from 'react-hook-form'
 import { Button } from "flowbite-react"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
+import { useState , useEffect} from "react"
 
 const EditEmployeeForm = () => {
     const {handleSubmit, register, control, reset, formState:{errors}} = useForm(
         {resolver: yupResolver(employeeRegisterSchema)}
     )
-    const fields = {register,control,errors}
+
+    const [employee,setEmployee] = useState([])
+    const [address, setAddress] = useState([])
+    const {id} = useParams()
+
+    useEffect(() => {
+        client.get(`employee/`+ id)
+        .then(res => setEmployee(res.data[0]))
+        .catch(err => console.log(err))
+    }, [])
+    useEffect(() => {
+        client.get(`address/`+ id)
+        .then(res => setAddress(res.data[0]))
+        .catch(err => console.log(err))
+    }, [])
+
+    const fields = {register,control,errors,employee,address}
     
     const submit = result=>{
         let data = result;
