@@ -7,7 +7,6 @@ import client from '../axiosURL'
 const EmployeeTable = ({setter,columns,data})=>{
     columns = columns ?? ['Placeholder']
     const [employees,setEmployees] = useState([])
-    const [offset,setOffset] = useState(0)
 
     useEffect(()=>{
         // client.get(`employee/all?offset=${offset}`)
@@ -20,7 +19,7 @@ const EmployeeTable = ({setter,columns,data})=>{
             {/* <Button onClick={()=>{setOffset(a=>a+1)}}/> */}
             <Table className='table-auto' hoverable>
                 <Table.Head>
-                    <Table.HeadCell><Checkbox onChange={()=>setOffset(a=>a+1)}/></Table.HeadCell>
+                    <Table.HeadCell><Checkbox/></Table.HeadCell>
                     <Table.HeadCell>Name</Table.HeadCell>
                     {
                         columns.map((col,ndx)=>{

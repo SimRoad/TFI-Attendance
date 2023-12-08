@@ -14,12 +14,12 @@ export default class DaySession extends GenericModel{
     }
     static async getAbsentsAndLates(){
         try {
-            const [rows] = await databaseConfig.execute(`SELECT d.sessionID, s.shiftDate, 
+            const [rows] = await databaseConfig.execute(`SELECT d.sessionID, s.shiftDate, e.employeeID,
             IF(d.dayStatus = 'late','late','absent') AS dayStatus,
             CONCAT_WS(' ',e.firstName, IFNULL(LEFT(e.middleName, 1),''), e.lastName) AS fullName,
             d.timeIn FROM shift as s JOIN employee as e ON s.employeeID = e.employeeID LEFT JOIN daysession as d
             ON s.employeeID = d.employeeID AND s.shiftDate = DATE(d.timeIn) WHERE (DATE(d.timeIn) IS NULL 
-            AND s.shiftDate < CURDATE()) OR d.dayStatus = 'late'`)
+            AND s.shiftDate < CURDATE()) OR d.dayStatus = 'late' OR d.dayStatus = 'absent'`)
             return rows
         } catch (error) {
             throw(error)
@@ -27,7 +27,7 @@ export default class DaySession extends GenericModel{
     }
     static async getUnresolvedStatus(){
         try {
-            const [rows] = await databaseConfig.execute(`SELECT s.sessionID, 
+            const [rows] = await databaseConfig.execute(`SELECT s.sessionID, e.employeeID,
             CONCAT_WS(' ',e.firstName, IFNULL(LEFT(e.middleName, 1),''), e.lastName) AS fullName,
             s.timeIn FROM daysession as s JOIN employee as e ON s.employeeID = e.employeeID
             WHERE dayStatus = 'pending' AND DATE(timeIn) < CURDATE()`)
@@ -97,25 +97,29 @@ export default class DaySession extends GenericModel{
         const idSQL = empID ? 'AND employeeID = ? ' : ''
         console.log(values,idSQL,empID ? true : false)
         const [rows] = await databaseConfig.execute(`SELECT employeeID, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) AS hoursWorked, 
-            IF(SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) > 0, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) - 8, 0) AS hoursOvertime
+            SUM(GREATEST(0, TIMESTAMPDIFF(HOUR,timeIn,timeOut) - 8)) AS hoursOvertime
             FROM daysession WHERE 
             DATE(timeIn) = ? ${idSQL}GROUP BY timeIn`,values)
         return rows
     }
     static async getEmpWeekWorkHours(empID,date){
         date = date || new Date()
-        const values = empID ? [date,empID] : [date,date]
+        const values = empID ? [date,date,empID] : [date,date]
         const idSQL = empID ? 'AND employeeID = ? ' : ''
-        const [rows] = await databaseConfig.execute(`SELECT employeeID, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) AS hoursWorked 
+        const [rows] = await databaseConfig.execute(`SELECT employeeID, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) AS hoursWorked,
+            SUM(GREATEST(0, TIMESTAMPDIFF(HOUR,timeIn,timeOut) - 8)) AS hoursOvertime 
             FROM daysession WHERE 
             WEEK(timeIn) = WEEK(?) AND YEAR(timeIn) = YEAR(?) ${idSQL}GROUP BY WEEK(timeIn)`,values)
         return rows
     }
     static async getEmpMonthWorkHours(empID,date){
         date = date || new Date()
-        const values = empID ? [date,date] : [date]
+        const values = empID ? [date,date,empID] : [date,date]
         const idSQL = empID ? 'AND employeeID = ? ' : ''
-        const [rows] = await databaseConfig.execute(`SELECT employeeID, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) AS hoursWorked FROM daysession WHERE 
+        console.log(values)
+        const [rows] = await databaseConfig.execute(`SELECT employeeID, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) AS hoursWorked,
+            SUM(GREATEST(0, TIMESTAMPDIFF(HOUR,timeIn,timeOut) - 8)) AS hoursOvertime
+            FROM daysession WHERE 
             MONTH(timeIn) = MONTH(?) AND YEAR(timeIn) = YEAR(?) ${idSQL}GROUP BY MONTH(timeIn)`,values)
         return rows
     }
