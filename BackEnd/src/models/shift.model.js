@@ -62,4 +62,16 @@ export default class Shift extends GenericModel{
             throw(error)
         }
     }
+    static async getMonthCount(){
+        try {
+            const [rows] =  await databaseConfig.execute(`SELECT employeeID, 
+            COUNT(shiftID) AS count 
+            FROM shift WHERE leaveDaysID IS NULL 
+            AND MONTH(shiftDate) = MONTH(CURDATE())  
+            AND YEAR(shiftDate) = YEAR(CURDATE()) GROUP BY employeeID`)
+            return rows
+        } catch (error) {
+            throw(error)
+        }
+    }
 }

@@ -58,10 +58,8 @@ export default class EmployeeController{
         try {
             const response = {}
             const {id,date} = req.query
-            console.log(req.query)
             response.workHours = await DaySession.getEmpMonthWorkHours(id,date)
             response.absentAndLate = await DaySession.getAbsentsAndLates()
-            console.log(response)
             
             let employees = []
             response.workHours.forEach(hours=>{
