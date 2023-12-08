@@ -12,6 +12,30 @@ export default class DaySession extends GenericModel{
         this.timeOut = daysession.timeOut ?? null
         this.dayStatus = daysession.dayStatus ?? null
     }
+    static async getAbsentsAndLates(){
+        try {
+            const [rows] = await databaseConfig.execute(`SELECT d.sessionID, s.shiftDate, 
+            IF(d.dayStatus = 'late','late','absent') AS dayStatus,
+            CONCAT_WS(' ',e.firstName, IFNULL(LEFT(e.middleName, 1),''), e.lastName) AS fullName,
+            d.timeIn FROM shift as s JOIN employee as e ON s.employeeID = e.employeeID LEFT JOIN daysession as d
+            ON s.employeeID = d.employeeID AND s.shiftDate = DATE(d.timeIn) WHERE (DATE(d.timeIn) IS NULL 
+            AND s.shiftDate < CURDATE()) OR d.dayStatus = 'late'`)
+            return rows
+        } catch (error) {
+            throw(error)
+        }
+    }
+    static async getUnresolvedStatus(){
+        try {
+            const [rows] = await databaseConfig.execute(`SELECT s.sessionID, 
+            CONCAT_WS(' ',e.firstName, IFNULL(LEFT(e.middleName, 1),''), e.lastName) AS fullName,
+            s.timeIn FROM daysession as s JOIN employee as e ON s.employeeID = e.employeeID
+            WHERE dayStatus = 'pending' AND DATE(timeIn) < CURDATE()`)
+            return rows
+        } catch (error) {
+            throw(error)
+        }
+    }
     async setTimeIn(){
         const temp = await databaseConfig.getConnection()
         try {

@@ -18,7 +18,7 @@ const ShiftPage = ()=>{
         results.dates.forEach((date,ndx)=>results.dates[ndx] = date.format('YYYY-MM-DD'))
         client.post('/shift',results)
         .then(response=>{
-            if(response?.data?.some(d=>d.shiftID)){
+            if(response.data?.some(d=>d.shiftID)){
                 setConflict(response.data)
                 setOpenModal(true)
             }else{
