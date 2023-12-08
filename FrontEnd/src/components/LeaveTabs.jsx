@@ -14,7 +14,7 @@ const LeaveTabs = ()=>{
         <Tabs.Item title ="Leaves" icon ={FcLeave}>
             <LeavesPage/>
         </Tabs.Item>
-        {auth.position === 'Admin' && <Tabs.Item title ="Form" disabled = {avail}>
+        {auth.position === 'Admin' && <Tabs.Item title ="Form">
             {/* <LeaveForm/> */}
         </Tabs.Item>}
     </Tabs>

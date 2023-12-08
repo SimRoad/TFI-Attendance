@@ -5,11 +5,11 @@ import { MdEventNote } from "react-icons/md";
 import { IoCreateSharp } from "react-icons/io5";
 import { useState, useEffect } from "react"
 import client from "../axiosURL"
-import {useOutputContext} from 'react-router-dom'
+import {useOutletContext} from 'react-router-dom'
 
 
 const HolidayTabs = ()=>{
-    const [ auth ] = useOutputContext()
+    const [ auth ] = useOutletContext()
 
     return(
         <>
