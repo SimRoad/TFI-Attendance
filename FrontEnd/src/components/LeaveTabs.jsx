@@ -15,7 +15,7 @@ const LeaveTabs = ()=>{
             <LeavesPage/>
         </Tabs.Item>
         {auth.position === 'Admin' && <Tabs.Item title ="Form">
-            {/* <LeaveForm/> */}
+            <LeaveForm/>
         </Tabs.Item>}
     </Tabs>
     </div>

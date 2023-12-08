@@ -14,10 +14,8 @@ export default class LeavesController{
     }
     static async create(req,res,next){
         try {
-            if((await Employee.getID(req.body.leaves.employeeID)).length){
-                const newLeaves = new Leaves(req.body.leaves)
-                res.send(await newLeaves.create())
-            }else throw Error(`Employee ID does not exist`)
+            const newLeaves = new Leaves(req.body.leaves)
+            res.send(await newLeaves.create())
         } catch (error) {
             next(error)
         }
