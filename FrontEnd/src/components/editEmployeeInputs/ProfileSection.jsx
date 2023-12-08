@@ -4,6 +4,23 @@ import { TextInput, Datepicker, Label, Select } from 'flowbite-react'
 
 export const ProfileSection = ({ register, control, errors, employee }) => {
     const employeeErr = errors.employee;
+    var cMale = false, cFemale = false, cSingle = false, cMarried = false, cWidowed = false, cLS = false;
+
+    if(employee.gender == "Male"){
+        cMale = true
+    } else if(employee.gender == "Female"){
+        cFemale = true
+    }
+
+    if(employee.civilStatus == "Single"){
+        cSingle = true
+    } else if(employee.civilStatus == "Married"){
+        cMarried = true
+    } else if(employee.civilStatus == "Widowed"){
+        cWidowed = true
+    } else if(employee.civilStatus == "Legally Separated"){
+        cLS = true
+    }
 
     return (
         <>
@@ -46,8 +63,8 @@ export const ProfileSection = ({ register, control, errors, employee }) => {
                 </>}
             >
                 <option>--</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="male" selected={cMale}>Male</option>
+                <option value="female" selected={cFemale}>Female</option>
             </Select>
             <Label htmlFor="civilStatus1" value="Civil Status" />
             <Select id="civilStatus1"
@@ -58,10 +75,10 @@ export const ProfileSection = ({ register, control, errors, employee }) => {
                 </>}
             >
                 <option className='color-gray-500'>--</option>
-                <option value="single">Single</option>
-                <option value="married">Married</option>
-                <option value="widowed">Widowed</option>
-                <option value="legally separated">Legally Separated</option>
+                <option value="single" selected={cSingle} >Single</option>
+                <option value="married" selected={cMarried} >Married</option>
+                <option value="widowed" selected={cWidowed} >Widowed</option>
+                <option value="legally separated" selected={cLS} >Legally Separated</option>
             </Select>
             <Label htmlFor="birthDate1" value="Birth Date" />
             <Controller
@@ -77,7 +94,8 @@ export const ProfileSection = ({ register, control, errors, employee }) => {
                     selected={value}
                     autoHide={true}
                     onSelectedDateChanged={(date) => onChange(date)} />
-                )} />
+                )}
+            />
             <Label htmlFor="jobPosition1" value="Job Position" />
             <TextInput
                 id='jobPosition1'
@@ -86,7 +104,8 @@ export const ProfileSection = ({ register, control, errors, employee }) => {
                 placeholder={employee.jobPosition}
                 helperText={<>
                     {errors?.employee?.jobPosition ? errors?.employee?.jobPosition.message : ''}
-                </>} />
+                </>}
+            />
         </>
     );
 };

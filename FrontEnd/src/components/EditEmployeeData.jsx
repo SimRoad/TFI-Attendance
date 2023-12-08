@@ -22,6 +22,7 @@ const EditEmployeeForm = () => {
     useEffect(() => {
         client.get(`employee/`+ id)
         .then(res => setEmployee(res.data[0]))
+        // .then(res => console.log(res.data[0]))
         .catch(err => console.log(err))
     }, [])
     useEffect(() => {
