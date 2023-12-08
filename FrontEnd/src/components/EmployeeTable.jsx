@@ -28,11 +28,12 @@ const EmployeeTable = ({setter,columns,data})=>{
                             return <Table.HeadCell key={ndx}>{col}</Table.HeadCell>
                         })
                     }
+                    <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className='divide-y'>
                     {
                         employees.map((emp,ndx)=>
-                            <TableRow key={ndx} id={emp.employeeID} name={emp.fullName} setEmpList={setter}/>
+                            <TableRow className key={ndx} id={emp.employeeID} name={emp.fullName} setEmpList={setter}/>
                         )
                     }
                 </Table.Body>
@@ -52,11 +53,11 @@ const TableRow = ({setEmpList,id,name})=>{
         <>
         <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <Table.Cell><Checkbox onChange={()=>checkHandler()}/></Table.Cell>
-            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white py-0">
                 {name}
             </Table.Cell>
-            <Table.Cell>WIP</Table.Cell>
-            <Table.Cell>
+            <Table.Cell className='py-0'>WIP</Table.Cell>
+            <Table.Cell className='py-0'>
                 <Link to={`/dashboard/editEmployeeData/${id}`}>
                     <Button className='border-2 border-accent/50'>
                         <FaUserEdit className="ml-1 h-5 w-5" fill='black'/>
