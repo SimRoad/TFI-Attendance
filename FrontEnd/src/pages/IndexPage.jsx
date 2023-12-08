@@ -5,16 +5,19 @@ const IndexPage = ()=>{
     return(
         <>
             <GraphHours />
-            <PendingList />
+            <Sessions/>
             <InfoCard />
+            <TotalHours />
         </>
     )
 }
 
 const GraphHours = () => {
     return(
-        <Card className="max-w-md absolute top-18 left-20">
-            <h1>Graph of Total Hours</h1>
+        <Card className="max-w-md absolute top-0 left-0">
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Graph of Total Hours
+            </h5>
         </Card>
     )
 }
@@ -28,9 +31,6 @@ const InfoCard = ()=>{
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             Total Lates : 0
         </h5>
-        {/* <p className="font-normal text-gray-700 dark:text-gray-400">
-            Joe
-        </p> */}
         <Button>
             Read more
             <svg className="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -41,6 +41,30 @@ const InfoCard = ()=>{
             />
             </svg>
         </Button>
+        </Card>
+    )
+}
+
+const Sessions = () => {
+    return(
+        <Card className="max-w-md absolute top-0 right-0">
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Pending Sessions
+            </h5>
+            <PendingList />
+        </Card>
+    )
+}
+
+const TotalHours = () => {
+    return(
+        <Card className="max-w-md absolute bottom-0 left-0">
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Total Hours : --
+            </h5>
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Overtime Hours : --
+            </h5>
         </Card>
     )
 }
