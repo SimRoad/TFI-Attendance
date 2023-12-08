@@ -5,7 +5,6 @@ import { Outlet } from "react-router-dom";
 const dashboard = () => {
     return (
         <>
-        
             <Header/>
             <div className="flex h-auto-max w-full">
                 <WebSideBar />
