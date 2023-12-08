@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { userSchema } from '../yupSchema'
 import client from '../axiosURL'
 import { DevTool } from "@hookform/devtools"
+import { Link } from "react-router-dom"
 
 const userCreate = () => {
 
@@ -17,7 +18,7 @@ const userCreate = () => {
         const {repeatpassword,...results} = data
         console.log('Registration Sent', results)
         client.post('user/create',results)
-        .then(res=>console.log(res))
+        .then(window.location = "/dashboard")
         .catch(err=>console.error(err))
     }
 
