@@ -34,7 +34,10 @@ const ShiftPage = ()=>{
             <div className='overflow-y-auto max-h-full w-full relative'>
                 <ConflictModal openModal={openModal} setOpenModal={setOpenModal} conflict={conflict}/>
                 <div className="overflow-y-auto max-h-full">
-                <EmployeeTable setter={setEmpList} columns={['Assigned','Shifts']}/>
+                <EmployeeTable checkBox setter={setEmpList} 
+                columns={['Assigned','Shifts']}
+                data={[{id:1,value:['--','--']}]}
+                />
                 </div>
             </div>
             <div>

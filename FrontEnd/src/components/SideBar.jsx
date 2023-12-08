@@ -19,8 +19,7 @@ function WebSideBar({id}) {
     useEffect(()=>{
         client.get(`user/${id}`)
         .then(res=>setUser(res.data[0]))
-        .then(err => console.log(err))
-        console.log(auth.position)
+        .catch(err => console.log(err))
     })
 
     return (
