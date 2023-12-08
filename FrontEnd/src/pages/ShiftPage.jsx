@@ -13,12 +13,12 @@ const ShiftPage = ()=>{
     const [conflict, setConflict] = useState({});
 
     const submission = results=>{
+        console.log(results)
         results.employees = empList
         results.dates.forEach((date,ndx)=>results.dates[ndx] = date.format('YYYY-MM-DD'))
         client.post('/shift',results)
         .then(response=>{
-            console.log(response)
-            if(response.data.some(d=>d.shiftID)){
+            if(response?.data?.some(d=>d.shiftID)){
                 setConflict(response.data)
                 setOpenModal(true)
             }else{

@@ -16,7 +16,7 @@ export default class GenericModel{
     }
     static async getID(id){
         try {
-            const [rows,fields] = await databaseConn.execute(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)])
+            const [rows] = await databaseConn.execute(`SELECT * FROM ${this.tableName} WHERE ${this.fields[0]} = ?`,[String(id)])
             return rows
         } catch (error) {
             throw(error)

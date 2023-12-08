@@ -25,7 +25,10 @@ export default class Shift extends GenericModel{
                 shift.forEach(prop=>prop = prop ?? null)
             })
             const placeholder = shifts.map(a=>'(?,?,?,?)')
-            const [rows] = await databaseConfig.execute(`INSERT INTO shift(shiftDate,timeIn,timeOut,employeeID) VALUES${placeholder}`,shifts.flat())
+            let response
+            // if((response = await databaseConfig.execute(`UPDATE shift SET `)))
+            const [rows] = await databaseConfig.execute(`INSERT INTO shift(shiftDate,timeIn,timeOut,employeeID) 
+            VALUES${placeholder} ON DUPLICATE KEY UPDATE timeIn = VALUES(timeIn), timeOut = VALUES(timeOut)`,shifts.flat())
             return rows
         } catch (error) {
             throw(error)
@@ -35,7 +38,11 @@ export default class Shift extends GenericModel{
         try {
             const datesPH = dates.map(()=>`?`).join(',')
             const employeesPH = employees.map(()=>`?`).join(',')
-            const [rows] = await databaseConfig.execute(`SELECT shiftID, shiftDate, leaveDaysID FROM shift WHERE DATE(shiftDate) IN (${datesPH}) AND employeeID IN (${employeesPH})`,[...dates,...employees])
+            const [rows] = await databaseConfig.execute(`SELECT shiftID, shiftDate, leaveDaysID 
+            FROM shift 
+            WHERE DATE(shiftDate) IN (${datesPH}) 
+            AND employeeID IN (${employeesPH})
+            AND leaveDaysID IS NULL`,[...dates,...employees])
             return rows
         } catch (error) {
             throw(error)
@@ -45,13 +52,22 @@ export default class Shift extends GenericModel{
         try {
             if(!employees.length) return []
             const employeePH = employees.map(()=>`?`).join(',')
-            const temporaryExemption = `AND (isWork = FALSE OR leaveID != null)`
-            const shiftQuery = `SELECT shiftDate FROM shift WHERE employeeID IN(${employeePH}) AND MONTH(shiftDate) = MONTH(NOW()) AND YEAR(shiftDate) = YEAR(NOW())`
+            const shiftQuery = `SELECT shiftDate FROM shift 
+            WHERE employeeID IN(${employeePH}) 
+            AND MONTH(shiftDate) = MONTH(NOW()) 
+            AND YEAR(shiftDate) = YEAR(NOW())
+            AND leaveDaysID IS NULL`
             const [rows] = await databaseConfig.execute(shiftQuery,employees)
             return rows
         } catch (error) {
             throw(error)
         }
     }
-
+    static async getUnresolvedStatus(){
+        try {
+            
+        } catch (error) {
+            throw(error)
+        }
+    }
 }

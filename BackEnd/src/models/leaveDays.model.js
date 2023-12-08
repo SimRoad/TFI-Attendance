@@ -23,14 +23,11 @@ class LeaveDays extends GenericModel{
     static async assignLeaves(empID,leaveDaysID,reasonID,dates,conn){
         try {
             const dbConn = conn || databaseConfig
-            const placeholder = dates.map(()=>`(?,?,?,?)`)
+            const placeholder = dates.map(()=>`(?,?,?,?)`).join(',')
             const values = dates.map(date=>[empID,leaveDaysID,reasonID,new Date(date)])
-            // if(await dbConn.execute(`SELECT shiftID FROM shift WHERE employeeID = ? AND shiftDate IN (${dates.map(()=>`?`)})`))
-            // dbConn.execute(`UPDATE shift SET leaveDaysID = ? WHERE shiftDate IN (${dates.map(()=>`?`)})`,[leaveDaysID, dates.map(date=>new Date(date)).flat()])
-            // else {
-                const [rows] = await dbConn.execute(`INSERT INTO shift(employeeID,leaveDaysID,reasonID,shiftDate) VALUES
-                ${placeholder}`,values.flat())
-            // }
+            //does not consider if another leave exists on the same day
+            const [rows]  = dbConn.execute(`INSERT INTO shift (employeeID, leaveDaysID, reasonID, shiftDate) VALUES
+            ${placeholder} ON DUPLICATE KEY UPDATE leaveDaysID = VALUES(leaveDaysID)`,values.flat())
             return rows
         } catch (error) {
             throw(error)

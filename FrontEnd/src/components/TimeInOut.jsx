@@ -1,35 +1,39 @@
 import { Button } from 'flowbite-react'
 import { useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import DatePicker from 'react-multi-date-picker'
+import TimePicker from 'react-multi-date-picker/plugins/time_picker'
 import client from '../axiosURL'
-
-function getTime() {
-    const currentTime = Date.now()
-    const Time = new Date(currentTime)
-        
-    return Time.toUTCString()
-}
+import SearchBar from './SearchBar'
+import { DevTool } from '@hookform/devtools'
 
 const TimeInOut = () => {
+    const [timeMethod,setTimeMethod] = useState('')
+    const [employeeID,setEmployeeID] = useState(null)
+    const [options,setOptions] = useState([])
+    const fields = useForm()
     
-    const [timedIn, setTimedIn] = useState('')
-    const [timedOut, setTimedOut] = useState('')
-    const [id,setID] = useState('')
-    
-    const initTimeIn = ()=>{
+    const initTimeIn = ({datetime})=>{
         client.post('daysession/create',{
             daysession:{
-                employeeID: id,
-                timeIn: new Date()
+                employeeID: employeeID,
+                timeIn: datetime.format()
             }
         })
+        .then(console.log)
     }
-    const initTimeOut = ()=>{
+    const initTimeOut = ({datetime})=>{
         client.post('daysession/create',{
             daysession:{
-                employeeID: id,
-                timeOut: new Date()
+                employeeID: employeeID,
+                timeOut: datetime.format()
             }
         })
+        .then(console.log)
+    }
+
+    const submission = results=>{
+        timeMethod === 'TimeIn' ? initTimeIn(results) : initTimeOut(results)
     }
 
     return(
@@ -37,14 +41,31 @@ const TimeInOut = () => {
             <div className="flex justify-center items-center">
                 <div className='md-2 block'>
                     <h1>Time-In & Time-Out System</h1>
-                    <input type="text" onChange={({target:{value}})=>setID(value)}/>
-                    <Button color='green' onClick={ () => setTimedIn(getTime()) }>Time-In</Button> 
-                    <Button color='red' onClick={ () => setTimedOut(getTime()) }>Time-Out</Button>
-                </div>
+                    <form onSubmit={fields.handleSubmit(submission)}>
+                        <Controller 
+                            control={fields.control}
+                            name='datetime'
+                            render={({field:{value,onChange}})=>(
+                                <DatePicker 
+                                    disableDayPicker
+                                    value={value}
+                                    onChange={onChange}
+                                    format='YYYY-MM-DD HH:mm:ss'
+                                    plugins={[
+                                        <TimePicker 
+                                            hideSeconds
+                                        />
+                                    ]}
+                                    render={(value,openCalendar)=><Button onClick={openCalendar}>{value ? value : 'Select Time'}</Button>}
+                                />
+                            )}
+                        />
 
-                <div>
-                    <p>Timed-In: { timedIn }</p>
-                    <p>Timed-Out: { timedOut }</p>
+                        <SearchBar fields={fields} setOptions={setOptions} options={options} setEmployeeID={setEmployeeID}/>
+                        <Button color='green' type='submit' onClick={ () => setTimeMethod('TimeIn') }>Time-In</Button> 
+                        <Button color='red' type='submit' onClick={ () => setTimeMethod('TimeOut') }>Time-Out</Button>
+                    </form>
+                    <DevTool control={fields.control}/>
                 </div>
             </div>
         </>

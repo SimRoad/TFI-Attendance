@@ -58,7 +58,7 @@ export default class EmployeeController{
         try {
             let response
             const {id,date} = req.query
-            response = id ? await DaySession.getEmpDayWorkHours(id,date) : await DaySession.getAllDayWorkHours(date)
+            response = await DaySession.getEmpDayWorkHours(id,date)
             res.send(response)
         } catch (error) {
             next(error)
