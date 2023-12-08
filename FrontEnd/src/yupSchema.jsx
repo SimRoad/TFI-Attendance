@@ -54,6 +54,31 @@ export const employeeRegisterSchema = yup.object().shape({
     address: addressSchema,
 })
 
+const employeeSchemaUpdate = yup.object().shape({
+    firstName: yup.string(),
+    middleName: yup.string().notRequired(),
+    lastName: yup.string(),
+    birthDate: yup.date(),
+    jobPosition: yup.string(),
+    gender: yup.string().oneOf(["male","female"], "Required"),
+    civilStatus: yup.string().oneOf(["single","married", "widowed", "legally separated"],"Required"),
+    contactNumber: yup.string().matches(/((^(\+)(\d){12}$)|(^\d{11}$))/, "Not a valid contact number"),
+    email: yup.string().notRequired()
+})
+
+const addressSchemaUpdate = yup.object().shape({
+    street: yup.string(),
+    barangay: yup.string(),
+    province: yup.string(),
+    postalCode: yup.number().notRequired(),
+    city_municipality: yup.string(),
+})
+
+export const employeeRegisterSchemaUpdate = yup.object().shape({
+    employee: employeeSchemaUpdate,
+    address: addressSchemaUpdate,
+})
+
 export const userSchema = yup.object().shape({
     email: yup.string().email("Not a valid email").required("Required"),
     userPassword: yup.string()
@@ -66,8 +91,7 @@ export const userSchema = yup.object().shape({
 
 export const holidaySchema = yup.object().shape({
     holidayName: yup.string().required("Required"),
-    holidate: yup.date().required("Required"),
-    holitype: yup.string().required().oneOf(["special", "regular"], "Required"),
+    holidayDate: yup.date().required("Required")
 })
 
 export const leaveSchema = yup.object().shape({

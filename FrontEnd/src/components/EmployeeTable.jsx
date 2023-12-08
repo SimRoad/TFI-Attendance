@@ -12,7 +12,7 @@ const EmployeeTable = ({setter,columns,data,checkBox,editable})=>{
         client.get(`employee/all`)
         .then(res => setEmployees(res.data))
         .catch(err => console.log(err))
-        
+        console.log(data)
     },[])
 
     return(

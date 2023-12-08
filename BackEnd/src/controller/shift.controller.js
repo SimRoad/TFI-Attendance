@@ -33,8 +33,14 @@ export default class ShiftController{
     }
     static async getMonthDates(req,res,next){
         try {
-            (`Shift Controller running`)
             res.send(await Shift.getMonthShiftSpecial(req.body))
+        } catch (error) {
+            next(error)
+        }
+    }
+    static async getMonthCount(req,res,next){
+        try {
+            res.send(await Shift.getMonthCount())
         } catch (error) {
             next(error)
         }

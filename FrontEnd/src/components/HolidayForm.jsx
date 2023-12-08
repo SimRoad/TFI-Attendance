@@ -13,12 +13,12 @@ const HolidayForm = () => {
         resolver: yupResolver( holidaySchema ),
     })
 
-    const onSubmit = (data) => {
-        const result = data
+    const onSubmit = data=> {
+        const holidays = data
         console.log(data)
-        console.log('Holiday Created', result)
-        client.post(`holidays/create`,result)
-        .then(window.location = "/dashboard/holidays")
+        console.log('Holiday Created', {holidays})
+        client.post(`holidays/create`,{holidays})
+        .then(()=>window.location = "/dashboard/holidayTable")
         .catch(err=>console.error(err))
     }
 
@@ -27,9 +27,9 @@ const HolidayForm = () => {
             <div className="flex justify-center items-center">
                     <form className="flex max-w-md flex-col gap-4" onSubmit={ handleSubmit(onSubmit) }>
                         <div className="max-w-md">
-                            <Label htmlFor="holiday" value="Holiday" />
+                            <Label htmlFor="holidayName" value="Holiday" />
                             <TextInput 
-                                id="holiday" 
+                                id="holidayName" 
                                 type="text" 
                                 placeholder="Christ-mas"
                                 {...register("holidayName")}
@@ -38,16 +38,16 @@ const HolidayForm = () => {
                             />
                         </div>
                         <div className="max-w-md">
-                            <Label htmlFor="holidate" value="Holiday Date" />
+                            <Label htmlFor="holidayDate" value="Holiday Date" />
                             <Controller
-                                name='holidate'
+                                name='holidayDate'
                                 control={control}
-                                color={errors.holidate ? 'failure' : ''}
+                                color={errors.holidayDate ? 'failure' : ''}
                                 helperText={<>
-                                    {errors.holidate ? errors.holidate.message : ''}
+                                    {errors.holidayDate ? errors.holidayDate.message : ''}
                                 </>}
                                 render={({ field: { onChange, value } }) => (<Datepicker
-                                    id="holidate"
+                                    id="holidayDate"
                                     placeholder='Select Date'
                                     selected={value}
                                     autoHide={true}
