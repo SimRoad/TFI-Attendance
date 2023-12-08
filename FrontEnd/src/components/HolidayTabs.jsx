@@ -5,22 +5,11 @@ import { MdEventNote } from "react-icons/md";
 import { IoCreateSharp } from "react-icons/io5";
 import { useState, useEffect } from "react"
 import client from "../axiosURL"
-
+import {useOutputContext} from 'react-router-dom'
 
 
 const HolidayTabs = ()=>{
-    const [position, setPosition] = useState([]);
-    var avail = false
-
-    useEffect(() => {
-        client.get(`/user/auth`)
-        .then(res => setPosition(res.data))
-        .catch(err => console.log(err))
-    }, [])
-    
-    if(position.position === "Management"){
-        avail = true;
-    }
+    const [ auth ] = useOutputContext()
 
     return(
         <>
@@ -29,9 +18,9 @@ const HolidayTabs = ()=>{
                     <Tabs.Item title ="Holiday Tabs" icon={MdEventNote}>
                         <HolidayTable/>
                     </Tabs.Item>
-                    <Tabs.Item title = "Form" icon={IoCreateSharp} disabled = {avail}>
+                    {auth.position === 'Admin' && <Tabs.Item title = "Form" icon={IoCreateSharp} disabled = {avail}>
                         <HolidayForm/>
-                    </Tabs.Item>
+                    </Tabs.Item>}
                 </Tabs>
             </div>
         </>
