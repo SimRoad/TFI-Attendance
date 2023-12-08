@@ -54,7 +54,7 @@ const EditEmployeeForm = () => {
                     <AddressPortion {...fields}/>
                     <ContactPortion {...fields}/>
                     <Button className="text-text border-b-2 border-accent/20 rounded-md bg-primary absolute end left-0" color='green' type='submit'>Update</Button>
-                    <Link to={'/dashboard'}>
+                    <Link to={'/dashboard/employee'}>
                         <Button className="text-text border-b-2 border-accent/20 rounded-md bg-primary absolute end right-0" color='red'>Back</Button>
                     </Link>
                 </form>
