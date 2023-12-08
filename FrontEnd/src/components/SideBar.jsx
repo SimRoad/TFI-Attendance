@@ -1,5 +1,5 @@
 'use strict'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Sidebar, SidebarItemGroup } from "flowbite-react"
 import { FaUser, FaCalendarAlt, FaRegUserCircle } from "react-icons/fa";
 import { BsFillBriefcaseFill } from "react-icons/bs";
@@ -13,15 +13,8 @@ import client from '../axiosURL';
 
 function WebSideBar() {
     const [close, setClose] = useState(true);
-    const [position, setPosition] = useState([]);
-
-    useEffect(() => {
-        client.get(`/user/auth`)
-        .then(res => setPosition(res.data))
-        .catch(err => console.log(err))
-    }, [])
-
-    if(position.position === "Admin"){
+    const [ auth ] = useOutletContext()
+    if(auth.position === "Admin"){
         return (
             <div className="flex flex-col w-max">
                 <button className='flex justify-center' onClick={() => setClose(!close)}><IoMenu size={30}/></button>
@@ -73,7 +66,7 @@ function WebSideBar() {
                 </Sidebar>
             </div>
         )
-    } else if(position.position === "Management"){
+    } else if(auth.position === "Management"){
         return (
             <div className="flex flex-col w-max">
                 <button className='flex justify-center' onClick={() => setClose(!close)}><IoMenu size={30}/></button>

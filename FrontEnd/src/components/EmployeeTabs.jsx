@@ -5,9 +5,11 @@ import EmployeeTable from "./EmployeeTable"
 import { FaClipboardList , FaUserPlus } from "react-icons/fa";
 import {useEffect,useState} from 'react'
 import client from '../axiosURL'
+import { useOutletContext } from 'react-router-dom'
 
 const EmployeeTabs = ()=>{
     const [list,setList] = useState([])
+    const [ auth ] = useOutletContext()
     useEffect(()=>{
         client.get('employee/hours')
         .then(({data})=>{
@@ -18,11 +20,11 @@ const EmployeeTabs = ()=>{
         <div className='overflow-y-auto max-h-[90vh] w-full'>
             <Tabs>
                 <Tabs.Item title ="List" icon={FaClipboardList}>
-                    <EmployeeTable editable columns={['Total Hours','Overtime','Absents','Lates']} data={list}/>
+                    <EmployeeTable editable={auth?.position === 'Admin'} columns={['Total Hours','Overtime','Absents','Lates']} data={list}/>
                 </Tabs.Item>
-                <Tabs.Item title="Create Employee" disabled={avail} icon={FaUserPlus}>
+                {<Tabs.Item title="Create Employee" icon={FaUserPlus}>
                     <EmployeeRegisterForm/>
-                </Tabs.Item>
+                </Tabs.Item>}
             </Tabs>
         </div>
     )
