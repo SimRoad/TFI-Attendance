@@ -2,18 +2,14 @@ import {Checkbox, Table, Button} from "flowbite-react"
 import client from '../axiosURL'
 import {useState,useEffect} from 'react'
 import { FaEdit } from "react-icons/fa"
-import { getFormattedDate } from "flowbite-react/lib/esm/components/Datepicker/helpers"
 
 function HolidayTable({setHolidayList}){
     const [holidays,setHolidays] = useState([])
-    const [offset,setOffset] = useState(0)
     useEffect(()=>{
-        const request = async ()=>{
-            const response = await client.get(`holidays/all`)
-            setHolidays(prev=>[...prev,...response.data])
-        }
-        if(!holidays.length && holidays.length - offset <=0) request()
-    },[offset,holidays])
+        client.get(`holidays/all`)
+        .then(res=>setHolidays(res.data))
+        .then(err=>console.log(err))
+    },[])
     return(
         <div className='overflow-y-auto max-h-[90vh] w-full'>
             <Table className="table-auto"hoverable>

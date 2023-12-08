@@ -5,14 +5,13 @@ import {useState,useEffect} from 'react'
 function LogTable({setLogList}){
     const [logs,setLogs] = useState([])
     useEffect(()=>{
-        const request = async()=>{
-            const response = await client.get(`logs/all`)
-            setLogs(prev=>[...prev,response.data])
-        }
-        if(!logs.length) request()
-    },[logs])
+        client.get(`logs/all`)
+        .then(res=>setLogs(res.data))
+        .then(err=>console.log(err))
+
+    },)
     return(
-        <div className='overflow-y-auto max-h-[40vh] w-[100vh]'>
+        <div className='overflow-y-auto max-h-[90vh] w-full'>
             <Table className="table-auto"hoverable>
                 <Table.Head>
                     <Table.HeadCell></Table.HeadCell>

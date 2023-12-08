@@ -9,7 +9,7 @@ import { IoCreateSharp } from "react-icons/io5";
 const HolidayTabs = ()=>{
     return(
         <>
-            <div className='overflow-y-auto max-h-[79vh] w-full'>
+            <div className='overflow-y-auto max-h-[90vh] w-full'>
                 <Tabs>
                     <Tabs.Item title ="Holiday Tabs" icon={MdEventNote}>
                         <HolidayTable/>
