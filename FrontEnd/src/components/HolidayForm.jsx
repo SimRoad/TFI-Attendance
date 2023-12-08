@@ -1,9 +1,12 @@
-import { Button, TextInput, Label, Textarea, Datepicker, Select, Card } from 'flowbite-react'
+'use client'
+
+import { Button, TextInput, Label, Datepicker, Card } from 'flowbite-react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import { holidaySchema } from '../yupSchema'
 import { Controller } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
+import client from '../axiosURL'
 
 const HolidayForm = () => {
     const { register, handleSubmit, formState: {errors}, control } = useForm({
@@ -11,15 +14,17 @@ const HolidayForm = () => {
     })
 
     const onSubmit = (data) => {
-        console.log('Holiday Created', data)
+        const result = data
+        console.log(data)
+        console.log('Holiday Created', result)
+        client.post(`holidays/create`,result)
+        .then(window.location = "/dashboard/holidays")
+        .catch(err=>console.error(err))
     }
 
     return(
         <>
-            
             <div className="flex justify-center items-center">
-                <Card className="max-w-sm">
-                    <h1 className="flex justify-center">Create Holiday</h1>
                     <form className="flex max-w-md flex-col gap-4" onSubmit={ handleSubmit(onSubmit) }>
                         <div className="max-w-md">
                             <Label htmlFor="holiday" value="Holiday" />
@@ -33,17 +38,6 @@ const HolidayForm = () => {
                             />
                         </div>
                         <div className="max-w-md">
-                                <Label htmlFor="description" value="Holiday Description" />
-                                <Textarea 
-                                    id="description" 
-                                    placeholder="Feliz navi'dad..." 
-                                    rows={4} 
-                                    {...register("holidesc")}
-                                    color={ errors.holidesc ? 'failure' : '' } 
-                                    helperText={ <>{ errors.holidesc ? errors.holidesc.message : ''}</> }
-                                />
-                        </div>
-                        <div className="max-w-md">
                             <Label htmlFor="holidate" value="Holiday Date" />
                             <Controller
                                 name='holidate'
@@ -53,7 +47,7 @@ const HolidayForm = () => {
                                     {errors.holidate ? errors.holidate.message : ''}
                                 </>}
                                 render={({ field: { onChange, value } }) => (<Datepicker
-                                    id='holidate'
+                                    id="holidate"
                                     placeholder='Select Date'
                                     selected={value}
                                     autoHide={true}
@@ -63,7 +57,7 @@ const HolidayForm = () => {
                         </div>
                         <Button type="submit">Create Holiday</Button>
                     </form>
-                </Card>
+                    <DevTool control={control}/>
             </div>
             
         </>
