@@ -26,7 +26,7 @@ const GraphHours = () => {
 
 const InfoCard = ()=>{
     return(
-        <Card className="max-w-sm absolute bottom-[25%] right-[25%]">
+        <Card className="h-[20%] w-[15%] absolute bottom-[48%] right-[23.7%]">
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             Total Absents : 12
         </h5>
@@ -49,7 +49,7 @@ const InfoCard = ()=>{
 
 const Sessions = () => {
     return(
-        <Card className="max-w-md absolute top-[5%] right-[24%]">
+        <Card className="h-1/4 absolute top-[5%] right-[24%]">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Pending Sessions : 0
             </h5>
