@@ -31,7 +31,7 @@ const userCreate = () => {
                         <TextInput 
                             type="email" 
                             id="email" 
-                            placeholder="name@flowbite.com" 
+                            placeholder="name@domain.com" 
                             { ...register('email') } 
                             color={ errors.email ? 'failure' : '' } 
                             helperText={ <>{ errors.email ? errors.email.message : ''}</> }

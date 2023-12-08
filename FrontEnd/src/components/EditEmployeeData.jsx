@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { ProfileSection } from "./editEmployeeInputs/ProfileSection"
 import { AddressPortion } from "./editEmployeeInputs/AddressPortion"
 import { ContactPortion } from "./editEmployeeInputs/ContactPortion"
-import { employeeRegisterSchema } from "../yupSchema"
+import { employeeRegisterSchemaUpdate } from "../yupSchema"
 import {useForm} from 'react-hook-form'
 import { Button } from "flowbite-react"
 import { Link, useParams } from "react-router-dom"
@@ -12,7 +12,7 @@ import { useState , useEffect} from "react"
 
 const EditEmployeeForm = () => {
     const {handleSubmit, register, control, reset, formState:{errors}} = useForm(
-        {resolver: yupResolver(employeeRegisterSchema)}
+        {resolver: yupResolver(employeeRegisterSchemaUpdate)}
     )
 
     const [employee,setEmployee] = useState([])
