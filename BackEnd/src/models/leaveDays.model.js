@@ -26,9 +26,8 @@ class LeaveDays extends GenericModel{
             const placeholder = dates.map(()=>`(?,?,?,?)`).join(',')
             const values = dates.map(date=>[empID,leaveDaysID,reasonID,new Date(date)])
             //does not consider if another leave exists on the same day
-            const [rows]  = dbConn.execute(`INSERT INTO shift (employeeID, leaveDaysID, reasonID, shiftDate) VALUES
+            return dbConn.execute(`INSERT INTO shift (employeeID, leaveDaysID, reasonID, shiftDate) VALUES
             ${placeholder} ON DUPLICATE KEY UPDATE leaveDaysID = VALUES(leaveDaysID)`,values.flat())
-            return rows
         } catch (error) {
             throw(error)
         }

@@ -7,20 +7,19 @@ import client from '../axiosURL'
 const EmployeeTable = ({setter,columns,data})=>{
     columns = columns ?? ['Placeholder']
     const [employees,setEmployees] = useState([])
-    const [offset,setOffset] = useState(0)
 
     useEffect(()=>{
-        // client.get(`employee/all?offset=${offset}`)
         client.get(`employee/all`)
         .then(res => setEmployees(res.data))
         .catch(err => console.log(err))
+        
     },[])
+
     return(
         <div className='overflow-y-auto max-h-[90vh] w-full'>
-            {/* <Button onClick={()=>{setOffset(a=>a+1)}}/> */}
             <Table className='table-auto' hoverable>
                 <Table.Head>
-                    <Table.HeadCell><Checkbox onChange={()=>setOffset(a=>a+1)}/></Table.HeadCell>
+                    <Table.HeadCell><Checkbox/></Table.HeadCell>
                     <Table.HeadCell>Name</Table.HeadCell>
                     {
                         columns.map((col,ndx)=>{
@@ -55,7 +54,7 @@ const TableRow = ({setEmpList,id,name})=>{
             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white py-0">
                 {name}
             </Table.Cell>
-            <Table.Cell className='py-0'>WIP</Table.Cell>
+            <Table.Cell className='py-0'>{}</Table.Cell>
             <Table.Cell className='py-0'>
                 <Link to={`/dashboard/editEmployeeData/${id}`}>
                     <Button className='border-2 border-accent/50'>

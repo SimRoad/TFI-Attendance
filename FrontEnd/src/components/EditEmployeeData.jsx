@@ -40,9 +40,9 @@ const EditEmployeeForm = () => {
         client.put(`employee/${id}`,data,{
             headers:{
                 'Content-Type' : 'multipart/form-data'
-            }.then(res=>{
-                res.status === 200 ? reset() : alert("Something went Wrong");
-            })
+            }
+        }).then(res=>{
+            res.status === 200 ? reset() : alert("Something went Wrong");
         })
     }
 

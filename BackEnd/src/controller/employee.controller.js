@@ -54,12 +54,34 @@ export default class EmployeeController{
             next(error)
         }
     }
-    static async getWorkHours(req,res,next){
+    static async getListData(req,res,next){
         try {
-            let response
+            const response = {}
             const {id,date} = req.query
-            response = await DaySession.getEmpDayWorkHours(id,date)
-            res.send(response)
+            console.log(req.query)
+            response.workHours = await DaySession.getEmpMonthWorkHours(id,date)
+            response.absentAndLate = await DaySession.getAbsentsAndLates()
+            console.log(response)
+            
+            let employees = []
+            response.workHours.forEach(hours=>{
+                const employee = {
+                    employeeID : hours.employeeID,
+                    fullName : undefined,
+                    workHours : hours.hoursWorked,
+                    overtimeHours : hours.hoursOvertime,
+                    absentCount : 0,
+                    lateCount : 0
+                }
+                response.absentAndLate.forEach(a=>{
+                    if(a.employeeID === hours.employeeID){
+                        employee.fullName = a.fullName
+                        a.dayStatus === 'absent' ? employee.absentCount++ : employee.lateCount++
+                    }
+                })
+                employees.push(employee)
+            })
+            res.send(employees)
         } catch (error) {
             next(error)
         }
