@@ -1,8 +1,11 @@
 import { Table, TableHeadCell } from "flowbite-react"
-
+import { useState, useEffect} from 'react'
 const EmployeeStatus = () =>{
 
     const [data,setData] = useState([]);
+
+    useEffect()
+
 
     return(
         <>
@@ -21,6 +24,9 @@ const EmployeeStatus = () =>{
                     <Table.HeadCell>
                         No. of Absences
                     </Table.HeadCell>
+                    <Table.HeadCell>
+                        No of Lates
+                    </Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
                     {/* loop body here */}
@@ -31,7 +37,7 @@ const EmployeeStatus = () =>{
     )
 }
 
-const Rows = ({id, TotalHours, OvertimeHours, Absences})=>{
+const Rows = ({id, TotalHours, OvertimeHours, Absences, Lates})=>{
 
     return(
         <Table.Row>
@@ -39,6 +45,7 @@ const Rows = ({id, TotalHours, OvertimeHours, Absences})=>{
             <Table.Cell>{TotalHours}</Table.Cell>
             <Table.Cell>{OvertimeHours}</Table.Cell>
             <Table.Cell>{Absences}</Table.Cell>
+            <Table.Cell>{Lates}</Table.Cell>
         </Table.Row>
     )
 }
