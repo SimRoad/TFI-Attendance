@@ -8,7 +8,7 @@ const dashboard = () => {
             <Header/>
             <div className="flex h-auto-max w-full">
                 <WebSideBar />
-                <div className="flex w-full justify-center">
+                <div className="flex w-full justify-center relative">
                     <Outlet context={useOutletContext()}/>
                 </div>
             </div>
