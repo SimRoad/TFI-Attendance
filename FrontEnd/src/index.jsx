@@ -50,11 +50,11 @@ const PrivateRoutes = ({children, ...rest})=>{
     const [auth,setAuth] = useState(null)
     useEffect(()=>{
         client.get('/user/auth')
-        .then(({data})=>{setAuth(data);console.log(data)})
+        .then(({data})=>setAuth(data))
     },[])
     if(!auth) return("loading")
     return(
-         auth.valid ? <Outlet/> : <Navigate to='/login'/>
+         auth.valid ? <Outlet context={[auth]}/> : <Navigate to='/login'/>
     )
 }
 

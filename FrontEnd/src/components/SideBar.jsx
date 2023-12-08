@@ -8,6 +8,7 @@ import { Routes as Routers, Link, Route } from "react-router-dom";
 import { CgDebug } from "react-icons/cg"
 import { CiViewList } from "react-icons/ci";
 import { IoMenu } from "react-icons/io5";
+import { useOutletContext } from 'react-router-dom'
 import client from '../axiosURL';
 
 function WebSideBar() {
