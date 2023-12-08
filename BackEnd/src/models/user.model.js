@@ -23,4 +23,8 @@ export default class User extends GenericModel{
     async comparePassword(hashedPass){
         return await bcrypt.compare(this.userPassword,hashedPass)
     }
+    static async getPosition(id){
+        const [rows] = databaseConfig.execute(`SELECT position FROM user WHERE userID = ?`,[id])
+        return rows
+    }
 }
