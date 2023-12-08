@@ -1,3 +1,4 @@
+import DrawGraph from "../components/DrawGraph";
 import PendingList from "../components/PendingModal";
 import {Card,Button} from 'flowbite-react'
 
@@ -14,22 +15,23 @@ const IndexPage = ()=>{
 
 const GraphHours = () => {
     return(
-        <Card className="max-w-md absolute top-0 left-0">
-            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <Card className="h-2/4 w-2/4 absolute top-[5%] left-[10%]">
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white flex justify-center">
                 Graph of Total Hours
             </h5>
+                <DrawGraph/>
         </Card>
     )
 }
 
 const InfoCard = ()=>{
     return(
-        <Card className="max-w-sm absolute bottom-0 right-0">
+        <Card className="max-w-sm absolute bottom-[25%] right-[25%]">
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Total Absents : 0
+            Total Absents : 12
         </h5>
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Total Lates : 0
+            Total Lates : 10
         </h5>
         <Button>
             Read more
@@ -47,9 +49,9 @@ const InfoCard = ()=>{
 
 const Sessions = () => {
     return(
-        <Card className="max-w-md absolute top-0 right-0">
+        <Card className="max-w-md absolute top-[5%] right-[24%]">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Pending Sessions
+                Pending Sessions : 0
             </h5>
             <PendingList />
         </Card>
@@ -58,12 +60,12 @@ const Sessions = () => {
 
 const TotalHours = () => {
     return(
-        <Card className="max-w-md absolute bottom-0 left-0">
+        <Card className="max-w-md absolute bottom-[30%] left-[10%]">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Total Hours : --
+                Total Hours : 2560
             </h5>
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Overtime Hours : --
+                Overtime Hours : 12
             </h5>
         </Card>
     )

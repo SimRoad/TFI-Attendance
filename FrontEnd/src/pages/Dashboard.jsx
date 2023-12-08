@@ -6,9 +6,9 @@ const dashboard = () => {
     return (
         <>
             <Header/>
-            <div className="flex h-auto-max w-full">
+            <div className="flex h-full w-full">
                 <WebSideBar />
-                <div className="flex w-full justify-center relative">
+                <div className="flex h-[93vh] w-full justify-center relative">
                     <Outlet context={useOutletContext()}/>
                 </div>
             </div>
