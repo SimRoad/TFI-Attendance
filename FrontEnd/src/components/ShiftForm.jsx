@@ -7,6 +7,7 @@ const ShiftForm = ({fields,employees})=>{
 
     return(
         <>
+            <Button color='blue' type='submit' className='text-black'>SUBMIT?</Button>
             <Controller
                 control={control}
                 name='dates'
@@ -22,9 +23,7 @@ const ShiftForm = ({fields,employees})=>{
                     </>
                 )}
             />
-            <div className="flex items-center gap-2">
-            </div>
-            <Button color='blue' type='submit' className='text-black'>SUBMIT?</Button>
+            
         </>
     )
 }

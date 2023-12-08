@@ -16,9 +16,9 @@ const ConflictModal = ({openModal,setOpenModal,conflict})=>{
               There is a conflict with the shifts. pls fix.
             </p>
             <ConflictTable/>
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+            {/* <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
               {JSON.stringify(conflict)}
-            </p>
+            </p> */}
           </div>
         </Modal.Body>
         <Modal.Footer>

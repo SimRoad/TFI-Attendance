@@ -31,11 +31,13 @@ const ShiftPage = ()=>{
     }
     return(
         <>
-            <div className='overflow-y-auto max-h-full w-full'>
+            <div className='overflow-y-auto max-h-full w-full relative'>
                 <ConflictModal openModal={openModal} setOpenModal={setOpenModal} conflict={conflict}/>
-                <div className="overflow-y-auto max-h-[80vh]">
+                <div className="overflow-y-auto max-h-full">
                 <EmployeeTable setter={setEmpList} columns={['Assigned','Shifts']}/>
                 </div>
+            </div>
+            <div>
                 <form onSubmit={fields.handleSubmit(submission)}>
                     <ShiftForm fields={fields} employees={empList}/>
                 </form>
