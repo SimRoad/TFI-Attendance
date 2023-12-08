@@ -6,7 +6,8 @@ import CompFooter from "../components/headerAndFooter/Footer";
 const dashboard = () => {
     return (
         <>
-            <Header />
+        
+            <Header/>
             <div className="flex h-auto-max w-full">
                 <WebSideBar />
                 <div className="flex w-full justify-center">
