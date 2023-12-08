@@ -3,7 +3,7 @@ import {Table, Button} from "flowbite-react"
 import {useState,useEffect} from 'react'
 import { FaEdit } from "react-icons/fa"
 
-function HolidayTable({setHolidayList}){
+function HolidayTable({editable}){
     const [holidays,setHolidays] = useState([])
     useEffect(()=>{
         client.get(`holidays/all`)
@@ -16,12 +16,16 @@ function HolidayTable({setHolidayList}){
                 <Table.Head>
                     <Table.HeadCell>Holiday Name</Table.HeadCell>
                     <Table.HeadCell>Holiday Date</Table.HeadCell>
-                    <Table.HeadCell><span className="sr-only">Edit</span></Table.HeadCell>
+                    {editable && <Table.HeadCell><span className="sr-only">Edit</span></Table.HeadCell>}
                 </Table.Head>
                 <Table.Body className="divide-y">
                     {
                     holidays.map((holiday,ndx)=>
-                        <HolidayTableBody key={ndx} id={holiday.holidayID} name={holiday.holidayName} date={new Date(holiday.holidayDate).toDateString()}/>
+                        <HolidayTableBody key={ndx} 
+                        id={holiday.holidayID} 
+                        name={holiday.holidayName} 
+                        editable={editable}
+                        date={new Date(holiday.holidayDate).toDateString()}/>
                     )
                     }
                 </Table.Body>
@@ -30,19 +34,12 @@ function HolidayTable({setHolidayList}){
     )
 }
 
-const HolidayTableBody = ({setHolidayList,id,name,date})=>{
-    const checkHandler = ()=>{
-        setHolidayList(list=>{
-            console.log(list)
-            if(list.includes(id)) return list.filter(val=> val !== id)
-            return [...list,id]
-        })
-    }
+const HolidayTableBody = ({name,date,editable})=>{
     return(
         <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell className ="whitespace-nowrap font-medium text-gray-900 dark:text-white py-0">{name}</Table.Cell>
+            <Table.Cell className ="whitespace-nowrap font-medium text-gray-900 dark:text-white py-2">{name}</Table.Cell>
             <Table.Cell className= "py-0">{date}</Table.Cell>
-            <Table.Cell className= "py-0"><Button className="border-2 border-accent/50"><FaEdit/></Button></Table.Cell>
+            {editable && <Table.Cell className= "py-0"><Button className="border-2 border-accent/50"><FaEdit/></Button></Table.Cell>}
         </Table.Row>
     )
 }

@@ -3,8 +3,6 @@ import HolidayTable from "./HolidayTable";
 import HolidayForm from "./HolidayForm";
 import { MdEventNote } from "react-icons/md";
 import { IoCreateSharp } from "react-icons/io5";
-import { useState, useEffect } from "react"
-import client from "../axiosURL"
 import {useOutletContext} from 'react-router-dom'
 
 
@@ -16,9 +14,9 @@ const HolidayTabs = ()=>{
             <div className='overflow-y-auto max-h-[90vh] w-full'>
                 <Tabs>
                     <Tabs.Item title ="Holiday Tabs" icon={MdEventNote}>
-                        <HolidayTable/>
+                        <HolidayTable editable={auth.position === 'Admin'}/>
                     </Tabs.Item>
-                    {auth.position === 'Admin' && <Tabs.Item title = "Form" icon={IoCreateSharp} disabled = {avail}>
+                    {auth.position === 'Admin' && <Tabs.Item title = "Form" icon={IoCreateSharp}>
                         <HolidayForm/>
                     </Tabs.Item>}
                 </Tabs>
