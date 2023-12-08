@@ -26,7 +26,6 @@ export default class Shift extends GenericModel{
             })
             const placeholder = shifts.map(a=>'(?,?,?,?)')
             let response
-            // if((response = await databaseConfig.execute(`UPDATE shift SET `)))
             const [rows] = await databaseConfig.execute(`INSERT INTO shift(shiftDate,timeIn,timeOut,employeeID) 
             VALUES${placeholder} ON DUPLICATE KEY UPDATE timeIn = VALUES(timeIn), timeOut = VALUES(timeOut)`,shifts.flat())
             return rows
@@ -42,7 +41,7 @@ export default class Shift extends GenericModel{
             FROM shift 
             WHERE DATE(shiftDate) IN (${datesPH}) 
             AND employeeID IN (${employeesPH})
-            AND leaveDaysID IS NULL`,[...dates,...employees])
+            AND timeIn IS NOT NULL`,[...dates,...employees])
             return rows
         } catch (error) {
             throw(error)
@@ -56,16 +55,9 @@ export default class Shift extends GenericModel{
             WHERE employeeID IN(${employeePH}) 
             AND MONTH(shiftDate) = MONTH(NOW()) 
             AND YEAR(shiftDate) = YEAR(NOW())
-            AND leaveDaysID IS NULL`
+            AND timeIn IS NOT NULL`
             const [rows] = await databaseConfig.execute(shiftQuery,employees)
             return rows
-        } catch (error) {
-            throw(error)
-        }
-    }
-    static async getUnresolvedStatus(){
-        try {
-            
         } catch (error) {
             throw(error)
         }
