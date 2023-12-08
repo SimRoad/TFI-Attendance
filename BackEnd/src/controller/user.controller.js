@@ -54,9 +54,9 @@ export default class UserController{
             next(error)
         }
     }
-    static authorize(req,res,next){
+    static async authorize(req,res,next){
         try {
-            res.send(req.session?.userID ? {valid : true} : {valid : false})
+            res.send(req.session?.userID ? {valid: true, position: (await User.getPosition(req.session.userID).position)} : {valid : false})
         } catch (error) {
             next(error)
         }
