@@ -4,21 +4,33 @@ import {Card,Button} from 'flowbite-react'
 const IndexPage = ()=>{
     return(
         <>
+            <GraphHours />
             <PendingList />
             <InfoCard />
         </>
     )
 }
 
+const GraphHours = () => {
+    return(
+        <Card className="max-w-md absolute top-18 left-20">
+            <h1>Graph of Total Hours</h1>
+        </Card>
+    )
+}
+
 const InfoCard = ()=>{
     return(
-        <Card className="max-w-sm">
+        <Card className="max-w-sm absolute bottom-0 right-0">
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Absents : 0
+            Total Absents : 0
         </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">
+        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Total Lates : 0
+        </h5>
+        {/* <p className="font-normal text-gray-700 dark:text-gray-400">
             Joe
-        </p>
+        </p> */}
         <Button>
             Read more
             <svg className="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
