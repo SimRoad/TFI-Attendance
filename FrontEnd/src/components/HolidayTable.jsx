@@ -8,7 +8,7 @@ function HolidayTable({setHolidayList}){
     useEffect(()=>{
         client.get(`holidays/all`)
         .then(res=>setHolidays(res.data))
-        .then(err=>console.log(err))
+        .catch(err=>console.log(err))
     },[])
     return(
         <div className='overflow-y-auto max-h-[90vh] w-full'>

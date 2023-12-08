@@ -6,7 +6,7 @@ import TimePicker from 'react-multi-date-picker/plugins/time_picker'
 import client from '../axiosURL'
 
 const PendingList = ()=>{
-    const [display,setDisplay] = useState(true)
+    const [display,setDisplay] = useState(false)
     const [resolve,setResolve] = useState(false)
     const [pend,setPend] = useState({})
     const [pendings,setPendings] = useState([])

@@ -66,7 +66,6 @@ export const userSchema = yup.object().shape({
 
 export const holidaySchema = yup.object().shape({
     holidayName: yup.string().required("Required"),
-    holidesc: yup.string().notRequired(),
     holidate: yup.date().required("Required"),
     holitype: yup.string().required().oneOf(["special", "regular"], "Required"),
 })

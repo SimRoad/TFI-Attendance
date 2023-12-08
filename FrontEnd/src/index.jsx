@@ -17,6 +17,7 @@ import EmployeeTabs from './components/EmployeeTabs'
 import LeaveTabs from './components/LeaveTabs'
 import HolidayTabs from './components/HolidayTabs'
 import IndexPage from './pages/IndexPage'
+import HolidayForm from './components/HolidayForm'
 // import Debug from './components/debug'
 
 const index = ()=>{
@@ -39,6 +40,7 @@ const index = ()=>{
                         <Route element={<EditEmployeeForm/>} path='/dashboard/editEmployeeData/:id'/>
                     </Route>
                 </Route>
+                <Route path='/holidayform' element={<HolidayForm/>}/>
                 <Route path='/login' element={<Login/>}></Route>
                 <Route path='/usercreate' element={<UserCreate/>}></Route>
             </Routes>
