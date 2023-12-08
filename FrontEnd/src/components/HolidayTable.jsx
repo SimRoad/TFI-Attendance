@@ -2,18 +2,14 @@ import {Checkbox, Table, Button} from "flowbite-react"
 import client from '../axiosURL'
 import {useState,useEffect} from 'react'
 import { FaEdit } from "react-icons/fa"
-import { getFormattedDate } from "flowbite-react/lib/esm/components/Datepicker/helpers"
 
 function HolidayTable({setHolidayList}){
     const [holidays,setHolidays] = useState([])
-    const [offset,setOffset] = useState(0)
     useEffect(()=>{
-        const request = async ()=>{
-            const response = await client.get(`holidays/all`)
-            setHolidays(prev=>[...prev,...response.data])
-        }
-        if(!holidays.length && holidays.length - offset <=0) request()
-    },[offset,holidays])
+        client.get(`holidays/all`)
+        .then(res=>setHolidays(res.data))
+        .then(err=>console.log(err))
+    },[])
     return(
         <div className='overflow-y-auto max-h-[90vh] w-full'>
             <Table className="table-auto"hoverable>
@@ -47,9 +43,9 @@ const HolidayTableBody = ({setHolidayList,id,name,date})=>{
     return(
         <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <Table.Cell><Checkbox onChange={()=>checkHandler()}/></Table.Cell>
-            <Table.Cell className ="whitespace-nowrap font-medium text-gray-900 dark:text-white">{name}</Table.Cell>
-            <Table.Cell>{date}</Table.Cell>
-            <Table.Cell><Button className="border-2 border-accent/50" icon ={FaEdit}></Button></Table.Cell>
+            <Table.Cell className ="whitespace-nowrap font-medium text-gray-900 dark:text-white py-0">{name}</Table.Cell>
+            <Table.Cell className= "py-0">{date}</Table.Cell>
+            <Table.Cell className= "py-0"><Button className="border-2 border-accent/50"><FaEdit/></Button></Table.Cell>
         </Table.Row>
     )
 }

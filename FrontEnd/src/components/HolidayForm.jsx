@@ -18,7 +18,7 @@ const HolidayForm = () => {
 
     return(
         <>
-            <CompHeader/>
+            
             <div className="flex justify-center items-center">
                 <Card className="max-w-sm">
                     <h1>Create Holiday</h1>
@@ -80,7 +80,7 @@ const HolidayForm = () => {
                     </form>
                 </Card>
             </div>
-            <CompFooter/>
+            
         </>
     )
 }

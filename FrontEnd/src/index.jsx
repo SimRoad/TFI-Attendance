@@ -15,6 +15,7 @@ import EditEmployeeForm from './components/EditEmployeeData'
 import {useEffect, useState} from 'react'
 import EmployeeTabs from './components/EmployeeTabs'
 import LeaveTabs from './components/LeaveTabs'
+import HolidayTabs from './components/HolidayTabs'
 // import Debug from './components/debug'
 
 const index = ()=>{
@@ -29,7 +30,7 @@ const index = ()=>{
                         <Route index element={<EmployeeTable/>} />
                         <Route element={<EmployeeTabs/>} path='/dashboard/employee'/>
                         <Route element={<ShiftPage/>} path='/dashboard/shift'/>
-                        <Route element={<HolidayTable/>} path='/dashboard/holidayTable'/>
+                        <Route element={<HolidayTabs/>} path='/dashboard/holidayTable'/>
                         <Route element={<LeaveTabs/>} path='/dashboard/leaves'/>
                         <Route element={<UserCreate/>} path='/dashboard/createuser'/>
                         <Route element={<LogTable/>} path='/dashboard/logs'/>

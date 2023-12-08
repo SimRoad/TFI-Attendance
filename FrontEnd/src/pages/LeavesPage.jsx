@@ -41,7 +41,7 @@ const LeavesPage = ()=>{
     return(
         <>
         <div>
-            <form onSubmit={fields.handleSubmit(submission)} >
+            <form onSubmit={fields.handleSubmit(submission)} className="overflow-y-auto max-h-[90vh] w-full" >
                 <LeaveTable selected={selected} select={select} leaves={leaves} leaveDays={leaveDays}/>
                 <LeavesCalendar fields={fields}/>
                 <SearchInput fields={fields} setOptions={setOptions} options={options} setEmployeeID={setEmployeeID}/>
