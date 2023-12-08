@@ -8,16 +8,19 @@ import { Routes as Routers, Link, Route } from "react-router-dom";
 import { CgDebug } from "react-icons/cg"
 import { CiViewList } from "react-icons/ci";
 import { IoMenu } from "react-icons/io5";
+import { useOutletContext } from 'react-router-dom'
 import client from '../axiosURL';
 
 function WebSideBar({id}) {
     const [close, setClose] = useState(true);
     const [user,setUser] = useState({});
+    const [ auth ] = useOutletContext()
 
     useEffect(()=>{
         client.get(`user/${id}`)
         .then(res=>setUser(res.data[0]))
         .then(err => console.log(err))
+        console.log(auth.position)
     })
 
     return (
@@ -69,7 +72,7 @@ function WebSideBar({id}) {
                         </Link>
                     </SidebarItemGroup>
                 </Sidebar.Items> */}
-                <SideBarBody userPosition={user.Position}/>
+                <SideBarBody userPosition={auth.position}/>
             </Sidebar>
         </div>
     )
@@ -77,7 +80,7 @@ function WebSideBar({id}) {
 
 const SideBarBody = ({userPosition})=>{
 
-    if(userPosition === "admin"){
+    if(userPosition === "Admin"){
         return(
             <Sidebar.Items>
                         <SidebarItemGroup>
@@ -124,7 +127,7 @@ const SideBarBody = ({userPosition})=>{
                         </SidebarItemGroup>
                     </Sidebar.Items>
         )
-    }else if(userPosition === "management"){
+    }else if(userPosition === "Management"){
         return(
             <Sidebar.Items>
                         <SidebarItemGroup>
