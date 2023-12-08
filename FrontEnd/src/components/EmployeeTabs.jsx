@@ -20,11 +20,12 @@ const EmployeeTabs = ()=>{
                 <Tabs.Item title ="List" icon={FaClipboardList}>
                     <EmployeeTable editable columns={['Total Hours','Overtime','Absents','Lates']} data={list}/>
                 </Tabs.Item>
-                <Tabs.Item title = "Create Employee" icon={FaUserPlus}>
+                <Tabs.Item title="Create Employee" disabled={avail} icon={FaUserPlus}>
                     <EmployeeRegisterForm/>
                 </Tabs.Item>
             </Tabs>
         </div>
     )
 }
+
 export default EmployeeTabs
