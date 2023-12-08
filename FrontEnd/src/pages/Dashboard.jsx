@@ -1,7 +1,6 @@
 import Header from "../components/headerAndFooter/Header";
 import WebSideBar from "../components/SideBar";
-import { Outlet, Route, Routes as Routers } from "react-router-dom";
-import CompFooter from "../components/headerAndFooter/Footer";
+import { Outlet } from "react-router-dom";
 
 const dashboard = () => {
     return (

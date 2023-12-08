@@ -36,5 +36,12 @@ export default class DaySessionController{
             next(error)
         }
     }
+    static async getPendings(req,res,next){
+        try {
+            res.send(await DaySession.getUnresolvedStatus())
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 

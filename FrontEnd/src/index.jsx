@@ -16,6 +16,7 @@ import EditEmployeeForm from './components/EditEmployeeData'
 import EmployeeTabs from './components/EmployeeTabs'
 import LeaveTabs from './components/LeaveTabs'
 import HolidayTabs from './components/HolidayTabs'
+import IndexPage from './pages/IndexPage'
 // import Debug from './components/debug'
 
 const index = ()=>{
@@ -27,7 +28,7 @@ const index = ()=>{
                     <Route element={<EmployeeRegisterForm/>} path='/createemployee'/>
                     <Route element={<LeaveTable/>} path='/leaves'/>
                     <Route element={<Dashboard/>} path='/dashboard'>
-                        <Route index element={<EmployeeTable/>} />
+                        <Route index element={<IndexPage/>} />
                         <Route element={<EmployeeTabs/>} path='/dashboard/employee'/>
                         <Route element={<ShiftPage/>} path='/dashboard/shift'/>
                         <Route element={<HolidayTabs/>} path='/dashboard/holidayTable'/>
@@ -49,7 +50,7 @@ const PrivateRoutes = ({children, ...rest})=>{
     const [auth,setAuth] = useState(null)
     useEffect(()=>{
         client.get('/user/auth')
-        .then(({data})=>setAuth(data))
+        .then(({data})=>{setAuth(data);console.log(data)})
     },[])
     if(!auth) return("loading")
     return(
