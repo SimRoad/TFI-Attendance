@@ -3,8 +3,6 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import { holidaySchema } from '../yupSchema'
 import { Controller } from 'react-hook-form'
-import CompHeader from "../components/headerAndFooter/Header"
-import CompFooter from "../components/headerAndFooter/Footer"
 import { DevTool } from '@hookform/devtools'
 
 const HolidayForm = () => {
@@ -21,7 +19,7 @@ const HolidayForm = () => {
             
             <div className="flex justify-center items-center">
                 <Card className="max-w-sm">
-                    <h1>Create Holiday</h1>
+                    <h1 className="flex justify-center">Create Holiday</h1>
                     <form className="flex max-w-md flex-col gap-4" onSubmit={ handleSubmit(onSubmit) }>
                         <div className="max-w-md">
                             <Label htmlFor="holiday" value="Holiday" />
@@ -62,19 +60,6 @@ const HolidayForm = () => {
                                     onSelectedDateChanged={(date) => onChange(date)} />
                                 )}
                             />
-                            {/* <Datepicker id="holidate" {...register("holidate")} /> */}
-                        </div>
-                        <div className="max-w-md">
-                            <Label htmlFor="holidaytype" value="Holiday Type" />
-                            <Select
-                                id="holidaytype" {...register("holitype")}
-                                color={ errors.holitype ? 'failure' : '' } 
-                                helperText={ <>{ errors.holitype ? errors.holitype.message : ''}</> }
-                            >
-                                <option>---</option>
-                                <option value="regular">Regular</option>
-                                <option value="special">Special</option>
-                            </Select>
                         </div>
                         <Button type="submit">Create Holiday</Button>
                     </form>

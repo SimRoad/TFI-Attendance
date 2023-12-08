@@ -1,5 +1,5 @@
-import {Checkbox, Table, Button} from "flowbite-react"
 import client from '../axiosURL'
+import {Table, Button} from "flowbite-react"
 import {useState,useEffect} from 'react'
 import { FaEdit } from "react-icons/fa"
 
@@ -14,10 +14,8 @@ function HolidayTable({setHolidayList}){
         <div className='overflow-y-auto max-h-[90vh] w-full'>
             <Table className="table-auto"hoverable>
                 <Table.Head>
-                    <Table.HeadCell><Checkbox/></Table.HeadCell>
                     <Table.HeadCell>Holiday Name</Table.HeadCell>
                     <Table.HeadCell>Holiday Date</Table.HeadCell>
-                    <Table.HeadCell>Holiday Type</Table.HeadCell>
                     <Table.HeadCell><span className="sr-only">Edit</span></Table.HeadCell>
                 </Table.Head>
                 <Table.Body className="divide-y">
@@ -42,7 +40,6 @@ const HolidayTableBody = ({setHolidayList,id,name,date})=>{
     }
     return(
         <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <Table.Cell><Checkbox onChange={()=>checkHandler()}/></Table.Cell>
             <Table.Cell className ="whitespace-nowrap font-medium text-gray-900 dark:text-white py-0">{name}</Table.Cell>
             <Table.Cell className= "py-0">{date}</Table.Cell>
             <Table.Cell className= "py-0"><Button className="border-2 border-accent/50"><FaEdit/></Button></Table.Cell>
