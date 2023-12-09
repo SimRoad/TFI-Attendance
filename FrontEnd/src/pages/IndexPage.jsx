@@ -1,15 +1,37 @@
 import DrawGraph from "../components/DrawGraph";
 import PendingList from "../components/PendingModal";
+import {useState, useEffect} from 'react'
 import {Card,Button} from 'flowbite-react'
+import {Navigate} from 'react-router-dom'
+import client from '../axiosURL'
 
 const IndexPage = ()=>{
+    const [values,setValues] = useState({})
+    useEffect(()=>{
+        client.get(`employee/hours`)
+        .then(({data})=>{
+            let values = {
+                hours: 0,
+                overtime: 0,
+                absent: 0,
+                late: 0
+            }
+            data.map(a=>{
+                values.hours += Number(a.workHours)
+                values.overtime += Number(a.overtimeHours)
+                values.absent += a.absentCount
+                values.late += a.lateCount
+            })
+            setValues(values)
+        })
+    },[])
     return(
         <>
         <div className="grid relative grid-cols-2 grid-flow-row-dense gap-1">
             <GraphHours />
-            <Sessions/>
-            <InfoCard />
-            <TotalHours />
+            <Sessions />
+            <InfoCard values={values}/>
+            <TotalHours values={values}/>
         </div>
         </>
     )
@@ -26,16 +48,18 @@ const GraphHours = () => {
     )
 }
 
-const InfoCard = ()=>{
+const InfoCard = ({values})=>{
+    const [nav,setNav] = useState(false)
     return(
         <Card className="h-max w-max absolute top-[52%] right-[52%] bg-red-100">
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Total Absents : 12
+            Total Absents : {values.absent}
         </h5>
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Total Lates : 10
+            Total Lates : {values.late}
         </h5>
-        <Button>
+        {nav && <Navigate to='/dashboard/employee'/>}
+        <Button onClick={()=>setNav(true)}>
             Read more
             <svg className="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -44,6 +68,7 @@ const InfoCard = ()=>{
                 clipRule="evenodd"
             />
             </svg>
+            
         </Button>
         </Card>
     )
@@ -60,14 +85,15 @@ const Sessions = () => {
     )
 }
 
-const TotalHours = () => {
+const TotalHours = ({values}) => {
+    console.log(values)
     return(
         <Card className="h-min absolute top-[52%] left-[52%] w-max">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Total Hours : 2560
+                Total Hours : {values.hours}
             </h5>
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Overtime Hours : 12
+                Overtime Hours : {values.overtime}
             </h5>
         </Card>
     )
