@@ -5,10 +5,24 @@ import {useState,useEffect} from 'react'
 function LogTable({setLogList}){
     const [logs,setLogs] = useState([])
     useEffect(()=>{
-        client.get(`logs/all`)
-        .then(res=>setLogs(res.data))
-        .then(err=>console.log(err))
-
+        // client.get(`logs/all`)
+        // .then(res=>setLogs(res.data))
+        // .then(err=>console.log(err))
+        setLogs(
+            [
+                {logID:1,generatedBy:'Lance B Ramos',changesDesc:'Created Shift Row at 2023-12-07'},
+                {logID:1,generatedBy:'Lance B Ramos',changesDesc:'Created Shift Row at 2023-12-07'},
+                {logID:1,generatedBy:'Lance B Ramos',changesDesc:'Created Shift Row at 2023-12-07'},
+                {logID:1,generatedBy:'Lance B Ramos',changesDesc:'Created Shift Row at 2023-12-07'},
+                {logID:1,generatedBy:'Lance B Ramos',changesDesc:'Created Shift Row at 2023-12-07'},
+                {logID:1,generatedBy:'Lance B Ramos',changesDesc:'Created Shift Row at 2023-12-07'},
+                {logID:1,generatedBy:'Lance B Ramos',changesDesc:'Created Shift Row at 2023-12-07'},
+                {logID:1,generatedBy:'Lance B Ramos',changesDesc:'Created Shift Row at 2023-12-07'},
+                {logID:1,generatedBy:'Lance B Ramos',changesDesc:'Created Shift Row at 2023-12-07'},
+                {logID:1,generatedBy:'Lance B Ramos',changesDesc:'Created Shift Row at 2023-12-07'},
+                {logID:1,generatedBy:'Lance B Ramos',changesDesc:'Created Shift Row at 2023-12-07'},
+            ]
+            )
     },)
     return(
         <div className='overflow-y-auto max-h-[90vh] w-full'>
