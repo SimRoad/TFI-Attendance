@@ -116,11 +116,10 @@ export default class DaySession extends GenericModel{
         date = date || new Date()
         const values = empID ? [date,date,empID] : [date,date]
         const idSQL = empID ? 'AND employeeID = ? ' : ''
-        console.log(values)
         const [rows] = await databaseConfig.execute(`SELECT employeeID, SUM(TIMESTAMPDIFF(HOUR,timeIn,timeOut)) AS hoursWorked,
             SUM(GREATEST(0, TIMESTAMPDIFF(HOUR,timeIn,timeOut) - 8)) AS hoursOvertime
             FROM daysession WHERE 
-            MONTH(timeIn) = MONTH(?) AND YEAR(timeIn) = YEAR(?) ${idSQL}GROUP BY MONTH(timeIn)`,values)
+            MONTH(timeIn) = MONTH(?) AND YEAR(timeIn) = YEAR(?) ${idSQL}GROUP BY employeeID`,values)
         return rows
     }
 }

@@ -1,4 +1,4 @@
-import {Button, Select} from 'flowbite-react'
+import {Button, Select, Card} from 'flowbite-react'
 import MultiDatePicker from './MultiSelectDate'
 import {Controller} from 'react-hook-form'
 
@@ -6,8 +6,8 @@ const ShiftForm = ({fields,employees})=>{
     const {register, control, formState:{errors}} = fields
 
     return(
-        <>
-            <Button color='blue' type='submit' className='text-black'>SUBMIT?</Button>
+        <Card className='max-w-md bg-emerald-100 border-t-slate-500'>
+            <Button color='light' type='submit' className='text-black'>SUBMIT?</Button>
             <Controller
                 control={control}
                 name='dates'
@@ -24,7 +24,7 @@ const ShiftForm = ({fields,employees})=>{
                 )}
             />
             
-        </>
+        </Card>
     )
 }
 

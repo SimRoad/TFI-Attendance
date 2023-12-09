@@ -1,4 +1,4 @@
-import { Button } from 'flowbite-react'
+import { Button, Card } from 'flowbite-react'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import DatePicker from 'react-multi-date-picker'
@@ -37,7 +37,7 @@ const TimeInOut = () => {
     }
 
     return(
-        <>
+        <Card className='h-max border-b-neutral-400'>
             <div className="flex justify-center items-center">
                 <div className='md-2 block'>
                     <h1>Time-In & Time-Out System</h1>
@@ -68,7 +68,7 @@ const TimeInOut = () => {
                     <DevTool control={fields.control}/>
                 </div>
             </div>
-        </>
+        </Card>
     )
 }
 
