@@ -16,7 +16,7 @@ const PendingList = ()=>{
     },[])
     return(
         <>
-            <Button onClick={()=>setDisplay(true)}></Button>
+            <Button disabled onClick={()=>setDisplay(true)}></Button>
             <Modal show={display} onClose={() => setDisplay(false)}>
                 <Modal.Header>Unresolved Sessions</Modal.Header>
                 <Modal.Body>

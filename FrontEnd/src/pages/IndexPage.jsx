@@ -5,17 +5,19 @@ import {Card,Button} from 'flowbite-react'
 const IndexPage = ()=>{
     return(
         <>
+        <div className="grid relative grid-cols-2 grid-flow-row-dense gap-1">
             <GraphHours />
             <Sessions/>
             <InfoCard />
             <TotalHours />
+        </div>
         </>
     )
 }
 
 const GraphHours = () => {
     return(
-        <Card className="h-2/4 w-2/4 absolute top-[5%] left-[10%]">
+        <Card className="h-[40vh] w-max absolute bottom-[52%] right-[52%]">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white flex justify-center">
                 Graph of Total Hours
             </h5>
@@ -26,7 +28,7 @@ const GraphHours = () => {
 
 const InfoCard = ()=>{
     return(
-        <Card className="h-[20%] w-[15%] absolute bottom-[48%] right-[23.7%]">
+        <Card className="h-max w-max absolute top-[52%] right-[52%] bg-red-100">
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             Total Absents : 12
         </h5>
@@ -49,7 +51,7 @@ const InfoCard = ()=>{
 
 const Sessions = () => {
     return(
-        <Card className="h-1/4 absolute top-[5%] right-[24%]">
+        <Card className="h-max absolute bottom-[52%] left-[52%] w-max bg-green-50">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Pending Sessions : 0
             </h5>
@@ -60,7 +62,7 @@ const Sessions = () => {
 
 const TotalHours = () => {
     return(
-        <Card className="max-w-md absolute bottom-[30%] left-[10%]">
+        <Card className="h-min absolute top-[52%] left-[52%] w-max">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Total Hours : 2560
             </h5>
