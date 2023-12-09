@@ -16,7 +16,7 @@ const EmployeeTable = ({setter,columns,data,checkBox,editable})=>{
     },[])
 
     return(
-        <div className='overflow-y-auto max-h-[80vh] w-full'>
+        <div className='overflow-y-auto h-[70vh] w-full'>
             <Table className='table-auto' hoverable>
                 <Table.Head>
                     {checkBox && <Table.HeadCell>Select</Table.HeadCell>}

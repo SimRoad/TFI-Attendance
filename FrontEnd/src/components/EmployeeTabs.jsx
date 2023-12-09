@@ -17,7 +17,7 @@ const EmployeeTabs = ()=>{
         })
     },[])
     return(
-        <div className='overflow-y-auto max-h-[90vh] w-full'>
+        <div className='overflow-y-auto h-screen w-full'>
             <Tabs>
                 <Tabs.Item title ="List" icon={FaClipboardList}>
                     <EmployeeTable editable={auth?.position === 'Admin'} columns={['Total Hours','Overtime','Absents','Lates']} data={list}/>
